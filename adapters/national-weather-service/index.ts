@@ -29,10 +29,9 @@ export const getActiveAlertsCount = () => {
 	return getAlertsEndpoint("/active/count");
 };
 
-// const getNWSAlertsByEvent = (eventType: string) => {
-// 	const axiosEventAlerts = getNWSAlerts();
-// 	return axiosEventAlerts.get({ url: eventType });
-// };
+export const getActiveAlertsByEvent = (eventType: string) => {
+	return getAlertsEndpoint("/active", { params: { event: eventType } });
+};
 
 // export const getActiveAlertsCountByEvent = (event: string) => getNWS();
 

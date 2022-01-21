@@ -10,17 +10,19 @@ import {
 	getAlertById,
 	getActiveAlerts,
 	getActiveAlertsCount,
+	getActiveAlertsByEvent,
 } from "../adapters/national-weather-service";
 
 const Home: NextPage = () => {
 	useEffect(() => {
 		const getAlertsCount = async () => {
 			try {
-				const res = await getAlerts();
+				// const res = await getAlerts();
 				// const res = await getAlertTypes();
 				// const res = await getAlertById("15654");
 				// const res = await getActiveAlerts();
 				// const res = await getActiveAlertsCount();
+				const res = await getActiveAlertsByEvent("Severe Thunderstorm Warning");
 
 				console.log(res);
 			} catch (error) {
