@@ -4,33 +4,38 @@ const returnAxiosInstance = () =>
 	// instance.method default: "GET"
 	Axios.create({ baseURL: "https://api.weather.gov" });
 
-const getAlertsEndpoint = (url?: string, configs?: any) => {
+const getAlertsEndpoint = async (url?: string, axiosConfigs?: any) => {
 	const axios = returnAxiosInstance();
-	return axios.get(url ? `alerts/${url}` : "alerts", configs);
+	return await axios.get(url ? `alerts/${url}` : "alerts", axiosConfigs);
 };
 
-export const getAlerts = () => {
+export const getAlerts = async () => {
 	return getAlertsEndpoint();
 };
 
-export const getAlertTypes = () => {
-	return getAlertsEndpoint("/types");
+export const getAlertTypes = async () => {
+	const types = await getAlertsEndpoint("/types");
+	return types.data.eventTypes;
 };
 
 export const getAlertById = (id: string) => {
 	return getAlertsEndpoint(id);
 };
 
-export const getActiveAlerts = () => {
-	return getAlertsEndpoint("/active");
+export const getActiveAlerts = async () => {
+	const activeAlerts = await getAlertsEndpoint("/active");
+	return activeAlerts.data.features;
 };
 
 export const getActiveAlertsCount = () => {
 	return getAlertsEndpoint("/active/count");
 };
 
-export const getActiveAlertsByEvent = (eventType: string) => {
-	return getAlertsEndpoint("/active", { params: { event: eventType } });
+export const getActiveAlertsByEvent = async (eventType: string) => {
+	const alerts = await getAlertsEndpoint("/active", {
+		params: { event: eventType },
+	});
+	return alerts.data.features;
 };
 
 // export const getActiveAlertsCountByEvent = (event: string) => getNWS();
