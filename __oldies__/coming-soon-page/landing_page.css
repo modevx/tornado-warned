@@ -1,0 +1,66 @@
+@font-face {
+	font-family: ArchivoBlack;
+	src: url('./assets/ArchivoBlack-Regular.ttf');
+}
+@font-face {
+	font-family: ArchivoNarrow;
+	src: url('./assets/ArchivoNarrow-Regular.ttf');
+}
+@font-face {
+	font-family: Orbitron;
+	src: url('./assets/Orbitron-ExtraBold.ttf');
+}
+@font-face {
+	font-family: Syncopate;
+	src: url('./assets/Syncopate-Bold.ttf');
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 10px;
+}
+
+body {
+	color: #fff;
+	background: black url('./assets/tornado-action-bg-img.png') center/cover
+		no-repeat;
+	display: grid;
+	font-family: ArchivoBlack, Arial, Helvetica, sans-serif;
+	grid-template-rows: [row1] 1fr [row2] 1fr [row3] 1fr;
+	height: 100vh;
+}
+.api-logos {
+	align-items: flex-end;
+	display: flex;
+	grid-row: row3;
+	justify-content: center;
+	margin: 3rem;
+}
+.api-logo {
+	width: 7vmin;
+	height: auto;
+	margin: 0 4vw;
+}
+header {
+	grid-row: row2;
+	display: grid;
+	place-items: center;
+}
+.title-wrapper {
+	font-family: Syncopate;
+}
+.title-wrapper h1 {
+	font-size: 7vw;
+	text-shadow: 1px 1px 5px #000, -1px -1px 5px #999;
+	text-align: center;
+}
+.title-wrapper p {
+	font-size: 3vw;
+	color: #ffde59;
+	text-align: right;
+}
