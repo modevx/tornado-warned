@@ -8,19 +8,22 @@ const Navigation = () => {
 		<Navbar expand='lg'>
 			<Container>
 				<Link href='/' passHref>
-					<Navbar.Brand className='text-white'>TORNADO ACTION</Navbar.Brand>
+					<Navbar.Brand>TORNADO ACTION</Navbar.Brand>
 				</Link>
-				<Navbar.Toggle aria-controls='basic-navbar-nav' />
+				<Navbar.Toggle
+					aria-controls='basic-navbar-nav'
+					className='bg-warning'
+				/>
 				<Navbar.Collapse id='basic-navbar-nav' className='justify-content-end'>
 					<Nav>
 						<Link href='#alerts' passHref>
-							<Nav.Link className='text-white'>alerts</Nav.Link>
+							<Nav.Link>alerts</Nav.Link>
 						</Link>
 						<Link href='#radar' passHref>
-							<Nav.Link className='text-white'>radar</Nav.Link>
+							<Nav.Link disabled>radar</Nav.Link>
 						</Link>
 						<Link href='#stats' passHref>
-							<Nav.Link className='text-white'>stats</Nav.Link>
+							<Nav.Link disabled>stats</Nav.Link>
 						</Link>
 					</Nav>
 				</Navbar.Collapse>
