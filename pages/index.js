@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -11,17 +12,9 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 
 const Home = () => {
-	const [alerts, setAlerts] = useState([]);
-
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		const res = await axios.get("https://jsonplaceholder.typicode.com/users");
-	// 		console.log(res.data);
-	// 		setAlerts(res.data);
-	// 	};
-
-	// 	fetchData();
-	// }, []);
+	const warnings = useQuery("warnings", () =>
+		axios.get("https://api.weather.gov/alerts/active?event=Tornado Warning")
+	);
 
 	return (
 		<div
