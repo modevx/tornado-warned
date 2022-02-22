@@ -10,8 +10,8 @@ import {
 	getActiveAlerts,
 	getActiveAlertsByEvent,
 	getAlertTypes,
-} from "../adapters/national-weather-service";
-import { createUniqueAlertArraysObject } from "../adapters/national-weather-service/helpers/createUniqueObjectMapFromArray";
+} from "../services/NationalWeatherService";
+import { createUniqueAlertArraysObject } from "../services/NationalWeatherService/helpers/createUniqueObjectMapFromArray";
 
 const Home: NextPage = () => {
 	const [alertArraysObj, setAlertArraysObj] = useState({});
