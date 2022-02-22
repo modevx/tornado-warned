@@ -1,20 +1,48 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
+import bg1 from "../public/bg-img-01.jpg";
+
+import Image from "next/image";
+
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
 import axios from "axios";
 
 const Home = () => {
-	const warnings = useQuery("warnings", () =>
+	const {
+		isLoading: warnLoading,
+		error: warnError,
+		data: warnData,
+	} = useQuery("warnings", () =>
 		axios.get("https://api.weather.gov/alerts/active?event=Tornado Warning")
 	);
+	const {
+		isLoading: watchLoading,
+		error: watchError,
+		data: watchData,
+	} = useQuery("watches", () =>
+		axios.get("https://api.weather.gov/alerts/active?event=Tornado Watch")
+	);
+
+	if (warnLoading) return <p>Loading...</p>;
+	if (warnError) return <p>ERROR: {warnError.message}</p>;
+
+	if (watchLoading) return <p>Loading...</p>;
+	if (watchError) return <p>ERROR: {watchError.message}</p>;
+
+	console.log(warnData.data.title);
+	console.log(warnData.data.features.length);
+
+	console.log(watchData.data.title);
+	console.log(watchData.data.features.length);
 
 	return (
 		<div
@@ -29,9 +57,25 @@ const Home = () => {
 						<Container className='h-100 d-flex align-items-center justify-content-evenly '>
 							<Row className='w-100'>
 								<Col className='d-flex justify-content-center'>
-									<Card style={{ width: "18rem" }}>
-										<Card.Img variant='top' src='holder.js/100px180' />
-										<Card.Body className='bg-dark'>
+									<Card bg='dark' style={{ width: "18rem" }}>
+										{/* <Card.Img
+											variant='top'
+											src='bg-img-03.jpg'
+											height='180px'
+											width='286px'
+										/> */}
+										<div
+											style={{
+												height: "180px",
+												width: "286px",
+												display: "grid",
+												placeItems: "center",
+											}}
+										>
+											{warnData.data.features.length}
+										</div>
+
+										<Card.Body>
 											<Card.Title>Active Tornado Warnings</Card.Title>
 											<Card.Text>
 												Tornadoes verified by storm spotters or rotation
@@ -42,9 +86,24 @@ const Home = () => {
 									</Card>
 								</Col>
 								<Col className='d-flex justify-content-center'>
-									<Card style={{ width: "18rem" }}>
-										<Card.Img variant='top' src='holder.js/100px180' />
-										<Card.Body className='bg-dark'>
+									<Card bg='dark' style={{ width: "18rem" }}>
+										{/* <Card.Img
+											variant='top'
+											src='bg-img-02.jpg'
+											height='180px'
+											width='286px'
+										/> */}
+										<div
+											style={{
+												height: "180px",
+												width: "286px",
+												display: "grid",
+												placeItems: "center",
+											}}
+										>
+											{watchData.data.features.length}
+										</div>
+										<Card.Body>
 											<Card.Title>Active Tornado Watches</Card.Title>
 											<Card.Text>
 												Conditions are right for producing destructive weather
