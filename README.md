@@ -1,57 +1,42 @@
-<h1 id="tornadoaction.com">
-  <img src="./assets/repo-hero.png" alt="tornado action github repo repo hero banner"/>
-</h1>
-
-<!-- #region README NAV -->
+<!-- #region INTRO -->
 
 <div align='center'>
-  <strong><a href="https://www.tornadoaction.com">tornadoaction.com</a></strong> | 
-  <strong><a href="https://www.github.com/ephcoding">repos</a></strong> | 
-  <strong><a href="https://www.ephcoding.com">ephcoding.com</a></strong> | 
-  <strong><a href="https://www.linkedin.com/in/ephraimjsmith">linkedin</a></strong> 
+
+![rovercam readme graphic](./public/readme.png)
+
 </div>
 
-<br>
+<div align='center'>
 
-## **_`README NAV`_**
+[Install & Run](#install) | [How To Use](#use) | [Shout-Outs](#shout-outs) | [License](#license) | [Contribute](#contribute) | [Connect](#connect)
 
-1. [Overview](#overview)
-1. [Tech](#tech)
-1. [Data](#data)
-1. [Lessons Learned](#lessons-learned)
-1. [Resources](#resources)
+</div>
 
-<br>
+> **_:bangbang: Check out [`BUILD_NOTES.md`](https://github.com/ephraimsmithdev/rovercam/blob/prod/BUILD_NOTES.md) for project roadmap, resources, notes & more! :bangbang:_**
 
-<!-- #endregion /README NAV -->
+<!-- #endregion /INTRO -->
 
 <!-- #region OVERVIEW -->
 
 <h2 id="overview">
-  <img src="./assets/section-banner__overview.png" alt="tornado action github repo overview section"/>
+  <img src="./public/section-banner__overview.png" alt="tornado action github repo overview section"/>
 </h2>
-
-<p align='right'><em><a href='#readme-nav'>--> back to top</a></em></p>
 
 <!-- #endregion /OVERVIEW -->
 
 <!-- #region TECH -->
 
 <h2 id="tech">
-  <img src="./assets/section-banner__tech.png" alt="tornado action github repo tech section"/>
+  <img src="./public/section-banner__tech.png" alt="tornado action github repo tech section"/>
 </h2>
-
-<p align='right'><em><a href='#readme-nav'>--> back to top</a></em></p>
 
 <!-- #endregion /TECH -->
 
 <!-- #region DATA -->
 
 <h2 id="data">
-  <img src="./assets/section-banner__data.png" alt="tornado action github repo data section"/>
+  <img src="./public/section-banner__data.png" alt="tornado action github repo data section"/>
 </h2>
-
-<p align='right'><em><a href='#readme-nav'>--> back to top</a></em></p>
 
 ### _**Severe Weather Data Inventory**_
 
@@ -75,10 +60,8 @@ National Weather Service API Web Service
 <!-- #region LESSONS LEARNED -->
 
 <h2 id="lessons-learned">
-  <img src="./assets/section-banner__lessons-learned.png" alt="tornado action github repo lessons-learned section"/>
+  <img src="./public/section-banner__lessons-learned.png" alt="tornado action github repo lessons-learned section"/>
 </h2>
-
-<p align='right'><em><a href='#readme-nav'>--> back to top</a></em></p>
 
 <details>
 <summary><strong>SWDI data retrieval</strong></summary>
@@ -96,9 +79,33 @@ National Weather Service API Web Service
 <!-- #region RESOURCES -->
 
 <h2 id="resources">
-  <img src="./assets/section-banner__resources.png" alt="tornado action github repo resources section"/>
+  <img src="./public/section-banner__resources.png" alt="tornado action github repo resources section"/>
 </h2>
 
-<p align='right'><em><a href='#readme-nav'>--> back to top</a></em></p>
-
 <!-- #endregion /RESOURCES -->
+
+<!-- #region CONNECT -->
+
+<h3 id='connect' align='center'>
+
+![rovercam readme graphic](./public/connect.png)
+
+</h3>
+
+<div align='center'>
+
+[Install & Run](#install) | [How To Use](#use) | [Shout-Outs](#shout-outs) | [License](#license) | [Contribute](#contribute) | [Connect](#connect)
+
+</div>
+
+<table align='center'>
+  <tr >
+    <td style="border: none;"><a alt='icon link to modevx github account' href='https://github.com/modevx' target='_blank'><img src="https://cdn.iconscout.com/icon/free/png-256/github-157-675821.png" width="90"></a></td> 
+    <td style="border: none;"><a alt='icon link to modevx twitter account' href='https://twitter.com/_modevx' target='_blank'><img src="https://cdn.iconscout.com/icon/free/png-256/twitter-235-675852.png" width="90"></a></td>                      
+    <td style="border: none;"><a alt='icon link to modevx email' href='mailto:ephraim@modevx.com' target='_blank'><img src="https://cdn.iconscout.com/icon/free/png-256/email-letter-envelope-message-38065.png" width="90"></a></td>  
+    <td style="border: none;"><a alt='icon link to ephraim smiths linkedin account' href='https://linkedin.com/in/ephraimjsmith' target='_blank'><img src="https://cdn.iconscout.com/icon/free/png-256/linkedin-187-675833.png" width="90"></a></td>
+    <td style="border: none;"><a alt='icon link to modevx instagram account' href='https://instagram.com/_modevx' target='_blank'><img src="https://cdn.iconscout.com/icon/free/png-256/instagram-2752153-2284970.png" width="90"></a></td>
+  </tr>
+</table>
+
+<!-- #endregion /CONNECT -->
