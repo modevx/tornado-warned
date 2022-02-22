@@ -31,10 +31,7 @@ export class NationalWeatherServiceAPI {
 	 * get active tornado warnings
 	 */
 	async getActiveTornadoWarnings() {
-		const res = await config.get("/alerts/active", {
-			params: {
-				event: "Tornado Warning",
-			},
-		});
+		console.log(">> getActiveTornadoWarnings() called <<");
+		const res = await this.config.get("/alerts/active");
 	}
 }

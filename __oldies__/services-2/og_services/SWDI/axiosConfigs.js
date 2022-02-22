@@ -1,4 +1,4 @@
-import { formatYYYYMMDD } from "../../util_funcs/formatYYYYMMDD";
+import { formatYYYYMMDD } from "../../../utils/formatYYYYMMDD";
 
 export const monthConfig = (yr, mo) => {
 	// account for Date object's zero-based months
