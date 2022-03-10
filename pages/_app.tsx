@@ -1,7 +1,4 @@
-// import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/custom.scss";
-import "primereact/resources/primereact.min.css";
-import "primeicons/primeicons.css";
+import "../styles/globals.scss";
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "react-query";
 
