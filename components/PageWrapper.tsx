@@ -1,14 +1,18 @@
-import React from "react";
+import Footer from "./Footer";
+import Header from "./Header";
+import Layout from "./Layout";
+import Meta from "./Meta";
 
 const PageWrapper = ({ children }) => {
 	return (
-		<body>
-			<head></head>
-			<header>
-				<nav></nav>
-			</header>
-			<main>{children}</main>
-		</body>
+		<div className='text-white'>
+			<Meta />
+			<Layout>
+				<Header />
+				<main className='grow'>{children}</main>
+				<Footer />
+			</Layout>
+		</div>
 	);
 };
 

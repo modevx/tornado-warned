@@ -21,7 +21,8 @@
 		"**/*.tsx",
 		"services/NationalWeatherService/config.js",
 		"services/NationalWeatherService/api.js",
-		"pages/index.js"
+		"pages/index.js",
+		"jest.config.js"
 	],
 	"exclude": ["node_modules"]
 }

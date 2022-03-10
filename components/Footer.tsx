@@ -2,14 +2,9 @@ const Footer = () => {
 	const year = new Date().getFullYear();
 
 	return (
-		<></>
-		// <Container fluid>
-		// 	<Row>
-		// 		<Col className='d-flex justify-content-center'>
-		// 			&copy; {year} Ephraim Smith | Some Rights Reserved.
-		// 		</Col>
-		// 	</Row>
-		// </Container>
+		<footer className='text-center'>
+			&copy; 2022 | tornadoaction.com | All Rights Reserved.
+		</footer>
 	);
 };
 

@@ -2,7 +2,21 @@ import Link from "next/link";
 
 const Navigation = () => {
 	return (
-		<></>
+		<nav className='flex justify-between'>
+			<div>TORNADO ACTION</div>
+			<ul className='flex gap-x-4'>
+				<li>
+					<Link href='/'>
+						<a>home</a>
+					</Link>
+				</li>
+				<li>
+					<Link href='/stats'>
+						<a>stats</a>
+					</Link>
+				</li>
+			</ul>
+		</nav>
 		// <Navbar expand='lg'>
 		// 	<Container>
 		// 		<Link href='/' passHref>
