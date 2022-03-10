@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import PageWrapper from "../components/PageWrapper";
+import { AlertCard, Button, Card, PageWrapper } from "../components";
 
 const LandingPage = () => {
 	// const {
@@ -30,7 +30,15 @@ const LandingPage = () => {
 	// console.log(watchData.data.title);
 	// console.log(watchData.data.features.length);
 
-	return <PageWrapper></PageWrapper>;
+	return (
+		<PageWrapper>
+			<AlertCard eventType='tornado' alertType='warning' />
+			<AlertCard eventType='tornado' alertType='watch' />
+			<AlertCard eventType='thunderstorm' alertType='warning' />
+			<Button />
+			<Card />
+		</PageWrapper>
+	);
 	// <div
 	// 	id='page-wrapper'
 	// 	className='landing-page__background'

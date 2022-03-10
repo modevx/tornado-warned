@@ -1,9 +1,6 @@
-import Footer from "./Footer";
-import Header from "./Header";
-import Layout from "./Layout";
-import Meta from "./Meta";
+import { Footer, Header, Layout, Meta } from "./";
 
-const PageWrapper = ({ children }) => {
+export const PageWrapper = ({ children }) => {
 	return (
 		<div className='text-white'>
 			<Meta />
@@ -15,5 +12,3 @@ const PageWrapper = ({ children }) => {
 		</div>
 	);
 };
-
-export default PageWrapper;

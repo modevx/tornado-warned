@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-const Meta = () => {
+export const Meta = () => {
 	return (
 		<Head>
 			<title>Tornado Action</title>
@@ -8,5 +8,3 @@ const Meta = () => {
 		</Head>
 	);
 };
-
-export default Meta;

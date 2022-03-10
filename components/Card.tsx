@@ -1,7 +1,11 @@
 import React from "react";
 
-const Card = () => {
-	return <div>Card</div>;
+export const Card = ({ children, bgColorClass }) => {
+	return (
+		<div
+			className={`max-w-sm min-h-max shadow-md shadow-orange-500 ${bgColorClass}`}
+		>
+			{children}
+		</div>
+	);
 };
-
-export default Card;
