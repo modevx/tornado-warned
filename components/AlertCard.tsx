@@ -11,9 +11,9 @@ const COMPONENT_MAP = {
 };
 
 const COLOR_MAP = {
-  tornado_warning: "bg-red-700",
-  tornado_watch: "bg-yellow-300",
-  thunderstorm_warning: "bg-purple-300",
+  tornado_warning: "red-700",
+  tornado_watch: "yellow-300",
+  thunderstorm_warning: "purple-300",
 };
 
 type ALERT_CARD = { eventType: keyof string; alertType: keyof string };
