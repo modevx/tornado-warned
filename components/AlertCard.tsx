@@ -6,23 +6,25 @@ const Tornado = () => <BsTornado />;
 const Thunderstorm = () => <IoMdThunderstorm />;
 
 const COMPONENT_MAP = {
-	tornado: Tornado,
-	thunderstorm: Thunderstorm,
+  tornado: Tornado,
+  thunderstorm: Thunderstorm,
 };
 
 const COLOR_MAP = {
-	tornado_warning: "bg-red-600",
-	tornado_watch: "bg-orange-600",
-	thunderstorm_warning: "bg-yellow-300",
+  tornado_warning: "bg-red-700",
+  tornado_watch: "bg-yellow-300",
+  thunderstorm_warning: "bg-purple-300",
 };
 
-export const AlertCard = ({ eventType, alertType }) => {
-	const AlertIcon = COMPONENT_MAP[eventType];
-	const color = COLOR_MAP[`${eventType}_${alertType}`];
+type ALERT_CARD = { eventType: keyof string; alertType: keyof string };
 
-	return (
-		<Card bgColorClass={`${color}`}>
-			<AlertIcon />
-		</Card>
-	);
+export const AlertCard = ({ eventType, alertType }: ALERT_CARD) => {
+  const AlertIcon = COMPONENT_MAP[eventType];
+  const color = COLOR_MAP[`${eventType}_${alertType}`];
+
+  return (
+    <Card bgColorClass={`${color}`}>
+      <AlertIcon />
+    </Card>
+  );
 };
