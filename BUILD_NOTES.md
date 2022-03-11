@@ -14,13 +14,13 @@
 
 :white_check_mark: display current tornado warning & watch counts on landing screen
 
-:white_check_mark: user can can click to see all tornado warnings
+:white_large_square: user can can click to see all tornado warnings
 
-:white_check_mark: user can can click to see all tornado watches
+:white_large_square: user can can click to see all tornado watches
 
-:white_check_mark: display radar
+:white_large_square: display radar
 
-:white_check_mark: display historical tornado stats from [VORTX API](https://github.com/ephraimsmithdev/vortx)
+:white_large_square: display historical tornado stats from [VORTX API](https://github.com/ephraimsmithdev/vortx)
 
 :white_large_square: display tornado info & safety resource links in footer
 
