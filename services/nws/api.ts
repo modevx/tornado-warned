@@ -16,14 +16,6 @@ export class NationalWeatherServiceAPI {
 	}
 
 	/**
-	 * get severe thunderstorm warnings
-	 */
-
-	/**
-	 * get severe thunderstorm warnings
-	 */
-
-	/**
 	 * get active tornado alerts
 	 */
 
