@@ -1,18 +1,25 @@
 import { useQuery } from "react-query";
 import { AlertCard, PageWrapper } from "../components";
-import { useTornadoWarnings, useTornadoWatches } from "../hooks";
+import {
+	useTornadoWarnings,
+	useTestTornadoWarnings,
+	useTornadoWatches,
+	useTestTornadoWatches,
+} from "../hooks";
 
 const HomeScreen = () => {
 	const {
 		isLoading: wnLoading,
 		error: wnError,
 		data: wnData,
-	} = useTornadoWarnings();
+		// } = useTornadoWarnings();
+	} = useTestTornadoWarnings();
 	const {
 		isLoading: wtLoading,
 		error: wtError,
 		data: wtData,
-	} = useTornadoWatches();
+		// } = useTornadoWatches();
+	} = useTestTornadoWatches();
 
 	if (wnLoading) return <p>Loading...</p>;
 	if (wnError) return <p>ERROR: {wnError.message}</p>;
@@ -26,17 +33,13 @@ const HomeScreen = () => {
 				{/* TORNADO WARNINGS */}
 				<div>
 					{wnData ? (
-						console.log("REACT QUERY DATA", wnData.data)
+						<AlertCard
+							senderName={wnData.senderName}
+							event={wnData.event}
+							areaDescription={wnData.headline}
+						/>
 					) : (
-						<span>made it this far..</span>
-					)}
-				</div>
-				{/* TORNADO WATCHES */}
-				<div>
-					{wtData ? (
-						console.log("REACT QUERY DATA", wtData.data)
-					) : (
-						<span>made it this far..</span>
+						<span>not AlertCard but still here..</span>
 					)}
 				</div>
 			</div>
