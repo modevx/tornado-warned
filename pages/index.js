@@ -3,32 +3,42 @@ import { AlertCard, PageWrapper } from "../components";
 import { useTornadoWarnings, useTornadoWatches } from "../hooks";
 
 const HomeScreen = () => {
-	// const { isLoading, error, data } = useTornadoWarnings();
-	const { isLoading, error, data } = useTornadoWatches();
+	const {
+		isLoading: wnLoading,
+		error: wnError,
+		data: wnData,
+	} = useTornadoWarnings();
+	const {
+		isLoading: wtLoading,
+		error: wtError,
+		data: wtData,
+	} = useTornadoWatches();
 
-	// const {
-	// 	isLoading: watchLoading,
-	// 	error: watchError,
-	// 	data: watchData,
-	// } = useTornadoWatches();
+	if (wnLoading) return <p>Loading...</p>;
+	if (wnError) return <p>ERROR: {wnError.message}</p>;
 
-	if (isLoading) return <p>Loading...</p>;
-	if (error) return <p>ERROR: {error.message}</p>;
-
-	// console.log(warnData.data.title);
-	// console.log(warnData.data.features.length);
-
-	// console.log(watchData.data.title);
-	// console.log(watchData.data.features.length);
+	if (wtLoading) return <p>Loading...</p>;
+	if (wtError) return <p>ERROR: {wtError.message}</p>;
 
 	return (
 		<PageWrapper>
 			<div className='flex flex-col justify-around w-full'>
-				{data ? (
-					console.log("REACT QUERY DATA", data.data)
-				) : (
-					<span>made it this far..</span>
-				)}
+				{/* TORNADO WARNINGS */}
+				<div>
+					{wnData ? (
+						console.log("REACT QUERY DATA", wnData.data)
+					) : (
+						<span>made it this far..</span>
+					)}
+				</div>
+				{/* TORNADO WATCHES */}
+				<div>
+					{wtData ? (
+						console.log("REACT QUERY DATA", wtData.data)
+					) : (
+						<span>made it this far..</span>
+					)}
+				</div>
 			</div>
 		</PageWrapper>
 	);
