@@ -1,6 +1,4 @@
-- [20 tips for PWA ux & ui](https://mobirevo.com/progressive-web-app-design/)
-- []()
-- []()
-- []()
-- []()
-- []()
+## STORYBOOK
+
+1. `npx sb init`
+2. add [`plugin:storybook/recommended`](https://github.com/storybookjs/eslint-plugin-storybook#usage) to `.eslintrc.json`
