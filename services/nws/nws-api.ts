@@ -1,4 +1,4 @@
-import { DEFAULT_API_CONFIG } from "./nws-config";
+import { DEFAULT_API_CONFIG } from "./nws-axios-instance";
 
 export class NationalWeatherServiceAPI {
   /**
