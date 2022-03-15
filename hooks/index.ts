@@ -1,4 +1,5 @@
+export * from "./useJsonPlaceholder";
 export * from "./useTornadoWarnings";
 export * from "./useTornadoWatches";
-export * from "./useTestTornadoWarnings";
-export * from "./useTestTornadoWatches";
+// export * from "./useStormWarnings";
+// export * from "./useStormWatches";
