@@ -33,13 +33,19 @@ const HomeScreen = () => {
         {/* TORNADO WARNINGS */}
         <div>
           {wnData ? (
-            <AlertCard
-              senderName={wnData.senderName}
-              event={wnData.event}
-              areaDescription={wnData.headline}
-            />
+            <p>{JSON.stringify(wnData.data)}</p>
           ) : (
-            <span>not AlertCard but still here..</span>
+            <span>no warnings</span>
+          )}
+          {wtData ? (
+            <p>{JSON.stringify(wtData.data)}</p>
+          ) : (
+            // <AlertCard
+            //   senderName={wnData.senderName}
+            //   event={wnData.event}
+            //   areaDescription={wnData.headline}
+            // />
+            <span>no watches</span>
           )}
         </div>
       </div>
