@@ -1,8 +1,8 @@
-export interface ALERT_PREVIEW {
-	areaDesc: string;
-	sent: string;
-	expires: string;
-	messageType: string;
-	event: string;
-	senderName: string;
+export interface ALERT {
+  areaDesc: string;
+  sent: string;
+  expires: string;
+  messageType: string;
+  event: string;
+  senderName: string;
 }

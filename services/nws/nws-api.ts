@@ -22,8 +22,50 @@ export class NationalWeatherServiceAPI {
   /**
    * get active tornado warnings
    */
-  async getActiveTornadoWarnings() {
-    console.log(">> getActiveTornadoWarnings() called <<");
-    const res = await this.config.get("/alerts/active");
-  }
+  // getActiveTornadoWarnings() {
+  //   console.log(">> getActiveTornadoWarnings() called <<");
+  //   const res = await this.config.get("/alerts/active");
+  // }
+
+  // getAlertsEndpoint = async (url?: string, axiosConfigs?: any) => {
+  //   const axios = returnAxiosInstance();
+  //   return await axios.get(url ? `alerts/${url}` : "alerts", axiosConfigs);
+  // };
+
+  // getAlerts = async () => {
+  //   return getAlertsEndpoint();
+  // };
+
+  // getAlertTypes = async () => {
+  //   const types = await getAlertsEndpoint("/types");
+  //   return types.data.eventTypes;
+  // };
+
+  // getAlertById = (id: string) => {
+  //   return getAlertsEndpoint(id);
+  // };
+
+  // getActiveAlerts = async () => {
+  //   const activeAlerts = await getAlertsEndpoint("/active");
+  //   return activeAlerts.data.features;
+  // };
+
+  // getActiveAlertsCount = () => {
+  //   return getAlertsEndpoint("/active/count");
+  // };
+
+  // getActiveAlertsByEvent = async (eventType: string) => {
+  //   const alerts = await getAlertsEndpoint("/active", {
+  //     params: { event: eventType },
+  //   });
+  //   return alerts.data.features;
+  // };
+
+  // getActiveAlertsCountByEvent = (event: string) => getNWS();
+
+  // getSevereThunderstormWarnings = () =>
+  // 	getNWSAlertsByEvent("Severe Thunderstorm Warning");
+
+  // getTornadoWatches = () => getNWSAlertsByEvent("Tornado Watch");
+  // getTornadoWarnings = () => getNWSAlertsByEvent("Tornado Warning");
 }

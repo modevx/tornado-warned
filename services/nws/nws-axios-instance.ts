@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://api.weather.gov";
+const API_BASE_URL = "";
 
 interface ApiConfig {
   baseUrl: string;
@@ -8,7 +8,7 @@ interface ApiConfig {
   url?: string | undefined;
 }
 
-export const DEFAULT_API_CONFIG = axios.create({
+export const NWS_AXIOS_INSTANCE = axios.create({
   baseUrl: API_BASE_URL || "https://jsonplaceholder.typicode.com",
   timeout: 5000,
 });
