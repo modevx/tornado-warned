@@ -1,26 +1,24 @@
-import { useQuery } from "react-query";
-import { AlertCard, PageWrapper } from "../components";
-import { useTornadoWarnings } from "../hooks";
+import { PageWrapper } from "../components";
+import {
+  fetchActiveAlerts,
+  useActiveAlerts,
+} from "../services/NationalWeatherService";
 
 const HomeScreen = () => {
-	const { isLoading, error, data } = useTornadoWarnings();
+  const { isLoading, error, data } = useActiveAlerts();
 
-	if (isLoading) return <p>Loading...</p>;
-	if (error) return <p>ERROR: {wnError.message}</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>ERROR: {error.message}</p>;
 
-	return (
-		<PageWrapper>
-			<div className='flex flex-col justify-around w-full'>
-				<div>
-					{data ? (
-						<p>{JSON.stringify(data.data.features)}</p>
-					) : (
-						<span>no warnings</span>
-					)}
-				</div>
-			</div>
-		</PageWrapper>
-	);
+  return (
+    <PageWrapper>
+      <div className="flex flex-col justify-around w-full">
+        <div>
+          {data ? <p>{JSON.stringify(data)}</p> : <span>no alerts</span>}
+        </div>
+      </div>
+    </PageWrapper>
+  );
 };
 
 export default HomeScreen;
