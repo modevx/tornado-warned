@@ -20,7 +20,6 @@ const HomeScreen = () => {
               return (
                 <div>
                   <p>
-                    {/* {JSON.stringify(alert)} */}
                     LOCATION: {areaDesc} | EVENT: {event}
                   </p>
                 </div>
