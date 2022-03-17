@@ -2,7 +2,7 @@ import { PageWrapper } from "../components";
 import {
   useActiveAlerts,
   useTestAlerts,
-} from "../services/NationalWeatherService";
+} from "../services/NationalWeatherService/_index";
 
 const HomeScreen = () => {
   // const { isLoading, error, data } = useActiveAlerts();
@@ -16,11 +16,12 @@ const HomeScreen = () => {
       <div className="flex flex-col justify-around w-full">
         <div>
           {data ? (
-            data.map((alert) => {
+            data.map(({ areaDesc, event }) => {
               return (
                 <div>
                   <p>
-                    Location: {alert.areaDesc} | Event: {alert.event}
+                    {/* {JSON.stringify(alert)} */}
+                    LOCATION: {areaDesc} | EVENT: {event}
                   </p>
                 </div>
               );

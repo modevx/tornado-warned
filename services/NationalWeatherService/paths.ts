@@ -6,5 +6,5 @@ export const NWS_API_PATHS = {
   alertTypes: "/alerts/types",
   alertsById: "/alerts",
   testAlerts:
-    "/alerts?start=2021-12-10T08%3A00%3A00Z&event=Tornado%20Warning,Tornado%20Watch",
+    "alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Warning%2CTornado%20Watch",
 };

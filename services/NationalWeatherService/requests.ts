@@ -7,10 +7,20 @@ export const fetchActiveAlerts = async () => {
 
 export const fetchTestAlerts = async () => {
   const raw = await AXIOS_CONFIG.get(NWS_API_PATHS.testAlerts);
-  return raw.data.features.map((alert) => {
+  const features = await raw.data.features;
+  return await features.map((alert) => {
     const { areaDesc, event } = alert.properties;
     return { areaDesc, event };
   });
+
+  // return features.map((alert) => {
+  //   const { areaDesc, event } = alert;
+
+  //   return {
+  //     areaDesc,
+  //     event,
+  //   };
+  // });
 };
 
 // {
