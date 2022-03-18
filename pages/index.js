@@ -5,8 +5,8 @@ import {
 } from "../services/NationalWeatherService";
 
 const HomeScreen = () => {
-  const { isLoading, error, data } = useActiveAlerts();
-  // const { isLoading, error, data } = useTestAlerts();
+  // const { isLoading, error, data } = useActiveAlerts();
+  const { isLoading, error, data } = useTestAlerts();
   const tornadoWarnings = [];
   const tornadoWatches = [];
   const stormWarnings = [];

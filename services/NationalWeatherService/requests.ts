@@ -5,8 +5,9 @@ export const fetchActiveAlerts = async () => {
   const raw = await AXIOS_CONFIG.get(NWS_API_PATHS.activeAlerts);
   const features = await raw.data.features;
   return await features.map((alert) => {
-    const { areaDesc, event, headline, instruction } = alert.properties;
-    return { event, areaDesc, headline, instruction };
+    const { areaDesc, event, status, messageType, headline, instruction } =
+      alert.properties;
+    return { event, status, messageType, areaDesc, headline, instruction };
   });
 };
 
@@ -14,8 +15,9 @@ export const fetchTestAlerts = async () => {
   const raw = await AXIOS_CONFIG.get(NWS_API_PATHS.testAlerts);
   const features = await raw.data.features;
   return await features.map((alert) => {
-    const { areaDesc, event, headline, instruction } = alert.properties;
-    return { event, areaDesc, headline, instruction };
+    const { areaDesc, event, status, messageType, headline, instruction } =
+      alert.properties;
+    return { event, status, messageType, areaDesc, headline, instruction };
   });
 
   // return features.map((alert) => {

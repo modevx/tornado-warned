@@ -1,10 +1,5 @@
-interface ALERT_PREVIEW {
-  eventType: string;
-  alertType: string;
-}
-
 export const AlertItem = ({ alert }) => {
-  const { event, areaDesc, headline, instruction } = alert;
+  const { event, status, messageType, areaDesc, headline, instruction } = alert;
   let color: string;
 
   switch (event) {
@@ -26,11 +21,13 @@ export const AlertItem = ({ alert }) => {
     }
   }
 
-  // = event === "Tornado Warning" ? "bg-red-600" : "bg-yellow-500";
-
   return (
-    <li className={`${color}`}>
-      <h3>{event}</h3>
+    <li className={`${color} p-3 rounded-md`}>
+      <h3 className="text-2xl font-bold">{event}</h3>
+      <div className="bg-neutral-800 rounded-md">
+        {/* <p>{status}</p> */}
+        <p className="p-2 ">{messageType}</p>
+      </div>
       <p>{areaDesc}</p>
       <p>{headline}</p>
       <p>{instruction}</p>
