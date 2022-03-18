@@ -2,13 +2,14 @@ export const AlertItem = ({ alert }) => {
   const { event, status, messageType, areaDesc, headline, instruction } = alert;
   let color: string;
 
+  // TODO: refactor into business function
   switch (event) {
     case "Tornado Warning": {
       color = "bg-purple-600";
       break;
     }
     case "Tornado Watch": {
-      color = "bg-red-500";
+      color = "bg-red-600";
       break;
     }
     case "Severe Thunderstorm Warning": {
