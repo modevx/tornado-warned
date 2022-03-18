@@ -9,7 +9,7 @@ import {
   getActiveAlerts,
   getActiveAlertsByEvent,
   getAlertTypes,
-} from "../services/NationalWeatherService/_index";
+} from "../services/NationalWeatherService/index";
 import { createUniqueAlertArraysObject } from "../services/NationalWeatherService/helpers/createUniqueObjectMapFromArray";
 
 const Home: NextPage = () => {
