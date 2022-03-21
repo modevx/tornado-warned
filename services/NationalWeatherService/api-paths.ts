@@ -1,3 +1,5 @@
+import { QUERY_PARAMS } from "./api-query-params";
+
 export const API_PATHS = {
 	nwsBaseUrl: "https://api.weather.gov",
 	tornadoWarnings: "/alerts/active?event=Tornado%20Warning",

@@ -1,10 +1,12 @@
 export interface TORNADO_WARNING {
+	event: string;
 	areaDesc: string;
-	sent: string;
+	effective: string;
 	expires: string;
 	messageType: string;
-	event: string;
-	senderName: string;
+	severity: string;
+	urgency: string;
+	certainty: string;
 }
 
 export interface TORNADO_WATCH {}

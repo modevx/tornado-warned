@@ -3,42 +3,15 @@ import {
 	useActiveAlerts,
 	useTornadoWarningsTest,
 } from "../services/NationalWeatherService";
+import { QUERY_PARAMS as NWS_PARAMS } from "../services/NationalWeatherService";
+import TakeCoverNOWWindow from "../components/TakeCoverNOWWindow";
 
 const HomeScreen = () => {
-	// const { isLoading, error, data } = useActiveAlerts();
-	const { isLoading, error, data } = useTornadoWarningsTest();
-	const takeCoverNOW = [];
-	const watches = [];
-	const cancelledAlerts = [];
-
-	if (isLoading) return <p>Loading...</p>;
-	if (error) return <p>ERROR: {error.message}</p>;
-
-	if (data) {
-		data.forEach(alert => {
-			if (alert.event === "Tornado Warning") takeCoverNOW.push(alert);
-			if (alert.event === "Tornado Watch") watches.push(alert);
-		});
-	}
-
 	return (
 		<PageWrapper>
 			<div className='flex flex-col justify-around w-full'>
 				<div>
-					{/* {data ? (
-						<>
-							<h2 className='text-4xl'>TORNADO WARNINGS</h2>
-							<AlertList alerts={takeCoverNOW} />
-							<h2 className='text-4xl'>TORNADO WATCHES</h2>
-							<AlertList alerts={watches} />
-							<h2 className="text-4xl">SEVERE THUNDERSTORM WARNINGS</h2>
-              <AlertList alerts={stormWarnings} />
-              <h2 className="text-4xl">SEVERE THUNDERSTORM WATCHES</h2>
-              <AlertList alerts={stormWatches} />
-						</>
-					) : (
-						<p>No ALERT to report...</p>
-					)} */}
+					<TakeCoverNOWWindow />
 				</div>
 			</div>
 		</PageWrapper>
