@@ -28,7 +28,7 @@ const TornadoWatchesWindow = () => {
 
 	return (
 		<>
-			<div className='bg-yellow-500 border-4 border-yellow-500 col-12 lg:col-6 my-5 rounded-lg'>
+			<div className='bg-yellow-500 border-4 border-yellow-500 col-12 my-5 rounded-lg'>
 				<h2 className='text-3xl'>TORNADO WATCHES</h2>
 				<div className='card'>
 					<DataTable

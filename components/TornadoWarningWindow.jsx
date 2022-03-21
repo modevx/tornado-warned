@@ -31,7 +31,7 @@ const TornadoWarningWindow = () => {
 	return (
 		<>
 			<div className='bg-red-500 border-4 border-red-500 my-5 rounded-lg'>
-				<h2 className='text-3xl'>TORNADO WARNINGS: Take Cover Now!</h2>
+				<h2 className='text-3xl'>TORNADO WARNINGS</h2>
 				<div className='card '>
 					<DataTable
 						value={data.slice(0, 3)}
