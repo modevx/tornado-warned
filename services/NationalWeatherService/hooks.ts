@@ -22,3 +22,6 @@ export const useActiveAlerts = () => {
 export const useTornadoWarningsTest = () => {
 	return useQuery(["testTornadoWarnings"], () => fetchTornadoWarningsTest());
 };
+export const useTornadoWatchesTest = () => {
+	return useQuery(["testTornadoWarnings"], () => fetchTornadoWatchessTest());
+};

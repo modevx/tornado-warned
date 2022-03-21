@@ -1,4 +1,4 @@
-export interface TORNADO_WARNING {
+export interface ACTIVE_ALERT {
 	event: string;
 	areaDesc: string;
 	effective: string;
@@ -8,7 +8,5 @@ export interface TORNADO_WARNING {
 	urgency: string;
 	certainty: string;
 }
-
-export interface TORNADO_WATCH {}
 
 export interface CANCELLED_ALERT {}

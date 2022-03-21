@@ -1,12 +1,19 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { ProductService } from "../service/ProductService";
-import { useTornadoWarningsTest } from "../services/NationalWeatherService";
+import {
+	useTornadoWarnings,
+	useTornadoWarningsTest,
+} from "../services/NationalWeatherService";
 
 const TakeCoverNOWWindow = () => {
 	const { isLoading, error, data } = useTornadoWarningsTest();
+	// const { isLoading, error, data } = useTornadoWarnings();
 
-	const testAlert = [
+	if (isLoading) return <p>Loading...</p>;
+	if (error) return <p>Error: {error.message}</p>;
+
+	const testData = [
 		{
 			areaDesc: "Atkinson, GA; Clinch, GA; Ware, GA",
 			effective: "2022-03-19T17:29:00-04:00",
@@ -22,9 +29,10 @@ const TakeCoverNOWWindow = () => {
 
 	return (
 		<div className='bg-red-500'>
-			<h2>TAKE COVER NOW!</h2>
+			<h2>TORNADO WARNINGS: Take Cover Now!</h2>
 			<div className='card'>
-				<DataTable value={testAlert} responsiveLayout='scroll'>
+				<DataTable value={data} responsiveLayout='scroll'>
+					{/* <DataTable value={testData} responsiveLayout='scroll'> */}
 					<Column field='areaDesc' header='Areas'></Column>
 					<Column field='effective' header='effective'></Column>
 					<Column field='expires' header='expires'></Column>
