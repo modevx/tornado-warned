@@ -1,4 +1,4 @@
-export const createUniqueAlertArraysObject = (alertObjectArray: object[]) => {
+export const createUniqueAlertArraysObject = alertObjectArray => {
 	const uniqueAlertArraysObject = Object.create({});
 
 	alertObjectArray.forEach(alertObject => {
