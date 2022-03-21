@@ -4,7 +4,7 @@ const Navigation = () => {
 	return (
 		<nav className='flex justify-between'>
 			<div>TORNADO ACTION</div>
-			<ul className='flex gap-x-4'>
+			{/* <ul className='flex gap-x-4'>
 				<li>
 					<Link href='/'>
 						<a>home</a>
@@ -15,7 +15,7 @@ const Navigation = () => {
 						<a>stats</a>
 					</Link>
 				</li>
-			</ul>
+			</ul> */}
 		</nav>
 		// <Navbar expand='lg'>
 		// 	<Container>

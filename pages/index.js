@@ -1,22 +1,21 @@
-import { useQuery } from "react-query";
-import { AlertCard, PageWrapper } from "../components";
-import { useTornadoWarnings } from "../hooks";
+import { AlertList, PageWrapper } from "../components";
+import {
+	useActiveAlerts,
+	useTornadoWarningsTest,
+} from "../services/NationalWeatherService";
+import { QUERY_PARAMS as NWS_PARAMS } from "../services/NationalWeatherService";
+import TornadoWarningWindow from "../components/TakeCoverNOWWindow";
+import TornadoWatchesWindow from "../components/TornadoWatchesWindow";
+import CancelledAlertsWindow from "../components/CancelledAlertsWindow";
 
 const HomeScreen = () => {
-	const { isLoading, error, data } = useTornadoWarnings();
-
-	if (isLoading) return <p>Loading...</p>;
-	if (error) return <p>ERROR: {wnError.message}</p>;
-
 	return (
 		<PageWrapper>
 			<div className='flex flex-col justify-around w-full'>
 				<div>
-					{data ? (
-						<p>{JSON.stringify(data.data.features)}</p>
-					) : (
-						<span>no warnings</span>
-					)}
+					<TornadoWarningWindow />
+					<TornadoWatchesWindow />
+					{/* <CancelledAlertsWindow /> */}
 				</div>
 			</div>
 		</PageWrapper>
