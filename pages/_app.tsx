@@ -1,5 +1,9 @@
-// import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/custom.scss";
+import "../styles/globals.scss";
+import "primereact/resources/themes/arya-orange/theme.css"; // theme
+import "primereact/resources/primereact.min.css"; // core css
+import "primeicons/primeicons.css"; // icons
+import "primeflex/primeflex.css"; // css util classes
+
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "react-query";
 
