@@ -7,24 +7,23 @@ import {
 	fetchCancelledAlerts,
 	fetchCancelledAlertsTest,
 } from "./requests";
+import { ACTIVE_ALERT, CANCELLED_ALERT } from "./types";
 
 export const useTornadoWarnings = () => {
-	return useQuery(["tornadoWarnings"], () => {
-		fetchTornadoWarnings();
-	});
+	return useQuery("tornadoWarnings", () => fetchTornadoWarnings());
 };
 export const useTornadoWatches = () => {
-	return useQuery(["tornadoWatches"], () => fetchTornadoWatches());
+	return useQuery("tornadoWatches", fetchTornadoWatches);
 };
 export const useCancelledAlerts = () => {
-	return useQuery(["cancelledAlerts"], () => fetchCancelledAlerts());
+	return useQuery("cancelledAlerts", fetchCancelledAlerts);
 };
 export const useTornadoWarningsTest = () => {
-	return useQuery(["testTornadoWarnings"], () => fetchTornadoWarningsTest());
+	return useQuery("testTornadoWarnings", () => fetchTornadoWarningsTest());
 };
 export const useTornadoWatchesTest = () => {
-	return useQuery(["testTornadoWatches"], () => fetchTornadoWatchesTest());
+	return useQuery("testTornadoWatches", fetchTornadoWatchesTest);
 };
 export const useCancelledAlertsTest = () => {
-	return useQuery(["testCancelledAlerts"], () => fetchCancelledAlertsTest());
+	return useQuery("testCancelledAlerts", fetchCancelledAlertsTest);
 };
