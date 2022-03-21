@@ -5,74 +5,41 @@ import {
 } from "../NationalWeatherService";
 import { ACTIVE_ALERT, CANCELLED_ALERT } from "./types";
 
-export const fetchAlerts = async endpoint => {
-	const raw = await NWS.get(endpoint);
+const fetchAlerts = async alertTypePath => {
+	const raw = await NWS.get(alertTypePath);
 	const features = await raw.data.features;
-};
 
-export const fetchActiveAlerts = async () => {
-	const raw = await NWS.get(URLS.tornadoWarnings);
-	const features = await raw.data.features;
 	return await features.map(alert => {
-		const { areaDesc, event, status, messageType, headline, instruction } =
-			alert.properties;
-		return { event, status, messageType, areaDesc, headline, instruction };
+		const { areaDesc, effective, expires, instruction } = alert.properties;
+
+		return { areaDesc, effective, expires, instruction };
 	});
 };
-
+// -- ACTIVE ALERTS
+export const fetchTornadoWarnings = async () => {
+	return await fetchAlerts(URLS.tornadoWarnings);
+};
+export const fetchTornadoWatches = async () => {
+	return await fetchAlerts(URLS.tornadoWatches);
+};
 export const fetchCancelledAlerts = async () => {
-	const raw = await NWS.get(URLS.tornadoWarnings);
+	const raw = await NWS.get(URLS.cancelledAlerts);
 	const features = await raw.data.features;
+
 	return await features.map(alert => {
-		const { areaDesc, event, status, messageType, headline, instruction } =
-			alert.properties;
-		return { event, status, messageType, areaDesc, headline, instruction };
+		const { event, areaDesc, effective, description } = alert.properties;
+
+		return { event, areaDesc, effective, description };
 	});
 };
-
+// -- TEST REQUESTS
 export const fetchTornadoWarningsTest = async () => {
-	const raw = await NWS.get(URLS.testTornadoWarnings);
-	const features = await raw.data.features;
-
-	return await features.map(alert => {
-		const { areaDesc, event, status, messageType, headline, instruction } =
-			alert.properties;
-
-		return { event, status, messageType, areaDesc, headline, instruction };
-	});
-
-	// return features.map((alert) => {
-	//   const { areaDesc, event } = alert;
-
-	//   return {
-	//     areaDesc,
-	//     event,
-	//   };
-	// });
+	return await fetchAlerts(URLS.tornadoWarningsTest);
 };
 export const fetchTornadoWatchesTest = async () => {
-	const raw = await NWS.get(URLS.testTornadoWatches);
-	const features = await raw.data.features;
-
-	return await features.map(alert => {
-		const { areaDesc, event, status, messageType, headline, instruction } =
-			alert.properties;
-
-		return { event, status, messageType, areaDesc, headline, instruction };
-	});
-
-	// return features.map((alert) => {
-	//   const { areaDesc, event } = alert;
-
-	//   return {
-	//     areaDesc,
-	//     event,
-	//   };
-	// });
+	return await fetchAlerts(URLS.tornadoWatchesTest);
 };
-
-// {
-//   transformResponse: async (data) => {
-//     await data.data.features[0];
-//   },
-// }
+export const fetchCancelledAlertsTest = async () => {
+	const raw = await NWS.get(URLS.cancelledAlertsTest);
+	return await raw.data.features;
+};

@@ -1,27 +1,30 @@
 import { useQuery } from "react-query";
 import {
+	fetchTornadoWarnings,
 	fetchTornadoWarningsTest,
-	fetchActiveAlerts,
-	fetchTestAlerts,
+	fetchTornadoWatches,
+	fetchTornadoWatchesTest,
+	fetchCancelledAlerts,
+	fetchCancelledAlertsTest,
 } from "./requests";
 
-export const useActiveAlerts = () => {
-	return useQuery(["activeAlerts"], () => fetchActiveAlerts());
+export const useTornadoWarnings = () => {
+	return useQuery(["tornadoWarnings"], () => {
+		fetchTornadoWarnings();
+	});
 };
-// export const useTornadoWarnings = () => {
-// 	return useQuery(["tornadoWarnings"], () => {
-// 		fetchAlerts();
-// 	});
-// };
-// export const useTornadoWatches = () => {
-// 	return useQuery(["tornadoWatches"], () => fetchAlerts());
-// };
-// export const useCancelledAlerts = () => {
-// 	return useQuery(["cancelledAlerts"], () => fetchAlerts());
-// };
+export const useTornadoWatches = () => {
+	return useQuery(["tornadoWatches"], () => fetchTornadoWatches());
+};
+export const useCancelledAlerts = () => {
+	return useQuery(["cancelledAlerts"], () => fetchCancelledAlerts());
+};
 export const useTornadoWarningsTest = () => {
 	return useQuery(["testTornadoWarnings"], () => fetchTornadoWarningsTest());
 };
 export const useTornadoWatchesTest = () => {
-	return useQuery(["testTornadoWarnings"], () => fetchTornadoWatchessTest());
+	return useQuery(["testTornadoWatches"], () => fetchTornadoWatchesTest());
+};
+export const useCancelledAlertsTest = () => {
+	return useQuery(["testCancelledAlerts"], () => fetchCancelledAlertsTest());
 };

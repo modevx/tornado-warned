@@ -1,35 +1,35 @@
 export const QUERY_PARAMS = {
-	AlertCertainty: {
+	Certainty: {
 		Observed: "observed",
 		Likely: "likely",
 		Possible: "possible",
 		Unlikely: "unlikely",
 		Unknown: "unknown",
 	},
-	AlertEvent: {
+	Event: {
 		TornadoWarning: "Tornado Warning",
 		TornadoWatch: "Tornado Watch",
 	},
-	AlertMessageType: {
+	MessageType: {
 		Alert: "alert",
 		Update: "update",
 		Cancel: "cancel",
 	},
-	AlertSeverity: {
+	Severity: {
 		Extreme: "extreme",
 		Severe: "severe",
 		Moderate: "moderate",
 		Minor: "minor",
 		Unknown: "unknown",
 	},
-	AlertStatus: {
+	Status: {
 		Actual: "actual",
 		Exercise: "exercise",
 		System: "system",
 		Test: "test",
 		Draft: "draft",
 	},
-	AlertUrgency: {
+	Urgency: {
 		Immediate: "immediate",
 		Expected: "expected",
 		Future: "future",

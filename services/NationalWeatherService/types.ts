@@ -3,7 +3,7 @@ export interface ACTIVE_ALERT {
 	areaDesc: string;
 	effective: string;
 	expires: string;
-	messageType: string;
+	message_type: string;
 	severity: string;
 	urgency: string;
 	certainty: string;

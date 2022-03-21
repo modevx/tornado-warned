@@ -1,5 +1,5 @@
 import "../styles/globals.scss";
-import "primereact/resources/themes/saga-blue/theme.css"; // theme
+import "primereact/resources/themes/arya-orange/theme.css"; // theme
 import "primereact/resources/primereact.min.css"; // core css
 import "primeicons/primeicons.css"; // icons
 import "primeflex/primeflex.css"; // css util classes

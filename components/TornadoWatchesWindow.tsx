@@ -7,8 +7,8 @@ import {
 } from "../services/NationalWeatherService";
 
 const TornadoWatchesWindow = () => {
-	const { isLoading, error, data } = useTornadoWatchesTest();
 	// const { isLoading, error, data } = useTornadoWatches();
+	const { isLoading, error, data } = useTornadoWatchesTest();
 
 	if (isLoading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error.message}</p>;
@@ -31,7 +31,7 @@ const TornadoWatchesWindow = () => {
 		<div className='bg-yellow-500'>
 			<h2>TORNADO WATCHES</h2>
 			<div className='card'>
-				<DataTable value={data} responsiveLayout='scroll'>
+				<DataTable value={data.slice(0, 3)} responsiveLayout='scroll'>
 					{/* <DataTable value={testData} responsiveLayout='scroll'> */}
 					<Column field='areaDesc' header='Areas'></Column>
 					<Column field='effective' header='effective'></Column>

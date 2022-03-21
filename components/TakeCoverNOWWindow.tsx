@@ -7,8 +7,8 @@ import {
 } from "../services/NationalWeatherService";
 
 const TakeCoverNOWWindow = () => {
-	const { isLoading, error, data } = useTornadoWarningsTest();
 	// const { isLoading, error, data } = useTornadoWarnings();
+	const { isLoading, error, data } = useTornadoWarningsTest();
 
 	if (isLoading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error.message}</p>;
@@ -30,8 +30,8 @@ const TakeCoverNOWWindow = () => {
 	return (
 		<div className='bg-red-500'>
 			<h2>TORNADO WARNINGS: Take Cover Now!</h2>
-			<div className='card'>
-				<DataTable value={data} responsiveLayout='scroll'>
+			<div className='card '>
+				<DataTable value={data.slice(0, 3)} responsiveLayout='scroll'>
 					{/* <DataTable value={testData} responsiveLayout='scroll'> */}
 					<Column field='areaDesc' header='Areas'></Column>
 					<Column field='effective' header='effective'></Column>
