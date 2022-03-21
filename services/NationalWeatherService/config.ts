@@ -1,6 +1,6 @@
 import axios from "axios";
-import { NWS_ENDPOINTS } from "./paths";
+import { API_PATHS as URLS } from "./api-paths";
 
 export const AXIOS_CONFIG = axios.create({
-	baseURL: NWS_ENDPOINTS.nwsBaseUrl,
+	baseURL: URLS.nwsBaseUrl,
 });
