@@ -32,7 +32,7 @@ const TornadoWatchesWindow = () => {
 				<h2 className='text-3xl'>TORNADO WATCHES</h2>
 				<div className='card'>
 					<DataTable
-						value={data.slice(0, 3)}
+						value={data}
 						responsiveLayout='scroll'
 						tableClassName='text-xs'
 					>

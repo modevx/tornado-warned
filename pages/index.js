@@ -15,7 +15,7 @@ const HomeScreen = () => {
 				<div>
 					<TornadoWarningWindow />
 					<TornadoWatchesWindow />
-					{/* <CancelledAlertsWindow /> */}
+					<CancelledAlertsWindow />
 				</div>
 			</div>
 		</PageWrapper>

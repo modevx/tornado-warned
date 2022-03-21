@@ -6,11 +6,11 @@ import {
 } from "../services/NationalWeatherService";
 
 const CancelledAlertsWindow = () => {
-	// const { isLoading, error, data } = useCancelledAlerts();
+	const { isLoading, error, data } = useCancelledAlerts();
 	// const { isLoading, error, data } = useCancelledAlertsTest();
 
-	// if (isLoading) return <p>Loading...</p>;
-	// if (error) return <p>Error: {JSON.stringify(error)}</p>;
+	if (isLoading) return <p>Loading...</p>;
+	if (error) return <p>Error: {JSON.stringify(error)}</p>;
 
 	const testData = [
 		{
@@ -28,21 +28,21 @@ const CancelledAlertsWindow = () => {
 
 	return (
 		<>
-			{/* {data?.length > 0 ? (
-				<div className='bg-neutral-500 border-4 border-neutral-500 col-12 lg:col-6 my-5 rounded-lg'>
-					<h2 className='text-3xl'>Cancelled Alerts</h2>
-					<div className='card'>
-						<DataTable
-							value={data}
-							responsiveLayout='scroll'
-							tableClassName='text-xs'
-						>
-							<Column field={data} header='Alert Type'></Column>
-							<Column field={data} header='Areas'></Column>
-						</DataTable>
-					</div>
+			<div className='bg-neutral-500 border-4 border-neutral-500 col-12 my-5 rounded-lg'>
+				<h2 className='text-3xl'>Cancelled Alerts</h2>
+				<div className='card'>
+					<DataTable
+						value={data}
+						responsiveLayout='scroll'
+						tableClassName='text-xs'
+					>
+						<Column field='event' header='Alert Type'></Column>
+						<Column field='areaDesc' header='Areas'></Column>
+						<Column field='effective' header='Areas'></Column>
+						<Column field='description' header='Areas'></Column>
+					</DataTable>
 				</div>
-			) : null} */}
+			</div>
 		</>
 	);
 };
