@@ -9,10 +9,11 @@ const fetchAlerts = async alertTypePath => {
 	const raw = await NWS.get(alertTypePath);
 	const features = await raw.data.features;
 
-	return await features.map(alert => {
-		const { areaDesc, effective, expires, instruction } = alert.properties;
+	console.log("fetchAlerts", alertTypePath, features);
 
-		return { areaDesc, effective, expires, instruction };
+	return features.map(alert => {
+		const { areaDesc, effective, expires } = alert.properties;
+		return { areaDesc, effective, expires };
 	});
 };
 // -- ACTIVE ALERTS
@@ -34,7 +35,9 @@ export const fetchCancelledAlerts = async () => {
 		const hourDiff = dateDiff / (1000 * 60 * 60);
 		console.log("fetchCancelledAlerts", hourDiff);
 
-		return hourDiff < 60;
+		if (hourDiff < 60) {
+			return { event, areaDesc, effective, description };
+		}
 	});
 
 	return recentCancels;

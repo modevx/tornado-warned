@@ -1,12 +1,16 @@
 export interface ACTIVE_ALERT {
-	event: string;
 	areaDesc: string;
 	effective: string;
 	expires: string;
-	message_type: string;
 	severity: string;
 	urgency: string;
 	certainty: string;
+	instruction: string;
 }
 
-export interface CANCELLED_ALERT {}
+export interface CANCELLED_ALERT {
+	event: string;
+	areaDesc: string;
+	effective: string;
+	description: string;
+}

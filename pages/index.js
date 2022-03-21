@@ -4,7 +4,7 @@ import {
 	useTornadoWarningsTest,
 } from "../services/NationalWeatherService";
 import { QUERY_PARAMS as NWS_PARAMS } from "../services/NationalWeatherService";
-import TornadoWarningWindow from "../components/TakeCoverNOWWindow";
+import TornadoWarningWindow from "../components/TornadoWarningWindow";
 import TornadoWatchesWindow from "../components/TornadoWatchesWindow";
 import CancelledAlertsWindow from "../components/CancelledAlertsWindow";
 

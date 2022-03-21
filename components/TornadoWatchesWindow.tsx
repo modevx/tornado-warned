@@ -1,6 +1,5 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { ProductService } from "../service/ProductService";
 import {
 	useTornadoWatches,
 	useTornadoWatchesTest,
@@ -11,7 +10,7 @@ const TornadoWatchesWindow = () => {
 	// const { isLoading, error, data } = useTornadoWatchesTest();
 
 	if (isLoading) return <p>Loading...</p>;
-	if (error) return <p>Error: {error.message}</p>;
+	if (error) return <p>Error: {JSON.stringify(error)}</p>;
 
 	const testData = [
 		{
@@ -29,25 +28,21 @@ const TornadoWatchesWindow = () => {
 
 	return (
 		<>
-			{data && data.length > 0 ? (
-				<div className='bg-yellow-500 border-4 border-yellow-500 col-12 lg:col-6 my-5 rounded-lg'>
-					<h2 className='text-3xl'>TORNADO WATCHES</h2>
-					<div className='card'>
-						<DataTable
-							value={data}
-							responsiveLayout='scroll'
-							tableClassName='text-xs'
-						>
-							{/* <DataTable value={testData} responsiveLayout='scroll'> */}
-							<Column field='areaDesc' header='Areas'></Column>
-							<Column field='effective' header='Effective'></Column>
-							<Column field='expires' header='Expires'></Column>
-						</DataTable>
-					</div>
+			<div className='bg-yellow-500 border-4 border-yellow-500 col-12 lg:col-6 my-5 rounded-lg'>
+				<h2 className='text-3xl'>TORNADO WATCHES</h2>
+				<div className='card'>
+					<DataTable
+						value={data.slice(0, 3)}
+						responsiveLayout='scroll'
+						tableClassName='text-xs'
+					>
+						{/* <DataTable value={testData} responsiveLayout='scroll'> */}
+						<Column field='areaDesc' header='Areas'></Column>
+						<Column field='effective' header='Effective'></Column>
+						<Column field='expires' header='Expires'></Column>
+					</DataTable>
 				</div>
-			) : (
-				<p>No watches...</p>
-			)}
+			</div>
 		</>
 	);
 };
