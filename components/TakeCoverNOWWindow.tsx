@@ -6,9 +6,9 @@ import {
 	useTornadoWarningsTest,
 } from "../services/NationalWeatherService";
 
-const TakeCoverNOWWindow = () => {
-	// const { isLoading, error, data } = useTornadoWarnings();
-	const { isLoading, error, data } = useTornadoWarningsTest();
+const TornadoWarningWindow = () => {
+	const { isLoading, error, data } = useTornadoWarnings();
+	// const { isLoading, error, data } = useTornadoWarningsTest();
 
 	if (isLoading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error.message}</p>;
@@ -28,19 +28,28 @@ const TakeCoverNOWWindow = () => {
 	];
 
 	return (
-		<div className='bg-red-500'>
-			<h2>TORNADO WARNINGS: Take Cover Now!</h2>
-			<div className='card '>
-				<DataTable value={data.slice(0, 3)} responsiveLayout='scroll'>
-					{/* <DataTable value={testData} responsiveLayout='scroll'> */}
-					<Column field='areaDesc' header='Areas'></Column>
-					<Column field='effective' header='effective'></Column>
-					<Column field='expires' header='expires'></Column>
-					<Column field='instruction' header='instruction'></Column>
-				</DataTable>
-			</div>
-		</div>
+		<>
+			{data && data.length > 0 ? (
+				<div className='bg-red-500 border-4 border-red-500 my-5 rounded-lg'>
+					<h2 className='text-3xl'>TORNADO WARNINGS: Take Cover Now!</h2>
+					<div className='card '>
+						<DataTable
+							value={data}
+							responsiveLayout='scroll'
+							tableClassName='text-xs'
+						>
+							{/* <DataTable value={testData} responsiveLayout='scroll'> */}
+							<Column field='areaDesc' header='Areas'></Column>
+							<Column field='effective' header='Effective'></Column>
+							<Column field='expires' header='Expires'></Column>
+						</DataTable>
+					</div>
+				</div>
+			) : (
+				<p>No warnings...</p>
+			)}
+		</>
 	);
 };
 
-export default TakeCoverNOWWindow;
+export default TornadoWarningWindow;

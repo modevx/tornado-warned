@@ -25,12 +25,19 @@ export const fetchTornadoWatches = async () => {
 export const fetchCancelledAlerts = async () => {
 	const raw = await NWS.get(URLS.cancelledAlerts);
 	const features = await raw.data.features;
+	const currentTime = new Date();
 
-	return await features.map(alert => {
+	const recentCancels = await features.filter(alert => {
 		const { event, areaDesc, effective, description } = alert.properties;
+		const effectiveTime = new Date(effective);
+		const dateDiff = currentTime.getTime() - effectiveTime.getTime();
+		const hourDiff = dateDiff / (1000 * 60 * 60);
+		console.log("fetchCancelledAlerts", hourDiff);
 
-		return { event, areaDesc, effective, description };
+		return hourDiff < 60;
 	});
+
+	return recentCancels;
 };
 // -- TEST REQUESTS
 export const fetchTornadoWarningsTest = async () => {
