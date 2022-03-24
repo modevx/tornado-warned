@@ -4,6 +4,7 @@ import {
   useTornadoWarnings,
   useTornadoWarningsTest,
 } from "../services/NationalWeatherService";
+import dayjs from "dayjs";
 
 const TornadoWarningWindow = () => {
   const { isLoading, error, data } = useTornadoWarnings();
@@ -35,6 +36,8 @@ const TornadoWarningWindow = () => {
           .split(";")
           .map((county) => county.match(/[\w]+\b/))
           .join(", "),
+        effective: dayjs(alert.effective).format("h:mm a"),
+        expires: dayjs(alert.expires).format("h:mm a"),
       };
     });
 
@@ -52,8 +55,8 @@ const TornadoWarningWindow = () => {
             tableClassName="text-xs"
           >
             <Column field="areas" header="Areas"></Column>
-            {/* <Column field="effective" header="Effective"></Column>
-            <Column field="expires" header="Expires"></Column> */}
+            <Column field="effective" header="Effective"></Column>
+            <Column field="expires" header="Expires"></Column>
           </DataTable>
         </div>
       </div>
