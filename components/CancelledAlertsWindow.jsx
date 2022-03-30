@@ -1,9 +1,6 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import {
-	useCancelledAlerts,
-	useCancelledAlertsTest,
-} from "../services/NationalWeatherService";
+import { useCancelledAlerts, useCancelledAlertsTest } from "../hooks";
 
 const CancelledAlertsWindow = () => {
 	const { isLoading, error, data } = useCancelledAlerts();

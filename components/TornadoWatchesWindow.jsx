@@ -1,9 +1,6 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import {
-	useTornadoWatches,
-	useTornadoWatchesTest,
-} from "../services/NationalWeatherService";
+import { useTornadoWatches, useTornadoWatchesTest } from "../hooks";
 
 const TornadoWatchesWindow = () => {
 	const { isLoading, error, data } = useTornadoWatches();
