@@ -3,7 +3,9 @@ import Link from "next/link";
 export const NavBar = () => {
 	return (
 		<nav className='flex justify-between'>
-			<div className='text-lg font-bold'>TA</div>
+			<span className='text-lg font-bold'>
+				T<span className='text-yellow-400'>A</span>
+			</span>
 			{/* <ul className='flex gap-x-4'>
 				<li>
 					<Link href='/'>

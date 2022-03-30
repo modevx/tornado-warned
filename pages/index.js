@@ -21,29 +21,32 @@ const AlertList = ({ alertArray }) => {
 	);
 };
 
-const AlertItem = ({ alert }) => {
+const AlertItem = ({ alert, color }) => {
 	const { event, messageType, effective, expires, areaDesc } = alert.properties;
 
 	const EVENT_COLOR_MAP = {
-		TornadoWarning: "red",
-		TornadoWatch: "yellow",
+		TornadoWarning: "from-red-500",
+		TornadoWatch: "from-yellow-400",
 	};
 
-	const color =
+	const fromColor =
 		messageType === "Cancel"
-			? "neutral"
+			? "from-neutral-500"
 			: EVENT_COLOR_MAP[`${event.split(" ").join("")}`];
-
-	console.log("messageType: ", messageType, " color: ", color);
 
 	return (
 		<div
-			className={`bg-gradient-to-r from-${color}-500 to-${color}-900 my-3 p-2 text-xs`}
+			className={`bg-gradient-to-r ${fromColor} to-purple-900 my-3 p-2 text-xs`}
 		>
 			<div className='flex justify-between'>
-				<h3 className='font-bold inline-block italic text-lg text-white uppercase'>
-					!! {event.split(" ")[1]} !!
-				</h3>
+				<div className='flex flex-col'>
+					<div className='font-bold inline-block italic text-lg text-white uppercase'>
+						{event.split(" ")[1]}
+					</div>
+					<div className='font-bold inline-block italic text-lg text-white lowercase'>
+						{messageType}
+					</div>
+				</div>
 				<div className='flex flex-col justify-between mb-2 text-right'>
 					<div>
 						<span className='font-bold'>FROM:</span>{" "}
@@ -71,11 +74,11 @@ const HomeScreen = () => {
 		<PageWrapper>
 			<div className='flex flex-col justify-around w-full'>
 				<Header />
-				{!warnings && !watches && <Hero /> && <Features />}
-
-				<AlertList alertArray={warnings} />
-				<AlertList alertArray={watches} />
-				<AlertList alertArray={cancels} />
+				{/* <Hero /> */}
+				{/* <Features /> */}
+				<AlertList alertArray={warnings} color='red' />
+				<AlertList alertArray={watches} color='neutral' />
+				<AlertList alertArray={cancels} color='yellow' />
 			</div>
 		</PageWrapper>
 	);

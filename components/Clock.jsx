@@ -31,7 +31,7 @@ export const Clock = () => {
 	return (
 		<div className='flex flex-col'>
 			<span className='clock-date'>{`${dateF}`}</span>
-			<span className='clock-time'>{`${timeF}`}</span>
+			{/* <span className='clock-time'>{`${timeF}`}</span> */}
 		</div>
 	);
 };

@@ -240,6 +240,27 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 ## **UI**
 
+<details>
+<summary><strong><em>ISSUE:</em></strong> dynamic Tailwind styles not getting applied</summary>
+
+## **[ ISSUE ]**
+
+dynamic AlertItem bg gradients not getting applied
+
+## **[ DEBUG STEPS ]**
+
+## **[ CAUSE ]**
+
+Tailwinds auto-removes partial class names
+
+- _this is part of the prod build process tho. so, not sure why this happens in dev. is Next.js running a build step when saved??_
+
+## **[ SOLUTION ]**
+
+don't concatenate class names in Tailwinds
+
+</details>
+
 - [Tailwind Ui Components](https://tailwindui.com/#product-application-ui)
 - [headless UI](https://headlessui.dev/) | unstyled UI components for TailwindCSS
   - **_[Design Tips Twitter thread](https://twitter.com/i/events/994601867987619840)_**
