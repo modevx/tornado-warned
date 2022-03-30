@@ -8,21 +8,47 @@ import Hero from "../components/Hero";
 import TornadoActionFeaturesSection from "../components/TornadoActionFeaturesSection";
 // ------
 import { useTornadoWarnings } from "../hooks";
+import dayjs from "dayjs";
 
 const SiteFeaturesSection = () => {};
 
 const AlertSection = () => {};
 
 const Alert = ({ alert }) => {
-	const { areaDesc, effective, expires, event } = alert.properties;
+	const { event, messageType, effective, expires, areaDesc } = alert.properties;
+
+	const EVENT_COLOR_MAP = {
+		TornadoWarning: "red",
+		TornadoWatch: "yellow",
+	};
+
+	const color =
+		messageType === "Cancel"
+			? "neutral"
+			: EVENT_COLOR_MAP[`${event.split(" ").join("")}`];
 
 	return (
-		<div>
-			<h3 className='text-white'>{event}</h3>
-			<div>
-				<span>Starts: {effective}</span> | <span>Ends: {expires}</span>
+		<div
+			className={`bg-gradient-to-r from-${color}-500 to-${color}-900 my-3 p-2 text-xs`}
+		>
+			<div className='flex justify-between'>
+				<h3 className='font-bold inline-block italic text-lg text-white uppercase'>
+					!! {event.split(" ")[1]} !!
+				</h3>
+				<div className='flex flex-col justify-between mb-2 text-right'>
+					<div>
+						<span className='font-bold'>FROM:</span>{" "}
+						{dayjs(effective).format("h:mm a")}
+					</div>
+					<div>
+						<span className='font-bold'>TO:</span>{" "}
+						{dayjs(expires).format("h:mm a")}
+					</div>
+				</div>
 			</div>
-			<p>{areaDesc}</p>
+			<div className='bg-neutral-700 px-2 py-3'>
+				<p>{areaDesc}</p>
+			</div>
 		</div>
 	);
 };
