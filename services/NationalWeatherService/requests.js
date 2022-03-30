@@ -1,9 +1,4 @@
-import {
-	API_PATHS as URLS,
-	AXIOS_CONFIG as NWS,
-	QUERY_PARAMS as PARAMS,
-} from "../NationalWeatherService";
-import { ACTIVE_ALERT, CANCELLED_ALERT } from "./types";
+import { NWS_URLS } from "../../constants";
 
 const fetchAlerts = async alertTypePath => {
 	const raw = await NWS.get(alertTypePath);
@@ -18,13 +13,13 @@ const fetchAlerts = async alertTypePath => {
 };
 // -- ACTIVE ALERTS
 export const fetchTornadoWarnings = async () => {
-	return await fetchAlerts(URLS.tornadoWarnings);
+	return await fetchAlerts(NWS_URLS.tornadoWarnings);
 };
 export const fetchTornadoWatches = async () => {
-	return await fetchAlerts(URLS.tornadoWatches);
+	return await fetchAlerts(NWS_URLS.tornadoWatches);
 };
 export const fetchCancelledAlerts = async () => {
-	const raw = await NWS.get(URLS.cancelledAlerts);
+	const raw = await NWS.get(NWS_URLS.cancelledAlerts);
 	const features = await raw.data.features;
 	// const currentTime = new Date();
 
@@ -47,12 +42,12 @@ export const fetchCancelledAlerts = async () => {
 };
 // -- TEST REQUESTS
 export const fetchTornadoWarningsTest = async () => {
-	return await fetchAlerts(URLS.tornadoWarningsTest);
+	return await fetchAlerts(NWS_URLS.tornadoWarningsTest);
 };
 export const fetchTornadoWatchesTest = async () => {
-	return await fetchAlerts(URLS.tornadoWatchesTest);
+	return await fetchAlerts(NWS_URLS.tornadoWatchesTest);
 };
 export const fetchCancelledAlertsTest = async () => {
-	const raw = await NWS.get(URLS.cancelledAlertsTest);
+	const raw = await NWS.get(NWS_URLS.cancelledAlertsTest);
 	return await raw.data.features;
 };

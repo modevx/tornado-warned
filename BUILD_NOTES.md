@@ -4,6 +4,8 @@ TORNADO ACTION is a side project I'm working on for staying proactively aware of
 
 ## **UI**
 
+- UI ideas
+
 - [primereact](https://www.primefaces.org/primereact/setup/)
   - [internationalization/localization](https://www.primefaces.org/primereact/locale) (i18n localization)
   - [theming](https://www.primefaces.org/primereact/theming/)

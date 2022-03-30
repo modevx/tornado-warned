@@ -1,6 +1,7 @@
-import { QUERY_PARAMS as PARAMS } from "./api-query-params";
-
-export const API_PATHS = {
+/*** -- NATIONAL WEATHER SERVICE --
+ * https://api.weather.gov
+ */
+export const NWS_URLS = {
 	nwsBaseUrl: "https://api.weather.gov",
 	tornadoWarnings: `/alerts/active?event=Tornado%20Warning`,
 	tornadoWarningsTest:
@@ -15,4 +16,11 @@ export const API_PATHS = {
 	activeAlertCount: "/alerts/active/count",
 	alertTypes: "/alerts/types",
 	alertsById: "/alerts",
+};
+
+/*** -- SEVERE WEATHER INVENTORY --
+ * https://www.ncdc.noaa.gov/swdiws/{outputFormat}/{dataset}/{dateRange}
+ */
+export const SWDI_URLS = {
+	baseURL: "https://www.ncdc.noaa.gov/swdiws",
 };

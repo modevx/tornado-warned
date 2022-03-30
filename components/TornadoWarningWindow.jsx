@@ -1,50 +1,67 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import {
-	useTornadoWarnings,
-	useTornadoWarningsTest,
+  useTornadoWarnings,
+  useTornadoWarningsTest,
 } from "../services/NationalWeatherService";
+import dayjs from "dayjs";
 
 const TornadoWarningWindow = () => {
-	const { isLoading, error, data } = useTornadoWarnings();
-	// const { isLoading, error, data } = useTornadoWarningsTest();
+  const { isLoading, error, data } = useTornadoWarnings();
+  // const { isLoading, error, data } = useTornadoWarningsTest();
+  let columns, formattedAreas;
 
-	if (isLoading) return <p>Loading...</p>;
-	if (error) return <p>Error: {JSON.stringify(error)}</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {JSON.stringify(error)}</p>;
 
-	const testData = [
-		{
-			areaDesc: "Atkinson, GA; Clinch, GA; Ware, GA",
-			effective: "2022-03-19T17:29:00-04:00",
-			expires: "2022-03-19T18:00:00-04:00",
-			severity: "Extreme",
-			certainty: "Observed",
-			urgency: "Immediate",
-			event: "Tornado Warning",
-			instruction:
-				"TAKE COVER NOW! Move to a basement or an interior room on the lowest\nfloor of a sturdy building. Avoid windows. If you are outdoors, in a\nmobile home, or in a vehicle, move to the closest substantial shelter\nand protect yourself from flying debris.\n\nHeavy rainfall may hide this tornado. Do not wait to see or hear the\ntornado. TAKE COVER NOW!",
-		},
-	];
+  if (data) {
+    columns = [
+      {
+        field: "areaDesc",
+        header: "Areas",
+      },
+      {
+        field: "effective",
+        header: "Effective",
+      },
+      {
+        field: "expires",
+        header: "Expires",
+      },
+    ];
 
-	return (
-		<>
-			<div className='bg-red-500 border-4 border-red-500 my-5 rounded-lg'>
-				<h2 className='text-3xl'>TORNADO WARNINGS</h2>
-				<div className='card '>
-					<DataTable
-						value={data}
-						responsiveLayout='scroll'
-						tableClassName='text-xs'
-					>
-						{/* <DataTable value={testData} responsiveLayout='scroll'> */}
-						<Column field='areaDesc' header='Areas'></Column>
-						<Column field='effective' header='Effective'></Column>
-						<Column field='expires' header='Expires'></Column>
-					</DataTable>
-				</div>
-			</div>
-		</>
-	);
+    formattedAreas = data.map((alert) => {
+      return {
+        areas: alert.areaDesc
+          .split(";")
+          .map((county) => county.match(/[\w]+\b/))
+          .join(", "),
+        effective: dayjs(alert.effective).format("h:mm a"),
+        expires: dayjs(alert.expires).format("h:mm a"),
+      };
+    });
+
+    console.log(formattedAreas);
+  }
+
+  return (
+    <>
+      <div className="bg-red-500 border-4 border-red-500 my-5 rounded-lg">
+        <h2 className="text-3xl">TORNADO WARNINGS</h2>
+        <div className="card ">
+          <DataTable
+            value={formattedAreas}
+            responsiveLayout="scroll"
+            tableClassName="text-xs"
+          >
+            <Column field="areas" header="Areas"></Column>
+            <Column field="effective" header="Effective"></Column>
+            <Column field="expires" header="Expires"></Column>
+          </DataTable>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default TornadoWarningWindow;
