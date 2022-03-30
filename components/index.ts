@@ -1,5 +1,4 @@
-export * from "./AlertItem";
-export * from "./AlertList";
+export * from "./Alert";
 export * from "./Button";
 export * from "./Footer";
 export * from "./Header";
