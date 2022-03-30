@@ -3,14 +3,13 @@ import { NWS_CONFIG } from "../configs";
 
 const fetchAlerts = async alertTypePath => {
 	const raw = await NWS_CONFIG.get(alertTypePath);
-	const features = await raw.data.features;
+	// const features = await raw.data.features;
+	return await raw.data.features;
 
-	console.log("fetchAlerts", alertTypePath, features);
-
-	return features.map(alert => {
-		const { areaDesc, effective, expires } = alert.properties;
-		return { areaDesc, effective, expires };
-	});
+	// return features.map(alert => {
+	// 	const { areaDesc, effective, expires } = alert.properties;
+	// 	return { areaDesc, effective, expires };
+	// });
 };
 // -- ACTIVE ALERTS
 export const fetchTornadoWarnings = async () => {

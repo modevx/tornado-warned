@@ -3,11 +3,12 @@ import { Column } from "primereact/column";
 import { useTornadoWatches, useTornadoWatchesTest } from "../hooks";
 
 const TornadoWatchesWindow = () => {
-	const { isLoading, error, data } = useTornadoWatches();
+	// const { isLoading, error, data } = useTornadoWatches();
+	const tornadoWatches = useTornadoWatches();
 	// const { isLoading, error, data } = useTornadoWatchesTest();
 
-	if (isLoading) return <p>Loading...</p>;
-	if (error) return <p>Error: {JSON.stringify(error)}</p>;
+	// if (isLoading) return <p>Loading...</p>;
+	// if (error) return <p>Error: {JSON.stringify(error)}</p>;
 
 	const testData = [
 		{
@@ -23,23 +24,29 @@ const TornadoWatchesWindow = () => {
 		},
 	];
 
+	if (tornadoWatches) {
+		console.log("TORNADO WATCHES", tornadoWatches.data);
+	}
+
 	return (
 		<>
-			<div className='bg-yellow-500 border-4 border-yellow-500 col-12 my-5 rounded-lg'>
-				<h2 className='text-3xl'>TORNADO WATCHES</h2>
-				<div className='card'>
-					<DataTable
-						value={data}
-						responsiveLayout='scroll'
-						tableClassName='text-xs'
-					>
-						{/* <DataTable value={testData} responsiveLayout='scroll'> */}
-						<Column field='areaDesc' header='Areas'></Column>
-						<Column field='effective' header='Effective'></Column>
-						<Column field='expires' header='Expires'></Column>
-					</DataTable>
+			{tornadoWatches.data?.map(alert => (
+				<div className='bg-yellow-500 border-4 border-yellow-500 col-12 my-5 rounded-lg'>
+					<h2 className='text-3xl'>TORNADO WATCHES</h2>
+					<div className='card'>
+						<DataTable
+							value={alert}
+							responsiveLayout='scroll'
+							tableClassName='text-xs'
+						>
+							{/* <DataTable value={testData} responsiveLayout='scroll'> */}
+							<Column field='areaDesc' header='Areas'></Column>
+							<Column field='effective' header='Effective'></Column>
+							<Column field='expires' header='Expires'></Column>
+						</DataTable>
+					</div>
 				</div>
-			</div>
+			))}
 		</>
 	);
 };

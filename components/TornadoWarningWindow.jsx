@@ -39,8 +39,6 @@ const TornadoWarningWindow = () => {
 				expires: dayjs(alert.expires).format("h:mm a"),
 			};
 		});
-
-		console.log(formattedAreas);
 	}
 
 	return (
