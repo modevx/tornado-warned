@@ -1,4 +1,4 @@
-import { AlertList, PageWrapper } from "../components";
+import { PageWrapper } from "../components";
 import { useActiveAlerts, useTornadoWarningsTest } from "../hooks";
 import { QUERY_PARAMS as NWS_PARAMS } from "../services/NWS";
 import TornadoWarningWindow from "../components/TornadoWarningWindow";
@@ -12,9 +12,19 @@ import dayjs from "dayjs";
 
 const SiteFeaturesSection = () => {};
 
-const AlertSection = () => {};
+const AlertList = ({ alertArray }) => {
+	if (!alertArray) return null;
 
-const Alert = ({ alert }) => {
+	return (
+		<div>
+			{alertArray.map(alert => (
+				<AlertItem alert={alert} key={alert.id} />
+			))}
+		</div>
+	);
+};
+
+const AlertItem = ({ alert }) => {
 	const { event, messageType, effective, expires, areaDesc } = alert.properties;
 
 	const EVENT_COLOR_MAP = {
@@ -54,16 +64,14 @@ const Alert = ({ alert }) => {
 };
 
 const HomeScreen = () => {
-	const { data, error, isLoading } = useTornadoWarnings();
+	const { data: warnings } = useTornadoWarnings();
 
 	return (
 		<PageWrapper>
 			<div className='flex flex-col justify-around w-full'>
 				<div>
 					{/* <Hero /> */}
-					{data?.map(warning => (
-						<Alert alert={warning} key={warning.id} />
-					))}
+					<AlertList alertArray={warnings} />
 					{/* <TornadoActionFeaturesSection /> */}
 					<TornadoWarningWindow />
 					{/* <TornadoWatchesWindow /> */}
