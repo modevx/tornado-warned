@@ -1,4 +1,4 @@
-import { Button } from "primereact/button";
+// import { Button } from "primereact/button";
 
 const Hero = () => {
 	return (
@@ -11,11 +11,11 @@ const Hero = () => {
 					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit
 					numquam eligendi quos.
 				</div>
-				<Button
+				{/* <Button
 					label='STAY INFORMED'
 					icon='pi pi-discord'
 					className='font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap'
-				/>
+				/> */}
 			</div>
 		</div>
 	);
