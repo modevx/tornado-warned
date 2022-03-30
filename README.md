@@ -2,13 +2,41 @@
 
 <div align='center'>
 
-![rovercam readme graphic](./public/readme.png)
+![rovercam readme graphic](./assets/readme.png)
 
 </div>
 
-<div align='center'>
+<div align='right'>
 
-[Install & Run](#install) | [How To Use](#use) | [Shout-Outs](#shout-outs) | [License](#license) | [Contribute](#contribute) | [Connect](#connect)
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs)
+
+</div>
+
+<div align='right'>
+
+  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-gh.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='mailto:ephraim@modevx.com' alt='social link icon'>
+    <img src='./assets/icon-at.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-tw.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-ig.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-li.svg' height='20'/>
+  </a>
 
 </div>
 
@@ -16,26 +44,230 @@
 
 <!-- #endregion /INTRO -->
 
-<!-- #region OVERVIEW -->
+<!-- #region INSTALL -->
 
-<h2 id="overview">
-  <img src="./public/section-banner__overview.png" alt="tornado action github repo overview section"/>
-</h2>
+<div id='install' align='center'>
 
-<!-- #endregion /OVERVIEW -->
+![rovercam readme graphic](./assets/rm-install.png)
 
-<!-- #region TECH -->
+</div>
 
-<h2 id="tech">
-  <img src="./public/section-banner__tech.png" alt="tornado action github repo tech section"/>
-</h2>
+<div align='right'>
 
-<!-- #endregion /TECH -->
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs)
+
+</div>
+
+<div align='right'>
+
+  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-gh.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='mailto:ephraim@modevx.com' alt='social link icon'>
+    <img src='./assets/icon-at.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-tw.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-ig.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-li.svg' height='20'/>
+  </a>
+
+</div>
+
+<!-- #endregion /INSTALL -->
+
+<!-- #region HOW TO USE -->
+
+<div id='use' align='center'>
+
+![rovercam readme graphic](./assets/rm-use.png)
+
+</div>
+
+<div align='right'>
+
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs)
+
+</div>
+
+<div align='right'>
+
+  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-gh.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='mailto:ephraim@modevx.com' alt='social link icon'>
+    <img src='./assets/icon-at.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-tw.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-ig.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-li.svg' height='20'/>
+  </a>
+
+</div>
+
+<!-- #endregion /HOW TO USE -->
+
+<!-- #region LICENSE -->
+
+<div id='license' align='center'>
+
+![rovercam readme graphic](./assets/rm-license.png)
+
+</div>
+
+<div align='right'>
+
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs)
+
+</div>
+
+<div align='right'>
+
+  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-gh.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='mailto:ephraim@modevx.com' alt='social link icon'>
+    <img src='./assets/icon-at.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-tw.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-ig.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-li.svg' height='20'/>
+  </a>
+
+</div>
+
+<!-- #endregion /LICENSE -->
+
+<!-- #region CONTRIBUTE -->
+
+<div id='contribute' align='center'>
+
+![rovercam readme graphic](./assets/rm-contribute.png)
+
+</div>
+
+<div align='right'>
+
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs)
+
+</div>
+
+<div align='right'>
+
+  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-gh.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='mailto:ephraim@modevx.com' alt='social link icon'>
+    <img src='./assets/icon-at.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-tw.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-ig.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-li.svg' height='20'/>
+  </a>
+
+</div>
+
+<!-- #endregion /CONTRIBUTE -->
+
+<!-- #region SHOUT-OUTS -->
+
+<div id='shout-outs' align='center'>
+
+![rovercam readme graphic](./assets/rm-shout-outs.png)
+
+</div>
+
+<div align='right'>
+
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs)
+
+</div>
+
+<div align='right'>
+
+  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-gh.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='mailto:ephraim@modevx.com' alt='social link icon'>
+    <img src='./assets/icon-at.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-tw.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-ig.svg' height='20'/>
+  </a>
+  &nbsp;
+  &nbsp;
+  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+    <img src='./assets/icon-li.svg' height='20'/>
+  </a>
+
+</div>
+
+<!-- #endregion /SHOUT-OUTS -->
 
 <!-- #region DATA -->
 
 <h2 id="data">
-  <img src="./public/section-banner__data.png" alt="tornado action github repo data section"/>
+  <img src="./assets/section-banner__data.png" alt="tornado action github repo data section"/>
 </h2>
 
 ### _**Severe Weather Data Inventory**_
@@ -60,7 +292,7 @@ National Weather Service API Web Service
 <!-- #region LESSONS LEARNED -->
 
 <h2 id="lessons-learned">
-  <img src="./public/section-banner__lessons-learned.png" alt="tornado action github repo lessons-learned section"/>
+  <img src="./assets/section-banner__lessons-learned.png" alt="tornado action github repo lessons-learned section"/>
 </h2>
 
 <details>
@@ -79,7 +311,7 @@ National Weather Service API Web Service
 <!-- #region RESOURCES -->
 
 <h2 id="resources">
-  <img src="./public/section-banner__resources.png" alt="tornado action github repo resources section"/>
+  <img src="./assets/section-banner__resources.png" alt="tornado action github repo resources section"/>
 </h2>
 
 <!-- #endregion /RESOURCES -->
@@ -88,13 +320,13 @@ National Weather Service API Web Service
 
 <h3 id='connect' align='center'>
 
-![rovercam readme graphic](./public/connect.png)
+![rovercam readme graphic](./assets/connect.png)
 
 </h3>
 
-<div align='center'>
+<div align='right'>
 
-[Install & Run](#install) | [How To Use](#use) | [Shout-Outs](#shout-outs) | [License](#license) | [Contribute](#contribute) | [Connect](#connect)
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs)
 
 </div>
 

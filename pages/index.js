@@ -5,7 +5,13 @@ import TornadoWarningWindow from "../components/TornadoWarningWindow";
 import TornadoWatchesWindow from "../components/TornadoWatchesWindow";
 import CancelledAlertsWindow from "../components/CancelledAlertsWindow";
 import Hero from "../components/Hero";
-import FeaturesList from "../components/FeaturesList";
+import TornadoActionFeaturesSection from "../components/TornadoActionFeaturesSection";
+
+const SiteFeaturesSection = () => {};
+
+const AlertSection = () => {};
+
+const Alert = () => {};
 
 const HomeScreen = () => {
 	return (
@@ -13,7 +19,7 @@ const HomeScreen = () => {
 			<div className='flex flex-col justify-around w-full'>
 				<div>
 					<Hero />
-					<FeaturesList />
+					<TornadoActionFeaturesSection />
 					<TornadoWarningWindow />
 					<TornadoWatchesWindow />
 					<CancelledAlertsWindow />

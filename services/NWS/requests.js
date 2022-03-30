@@ -1,15 +1,9 @@
 import { NWS_URLS } from "../../constants";
 import { NWS_CONFIG } from "../configs";
 
-const fetchAlerts = async alertTypePath => {
-	const raw = await NWS_CONFIG.get(alertTypePath);
-	// const features = await raw.data.features;
+const fetchAlerts = async endpoint => {
+	const raw = await NWS_CONFIG.get(endpoint);
 	return await raw.data.features;
-
-	// return features.map(alert => {
-	// 	const { areaDesc, effective, expires } = alert.properties;
-	// 	return { areaDesc, effective, expires };
-	// });
 };
 // -- ACTIVE ALERTS
 export const fetchTornadoWarnings = async () => {
@@ -39,15 +33,4 @@ export const fetchCancelledAlerts = async () => {
 	});
 
 	// return recentCancels;
-};
-// -- TEST REQUESTS
-export const fetchTornadoWarningsTest = async () => {
-	return await fetchAlerts(NWS_URLS.tornadoWarningsTest);
-};
-export const fetchTornadoWatchesTest = async () => {
-	return await fetchAlerts(NWS_URLS.tornadoWatchesTest);
-};
-export const fetchCancelledAlertsTest = async () => {
-	const raw = await fetchAlerts(NWS_URLS.cancelledAlertsTest);
-	return await raw.data.features;
 };

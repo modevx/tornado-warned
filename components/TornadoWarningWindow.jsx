@@ -5,13 +5,10 @@ import { useTornadoWarnings, useTornadoWarningsTest } from "../hooks";
 
 const TornadoWarningWindow = () => {
 	const { isLoading, error, data } = useTornadoWarnings();
-	// const { isLoading, error, data } = useTornadoWarningsTest();
 	let columns, formattedAreas;
 
 	if (isLoading) return <p>Loading...</p>;
-	if (error) {
-		console.log(error);
-	}
+	if (error) return <p>{JSON.stringify(error)}</p>;
 
 	if (data) {
 		columns = [
@@ -31,12 +28,12 @@ const TornadoWarningWindow = () => {
 
 		formattedAreas = data.map(alert => {
 			return {
-				areas: alert.areaDesc
+				areas: alert.properties.areaDesc
 					.split(";")
 					.map(county => county.match(/[\w]+\b/))
 					.join(", "),
-				effective: dayjs(alert.effective).format("h:mm a"),
-				expires: dayjs(alert.expires).format("h:mm a"),
+				effective: dayjs(alert.properties.effective).format("h:mm a"),
+				expires: dayjs(alert.properties.expires).format("h:mm a"),
 			};
 		});
 	}
@@ -51,7 +48,7 @@ const TornadoWarningWindow = () => {
 						responsiveLayout='scroll'
 						tableClassName='text-xs'
 					>
-						<Column field='areas' header='Areas'></Column>
+						<Column field='areaDesc' header='Areas'></Column>
 						<Column field='effective' header='Effective'></Column>
 						<Column field='expires' header='Expires'></Column>
 					</DataTable>
