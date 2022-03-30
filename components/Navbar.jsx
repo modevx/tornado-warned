@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-const Navigation = () => {
+export const NavBar = () => {
 	return (
 		<nav className='flex justify-between'>
-			<div>TORNADO ACTION</div>
+			<div className='text-lg font-bold'>TA</div>
 			{/* <ul className='flex gap-x-4'>
 				<li>
 					<Link href='/'>
@@ -43,5 +43,3 @@ const Navigation = () => {
 		// </Navbar>
 	);
 };
-
-export default Navigation;

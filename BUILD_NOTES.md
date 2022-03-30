@@ -240,8 +240,10 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 ## **UI**
 
-- UI ideas
-
+- [Tailwind Ui Components](https://tailwindui.com/#product-application-ui)
+- [headless UI](https://headlessui.dev/) | unstyled UI components for TailwindCSS
+  - **_[Design Tips Twitter thread](https://twitter.com/i/events/994601867987619840)_**
+- [RefactoringUI](https://www.refactoringui.com/) | Tailwind boys' design tips
 - [primereact](https://www.primefaces.org/primereact/setup/)
   - [internationalization/localization](https://www.primefaces.org/primereact/locale) (i18n localization)
   - [theming](https://www.primefaces.org/primereact/theming/)

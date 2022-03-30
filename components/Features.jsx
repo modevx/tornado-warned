@@ -1,4 +1,4 @@
-const FeaturesList = () => {
+export const Features = () => {
 	return (
 		<div className='surface-0 text-center'>
 			<div className='mb-3 font-bold text-2xl'>
@@ -52,5 +52,3 @@ const FeaturesList = () => {
 		</div>
 	);
 };
-
-export default FeaturesList;

@@ -46,7 +46,7 @@ There are tons of resources already available for storm safety and preparedness.
 
 If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** has ( or will have ) it!
 
-**_Check out [`BUILD_NOTES.md`](https://github.com/ephraimsmithdev/rovercam/blob/prod/BUILD_NOTES.md) for a behind-the-scenes look at how TORNADO ACTION is being built!_**
+**_Check out [`BUILD_NOTES.md`](https://github.com/ephraimsmithdev/rovercam/blob/prod/BUILD_NOTES.md) for a behind-the-scenes look at how TORNADO ACTION is getting built!_**
 
 <!-- #endregion /INTRO -->
 
