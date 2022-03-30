@@ -28,7 +28,7 @@ const TornadoWatchesWindow = () => {
 
 		formattedAreas = data.map(alert => {
 			return {
-				areas: alert.properties.areaDesc
+				areaDesc: alert.properties.areaDesc
 					.split(";")
 					.map(county => county.match(/[\w]+\b/))
 					.join(", "),
