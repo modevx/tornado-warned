@@ -1,6 +1,6 @@
 // import { Button } from "primereact/button";
 
-const Hero = () => {
+export const Hero = () => {
 	return (
 		<div className='surface-section px-4 py-8 md:px-6 lg:px-8'>
 			<div className='text-700 text-center'>
@@ -20,5 +20,3 @@ const Hero = () => {
 		</div>
 	);
 };
-
-export default Hero;

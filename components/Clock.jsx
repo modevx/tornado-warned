@@ -12,9 +12,7 @@ export const Clock = () => {
 			clockTick();
 		}, 1000);
 
-		return () => {
-			clearInterval(id);
-		};
+		return () => clearInterval(id);
 	}, [time]);
 
 	const dateF = new Intl.DateTimeFormat("en-US", {
@@ -31,11 +29,9 @@ export const Clock = () => {
 	}).format(time);
 
 	return (
-		<div className='Clock'>
+		<div className='flex flex-col'>
 			<span className='clock-date'>{`${dateF}`}</span>
 			<span className='clock-time'>{`${timeF}`}</span>
 		</div>
 	);
 };
-
-export default Clock;

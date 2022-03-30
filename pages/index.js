@@ -1,14 +1,11 @@
-import Hero from "../components/Hero";
-import { PageWrapper } from "../components";
-import { QUERY_PARAMS as NWS_PARAMS } from "../services/NWS";
-import TornadoActionFeaturesSection from "../components/TornadoActionFeaturesSection";
-// ------
+import dayjs from "dayjs";
+// -----
+import { Hero, Features, Header, PageWrapper } from "../components";
 import {
 	useTornadoWarnings,
 	useTornadoWatches,
 	useCancelledAlerts,
 } from "../hooks";
-import dayjs from "dayjs";
 
 const SiteFeaturesSection = () => {};
 
@@ -73,13 +70,12 @@ const HomeScreen = () => {
 	return (
 		<PageWrapper>
 			<div className='flex flex-col justify-around w-full'>
-				<div>
-					{/* <Hero /> */}
-					{/* <TornadoActionFeaturesSection /> */}
-					<AlertList alertArray={warnings} />
-					<AlertList alertArray={watches} />
-					<AlertList alertArray={cancels} />
-				</div>
+				<Header />
+				{!warnings && !watches && <Hero /> && <Features />}
+
+				<AlertList alertArray={warnings} />
+				<AlertList alertArray={watches} />
+				<AlertList alertArray={cancels} />
 			</div>
 		</PageWrapper>
 	);

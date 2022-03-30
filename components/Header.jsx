@@ -1,9 +1,10 @@
-import Navbar from "./Navbar";
+import { Clock, NavBar } from "./";
 
 export const Header = () => {
 	return (
-		<header>
-			<Navbar />
+		<header className='flex justify-between'>
+			<NavBar />
+			<Clock />
 		</header>
 	);
 };
