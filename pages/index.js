@@ -1,13 +1,13 @@
-import { PageWrapper } from "../components";
-import { useActiveAlerts, useTornadoWarningsTest } from "../hooks";
-import { QUERY_PARAMS as NWS_PARAMS } from "../services/NWS";
-import TornadoWarningWindow from "../components/TornadoWarningWindow";
-import TornadoWatchesWindow from "../components/TornadoWatchesWindow";
-import CancelledAlertsWindow from "../components/CancelledAlertsWindow";
 import Hero from "../components/Hero";
+import { PageWrapper } from "../components";
+import { QUERY_PARAMS as NWS_PARAMS } from "../services/NWS";
 import TornadoActionFeaturesSection from "../components/TornadoActionFeaturesSection";
 // ------
-import { useTornadoWarnings } from "../hooks";
+import {
+	useTornadoWarnings,
+	useTornadoWatches,
+	useCancelledAlerts,
+} from "../hooks";
 import dayjs from "dayjs";
 
 const SiteFeaturesSection = () => {};
@@ -37,6 +37,8 @@ const AlertItem = ({ alert }) => {
 			? "neutral"
 			: EVENT_COLOR_MAP[`${event.split(" ").join("")}`];
 
+	console.log("messageType: ", messageType, " color: ", color);
+
 	return (
 		<div
 			className={`bg-gradient-to-r from-${color}-500 to-${color}-900 my-3 p-2 text-xs`}
@@ -65,17 +67,18 @@ const AlertItem = ({ alert }) => {
 
 const HomeScreen = () => {
 	const { data: warnings } = useTornadoWarnings();
+	const { data: watches } = useTornadoWatches();
+	const { data: cancels } = useCancelledAlerts();
 
 	return (
 		<PageWrapper>
 			<div className='flex flex-col justify-around w-full'>
 				<div>
 					{/* <Hero /> */}
-					<AlertList alertArray={warnings} />
 					{/* <TornadoActionFeaturesSection /> */}
-					<TornadoWarningWindow />
-					{/* <TornadoWatchesWindow /> */}
-					{/* <CancelledAlertsWindow /> */}
+					<AlertList alertArray={warnings} />
+					<AlertList alertArray={watches} />
+					<AlertList alertArray={cancels} />
 				</div>
 			</div>
 		</PageWrapper>
