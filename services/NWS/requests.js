@@ -1,7 +1,8 @@
 import { NWS_URLS } from "../../constants";
+import { NWS_CONFIG } from "../configs";
 
 const fetchAlerts = async alertTypePath => {
-	const raw = await NWS.get(alertTypePath);
+	const raw = await NWS_CONFIG.get(alertTypePath);
 	const features = await raw.data.features;
 
 	console.log("fetchAlerts", alertTypePath, features);
@@ -19,7 +20,7 @@ export const fetchTornadoWatches = async () => {
 	return await fetchAlerts(NWS_URLS.tornadoWatches);
 };
 export const fetchCancelledAlerts = async () => {
-	const raw = await NWS.get(NWS_URLS.cancelledAlerts);
+	const raw = await NWS_CONFIG.get(NWS_URLS.cancelledAlerts);
 	const features = await raw.data.features;
 	// const currentTime = new Date();
 
@@ -48,6 +49,6 @@ export const fetchTornadoWatchesTest = async () => {
 	return await fetchAlerts(NWS_URLS.tornadoWatchesTest);
 };
 export const fetchCancelledAlertsTest = async () => {
-	const raw = await NWS.get(NWS_URLS.cancelledAlertsTest);
+	const raw = await fetchAlerts(NWS_URLS.cancelledAlertsTest);
 	return await raw.data.features;
 };

@@ -6,8 +6,7 @@ import {
 	fetchTornadoWatchesTest,
 	fetchCancelledAlerts,
 	fetchCancelledAlertsTest,
-} from "../services/NationalWeatherService/requests";
-import { ACTIVE_ALERT, CANCELLED_ALERT } from "./types";
+} from "../services/NWS/requests";
 
 export const useTornadoWarnings = () => {
 	return useQuery("tornadoWarnings", fetchTornadoWarnings);
