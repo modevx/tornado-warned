@@ -21,7 +21,7 @@ const AlertList = ({ alertArray }) => {
 	);
 };
 
-const AlertItem = ({ alert, color }) => {
+const AlertItem = ({ alert }) => {
 	const { event, messageType, effective, expires, areaDesc } = alert.properties;
 
 	const EVENT_COLOR_MAP = {
@@ -29,14 +29,14 @@ const AlertItem = ({ alert, color }) => {
 		TornadoWatch: "from-yellow-400",
 	};
 
-	const fromColor =
+	const color =
 		messageType === "Cancel"
 			? "from-neutral-500"
 			: EVENT_COLOR_MAP[`${event.split(" ").join("")}`];
 
 	return (
 		<div
-			className={`bg-gradient-to-r ${fromColor} to-purple-900 my-3 p-2 text-xs`}
+			className={`bg-gradient-to-r ${color} to-neutral-900 my-3 p-2 text-xs`}
 		>
 			<div className='flex justify-between'>
 				<div className='flex flex-col'>
@@ -74,8 +74,8 @@ const HomeScreen = () => {
 		<PageWrapper>
 			<div className='flex flex-col justify-around w-full'>
 				<Header />
-				{/* <Hero /> */}
-				{/* <Features /> */}
+				<Hero />
+				<Features />
 				<AlertList alertArray={warnings} color='red' />
 				<AlertList alertArray={watches} color='neutral' />
 				<AlertList alertArray={cancels} color='yellow' />
