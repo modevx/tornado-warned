@@ -1,4 +1,10 @@
+import { BsTornado } from "react-icons/bs";
+/**
+ * -- [ Day.js ] localizedFormat plugin extension
+ */
 import dayjs from "dayjs";
+import localized from "dayjs/plugin/localizedFormat";
+dayjs.extend(localized);
 // -----
 import { Hero, Features, Header, PageWrapper } from "../components";
 import {
@@ -6,6 +12,7 @@ import {
 	useTornadoWatches,
 	useCancelledAlerts,
 } from "../hooks";
+// -----
 
 const SiteFeaturesSection = () => {};
 
@@ -26,7 +33,7 @@ const AlertItem = ({ alert }) => {
 
 	const EVENT_COLOR_MAP = {
 		TornadoWarning: "from-red-500",
-		TornadoWatch: "from-yellow-400",
+		TornadoWatch: "from-yellow-500",
 	};
 
 	const color =
@@ -35,29 +42,28 @@ const AlertItem = ({ alert }) => {
 			: EVENT_COLOR_MAP[`${event.split(" ").join("")}`];
 
 	return (
+		// -- [ CARD ]
 		<div
 			className={`bg-gradient-to-r ${color} to-neutral-900 my-3 p-2 text-xs`}
 		>
-			<div className='flex justify-between'>
-				<div className='flex flex-col'>
-					<div className='font-bold inline-block italic text-lg text-white uppercase'>
+			{/* -- [ HEADLINE ] */}
+			<div className='flex items-center justify-between py-2'>
+				{/* -- [ ALERT type ] + [ EFFECTIVE time ] */}
+				<div className='flex items-center'>
+					<BsTornado className='mr-1' size={30} />
+
+					<span className='font-bold inline-block  text-lg text-white uppercase'>
 						{event.split(" ")[1]}
-					</div>
-					<div className='font-bold inline-block italic text-lg text-white lowercase'>
-						{messageType}
-					</div>
+					</span>
 				</div>
-				<div className='flex flex-col justify-between mb-2 text-right'>
-					<div>
-						<span className='font-bold'>FROM:</span>{" "}
-						{dayjs(effective).format("h:mm a")}
-					</div>
-					<div>
-						<span className='font-bold'>TO:</span>{" "}
-						{dayjs(expires).format("h:mm a")}
-					</div>
+
+				{/* -- [ MESSAGE type ] + [ EXPIRATION time ] */}
+				<div>
+					<span>{dayjs(effective).format("LT")}</span>&nbsp; - &nbsp;
+					<span>{dayjs(expires).format("LT")}</span>
 				</div>
 			</div>
+			{/* -- Impacted Areas Box */}
 			<div className='bg-neutral-700 px-2 py-3'>
 				<p>{areaDesc}</p>
 			</div>
@@ -74,8 +80,8 @@ const HomeScreen = () => {
 		<PageWrapper>
 			<div className='flex flex-col justify-around w-full'>
 				<Header />
-				<Hero />
-				<Features />
+				{/* <Hero />
+				<Features /> */}
 				<AlertList alertArray={warnings} color='red' />
 				<AlertList alertArray={watches} color='neutral' />
 				<AlertList alertArray={cancels} color='yellow' />
