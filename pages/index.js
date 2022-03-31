@@ -30,7 +30,7 @@ const AlertItem = ({ alert }) => {
 	};
 
 	const color =
-		messageType === "Cancel"
+		messageType.toLowerCase() === "cancel"
 			? "from-neutral-500"
 			: EVENT_COLOR_MAP[`${event.split(" ").join("")}`];
 
