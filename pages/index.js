@@ -136,8 +136,20 @@ const AlertItem = ({ alert }) => {
 		</div>
 	);
 };
-const AlertSection = ({ alertList, alertType }) => {
-	return <section id='tornado-warnings'></section>;
+const AlertSection = ({ color }) => {
+	const colorMap = {
+		red: "bg-red-800",
+		yellow: "bg-yellow-500",
+	};
+
+	return (
+		<section
+			id='tornado-warnings'
+			className={`${colorMap[color]} h-80 my-4 text-black`}
+		>
+			<h1>Tornado Warnings</h1>
+		</section>
+	);
 };
 
 const HomeScreen = () => {
@@ -162,6 +174,8 @@ const HomeScreen = () => {
 				<Header />
 				<Hero />
 				<FeaturesSection />
+				<AlertSection color='red' />
+				<AlertSection color='yellow' />
 				<AlertList alertArray={warnings} color='red' />
 				<AlertList alertArray={watches} color='neutral' />
 				<AlertList alertArray={cancels} color='yellow' />
