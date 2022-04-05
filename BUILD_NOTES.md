@@ -1,6 +1,6 @@
 <!-- #region INTRO -->
 
-<div id='top' align='center'>
+<div align='center'>
 
 ![build notes graphic](./assets/build-notes.png)
 
@@ -58,7 +58,7 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 <div id='discover' align='center'>
 
-![build notes graphic](./assets/bn-discover.png)
+![build notes graphic](./assets/discover.png)
 
 </div>
 
@@ -98,13 +98,11 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 <!-- #endregion /DISCOVER -->
 
-# DISCOVER
-
 <!-- #region DEFINE -->
 
 <div id='define' align='center'>
 
-![build notes graphic](./assets/bn-define.png)
+![build notes graphic](./assets/define.png)
 
 </div>
 
@@ -144,13 +142,11 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 <!-- #endregion /DEFINE -->
 
-# DEFINE
-
 <!-- #region MARKET -->
 
 <div id='market' align='center'>
 
-![build notes graphic](./assets/bn-market.png)
+![build notes graphic](./assets/market.png)
 
 </div>
 
@@ -190,13 +186,11 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 <!-- #endregion /MARKET -->
 
-# MARKET
-
 <!-- #region DELIVER -->
 
 <div id='deliver' align='center'>
 
-![build notes graphic](./assets/bn-deliver.png)
+![build notes graphic](./assets/deliver.png)
 
 </div>
 
@@ -235,8 +229,6 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 </div>
 
 <!-- #endregion /DELIVER -->
-
-# DELIVER
 
 ## **UI**
 
@@ -340,7 +332,7 @@ National Weather Service API Web Service
 
 <div id='evaluate' align='center'>
 
-![build notes graphic](./assets/bn-evaluate.png)
+![build notes graphic](./assets/evaluate.png)
 
 </div>
 
@@ -379,5 +371,3 @@ National Weather Service API Web Service
 </div>
 
 <!-- #endregion /EVALUATE -->
-
-# EVALUATE

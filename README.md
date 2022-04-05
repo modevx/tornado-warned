@@ -54,7 +54,7 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
 
 <div id='install' align='center'>
 
-![readme graphic](./assets/rm-install.png)
+![readme graphic](./assets/install.png)
 
 </div>
 
@@ -98,7 +98,7 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
 
 <div id='use' align='center'>
 
-![readme graphic](./assets/rm-use.png)
+![readme graphic](./assets/use.png)
 
 </div>
 
@@ -142,7 +142,7 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
 
 <div id='license' align='center'>
 
-![readme graphic](./assets/rm-license.png)
+![readme graphic](./assets/license.png)
 
 </div>
 
@@ -186,7 +186,7 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
 
 <div id='contribute' align='center'>
 
-![readme graphic](./assets/rm-contribute.png)
+![readme graphic](./assets/contribute.png)
 
 </div>
 
@@ -230,7 +230,7 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
 
 <div id='shout-outs' align='center'>
 
-![readme graphic](./assets/rm-shout-outs.png)
+![readme graphic](./assets/shout-outs.png)
 
 </div>
 
