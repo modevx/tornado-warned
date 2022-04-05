@@ -19,7 +19,7 @@
   </a>
   &nbsp;
   &nbsp;
-  <a href='mailto:ephraim@modevx.com' alt='social link icon'>
+  <a href='mailto:email@ephraimsmith.dev' alt='social link icon'>
     <img src='./assets/icon-at.svg' height='20'/>
   </a>
   &nbsp;
