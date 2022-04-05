@@ -1,0 +1,258 @@
+{
+  "features": [
+    {
+      "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.9454bcf7072bc418658d566b37159f6d0889b010.001.1",
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-92.420000000000002, 37.899999999999999],
+            [-92.989999999999995, 37.799999999999997],
+            [-92.909999999999997, 37.919999999999995],
+            [-92.86999999999999, 38.009999999999998],
+            [-92.459999899999985, 38.199999999999996],
+            [-92.399999999999991, 38.129999999999995],
+            [-92.420000000000002, 37.899999999999999]
+          ]
+        ]
+      },
+      "properties": {
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.9454bcf7072bc418658d566b37159f6d0889b010.001.1",
+        "@type": "wx:Alert",
+        "id": "urn:oid:2.49.0.1.840.0.9454bcf7072bc418658d566b37159f6d0889b010.001.1",
+        "areaDesc": "Camden, MO; Dallas, MO; Laclede, MO; Miller, MO",
+        "geocode": {
+          "SAME": ["029029", "029059", "029105", "029131"],
+          "UGC": ["MOC029", "MOC059", "MOC105", "MOC131"]
+        },
+        "affectedZones": [
+          "https://api.weather.gov/zones/county/MOC029",
+          "https://api.weather.gov/zones/county/MOC059",
+          "https://api.weather.gov/zones/county/MOC105",
+          "https://api.weather.gov/zones/county/MOC131"
+        ],
+        "references": [
+          {
+            "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.fc4b9e2db0af2c33a1d55ff92ead6ab7e7bd1a07.001.1",
+            "identifier": "urn:oid:2.49.0.1.840.0.fc4b9e2db0af2c33a1d55ff92ead6ab7e7bd1a07.001.1",
+            "sender": "w-nws.webmaster@noaa.gov",
+            "sent": "2021-12-10T17:44:00-06:00"
+          },
+          {
+            "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.c382c94779f8a2f65b9b4444a80aef5d483c769a.001.1",
+            "identifier": "urn:oid:2.49.0.1.840.0.c382c94779f8a2f65b9b4444a80aef5d483c769a.001.1",
+            "sender": "w-nws.webmaster@noaa.gov",
+            "sent": "2021-12-10T17:48:00-06:00"
+          }
+        ],
+        "sent": "2021-12-10T17:56:00-06:00",
+        "effective": "2021-12-10T17:56:00-06:00",
+        "onset": "2021-12-10T17:56:00-06:00",
+        "expires": "2021-12-10T18:30:00-06:00",
+        "ends": "2021-12-10T18:30:00-06:00",
+        "status": "Actual",
+        "messageType": "Update",
+        "category": "Met",
+        "severity": "Severe",
+        "certainty": "Observed",
+        "urgency": "Immediate",
+        "event": "Severe Thunderstorm Warning",
+        "sender": "w-nws.webmaster@noaa.gov",
+        "senderName": "NWS Springfield MO",
+        "headline": "Severe Thunderstorm Warning issued December 10 at 5:56PM CST until December 10 at 6:30PM CST by NWS Springfield MO",
+        "description": "At 556 PM CST, severe thunderstorms were located along a line\nextending from near Camdenton to 8 miles southeast of Macks Creek to\n12 miles east of Urbana, moving northeast at 60 mph.\n\nHAZARD...60 mph wind gusts.\n\nSOURCE...Radar indicated.\n\nIMPACT...Expect damage to roofs, siding, and trees.\n\nLocations impacted include...\nLake of The Ozarks...             Lake of The Ozarks State Park...\nHa Ha Tonka State Park...         Osage Beach...\nCamdenton...                      Linn Creek...\nBrumley...                        Ulman...\nLeadmine...                       Freedom...\nKaiser...                         Decaturville...\nMontreal...                       Roach...\nWet Glaize...                     Old Linn Creek...",
+        "instruction": "A Tornado Watch remains in effect until 1100 PM CST for central and\nsouthwestern Missouri.\n\nFor your protection move to an interior room on the lowest floor of a\nbuilding.",
+        "response": "Shelter",
+        "parameters": {
+          "AWIPSidentifier": ["SVSSGF"],
+          "WMOidentifier": ["WWUS53 KSGF 102356"],
+          "NWSheadline": [
+            "A SEVERE THUNDERSTORM WARNING REMAINS IN EFFECT UNTIL 630 PM CST FOR NORTHEASTERN DALLAS...SOUTHWESTERN MILLER...NORTHWESTERN LACLEDE AND SOUTHEASTERN CAMDEN COUNTIES"
+          ],
+          "eventMotionDescription": [
+            "2021-12-10T23:56:00-00:00...storm...236DEG...51KT...38.01,-92.8 37.9,-92.84 37.84,-92.94"
+          ],
+          "windThreat": ["RADAR INDICATED"],
+          "maxWindGust": ["60 MPH"],
+          "hailThreat": ["RADAR INDICATED"],
+          "maxHailSize": ["Up to .75"],
+          "tornadoDetection": ["POSSIBLE"],
+          "BLOCKCHANNEL": ["EAS", "NWEM", "CMAS"],
+          "EAS-ORG": ["WXR"],
+          "VTEC": ["/O.CON.KSGF.SV.W.0166.000000T0000Z-211211T0030Z/"],
+          "eventEndingTime": ["2021-12-11T00:30:00+00:00"]
+        }
+      }
+    },
+    {
+      "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.a444c6d0f341a62a3d10a9d6db253fce6192fa71.002.1",
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.a444c6d0f341a62a3d10a9d6db253fce6192fa71.002.1",
+        "@type": "wx:Alert",
+        "id": "urn:oid:2.49.0.1.840.0.a444c6d0f341a62a3d10a9d6db253fce6192fa71.002.1",
+        "areaDesc": "Monroe, IL; Randolph, IL; St. Clair, IL; Washington, IL; Crawford, MO; Iron, MO; Jefferson, MO; Madison, MO; Reynolds, MO; Ste. Genevieve, MO; St. Francois, MO; Washington, MO",
+        "geocode": {
+          "SAME": [
+            "017133",
+            "017157",
+            "017163",
+            "017189",
+            "029055",
+            "029093",
+            "029099",
+            "029123",
+            "029179",
+            "029186",
+            "029187",
+            "029221"
+          ],
+          "UGC": [
+            "ILC133",
+            "ILC157",
+            "ILC163",
+            "ILC189",
+            "MOC055",
+            "MOC093",
+            "MOC099",
+            "MOC123",
+            "MOC179",
+            "MOC186",
+            "MOC187",
+            "MOC221"
+          ]
+        },
+        "affectedZones": [
+          "https://api.weather.gov/zones/county/ILC133",
+          "https://api.weather.gov/zones/county/ILC157",
+          "https://api.weather.gov/zones/county/ILC163",
+          "https://api.weather.gov/zones/county/ILC189",
+          "https://api.weather.gov/zones/county/MOC055",
+          "https://api.weather.gov/zones/county/MOC093",
+          "https://api.weather.gov/zones/county/MOC099",
+          "https://api.weather.gov/zones/county/MOC123",
+          "https://api.weather.gov/zones/county/MOC179",
+          "https://api.weather.gov/zones/county/MOC186",
+          "https://api.weather.gov/zones/county/MOC187",
+          "https://api.weather.gov/zones/county/MOC221"
+        ],
+        "references": [
+          {
+            "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.36966197dd839afb60190c95d7aafb58e8c5607b.001.1",
+            "identifier": "urn:oid:2.49.0.1.840.0.36966197dd839afb60190c95d7aafb58e8c5607b.001.1",
+            "sender": "w-nws.webmaster@noaa.gov",
+            "sent": "2021-12-10T15:09:00-06:00"
+          }
+        ],
+        "sent": "2021-12-10T17:19:00-06:00",
+        "effective": "2021-12-10T17:19:00-06:00",
+        "onset": "2021-12-10T17:19:00-06:00",
+        "expires": "2021-12-10T23:00:00-06:00",
+        "ends": "2021-12-10T23:00:00-06:00",
+        "status": "Actual",
+        "messageType": "Update",
+        "category": "Met",
+        "severity": "Extreme",
+        "certainty": "Possible",
+        "urgency": "Future",
+        "event": "Tornado Watch",
+        "sender": "w-nws.webmaster@noaa.gov",
+        "senderName": "NWS St Louis MO",
+        "headline": "Tornado Watch issued December 10 at 5:19PM CST until December 10 at 11:00PM CST by NWS St Louis MO",
+        "description": "TORNADO WATCH 552 REMAINS VALID UNTIL 11 PM CST THIS EVENING FOR\nTHE FOLLOWING AREAS\n\nIN ILLINOIS THIS WATCH INCLUDES 4 COUNTIES\n\nIN SOUTH CENTRAL ILLINOIS\n\nWASHINGTON\n\nIN SOUTHWEST ILLINOIS\n\nMONROE                RANDOLPH              SAINT CLAIR\n\nIN MISSOURI THIS WATCH INCLUDES 8 COUNTIES\n\nIN EAST CENTRAL MISSOURI\n\nCRAWFORD              JEFFERSON             WASHINGTON\n\nIN SOUTHEAST MISSOURI\n\nIRON                  MADISON               REYNOLDS\nSAINT FRANCOIS        SAINTE GENEVIEVE\n\nTHIS INCLUDES THE CITIES OF BELLEVILLE, CAHOKIA, CHESTER,\nFARMINGTON, AND SPARTA.",
+        "instruction": null,
+        "response": "Monitor",
+        "parameters": {
+          "AWIPSidentifier": ["WCNLSX"],
+          "WMOidentifier": ["WWUS63 KLSX 102319"],
+          "BLOCKCHANNEL": ["EAS", "NWEM", "CMAS"],
+          "EAS-ORG": ["WXR"],
+          "VTEC": ["/O.CON.KLSX.TO.A.0552.000000T0000Z-211211T0500Z/"],
+          "eventEndingTime": ["2021-12-11T05:00:00+00:00"]
+        }
+      }
+    },
+    {
+      "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.c30f2c6445756b9ccdb8451d98374ca30e4740fb.001.1",
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-93.060000000000002, 37.270000000000003],
+            [-93.079999999999998, 37.270000000000003],
+            [-93.079999999999998, 37.300000000000004],
+            [-92.890000000000001, 37.490000000000002],
+            [-92.849999999999994, 37.479999900000003],
+            [-92.849999999999994, 37.530000000000001],
+            [-92.789999999999992, 37.590000000000003],
+            [-92.469999999999999, 37.300000000000004],
+            [-93.060000000000002, 37.190000000000005],
+            [-93.060000000000002, 37.270000000000003]
+          ]
+        ]
+      },
+      "properties": {
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.c30f2c6445756b9ccdb8451d98374ca30e4740fb.001.1",
+        "@type": "wx:Alert",
+        "id": "urn:oid:2.49.0.1.840.0.c30f2c6445756b9ccdb8451d98374ca30e4740fb.001.1",
+        "areaDesc": "Laclede, MO; Webster, MO; Wright, MO",
+        "geocode": {
+          "SAME": ["029105", "029225", "029229"],
+          "UGC": ["MOC105", "MOC225", "MOC229"]
+        },
+        "affectedZones": [
+          "https://api.weather.gov/zones/county/MOC105",
+          "https://api.weather.gov/zones/county/MOC225",
+          "https://api.weather.gov/zones/county/MOC229"
+        ],
+        "references": [],
+        "sent": "2021-12-10T17:59:00-06:00",
+        "effective": "2021-12-10T17:59:00-06:00",
+        "onset": "2021-12-10T17:59:00-06:00",
+        "expires": "2021-12-10T18:30:00-06:00",
+        "ends": "2021-12-10T18:30:00-06:00",
+        "status": "Actual",
+        "messageType": "Alert",
+        "category": "Met",
+        "severity": "Extreme",
+        "certainty": "Observed",
+        "urgency": "Immediate",
+        "event": "Tornado Warning",
+        "sender": "w-nws.webmaster@noaa.gov",
+        "senderName": "NWS Springfield MO",
+        "headline": "Tornado Warning issued December 10 at 5:59PM CST until December 10 at 6:30PM CST by NWS Springfield MO",
+        "description": "The National Weather Service in Springfield has issued a\n\n* Tornado Warning for...\nNorthern Webster County in southwestern Missouri...\nNorthwestern Wright County in southwestern Missouri...\nSouthwestern Laclede County in southwestern Missouri...\n\n* Until 630 PM CST.\n\n* At 559 PM CST, a severe thunderstorm capable of producing a tornado\nwas located near Strafford, moving northeast at 55 mph.\n\nHAZARD...Tornado and quarter size hail.\n\nSOURCE...Radar indicated rotation.\n\nIMPACT...Flying debris will be dangerous to those caught without\nshelter. Mobile homes will be damaged or destroyed.\nDamage to roofs, windows, and vehicles will occur.  Tree\ndamage is likely.\n\n* Locations impacted include...\nMarshfield...                     Conway...\nNiangua...                        Duncan...\nPhillipsburg...                   Rader...\nGrovespring...                    Northview...\n\nThis includes Interstate 44 between mile markers 90 and 109, and\nbetween mile markers 112 and 117.",
+        "instruction": "TAKE COVER NOW! Move to a basement or an interior room on the lowest\nfloor of a sturdy building. Avoid windows. If you are outdoors, in a\nmobile home, or in a vehicle, move to the closest substantial shelter\nand protect yourself from flying debris.",
+        "response": "Shelter",
+        "parameters": {
+          "AWIPSidentifier": ["TORSGF"],
+          "WMOidentifier": ["WFUS53 KSGF 102359"],
+          "eventMotionDescription": [
+            "2021-12-10T23:59:00-00:00...storm...241DEG...46KT...37.26,-93.02"
+          ],
+          "maxHailSize": ["1.00"],
+          "tornadoDetection": ["RADAR INDICATED"],
+          "BLOCKCHANNEL": ["EAS", "NWEM"],
+          "EAS-ORG": ["WXR"],
+          "VTEC": ["/O.NEW.KSGF.TO.W.0031.211210T2359Z-211211T0030Z/"],
+          "eventEndingTime": ["2021-12-11T00:30:00+00:00"],
+          "WEAHandling": ["Imminent Threat"],
+          "CMAMtext": [
+            "NWS: TORNADO WARNING in this area til 6:30 PM CST. Take shelter now. Check media."
+          ],
+          "CMAMlongtext": [
+            "National Weather Service: TORNADO WARNING in this area until 6:30 PM CST. Take shelter now in a basement or an interior room on the lowest floor of a sturdy building. If you are outdoors, in a mobile home, or in a vehicle, move to the closest substantial shelter and protect yourself from flying debris. Check media."
+          ]
+        }
+      }
+    }
+  ],
+  "title": "watches, warnings, and advisories issued between Fri, Dec 10, 2021 8:00:00 PM +0000 and Sat, Dec 11, 2021 12:00:00 AM +0000",
+  "updated": "2021-12-10T23:56:44+00:00",
+  "pagination": {
+    "next": "https://api.weather.gov/alerts?start=2021-12-10T20:00:00Z&end=2021-12-11T00:00:00Z&event%5B0%5D=Severe%20Thunderstorm%20Warning&limit=1&cursor=eyJ0IjoxNjM5MTgwNTYwLCJpIjoidXJuOm9pZDoyLjQ5LjAuMS44NDAuMC45NDU0YmNmNzA3MmJjNDE4NjU4ZDU2NmIzNzE1OWY2ZDA4ODliMDEwLjAwMS4xIn0%3D"
+  }
+}
