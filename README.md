@@ -8,13 +8,13 @@
 
 <div align='right'>
 
-[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephraimsmithdev/tornado-action/blob/dev/BUILD_NOTES.md)
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephbuilding/tornado-action/blob/dev/BUILD_NOTES.md)
 
 </div>
 
 <div align='right'>
 
-  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://github.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -24,17 +24,17 @@
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
@@ -46,7 +46,7 @@ There are tons of resources already available for storm safety and preparedness.
 
 If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** has ( or will have ) it!
 
-**_Check out [`BUILD_NOTES.md`](https://github.com/ephraimsmithdev/rovercam/blob/prod/BUILD_NOTES.md) for a behind-the-scenes look at how TORNADO ACTION is getting built!_**
+**_Check out [`BUILD_NOTES.md`](https://github.com/ephbuilding/rovercam/blob/prod/BUILD_NOTES.md) for a behind-the-scenes look at how TORNADO ACTION is getting built!_**
 
 <!-- #endregion /INTRO -->
 
@@ -60,13 +60,13 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
 
 <div align='right'>
 
-[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephraimsmithdev/tornado-action)
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephbuilding/tornado-action)
 
 </div>
 
 <div align='right'>
 
-  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://github.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -76,17 +76,17 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
@@ -104,13 +104,13 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
 
 <div align='right'>
 
-[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephraimsmithdev/tornado-action)
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephbuilding/tornado-action)
 
 </div>
 
 <div align='right'>
 
-  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://github.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -120,17 +120,17 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
@@ -148,13 +148,13 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
 
 <div align='right'>
 
-[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephraimsmithdev/tornado-action)
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephbuilding/tornado-action)
 
 </div>
 
 <div align='right'>
 
-  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://github.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -164,17 +164,17 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
@@ -192,13 +192,13 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
 
 <div align='right'>
 
-[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephraimsmithdev/tornado-action)
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephbuilding/tornado-action)
 
 </div>
 
 <div align='right'>
 
-  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://github.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -208,17 +208,17 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
@@ -236,13 +236,13 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
 
 <div align='right'>
 
-[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephraimsmithdev/tornado-action)
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephbuilding/tornado-action)
 
 </div>
 
 <div align='right'>
 
-  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://github.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -252,17 +252,17 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 

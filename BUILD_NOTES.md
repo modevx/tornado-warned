@@ -14,7 +14,7 @@
 
 <div align='right'>
 
-  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://github.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -24,17 +24,17 @@
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
@@ -70,7 +70,7 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 <div align='right'>
 
-  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://github.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -80,17 +80,17 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
@@ -114,7 +114,7 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 <div align='right'>
 
-  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://github.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -124,17 +124,17 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
@@ -158,7 +158,7 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 <div align='right'>
 
-  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://github.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -168,17 +168,17 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
@@ -202,7 +202,7 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 <div align='right'>
 
-  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://github.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -212,17 +212,17 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
@@ -681,7 +681,7 @@ National Weather Service API Web Service
 
 <div align='right'>
 
-  <a href='https://github.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://github.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -691,17 +691,17 @@ National Weather Service API Web Service
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephraimsmithdev' alt='social link icon'>
+  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephraimsmithdev' alt='social link icon'>
+  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
