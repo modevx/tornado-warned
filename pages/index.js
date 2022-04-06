@@ -24,11 +24,14 @@ const Hero = () => {
 					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit
 					numquam eligendi quos.
 				</div>
-				{/* <Button
-					label='STAY INFORMED'
-					icon='pi pi-discord'
-					className='font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap'
-				/> */}
+				<div className='rounded-md shadow'>
+					<a
+						href='#'
+						className='w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10'
+					>
+						Get started
+					</a>
+				</div>
 			</div>
 		</div>
 	);
@@ -175,11 +178,11 @@ const HomeScreen = () => {
 					<Header />
 					<Hero />
 				</div>
-				<FeaturesSection />
+				{/* <FeaturesSection />
 				<AlertSection color='red' />
 				<AlertSection color='yellow' />
 				<AlertList alertArray={warnings} color='red' />
-				<AlertList alertArray={watches} color='neutral' />
+				<AlertList alertArray={watches} color='neutral' /> */}
 			</div>
 		</PageWrapper>
 	);
