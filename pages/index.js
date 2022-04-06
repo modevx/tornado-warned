@@ -15,8 +15,8 @@ import axios from "axios";
 
 const Hero = () => {
 	return (
-		<div className='surface-section px-4 py-8 md:px-6 lg:px-8'>
-			<div className='text-700 text-center'>
+		<div className='px-4 py-8 md:px-6 lg:px-8'>
+			<div className='text-700 text-left my-auto'>
 				<div className='text-900 font-bold text-5xl mb-3'>
 					stay ahead of the storm.
 				</div>
@@ -87,6 +87,21 @@ const FeaturesSection = () => {
 		</div>
 	);
 };
+const AlertSection = ({ color }) => {
+	const colorMap = {
+		red: "bg-red-600",
+		yellow: "bg-yellow-400",
+	};
+
+	return (
+		<section
+			id='tornado-warnings'
+			className={`${colorMap[color]} h-80 my-4 text-black`}
+		>
+			<h1>Tornado Warnings</h1>
+		</section>
+	);
+};
 const AlertList = ({ alertArray }) => {
 	if (!alertArray) return null;
 
@@ -136,21 +151,6 @@ const AlertItem = ({ alert }) => {
 		</div>
 	);
 };
-const AlertSection = ({ color }) => {
-	const colorMap = {
-		red: "bg-red-800",
-		yellow: "bg-yellow-500",
-	};
-
-	return (
-		<section
-			id='tornado-warnings'
-			className={`${colorMap[color]} h-80 my-4 text-black`}
-		>
-			<h1>Tornado Warnings</h1>
-		</section>
-	);
-};
 
 const HomeScreen = () => {
 	const [testAlerts, setTestAlerts] = React.useState([]);
@@ -170,15 +170,16 @@ const HomeScreen = () => {
 
 	return (
 		<PageWrapper>
-			<div className='flex flex-col justify-around w-full'>
-				<Header />
-				<Hero />
+			<div className='flex flex-col w-full'>
+				<div className='bg-neutral-900/70 bg-blend-overlay bg-[url("/bg-img-03.jpg")] bg-center bg-cover border-red-600 border-t-4 h-[50vh]'>
+					<Header />
+					<Hero />
+				</div>
 				<FeaturesSection />
 				<AlertSection color='red' />
 				<AlertSection color='yellow' />
 				<AlertList alertArray={warnings} color='red' />
 				<AlertList alertArray={watches} color='neutral' />
-				<AlertList alertArray={cancels} color='yellow' />
 			</div>
 		</PageWrapper>
 	);
