@@ -1,6 +1,8 @@
 import React from "react";
-import { BsTornado } from "react-icons/bs";
 import dayjs from "dayjs";
+import { BsTornado } from "react-icons/bs";
+import { Disclosure } from "@headlessui/react";
+import { BsChevronUp } from "react-icons/bs";
 import localized from "dayjs/plugin/localizedFormat";
 dayjs.extend(localized);
 
@@ -9,29 +11,28 @@ import {
 	useTornadoWarnings,
 	useTornadoWatches,
 	useCancelledAlerts,
+	useTestAlerts,
 } from "../hooks";
 
 import axios from "axios";
 
 const Hero = () => {
 	return (
-		<div className='px-4 py-8 md:px-6 lg:px-8'>
+		<div className='md:px-6 lg:px-8'>
 			<div className='text-700 text-left my-auto'>
-				<div className='text-900 font-bold text-5xl mb-3'>
-					stay ahead of the storm.
+				<h2 className='text-900 font-bold text-3xl mb-3'>STAY ALERT</h2>
+				<div className='text-xs w-1/2'>
+					Tornado Action is your source for active tornado alerts, historical
+					stats, weather updates, safety resources, more!
 				</div>
-				<div className='text-700 text-2xl mb-5'>
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit
-					numquam eligendi quos.
-				</div>
-				<div className='rounded-md shadow'>
+				{/* <div className='rounded-md shadow mt-5'>
 					<a
 						href='#'
 						className='w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10'
 					>
 						Get started
 					</a>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);
@@ -90,18 +91,27 @@ const FeaturesSection = () => {
 		</div>
 	);
 };
-const AlertSection = ({ color }) => {
+const AlertSection = ({ color, alertType, alertArray }) => {
 	const colorMap = {
-		red: "bg-red-600",
-		yellow: "bg-yellow-400",
+		red: "from-red-700",
+		yellow: "from-yellow-400",
 	};
 
 	return (
 		<section
-			id='tornado-warnings'
-			className={`${colorMap[color]} h-80 my-4 text-black`}
+			className={`bg-gradient-to-r ${colorMap[color]} to-neutral-800 h-80 my-4 p-2 h-full`}
 		>
-			<h1>Tornado Warnings</h1>
+			<h2>
+				{
+					<div className='flex items-center'>
+						<BsTornado className='mr-1' size={30} />
+						<span className='font-bold inline-block  text-lg text-white uppercase'>
+							{alertType}
+						</span>
+					</div>
+				}
+				<AlertList alertArray={alertArray} color='neutral' />
+			</h2>
 		</section>
 	);
 };
@@ -120,8 +130,8 @@ const AlertItem = ({ alert }) => {
 	const { event, messageType, effective, expires, areaDesc } = alert.properties;
 
 	const EVENT_COLOR_MAP = {
-		TornadoWarning: "from-red-500",
-		TornadoWatch: "from-yellow-500",
+		TornadoWarning: "bg-red-500",
+		TornadoWatch: "bg-yellow-500",
 	};
 
 	const color =
@@ -132,15 +142,17 @@ const AlertItem = ({ alert }) => {
 	return (
 		// -- [ CARD ]
 		<div
-			className={`bg-gradient-to-r ${color} to-neutral-900 my-3 p-2 text-xs`}
+			className={`${
+				EVENT_COLOR_MAP[`${event.split(" ").join("")}`]
+			} my-3 p-2 text-xs shadow-xl rounded`}
 		>
 			<div className='flex items-center justify-between py-2'>
-				<div className='flex items-center'>
+				{/* <div className='flex items-center'>
 					<BsTornado className='mr-1' size={30} />
 					<span className='font-bold inline-block  text-lg text-white uppercase'>
 						{event.split(" ")[1]}
 					</span>
-				</div>
+				</div> */}
 
 				<div>
 					<span>{dayjs(effective).format("LT")}</span>&nbsp; - &nbsp;
@@ -148,18 +160,28 @@ const AlertItem = ({ alert }) => {
 				</div>
 			</div>
 
-			<div className='bg-neutral-700 px-2 py-3'>
+			<div className='bg-neutral-700 px-2 py-3 rounded'>
 				<p>{areaDesc}</p>
 			</div>
+			<Disclosure>
+				<Disclosure.Button className='bg-red-700 flex mt-4 shadow-lg justify-between p-2 rounded w-full'>
+					<span>Alert Details >></span>
+					<BsChevronUp />
+				</Disclosure.Button>
+				<Disclosure.Panel className='text-gray-500'>
+					Yes! You can purchase a license that you can share with your entire
+					team.
+				</Disclosure.Panel>
+			</Disclosure>
 		</div>
 	);
 };
 
 const HomeScreen = () => {
-	const [testAlerts, setTestAlerts] = React.useState([]);
-	const { data: warnings } = useTornadoWarnings();
-	const { data: watches } = useTornadoWatches();
-	const { data: cancels } = useCancelledAlerts();
+	// const { data: warnings } = useTornadoWarnings();
+	// const { data: watches } = useTornadoWatches();
+	// const { data: cancels } = useCancelledAlerts();
+	const { data: testAlerts } = useTestAlerts();
 
 	React.useEffect(() => {
 		axios
@@ -173,16 +195,21 @@ const HomeScreen = () => {
 
 	return (
 		<PageWrapper>
-			<div className='flex flex-col w-full'>
-				<div className='bg-neutral-900/70 bg-blend-overlay bg-[url("/bg-img-03.jpg")] bg-center bg-cover border-red-600 border-t-4 h-[50vh]'>
+			<div className='flex flex-col'>
+				<div className='bg-neutral-900/70 bg-blend-overlay bg-[url("/bg-img-03.jpg")] bg-center bg-cover border-red-600 border-t-4 h-[50vh] p-2'>
 					<Header />
 					<Hero />
 				</div>
-				{/* <FeaturesSection />
-				<AlertSection color='red' />
-				<AlertSection color='yellow' />
+				{/* <FeaturesSection /> */}
+				<AlertSection
+					color='red'
+					alertType='Warnings'
+					alertArray={testAlerts}
+				/>
+				{/* <AlertSection color='yellow' />
 				<AlertList alertArray={warnings} color='red' />
 				<AlertList alertArray={watches} color='neutral' /> */}
+				{/* <AlertList alertArray={testAlerts} color='neutral' /> */}
 			</div>
 		</PageWrapper>
 	);

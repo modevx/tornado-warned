@@ -2,7 +2,7 @@ import { Footer, Header, Layout, Meta } from "./";
 
 export const PageWrapper = ({ children }) => {
 	return (
-		<div className=' text-white'>
+		<div className='text-white'>
 			<Meta />
 			<Layout>
 				{/* <Header /> */}
