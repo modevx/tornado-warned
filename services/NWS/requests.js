@@ -12,9 +12,3 @@ export const fetchTornadoWarnings = async () => {
 export const fetchTornadoWatches = async () => {
 	return await fetchAlerts(NWS_URLS.tornadoWatches);
 };
-export const fetchCancelledAlerts = async () => {
-	return await fetchAlerts(NWS_URLS.cancelledAlerts);
-};
-export const fetchTestAlerts = async () => {
-	return await fetchAlerts(NWS_URLS.tornadoWarningsTest);
-};
