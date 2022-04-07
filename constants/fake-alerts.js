@@ -34,7 +34,8 @@ export default {
 				"Tornado Warning issued March 29 at 10:14PM CDT until March 29 at 10:15PM CDT by NWS Kansas City/Pleasant Hill MO",
 			description:
 				"The storm which prompted the warning has weakened below severe\nlimits, and no longer appears capable of producing a tornado.\nTherefore, the warning will be allowed to expire.\n\nA Severe Thunderstorm Watch remains in effect until midnight CDT for\nnorth central Missouri.",
-			instruction: null,
+			instruction:
+				"TAKE COVER NOW! Move to an interior room on the lowest floor of a\nsturdy building. Avoid windows. If you are outdoors, in a mobile\nhome, or in a vehicle, move to the closest substantial shelter and\nprotect yourself from flying debris.",
 			response: "Shelter",
 			parameters: {
 				AWIPSidentifier: ["SVSEAX"],
@@ -88,7 +89,8 @@ export default {
 				"Tornado Warning issued March 29 at 10:14PM CDT until March 29 at 10:15PM CDT by NWS Kansas City/Pleasant Hill MO",
 			description:
 				"The storm which prompted the warning has weakened below severe\nlimits, and no longer appears capable of producing a tornado.\nTherefore, the warning will be allowed to expire.\n\nA Severe Thunderstorm Watch remains in effect until midnight CDT for\nnorth central Missouri.",
-			instruction: null,
+			instruction:
+				"TAKE COVER NOW! Move to an interior room on the lowest floor of a\nsturdy building. Avoid windows. If you are outdoors, in a mobile\nhome, or in a vehicle, move to the closest substantial shelter and\nprotect yourself from flying debris.",
 			response: "Shelter",
 			parameters: {
 				AWIPSidentifier: ["SVSEAX"],
@@ -142,7 +144,8 @@ export default {
 				"Tornado Warning issued March 29 at 10:14PM CDT until March 29 at 10:15PM CDT by NWS Kansas City/Pleasant Hill MO",
 			description:
 				"The storm which prompted the warning has weakened below severe\nlimits, and no longer appears capable of producing a tornado.\nTherefore, the warning will be allowed to expire.\n\nA Severe Thunderstorm Watch remains in effect until midnight CDT for\nnorth central Missouri.",
-			instruction: null,
+			instruction:
+				"TAKE COVER NOW! Move to an interior room on the lowest floor of a\nsturdy building. Avoid windows. If you are outdoors, in a mobile\nhome, or in a vehicle, move to the closest substantial shelter and\nprotect yourself from flying debris.",
 			response: "Shelter",
 			parameters: {
 				AWIPSidentifier: ["SVSEAX"],
@@ -196,7 +199,8 @@ export default {
 				"Tornado Warning issued March 29 at 10:14PM CDT until March 29 at 10:15PM CDT by NWS Kansas City/Pleasant Hill MO",
 			description:
 				"The storm which prompted the warning has weakened below severe\nlimits, and no longer appears capable of producing a tornado.\nTherefore, the warning will be allowed to expire.\n\nA Severe Thunderstorm Watch remains in effect until midnight CDT for\nnorth central Missouri.",
-			instruction: null,
+			instruction:
+				"TAKE COVER NOW! Move to an interior room on the lowest floor of a\nsturdy building. Avoid windows. If you are outdoors, in a mobile\nhome, or in a vehicle, move to the closest substantial shelter and\nprotect yourself from flying debris.",
 			response: "Shelter",
 			parameters: {
 				AWIPSidentifier: ["SVSEAX"],
@@ -250,7 +254,8 @@ export default {
 				"Tornado Warning issued March 29 at 10:14PM CDT until March 29 at 10:15PM CDT by NWS Kansas City/Pleasant Hill MO",
 			description:
 				"The storm which prompted the warning has weakened below severe\nlimits, and no longer appears capable of producing a tornado.\nTherefore, the warning will be allowed to expire.\n\nA Severe Thunderstorm Watch remains in effect until midnight CDT for\nnorth central Missouri.",
-			instruction: null,
+			instruction:
+				"TAKE COVER NOW! Move to an interior room on the lowest floor of a\nsturdy building. Avoid windows. If you are outdoors, in a mobile\nhome, or in a vehicle, move to the closest substantial shelter and\nprotect yourself from flying debris.",
 			response: "Shelter",
 			parameters: {
 				AWIPSidentifier: ["SVSEAX"],
