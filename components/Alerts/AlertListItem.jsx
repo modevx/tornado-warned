@@ -6,7 +6,16 @@ dayjs.extend(LocalizedFormat);
 
 export const AlertListItem = ({ alert }) => {
 	// console.log("AlertListItem >>\n", alert);
-	const { event, messageType, effective, expires, areaDesc } = alert;
+	const {
+		event,
+		messageType,
+		effective,
+		expires,
+		areaDesc,
+		headline,
+		description,
+		instruction,
+	} = alert;
 
 	const EVENT_COLOR_MAP = {
 		TornadoWarning: "bg-red-500",
@@ -16,19 +25,16 @@ export const AlertListItem = ({ alert }) => {
 	return (
 		<div
 			className={`${
-				EVENT_COLOR_MAP[`${event.split(" ").join("")}`]
-			} my-3 p-2 text-xs shadow-xl rounded`}
+				EVENT_COLOR_MAP[event.split(" ").join("")]
+			} p-2 text-xs shadow-md shadow-black rounded`}
 		>
 			<div className='flex items-center justify-between py-2'>
-				{/* <div className='flex items-center'>
-					<BsTornado className='mr-1' size={30} />
-					<span className='font-bold inline-block  text-lg text-white uppercase'>
-						{event.split(" ")[1]}
-					</span>
-				</div> */}
-
 				<div>
-					<span>{dayjs(effective).format("LT")}</span>&nbsp; - &nbsp;
+					<span className='font-bold'>EFFECTIVE: </span>
+					<span>{dayjs(effective).format("LT")}</span>
+				</div>
+				<div>
+					<span className='font-bold'>EXPIRES: </span>
 					<span>{dayjs(expires).format("LT")}</span>
 				</div>
 			</div>
@@ -37,13 +43,15 @@ export const AlertListItem = ({ alert }) => {
 				<p>{areaDesc}</p>
 			</div>
 			<Disclosure>
-				<Disclosure.Button className='bg-red-700 flex mt-4 shadow-lg justify-between p-2 rounded w-full'>
-					<span>Alert Details >></span>
-					<BsChevronUp />
+				<Disclosure.Button className=' mt-3 shadow-md shadow-black p-2 rounded w-full hover:bg-neutral-600'>
+					Click <strong>HERE</strong> for Details
 				</Disclosure.Button>
-				<Disclosure.Panel className='text-gray-500'>
-					Yes! You can purchase a license that you can share with your entire
-					team.
+				<Disclosure.Panel className='bg-neutral-700 px-2 py-3 rounded text-white'>
+					<p>{instruction}</p>
+					<br />
+					<p>{description}</p>
+					<br />
+					<p>{headline}</p>
 				</Disclosure.Panel>
 			</Disclosure>
 		</div>

@@ -2,29 +2,25 @@ import { AlertList } from ".";
 import { BsTornado } from "react-icons/bs";
 
 export const AlertsSection = ({ alerts, sectionHeading }) => {
-	// console.log("AlertsSection >>\n", alerts);
-	const colorMap = {
-		tornado_warnings: "from-red-700",
-		tornado_watches: "from-yellow-400",
-	};
+	console.log("AlertsSection >>\n", alerts);
 
 	return (
-		<section
-			className={`bg-gradient-to-r ${
-				colorMap[sectionHeading.split(" ").join("_").toLowerCase()]
-			} to-neutral-800 p-2 h-full`}
-		>
+		<section className='p-4 bg-neutral-600 border-t-4 border-white'>
 			<h2>
 				{
 					<div className='flex items-center'>
 						<BsTornado className='mr-1' size={30} />
-						<span className='font-bold inline-block  text-lg text-white uppercase'>
+						<span className='font-bold inline-block  text-lg text-white uppercase ml-3'>
 							{sectionHeading}
 						</span>
 					</div>
 				}
-				<AlertList alertArray={alerts} />
 			</h2>
+			{alerts === null || alerts === undefined || alerts.length < 1 ? (
+				<p className='mt-4 text-xl text-green-400'>All clear.</p>
+			) : (
+				<AlertList alertArray={alerts} />
+			)}
 		</section>
 	);
 };

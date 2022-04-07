@@ -5,7 +5,7 @@ export const PageWrapper = ({ children }) => {
 		<div className='text-white'>
 			<Meta />
 			<Layout>
-				<Header />
+				{/* <Header /> */}
 				<main className='grow'>{children}</main>
 				<Footer />
 			</Layout>

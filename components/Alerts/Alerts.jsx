@@ -9,9 +9,9 @@ import FAKE_ALERTS from "../../constants/fake-alerts";
 
 export const Alerts = () => {
 	// console.log("Alerts >>\n", tornado_warnings);
-	// const { data: warningFeatures } = useTornadoWarnings();
-	// const { data: watchFeatures } = useTornadoWatches();
-	const { tornado_warnings, tornado_watches } = FAKE_ALERTS;
+	const { data: tornado_warnings } = useTornadoWarnings();
+	const { data: tornado_watches } = useTornadoWatches();
+	// const { tornado_warnings, tornado_watches } = FAKE_ALERTS;
 
 	return (
 		<>
