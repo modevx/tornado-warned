@@ -1,7 +1,5 @@
 import { Disclosure } from "@headlessui/react";
-import { BsChevronUp } from "react-icons/bs";
-// --
-import { AlertDetailModal } from "./AlertDetailModal";
+import { BsTornado } from "react-icons/bs";
 // --
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
 import dayjs from "dayjs";
@@ -18,51 +16,51 @@ export const AlertListItem = ({ alert }) => {
 		headline,
 		description,
 		instruction,
+		senderName,
 	} = alert;
 
 	const EVENT_COLOR_MAP = {
-		TornadoWarning: "bg-red-500",
-		TornadoWatch: "bg-yellow-500",
+		TornadoWarning: "from-red-500",
+		TornadoWatch: "from-yellow-500",
 	};
 
 	const color = EVENT_COLOR_MAP[event.split(" ").join("")];
 
+	const italicWarn = event === "Tornado Warning" ? "italic" : "";
+
 	return (
-		<div className={`${color} p-2 text-xs shadow-md shadow-black rounded`}>
-			<div className='flex items-center justify-between py-2'>
-				<div>
-					<span className='font-bold'>EFFECTIVE: </span>
-					<span>{dayjs(effective).format("LT")}</span>
-				</div>
-				<div>
-					<span className='font-bold'>EXPIRES: </span>
-					<span>{dayjs(expires).format("LT")}</span>
+		<li
+			className={`bg-gradient-to-b ${color} to-stone-800 mb-6 sm:m-0 sm:h-fit p-4 rounded shadow-black shadow-md`}
+		>
+			<div className='flex items-center mb-3 w-full'>
+				<BsTornado size={30} />
+				<div className={`${italicWarn} ml-2 text-3xl font-bold drop-shadow-md`}>
+					{event.split(" ")[1].toUpperCase()}
 				</div>
 			</div>
 
-			<div className='bg-neutral-700 px-2 py-3 rounded'>
-				<p>{areaDesc}</p>
+			<div className='bg-neutral-700 p-4 mb-4 rounded'>
+				<p className='text-xs'>{headline}</p>
 			</div>
-			{/* display AlertDetailModal button */}
 
-			<AlertDetailModal
-				instruction={instruction}
-				description={description}
-				headline={headline}
-				color={color}
-			/>
-			{/* <Disclosure>
-				<Disclosure.Button className=' mt-3 shadow-md shadow-black p-2 rounded w-full hover:bg-neutral-600'>
-					Click <strong>HERE</strong> for Details
-				</Disclosure.Button>
-				<Disclosure.Panel className='bg-neutral-700 px-2 py-3 rounded text-white'>
-					<p>{instruction}</p>
-					<br />
-					<p>{description}</p>
-					<br />
-					<p>{headline}</p>
-				</Disclosure.Panel>
-			</Disclosure> */}
-		</div>
+			<div className='bg-neutral-700 p-4 mb-4 rounded'>
+				<p className='text-xs'>{areaDesc}</p>
+			</div>
+
+			{instruction !== null ? (
+				<div className='bg-neutral-700 p-4 mb-4 rounded'>
+					<p className='text-xs'>{instruction}</p>
+				</div>
+			) : (
+				""
+			)}
+
+			{/* <div className='bg-neutral-700 p-4 mb-4 rounded'>
+				<p className='font-bold italic text-xl mb-2'>Description</p>
+				{description.split(/\n(?:\n)?/gm).map(copySection => (
+					<p className='text-xs'>{copySection}</p>
+				))}
+			</div> */}
+		</li>
 	);
 };

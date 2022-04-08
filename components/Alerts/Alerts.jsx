@@ -15,14 +15,8 @@ export const Alerts = () => {
 
 	return (
 		<>
-			<AlertsSection
-				alerts={tornado_warnings}
-				sectionHeading='Tornado Warnings'
-			/>
-			<AlertsSection
-				alerts={tornado_watches}
-				sectionHeading='Tornado Watches'
-			/>
+			<AlertsSection alerts={tornado_warnings} />
+			<AlertsSection alerts={tornado_watches} />
 		</>
 	);
 };

@@ -6,10 +6,11 @@ export const AlertList = ({ alertArray }) => {
 	if (!alertArray) return null;
 
 	return (
-		<div className='p-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mx-auto'>
+		// <ul className='p-4 flex flex-col flex-wrap gap-4 mx-auto'>
+		<ul className='p-4 sm:grid sm:grid-cols-2 gap-6'>
 			{alertArray.map(alert => (
 				<AlertListItem alert={alert} key={alert.id} />
 			))}
-		</div>
+		</ul>
 	);
 };
