@@ -1,4 +1,4 @@
-<!-- #region INTRO -->
+<!-- #region GRAPHIC & NAV -->
 
 <div align='center'>
 
@@ -40,7 +40,9 @@
 
 </div>
 
-<!-- #endregion /INTRO -->
+<!-- #endregion /GRAPHIC & NAV -->
+
+# INTRO
 
 I'm constantly working on my build process. ( not just for software projects ) Right now, it looks something like this:
 
@@ -54,7 +56,7 @@ I'm constantly working on my build process. ( not just for software projects ) R
 
 I'm basically giving you a frontrow seat to how my brain works. Hope you have a sense of humor.
 
-<!-- #region DISCOVER -->
+<!-- #region GRAPHIC & NAV -->
 
 <div id='discover' align='center'>
 
@@ -96,9 +98,11 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 </div>
 
-<!-- #endregion /DISCOVER -->
+<!-- #endregion /GRAPHIC & NAV -->
 
-<!-- #region DEFINE -->
+# DISCOVER
+
+<!-- #region GRAPHIC & NAV -->
 
 <div id='define' align='center'>
 
@@ -140,9 +144,11 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 </div>
 
-<!-- #endregion /DEFINE -->
+<!-- #endregion /GRAPHIC & NAV -->
 
-<!-- #region MARKET -->
+# DEFINE
+
+<!-- #region GRAPHIC & NAV -->
 
 <div id='market' align='center'>
 
@@ -184,9 +190,11 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 </div>
 
-<!-- #endregion /MARKET -->
+<!-- #endregion /GRAPHIC & NAV -->
 
-<!-- #region DELIVER -->
+# MARKET
+
+<!-- #region GRAPHIC & NAV -->
 
 <div id='deliver' align='center'>
 
@@ -228,7 +236,9 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 </div>
 
-<!-- #endregion /DELIVER -->
+<!-- #endregion /GRAPHIC & NAV -->
+
+# DELIVER
 
 ## **UI**
 
@@ -272,8 +282,8 @@ don't concatenate class names in Tailwinds
 ## **DATA FETCHING**
 
 - [`axios`](https://github.com/axios/axios#table-of-contents) | "Promise based HTTP client for the browser and node.js"
-- []()
-- []()
+- [JSONPath expressions](https://goessner.net/articles/JsonPath/index.html#e2) | used for parsing API responses in Insomnia
+  - [JSONPath evaluator](https://jsonpath.com/)
 - []()
 - []()
 
@@ -301,7 +311,7 @@ don't concatenate class names in Tailwinds
 
 <br>
 
-# **`INDEX`**
+# [ OG DOCS 1 ]
 
 1. [Overview](#overview)
 1. [Run It](#run-it)
@@ -508,7 +518,7 @@ I am wide open to comments, suggestions, pull requests, and general verbal slams
 <details>
 <summary>OG README 2</summary>
 
-# TORNADO ACTION
+# [ OG DOCS 2 ]
 
 Tornado Action is a visual-heavy resource for current and historical tornado-related news & events.
 
@@ -708,3 +718,5 @@ National Weather Service API Web Service
 </div>
 
 <!-- #endregion /EVALUATE -->
+
+# EVALUATE
