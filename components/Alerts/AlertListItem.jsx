@@ -4,6 +4,8 @@ import { BsTornado } from "react-icons/bs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
 import dayjs from "dayjs";
 dayjs.extend(LocalizedFormat);
+// --
+import { getAffectedAreasByState as formatAreaDesc } from "./utils/getAffectedAreasByState";
 
 export const AlertListItem = ({ alert }) => {
 	// console.log("AlertListItem >>\n", alert);
@@ -44,7 +46,7 @@ export const AlertListItem = ({ alert }) => {
 			</div>
 
 			<div className='bg-neutral-700 p-4 mb-4 rounded'>
-				<p className='text-xs'>{areaDesc}</p>
+				<p className='text-xs'>{`${formatAreaDesc(areaDesc)}`}</p>
 			</div>
 
 			{instruction !== null ? (
