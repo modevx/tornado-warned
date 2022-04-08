@@ -1,5 +1,8 @@
 import { Disclosure } from "@headlessui/react";
 import { BsChevronUp } from "react-icons/bs";
+// --
+import { AlertDetailModal } from "./AlertDetailModal";
+// --
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
 import dayjs from "dayjs";
 dayjs.extend(LocalizedFormat);
@@ -22,12 +25,10 @@ export const AlertListItem = ({ alert }) => {
 		TornadoWatch: "bg-yellow-500",
 	};
 
+	const color = EVENT_COLOR_MAP[event.split(" ").join("")];
+
 	return (
-		<div
-			className={`${
-				EVENT_COLOR_MAP[event.split(" ").join("")]
-			} p-2 text-xs shadow-md shadow-black rounded`}
-		>
+		<div className={`${color} p-2 text-xs shadow-md shadow-black rounded`}>
 			<div className='flex items-center justify-between py-2'>
 				<div>
 					<span className='font-bold'>EFFECTIVE: </span>
@@ -42,7 +43,15 @@ export const AlertListItem = ({ alert }) => {
 			<div className='bg-neutral-700 px-2 py-3 rounded'>
 				<p>{areaDesc}</p>
 			</div>
-			<Disclosure>
+			{/* display AlertDetailModal button */}
+
+			<AlertDetailModal
+				instruction={instruction}
+				description={description}
+				headline={headline}
+				color={color}
+			/>
+			{/* <Disclosure>
 				<Disclosure.Button className=' mt-3 shadow-md shadow-black p-2 rounded w-full hover:bg-neutral-600'>
 					Click <strong>HERE</strong> for Details
 				</Disclosure.Button>
@@ -53,7 +62,7 @@ export const AlertListItem = ({ alert }) => {
 					<br />
 					<p>{headline}</p>
 				</Disclosure.Panel>
-			</Disclosure>
+			</Disclosure> */}
 		</div>
 	);
 };

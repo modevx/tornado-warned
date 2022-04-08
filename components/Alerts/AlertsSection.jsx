@@ -8,7 +8,7 @@ export const AlertsSection = ({ alerts, sectionHeading }) => {
 		<section className='p-4 bg-neutral-600 border-t-4 border-white'>
 			<h2>
 				{
-					<div className='flex items-center'>
+					<div className='flex items-center justify-center'>
 						<BsTornado className='mr-1' size={30} />
 						<span className='font-bold inline-block  text-lg text-white uppercase ml-3'>
 							{sectionHeading}

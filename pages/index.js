@@ -10,10 +10,10 @@ const Hero = () => {
 				<h1 className='text-900 font-bold text-3xl mb-3'>
 					TORNADO <span className='text-red-500'>ACTION</span>
 				</h1>
-				<div>
-					<p>
-						Every active tornado watch &amp; warning. 70 years of tornado stats.
-					</p>
+				<div className='text-sm flex items-center justify-evenly'>
+					<p>Warnings.</p>
+					<p>Watches.</p>
+					<p>Real-Time.</p>
 				</div>
 			</div>
 		</div>
