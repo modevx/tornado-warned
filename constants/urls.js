@@ -3,7 +3,7 @@
  */
 export const NWS_URLS = {
 	baseURL: "https://api.weather.gov",
-	tornadoWarnings: `/alerts/active?event=Tornado%20Warning&message_type=alert`,
+	tornadoWarnings: "/alerts/active?event=Tornado%20Warning&message_type=alert",
 	tornadoWarningsTest:
 		"alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Warning&message_type=alert",
 	tornadoWatches: "/alerts/active?event=Tornado%20Watch&message_type=alert",

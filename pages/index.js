@@ -23,7 +23,7 @@ const Hero = () => {
 const HomeScreen = () => {
 	return (
 		<PageWrapper>
-			<Hero />
+			{/* <Hero /> */}
 			{/* <FeaturesSection /> */}
 			<Alerts />
 		</PageWrapper>
