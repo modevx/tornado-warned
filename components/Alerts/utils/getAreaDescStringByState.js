@@ -23,13 +23,13 @@ export const getAffectedAreasStringByState = alertAreaDescSTR => {
 
 	// *********************************
 	// __TESTING__
-	// *********************************
-
 	console.log("///////////////////////////////////////////");
 	for (const state of areaDescMAP.keys()) {
 		console.log(state);
 		console.log(areaDescMAP.get(state));
 	}
 	console.log("///////////////////////////////////////////");
+	// *********************************
+
 	return areaDescARR;
 };
