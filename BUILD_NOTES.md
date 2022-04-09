@@ -242,6 +242,13 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 ## **UI**
 
+### **_Organize Alert's `areaDesc` by state_**
+
+- stashing state-areas key-value pairs in a [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+  - accessing `Map`s are build on [`Iterator`s & `Generator`s](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
+- render re-formatted `areaDesc` Map by [embedding expressions in JSX](https://reactjs.org/docs/introducing-jsx.html#embedding-expressions-in-jsx)
+- U.S. state names & abbreviations | [us-states-names-abbr](https://github.com/datasets-io/us-states-names-abbr/blob/master/lib/dataset.json)
+
 <details>
 <summary><strong><em>ISSUE:</em></strong> dynamic Tailwind styles not getting applied</summary>
 
