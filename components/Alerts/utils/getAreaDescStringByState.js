@@ -1,12 +1,7 @@
 import { getUniqueStatesSet } from "./getUniqueStatesSet";
 
-export const getAffectedAreasStringByState = alertAreaDescSTR => {
+export const getAreaDescMAP = alertAreaDescSTR => {
 	if (alertAreaDescSTR === null || alertAreaDescSTR === undefined) return;
-	// --------------------------------------------------
-	// unique state abbreviations Set
-	// --------------------------------------------------
-	const areaDescSET = getUniqueStatesSet(alertAreaDescSTR);
-	// --------------------------------------------------
 
 	const areaDescARR = alertAreaDescSTR.split(/(?:;\s)/gm);
 	const areaDescMAP = new Map();
@@ -24,12 +19,29 @@ export const getAffectedAreasStringByState = alertAreaDescSTR => {
 	// *********************************
 	// __TESTING__
 	console.log("///////////////////////////////////////////");
-	for (const state of areaDescMAP.keys()) {
-		console.log(state);
-		console.log(areaDescMAP.get(state));
-	}
+
+	// for (const [state, areas] of areaDescMAP) {
+	// 	console.log(state);
+	// 	console.log(areas);
+	// }
+
+	// areaDescMAP.forEach((areas, state, areaDescMAP) => {
+	// 	console.log(state);
+	// 	console.log(areas);
+	// });
+
+	const testArr = Array.from(areaDescMAP.entries());
+	testArr.map(([state, areas]) => {
+		// console.log(state);
+		// console.log(areas.join(", "));
+	});
+
+	// og string not modified
+	console.log(areaDescMAP);
+	console.log(alertAreaDescSTR);
+
 	console.log("///////////////////////////////////////////");
 	// *********************************
 
-	return areaDescARR;
+	return areaDescMAP;
 };
