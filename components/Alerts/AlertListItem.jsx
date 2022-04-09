@@ -1,3 +1,4 @@
+import React from "react";
 import { Disclosure } from "@headlessui/react";
 import { BsTornado } from "react-icons/bs";
 // --
@@ -5,7 +6,7 @@ import LocalizedFormat from "dayjs/plugin/localizedFormat";
 import dayjs from "dayjs";
 dayjs.extend(LocalizedFormat);
 // --
-import { getAffectedAreasByState as formatAreaDesc } from "./utils/getAffectedAreasByState";
+import { getAffectedAreasStringByState } from "./utils/getAreaDescStringByState";
 
 export const AlertListItem = ({ alert }) => {
 	// console.log("AlertListItem >>\n", alert);
@@ -20,15 +21,20 @@ export const AlertListItem = ({ alert }) => {
 		instruction,
 		senderName,
 	} = alert;
-
 	const EVENT_COLOR_MAP = {
 		TornadoWarning: "from-red-500",
 		TornadoWatch: "from-yellow-500",
 	};
-
 	const color = EVENT_COLOR_MAP[event.split(" ").join("")];
-
 	const italicWarn = event === "Tornado Warning" ? "italic" : "";
+	const affectedAreas = getAffectedAreasStringByState(areaDesc);
+	const renderCountREF = React.useRef(1);
+
+	// __TESTING__
+	// React.useEffect(() => {
+	// 	console.log("RENDER COUNT >>\n", renderCountREF.current);
+	// 	renderCountREF.current += 1;
+	// });
 
 	return (
 		<li
@@ -46,7 +52,7 @@ export const AlertListItem = ({ alert }) => {
 			</div>
 
 			<div className='bg-neutral-700 p-4 mb-4 rounded'>
-				<p className='text-xs'>{`${formatAreaDesc(areaDesc)}`}</p>
+				<p className='text-xs'>{affectedAreas}</p>
 			</div>
 
 			{instruction !== null ? (
