@@ -6,7 +6,8 @@ import LocalizedFormat from "dayjs/plugin/localizedFormat";
 import dayjs from "dayjs";
 dayjs.extend(LocalizedFormat);
 // --
-import { getAffectedAreasStringByState } from "./utils/getAreaDescStringByState";
+import { getAreaDescMAP } from "./utils/getAreaDescStringByState";
+import { STATES } from "../../constants";
 
 export const AlertListItem = ({ alert }) => {
 	// console.log("AlertListItem >>\n", alert);
@@ -27,14 +28,29 @@ export const AlertListItem = ({ alert }) => {
 	};
 	const color = EVENT_COLOR_MAP[event.split(" ").join("")];
 	const italicWarn = event === "Tornado Warning" ? "italic" : "";
-	const affectedAreas = getAffectedAreasStringByState(areaDesc);
-	const renderCountREF = React.useRef(1);
+	const areaDescMAP = getAreaDescMAP(areaDesc);
+	// [...[state, areas]]
+	const areaDescMapARR = Array.from(areaDescMAP.entries());
+	const impactedAreas = areaDescMapARR.map(([state, areas]) => {
+		const joinedAreasSTR = areas.join(", ");
 
-	// __TESTING__
-	// React.useEffect(() => {
-	// 	console.log("RENDER COUNT >>\n", renderCountREF.current);
-	// 	renderCountREF.current += 1;
-	// });
+		return (
+			<>
+				<h3 className='text-lg font-bold my-2'>{STATES[state]}</h3>
+				<p className='text-xs'>{joinedAreasSTR}</p>
+			</>
+		);
+	});
+
+	const alertPropsToDisplay = [headline, impactedAreas, instruction];
+
+	const alertCardElements = alertPropsToDisplay.map(alertProp => {
+		return (
+			<div className='bg-neutral-700 p-4 mb-4 rounded'>
+				<p className='text-xs'>{alertProp}</p>
+			</div>
+		);
+	});
 
 	return (
 		<li
@@ -51,9 +67,7 @@ export const AlertListItem = ({ alert }) => {
 				<p className='text-xs'>{headline}</p>
 			</div>
 
-			<div className='bg-neutral-700 p-4 mb-4 rounded'>
-				<p className='text-xs'>{areaDesc}</p>
-			</div>
+			<div className='bg-neutral-700 p-4 mb-4 rounded'>{impactedAreas}</div>
 
 			{instruction !== null ? (
 				<div className='bg-neutral-700 p-4 mb-4 rounded'>
