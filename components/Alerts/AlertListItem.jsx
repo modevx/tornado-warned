@@ -52,7 +52,7 @@ export const AlertListItem = ({ alert }) => {
 			</div>
 
 			<div className='bg-neutral-700 p-4 mb-4 rounded'>
-				<p className='text-xs'>{affectedAreas}</p>
+				<p className='text-xs'>{areaDesc}</p>
 			</div>
 
 			{instruction !== null ? (
