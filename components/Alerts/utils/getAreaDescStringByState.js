@@ -16,32 +16,5 @@ export const getAreaDescMAP = alertAreaDescSTR => {
 		}
 	});
 
-	// *********************************
-	// __TESTING__
-	console.log("///////////////////////////////////////////");
-
-	// for (const [state, areas] of areaDescMAP) {
-	// 	console.log(state);
-	// 	console.log(areas);
-	// }
-
-	// areaDescMAP.forEach((areas, state, areaDescMAP) => {
-	// 	console.log(state);
-	// 	console.log(areas);
-	// });
-
-	const testArr = Array.from(areaDescMAP.entries());
-	testArr.map(([state, areas]) => {
-		// console.log(state);
-		// console.log(areas.join(", "));
-	});
-
-	// og string not modified
-	console.log(areaDescMAP);
-	console.log(alertAreaDescSTR);
-
-	console.log("///////////////////////////////////////////");
-	// *********************************
-
 	return areaDescMAP;
 };
