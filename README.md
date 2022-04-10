@@ -46,7 +46,7 @@ There are tons of resources already available for storm safety and preparedness.
 
 If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** has ( or will have ) it!
 
-**_Check out [`BUILD_NOTES.md`](https://github.com/ephbuilding/rovercam/blob/prod/BUILD_NOTES.md) for a behind-the-scenes look at how TORNADO ACTION is getting built!_**
+_Check out [`BUILD_NOTES.md`](https://github.com/ephbuilding/rovercam/blob/prod/BUILD_NOTES.md) to follow Tornado Action's progress in real-time!_
 
 <!-- #endregion /INTRO -->
 
@@ -97,6 +97,36 @@ If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** 
 <!-- #endregion /INSTALL -->
 
 # INSTALL
+
+clone repo
+
+```shellscript
+git clone https://github.com/ephbuilding/tornado-action.git
+
+```
+
+install dependencies/packages
+
+```shellscript
+cd tornado-action
+
+npm install
+
+OR
+
+yarn
+
+```
+
+run it
+
+```shellscript
+npm run dev
+
+OR
+
+yarn dev
+```
 
 <!-- #region HOW TO USE -->
 
