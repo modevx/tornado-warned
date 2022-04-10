@@ -36,7 +36,7 @@ export const AlertListItem = ({ alert }) => {
 
 		return (
 			<>
-				<h3 className='text-lg font-bold my-2'>{STATES[state]}</h3>
+				<h4 className='text-lg font-bold my-2'>{STATES[state]}</h4>
 				<p className='text-xs'>{joinedAreasSTR}</p>
 			</>
 		);
@@ -67,7 +67,10 @@ export const AlertListItem = ({ alert }) => {
 				<p className='text-xs'>{headline}</p>
 			</div>
 
-			<div className='bg-neutral-700 p-4 mb-4 rounded'>{impactedAreas}</div>
+			<div className='bg-neutral-700 p-4 mb-4 rounded'>
+				<p className='text-xs'>{areaDesc}</p>
+				{/* {impactedAreas} */}
+			</div>
 
 			{instruction !== null ? (
 				<div className='bg-neutral-700 p-4 mb-4 rounded'>
