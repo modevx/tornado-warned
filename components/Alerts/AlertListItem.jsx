@@ -4,13 +4,13 @@ import Image from "next/image";
 import { Disclosure } from "@headlessui/react";
 import { BsTornado } from "react-icons/bs";
 // --
-import LocalizedFormat from "dayjs/plugin/localizedFormat";
-import dayjs from "dayjs";
-dayjs.extend(LocalizedFormat);
-// --
 import { getAreaDescMAP } from "./utils/getAreaDescStringByState";
 import { formatSenderNameSTR } from "./utils/formatSenderNameSTR";
 import { STATES } from "../../constants";
+// --
+import LocalizedFormat from "dayjs/plugin/localizedFormat";
+import dayjs from "dayjs";
+dayjs.extend(LocalizedFormat);
 
 export const AlertListItem = ({ alert }) => {
 	// console.log("AlertListItem >>\n", alert);
