@@ -4,7 +4,7 @@ import {
 	useTornadoWarnings,
 	useTornadoWatches,
 	useTestAlerts,
-} from "../../hooks";
+} from "../../hooks/nws-alerts";
 import FAKE_ALERTS from "../../constants/fake-alerts";
 
 export const Alerts = () => {
