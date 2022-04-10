@@ -240,6 +240,27 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 # DELIVER
 
+## **[ TESTING ]**
+
+- React [Testing Recipes](https://reactjs.org/docs/testing-recipes.html)
+- React [Testing Environments](https://reactjs.org/docs/testing-environments.html)
+- [Testing Playground](https://testing-playground.com/)
+
+- **_Unit Testing_**
+  - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+  - Jest | [Testing React Apps](https://jestjs.io/docs/tutorial-react)
+    - [`jsdom`](https://github.com/jsdom/jsdom) | browser testing & scraping
+  - Next.js [Testing](https://nextjs.org/docs/testing)
+    - [`with-jest`](https://github.com/vercel/next.js/tree/canary/examples/with-jest)
+    - [Jest & React Testing Library](https://nextjs.org/docs/testing#jest-and-react-testing-library)
+    - [Env Variables](https://nextjs.org/docs/basic-features/environment-variables#test-environment-variablesmd)
+- **_Integration Testing_**
+  - []()
+- **_E2E Testing_**
+  - []()
+- **_Continuous Integration_**
+  - []()
+
 ## **UI**
 
 ### **_Organize Alert's `areaDesc` by state_**
