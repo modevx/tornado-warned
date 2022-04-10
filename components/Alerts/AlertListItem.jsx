@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "next/image";
+// --
 import { Disclosure } from "@headlessui/react";
 import { BsTornado } from "react-icons/bs";
 // --
@@ -7,6 +9,7 @@ import dayjs from "dayjs";
 dayjs.extend(LocalizedFormat);
 // --
 import { getAreaDescMAP } from "./utils/getAreaDescStringByState";
+import { formatSenderNameSTR } from "./utils/formatSenderNameSTR";
 import { STATES } from "../../constants";
 
 export const AlertListItem = ({ alert }) => {
@@ -35,10 +38,10 @@ export const AlertListItem = ({ alert }) => {
 		const joinedAreasSTR = areas.join(", ");
 
 		return (
-			<>
+			<div key={state}>
 				<h4 className='text-lg font-bold my-2'>{STATES[state]}</h4>
 				<p className='text-xs'>{joinedAreasSTR}</p>
-			</>
+			</div>
 		);
 	});
 
@@ -64,12 +67,16 @@ export const AlertListItem = ({ alert }) => {
 			</div>
 
 			<div className='bg-neutral-700 p-4 mb-4 rounded'>
+				<p className='text-xs'>{formatSenderNameSTR(senderName)}</p>
+			</div>
+
+			<div className='bg-neutral-700 p-4 mb-4 rounded'>
 				<p className='text-xs'>{headline}</p>
 			</div>
 
 			<div className='bg-neutral-700 p-4 mb-4 rounded'>
-				<p className='text-xs'>{areaDesc}</p>
-				{/* {impactedAreas} */}
+				{/* <p className='text-xs'>{areaDesc}</p> */}
+				{impactedAreas}
 			</div>
 
 			{instruction !== null ? (
