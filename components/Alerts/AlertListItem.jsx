@@ -35,12 +35,12 @@ export const AlertListItem = ({ alert }) => {
 	// [...[state, areas]]
 	const areaDescMapARR = Array.from(areaDescMAP.entries());
 	const impactedAreas = areaDescMapARR.map(([state, areas]) => {
-		const joinedAreasSTR = areas.join(", ");
+		const joinedAreaDescSTR = areas.join(", ");
 
 		return (
-			<div key={state}>
-				<h4 className='text-lg font-bold my-2'>{STATES[state]}</h4>
-				<p className='text-xs'>{joinedAreasSTR}</p>
+			<div key={state} className='mb-2'>
+				<h4 className='text-2xl font-medium mb-2 uppercase'>{STATES[state]}</h4>
+				<p>{joinedAreaDescSTR}</p>
 			</div>
 		);
 	});
@@ -57,28 +57,33 @@ export const AlertListItem = ({ alert }) => {
 
 	return (
 		<li
-			className={`bg-gradient-to-b ${color} to-stone-800 mb-6 sm:m-0 sm:h-fit p-4 rounded shadow-black shadow-md`}
+			className={`bg-gradient-to-b ${color} to-stone-800 ${color} mb-6 sm:m-0 sm:h-fit p-4 rounded shadow-black shadow-md`}
 		>
-			<div className='flex items-center mb-3 w-full'>
-				<BsTornado size={30} />
-				<div className={`${italicWarn} ml-2 text-3xl font-bold drop-shadow-md`}>
-					{event.split(" ")[1].toUpperCase()}
+			{/* -- BANNER -- */}
+			<div className='flex items-center mb-4 w-full'>
+				<Image src='/nws-logo.png' height={50} width={50} />
+				<div className='flex-1 ml-2 font-medium text-right'>
+					<p className={`${italicWarn} text-xl uppercase w-full`}>{event}</p>
+					<p className='text-md font-light w-full'>
+						{formatSenderNameSTR(senderName)}
+					</p>
 				</div>
 			</div>
 
-			<div className='bg-neutral-700 p-4 mb-4 rounded'>
-				<p className='text-xs'>{formatSenderNameSTR(senderName)}</p>
+			{/* -- TIMES -- */}
+			<div className='flex items-center justify-between bg-neutral-700 p-4 mb-4 rounded'>
+				<p className='text-center'>{dayjs(effective).format("LT")}</p>
+				<span>until</span>
+				<p className='text-center'>{dayjs(expires).format("LT")}</p>
 			</div>
 
-			<div className='bg-neutral-700 p-4 mb-4 rounded'>
-				<p className='text-xs'>{headline}</p>
-			</div>
-
+			{/* -- AREAS -- */}
 			<div className='bg-neutral-700 p-4 mb-4 rounded'>
 				{/* <p className='text-xs'>{areaDesc}</p> */}
 				{impactedAreas}
 			</div>
 
+			{/* -- INSTRUCTIONS -- */}
 			{instruction !== null ? (
 				<div className='bg-neutral-700 p-4 mb-4 rounded'>
 					<p className='text-xs'>{instruction}</p>
