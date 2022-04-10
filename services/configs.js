@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { NWS_URLS, SWDI_URLS } from "../constants/urls";
+import { NWS_URLS, SWDI_URLS } from "../constants/api-urls";
 
 const DEFAULT_TIMEOUT = 5000;
 

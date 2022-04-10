@@ -3,6 +3,7 @@ import {
 	fetchTornadoWarnings,
 	fetchTornadoWatches,
 	fetchCancelledAlerts,
+	fetchTestAlerts,
 } from "../services/NWS/requests";
 
 export const useTornadoWarnings = () => {
@@ -13,4 +14,7 @@ export const useTornadoWatches = () => {
 };
 export const useCancelledAlerts = () => {
 	return useQuery("cancelledAlerts", fetchCancelledAlerts);
+};
+export const useTestAlerts = () => {
+	return useQuery("testAlerts", fetchTestAlerts);
 };
