@@ -27,7 +27,7 @@ export const AlertListItem = ({ alert }) => {
 	} = alert;
 	const EVENT_COLOR_MAP = {
 		TornadoWarning: "from-red-500",
-		TornadoWatch: "from-yellow-500",
+		TornadoWatch: "from-yellow-600",
 	};
 	const color = EVENT_COLOR_MAP[event.split(" ").join("")];
 	const italicWarn = event === "Tornado Warning" ? "italic" : "";
