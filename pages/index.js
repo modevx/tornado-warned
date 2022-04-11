@@ -2,6 +2,12 @@ import React from "react";
 import { PageWrapper } from "../components/PageWrapper";
 import { FeaturesSection } from "../components/FeaturesSection";
 import { Alerts } from "../components/Alerts";
+import {
+	useTornadoWarnings,
+	useTornadoWatches,
+	useTestAlerts,
+} from "../hooks/nws-alerts";
+import FAKE_ALERTS from "../constants/fake-alerts";
 
 const Hero = () => {
 	return (
@@ -21,11 +27,16 @@ const Hero = () => {
 };
 
 const HomeScreen = () => {
+	// console.log("Alerts >>\n", tornado_warnings);
+	// const { data: tornado_warnings } = useTornadoWarnings();
+	// const { data: tornado_watches } = useTornadoWatches();
+	const { tornado_warnings, tornado_watches } = FAKE_ALERTS;
+
 	return (
 		<PageWrapper>
 			{/* <Hero /> */}
 			{/* <FeaturesSection /> */}
-			<Alerts />
+			<Alerts warnings={tornado_warnings} watches={tornado_watches} />
 		</PageWrapper>
 	);
 };
