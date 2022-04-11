@@ -242,12 +242,17 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 ## **[ TESTING ]**
 
+\* **_[Jest, React Testing Library, & Next.js](https://www.youtube.com/watch?v=yPBtVxDEC0w)_**
+
 - React [Testing Recipes](https://reactjs.org/docs/testing-recipes.html)
 - React [Testing Environments](https://reactjs.org/docs/testing-environments.html)
 - [Testing Playground](https://testing-playground.com/)
 
 - **_Unit Testing_**
   - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+    - [Guiding Principles](https://testing-library.com/docs/guiding-principles)
+    - [Query Priority](https://testing-library.com/docs/queries/about#priority)
+    - [cheatsheet](https://github.com/testing-library/react-testing-library/raw/main/other/cheat-sheet.pdf)
   - Jest | [Testing React Apps](https://jestjs.io/docs/tutorial-react)
     - [`jsdom`](https://github.com/jsdom/jsdom) | browser testing & scraping
   - Next.js [Testing](https://nextjs.org/docs/testing)
