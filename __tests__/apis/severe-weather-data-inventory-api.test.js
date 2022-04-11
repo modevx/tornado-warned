@@ -1,3 +1,3 @@
 export const servereWeatherDataInventory = {
-  BASE_URL: "",
+	BASE_URL: "",
 };
