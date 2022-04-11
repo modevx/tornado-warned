@@ -1,14 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import { Header } from "../../components/Header";
 
-describe("Header", () => {
-	it("displays <Header/>", () => {
+describe("Header Tests", () => {
+	test("displays <Header/>", () => {
 		render(<Header />);
-
-		expect(screen.getByTestId("header")).toHaveTextContent(/Tornado Action/i);
+		const header = screen.getByTestId(/header/i);
+		expect(header).toBeInTheDocument();
 	});
 
-	it("displays Tornado Action logo", () => {});
-
-	it("displays Tornado <Clock/>", () => {});
+	test("Tornado Action logo text displays", () => {
+		render(<Header />);
+		const header = screen.getByTestId("header");
+		expect(header).toHaveTextContent(/Tornado Action/i);
+	});
 });
