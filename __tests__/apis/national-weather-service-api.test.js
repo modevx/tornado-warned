@@ -1,5 +1,0 @@
-// data
-
-// error
-
-// isLoading

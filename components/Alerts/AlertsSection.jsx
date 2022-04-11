@@ -1,5 +1,4 @@
 import { AlertList } from ".";
-import { BsTornado } from "react-icons/bs";
 
 export const AlertsSection = ({ alerts }) => {
 	// if (alerts) {
