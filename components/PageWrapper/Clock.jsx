@@ -20,7 +20,7 @@ export const Clock = () => {
 
 	return (
 		<div className='flex flex-col'>
-			<span className='clock-date'>{dayjs(time).format("ll | LT")}</span>
+			<span className='text-xs'>{dayjs(time).format("lll")}</span>
 		</div>
 	);
 };
