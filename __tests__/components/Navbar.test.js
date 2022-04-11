@@ -1,8 +1,19 @@
 import { render, screen } from "@testing-library/react";
-import { NavBar } from "../../components/Header";
+import { Navbar } from "../../components/Header";
 
 describe("Navbar Tests", () => {
-	test("displays <Navbar/>", () => {});
+	let navbar;
 
-	test("contains ALERTS page link", () => {});
+	beforeEach(() => {
+		render(<Navbar />);
+		navbar = screen.getByTestId("navbar");
+	});
+
+	test("displays <Navbar/>", () => {
+		expect(navbar).toBeInTheDocument();
+	});
+
+	test("contains ALERTS page link", () => {
+		expect(navbar).toHaveTextContent(/alerts/i);
+	});
 });

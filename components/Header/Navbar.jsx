@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export const NavBar = () => {
+export const Navbar = () => {
 	return (
 		<nav data-testid='navbar' className='p-4 flex justify-between'>
 			<ul>

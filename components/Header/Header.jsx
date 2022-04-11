@@ -1,5 +1,5 @@
 import { Clock } from "../PageWrapper";
-import { NavBar } from "./Navbar";
+import { Navbar } from "./Navbar";
 
 export const Header = () => {
 	return (
@@ -13,7 +13,7 @@ export const Header = () => {
 				</div>
 				<Clock />
 			</div>
-			<NavBar />
+			<Navbar />
 		</header>
 	);
 };
