@@ -1,3 +1,4 @@
+import { ReactQueryDevTools } from "react-query/devtools";
 import "../styles/globals.css";
 
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -8,6 +9,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
       <Component {...pageProps} />
+      <ReactQueryDevTools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
