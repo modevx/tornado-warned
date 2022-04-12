@@ -6,12 +6,12 @@ import { AlertSection } from "../components/Alerts";
 import { PageWrapper } from "../components/PageWrapper";
 // --
 import { useTornadoWarnings, useTornadoWatches, useTestAlerts } from "../hooks";
-import FAKE_ALERTS from "../services/fake-alerts";
+import NWS_FAKE_ALERTS from "../services/nws-fake-data";
 
 const HomeScreen = () => {
 	// console.log("Alerts >>\n", tornado_warnings);
 
-	// const { tornado_warnings, tornado_watches } = FAKE_ALERTS;
+	// const { tornado_warnings, tornado_watches } = NWS_FAKE_ALERTS;
 
 	return (
 		<PageWrapper>
