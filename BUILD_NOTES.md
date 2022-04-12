@@ -261,7 +261,7 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
   - pre-fetching in [Next.js using React Query](https://react-query.tanstack.com/guides/ssr#using-nextjs)
     - option 1: pre-fetch yourself & set [`initialData`](https://react-query.tanstack.com/guides/ssr#using-initialdata)
-    - option 2: [pre-fetch, dehydrate, rehydrate](https://react-query.tanstack.com/guides/ssr#using-hydration)
+    - option 2: [rehydration](https://react-query.tanstack.com/guides/ssr#using-hydration)
 
 - **_checking the status of returned React Query data_**
 
