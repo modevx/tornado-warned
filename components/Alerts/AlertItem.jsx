@@ -12,7 +12,7 @@ import LocalizedFormat from "dayjs/plugin/localizedFormat";
 import dayjs from "dayjs";
 dayjs.extend(LocalizedFormat);
 
-export const AlertListItem = ({ alert }) => {
+export const AlertItem = ({ alert }) => {
 	// console.log("AlertListItem >>\n", alert);
 	const {
 		event,
