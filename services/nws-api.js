@@ -1,49 +1,63 @@
-import { axios } from "axios";
+import axios from "axios";
 
 // ***************************************
 // ** AXIOS CONFIG
 // ***************************************
 const DEFAULT_TIMEOUT = 5000;
 
-const AXIOS = Axios.create({
-	baseURL: NWS.baseURL,
+const AXIOS = axios.create({
+	baseURL: "https://api.weather.gov",
 	timeout: DEFAULT_TIMEOUT,
 });
 // ***************************************
-// ** ENDPOINTS
+// ** ENDPOINT
 // ***************************************
-const QUERY_PARAMS = Object.freeze({
-	Certainty: {
-		Observed: "observed",
-		Likely: "likely",
-		Possible: "possible",
-		Unlikely: "unlikely",
-		Unknown: "unknown",
+const PARAM = Object.freeze({
+	area: "area",
+	certainty: "certainty",
+	code: "code",
+	event: "event",
+	limit: "limit",
+	message_type: "message_type",
+	point: "point",
+	severity: "severity",
+	status: "status",
+	urgency: "urgency",
+	zone: "zone",
+});
+const VALUE = Object.freeze({
+	certainty: {
+		observed: "observed",
+		likely: "likely",
+		possible: "possible",
+		unlikely: "unlikely",
+		unknown: "unknown",
 	},
-	Event: {
-		TornadoWarning: "Tornado Warning",
-		TornadoWatch: "Tornado Watch",
+	event: {
+		tornado_warning: "Tornado%20Warning",
+		tornado_watch: "Tornado%20Watch",
+		severe_weather_statement: "Severe%20Weather%20Statement",
 	},
-	MessageType: {
-		Alert: "alert",
-		Update: "update",
-		Cancel: "cancel",
+	message_type: {
+		alert: "alert",
+		cancel: "cancel",
+		update: "update",
 	},
-	Severity: {
-		Extreme: "extreme",
-		Severe: "severe",
-		Moderate: "moderate",
-		Minor: "minor",
-		Unknown: "unknown",
+	severity: {
+		extreme: "extreme",
+		severe: "severe",
+		moderate: "moderate",
+		minor: "minor",
+		unknown: "unknown",
 	},
-	Status: {
-		Actual: "actual",
-		Exercise: "exercise",
-		System: "system",
-		Test: "test",
-		Draft: "draft",
+	status: {
+		actual: "actual",
+		draft: "draft",
+		exercise: "exercise",
+		system: "system",
+		test: "test",
 	},
-	Urgency: {
+	urgency: {
 		Immediate: "immediate",
 		Expected: "expected",
 		Future: "future",
@@ -51,8 +65,19 @@ const QUERY_PARAMS = Object.freeze({
 		Unknown: "unknown",
 	},
 });
-const ENDPOINTS = Object.freeze({
+
+const ENDPOINT = Object.freeze({
 	baseURL: "https://api.weather.gov",
+	active_alerts: "/alerts/active",
+	active_alert_count: "/alerts/active/count",
+	alert_by_id: "/alerts",
+	alert_types: "/alerts/types",
+	glossary: "/glossary",
+	stations: "/stations",
+	radar_servers: "/radar/servers",
+	radar_stations: "/radar/stations",
+	products: "/products",
+	zones: "/zones",
 	tornadoWarnings: "/alerts/active?event=Tornado%20Warning&message_type=alert",
 	tornadoWarningsTest:
 		"alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Warning&message_type=alert",
@@ -67,6 +92,18 @@ const ENDPOINTS = Object.freeze({
 	alertTypes: "/alerts/types",
 	alertsById: "/alerts",
 });
+const PATHS = Object.freeze({
+	active_tornado_warnings: `/
+		${ENDPOINT.active_alerts}?
+		${PARAM.event}=${VALUE.event.tornado_warning}&
+		${PARAM.message_type}=${VALUE.message_type.alert}`,
+	active_tornado_watches: `/
+		${ENDPOINT.active_alerts}?
+		${PARAM.event}=${VALUE.tornado_watch}&
+		${PARAM.message_type}=${VALUE.event.tornado_watch}`,
+	test_tornado_warnings: "",
+	test_tornado_watches: "",
+});
 // ***************************************
 // ** REQUESTS
 // ***************************************
@@ -76,15 +113,15 @@ const axiosFetchNWS = async endpoint => {
 };
 // -- ACTIVE ALERTS
 export const fetchTornadoWarningsFromNWS = async () => {
-	return await axiosFetchNWS(NWS.tornadoWarnings);
+	return await axiosFetchNWS(ENDPOINT.tornadoWarnings);
 };
 export const fetchTornadoWatchesFromNWS = async () => {
-	return await axiosFetchNWS(NWS.tornadoWatches);
+	return await axiosFetchNWS(ENDPOINT.tornadoWatches);
 };
 // -- TEST ALERTS
 export const fetchTestTornadoWarningsFromNWS = async () => {
-	return await axiosFetchNWS(NWS.tornadoWarningsTest);
+	return await axiosFetchNWS(ENDPOINT.tornadoWarningsTest);
 };
 export const fetchTestTornadoWatchesFromNWS = async () => {
-	return await axiosFetchNWS(NWS.tornadoWatchesTest);
+	return await axiosFetchNWS(ENDPOINT.tornadoWatchesTest);
 };

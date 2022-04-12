@@ -1,12 +1,12 @@
-import Axios from "axios";
+import axios from "axios";
 
 // ***************************************
 // ** AXIOS CONFIG
 // ***************************************
 const DEFAULT_TIMEOUT = 5000;
 
-const AXIOS = Axios.create({
-	baseURL: SWDI.baseURL,
+const AXIOS = axios.create({
+	baseURL: "https://www.ncdc.noaa.gov/swdiws",
 	timeout: DEFAULT_TIMEOUT,
 });
 // ***************************************
