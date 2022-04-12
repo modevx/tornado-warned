@@ -1,6 +1,6 @@
 import React from "react";
-import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevTools } from "react-query/devtools";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import "../styles/globals.css";
 
 export default function MyApp({ Component, pageProps }) {
@@ -8,10 +8,8 @@ export default function MyApp({ Component, pageProps }) {
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			{/* <Hydrate state={pageProps.dehydrateState}> */}
 			<Component {...pageProps} />
-			{/* </Hydrate> */}
-			{/* <ReactQueryDevTools initialIsOpen={false} /> */}
+			<ReactQueryDevtools initialIsOpen={false} />
 		</QueryClientProvider>
 	);
 }
