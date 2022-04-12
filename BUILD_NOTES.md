@@ -240,6 +240,72 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 
 # DELIVER
 
+## **[ Data Fetching in Next.js ]**
+
+- **_SSR (server-side rendering)_**
+  - pre-rendered pages on request using JSON data returned by [`getServerSideProps`](https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props)
+- **_SSG (static site generation)_**
+  - pre-rendered, build-time pages using props returned by [`getStaticProps`](https://nextjs.org/docs/basic-features/data-fetching/get-static-props)
+- **_CSR (client-side rendering)_**
+  - good for fetching highly-dynamic, remote, component-level data. couple options:
+  - [React Query](https://react-query.tanstack.com/) | remote data synchronization
+  - [SWR](https://swr.vercel.app/) | data-fetching React hooks
+- **_Dynamic Routing_**
+  - using [`getStaticPaths`](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths) with `getStaticProps` to statically pre-render pages that have dynamic routes
+- **_Incremental Static Regeneration_**
+  - create or update static pages after site's already been built using [`revalidate`](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration)
+
+## **[ Displaying Active Alerts ]**
+
+- **_pre-fetching alerts_**
+
+  - pre-fetching in [Next.js using React Query](https://react-query.tanstack.com/guides/ssr#using-nextjs)
+    - option 1: pre-fetch yourself & set [`initialData`](https://react-query.tanstack.com/guides/ssr#using-initialdata)
+    - option 2: [rehydration](https://react-query.tanstack.com/guides/ssr#using-hydration)
+
+- **_checking the status of returned React Query data_**
+
+  - [query basics](https://react-query.tanstack.com/guides/queries)
+  - [status checks](https://tkdodo.eu/blog/status-checks-in-react-query) on returned query data
+
+- -
+- []()
+- []()
+- []()
+
+## **[ TESTING ]**
+
+\* **_[Jest, React Testing Library, & Next.js](https://www.youtube.com/watch?v=yPBtVxDEC0w)_**
+
+- React [Testing Recipes](https://reactjs.org/docs/testing-recipes.html)
+- React [Testing Environments](https://reactjs.org/docs/testing-environments.html)
+- [Testing Playground](https://testing-playground.com/)
+
+- **_Unit Testing_**
+
+  - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+    - [Guiding Principles](https://testing-library.com/docs/guiding-principles)
+    - [Query Priority](https://testing-library.com/docs/queries/about#priority)
+    - [cheatsheet](https://github.com/testing-library/react-testing-library/raw/main/other/cheat-sheet.pdf)
+  - Jest | [Testing React Apps](https://jestjs.io/docs/tutorial-react)
+    - [`jsdom`](https://github.com/jsdom/jsdom) | browser testing & scraping
+  - Next.js [Testing](https://nextjs.org/docs/testing)
+    - [`with-jest`](https://github.com/vercel/next.js/tree/canary/examples/with-jest)
+    - [Jest & React Testing Library](https://nextjs.org/docs/testing#jest-and-react-testing-library)
+    - [Env Variables](https://nextjs.org/docs/basic-features/environment-variables#test-environment-variablesmd)
+
+- **_APIs_**
+
+  - [JSONPath expressions](https://goessner.net/articles/JsonPath/index.html#e2) | used for parsing API responses in Insomnia
+  - [JSONPath evaluator](https://jsonpath.com/)
+
+- **_Integration Testing_**
+  - []()
+- **_E2E Testing_**
+  - []()
+- **_Continuous Integration_**
+  - []()
+
 ## **UI**
 
 ### **_Organize Alert's `areaDesc` by state_**
@@ -285,21 +351,6 @@ don't concatenate class names in Tailwinds
 - [`purgecss`](https://purgecss.com/) | \*86 unused CSS classes
   - []()
   - []()
-
-## **DATA FETCHING**
-
-- [`axios`](https://github.com/axios/axios#table-of-contents) | "Promise based HTTP client for the browser and node.js"
-- [JSONPath expressions](https://goessner.net/articles/JsonPath/index.html#e2) | used for parsing API responses in Insomnia
-  - [JSONPath evaluator](https://jsonpath.com/)
-- []()
-- []()
-
-## **STATE MANAGEMENT**
-
-- []()
-- []()
-- []()
-- []()
 
 <hr/>
 <hr/>

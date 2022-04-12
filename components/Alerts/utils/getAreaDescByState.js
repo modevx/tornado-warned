@@ -1,5 +1,3 @@
-import { getUniqueStatesSet } from "./getUniqueStatesSet";
-
 export const getAreaDescMAP = alertAreaDescSTR => {
 	if (alertAreaDescSTR === null || alertAreaDescSTR === undefined) return;
 

@@ -4,23 +4,19 @@ import localized from "dayjs/plugin/localizedFormat";
 dayjs.extend(localized);
 
 export const Clock = () => {
-	const [time, setTime] = React.useState(new Date());
+  const [time, setTime] = React.useState(new Date());
 
-	const clockTick = () => {
-		setTime(new Date());
-	};
+  const clockTick = () => {
+    setTime(new Date());
+  };
 
-	React.useEffect(() => {
-		let id = setInterval(() => {
-			clockTick();
-		}, 1000);
+  React.useEffect(() => {
+    let id = setInterval(() => {
+      clockTick();
+    }, 1000);
 
-		return () => clearInterval(id);
-	}, [time]);
+    return () => clearInterval(id);
+  }, [time]);
 
-	return (
-		<div className='flex flex-col'>
-			<span className='clock-date'>{dayjs(time).format("ll | LT")}</span>
-		</div>
-	);
+  return <span className="text-xl">{dayjs(time).format("lll")}</span>;
 };

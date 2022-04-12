@@ -1,15 +1,15 @@
 import { AlertList } from ".";
-import { BsTornado } from "react-icons/bs";
+import {
+  useTornadoWarnings,
+  useTornadoWatches,
+  useTestAlerts,
+} from "../hooks/nws-alerts";
 
-export const AlertsSection = ({ alerts }) => {
-	// if (alerts) {
-	// 	const { isLoading, error, data } = alerts;
-	// 	console.log("AlertsSection >>\n", isLoading, error, alerts);
-	// }
-
-	return (
-		<section>
-			<AlertList alertArray={alerts} />
-		</section>
-	);
+export const AlertsSection = () => {
+  return (
+    <section>
+      <AlertList alertArray={alerts} />
+      <AlertList alertArray={alerts} />
+    </section>
+  );
 };
