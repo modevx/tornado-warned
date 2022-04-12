@@ -1,16 +1,12 @@
 import React from "react";
 // --
-// import { AlertSection } from "../components/Alerts";
+import { AlertSection } from "../components/Alerts";
 // import { FeaturesSection } from "../components/FeaturesSection";
 // import { Hero } from "../components/Hero/Hero";
 import { PageWrapper } from "../components/PageWrapper";
 // --
-import {
-	useTornadoWarnings,
-	useTornadoWatches,
-	useTestAlerts,
-} from "../hooks/nws-alerts";
-import FAKE_ALERTS from "../constants/fake-alerts";
+import { useTornadoWarnings, useTornadoWatches, useTestAlerts } from "../hooks";
+import FAKE_ALERTS from "../services/fake-alerts";
 
 const HomeScreen = () => {
 	// console.log("Alerts >>\n", tornado_warnings);
@@ -21,7 +17,7 @@ const HomeScreen = () => {
 		<PageWrapper>
 			{/* <Hero /> */}
 			{/* <FeaturesSection /> */}
-			{/* <AlertSection /> */}
+			<AlertSection />
 		</PageWrapper>
 	);
 };

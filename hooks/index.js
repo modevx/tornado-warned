@@ -1,1 +1,1 @@
-export * from "./nws-alerts";
+export * from "./national-weather-service-alert-hooks";
