@@ -4,7 +4,7 @@ import {
 	fetchTornadoWatches,
 	fetchTestWarnings,
 	fetchTestWatches,
-} from "../services";
+} from "../services/nws-api";
 
 const QUERY_KEYS = Object.freeze({
 	active_warnings: "activeWarnings",
