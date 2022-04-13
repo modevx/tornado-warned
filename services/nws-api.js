@@ -12,6 +12,35 @@ const AXIOS = axios.create({
 // ***************************************
 // ** ENDPOINT
 // ***************************************
+const ENDPOINT = Object.freeze({
+	baseURL: "https://api.weather.gov",
+	active_alerts: "/alerts/active",
+	active_alert_count: "/alerts/active/count",
+	alert_by_id: "/alerts",
+	alert_types: "/alerts/types",
+	glossary: "/glossary",
+	stations: "/stations",
+	radar_servers: "/radar/servers",
+	radar_stations: "/radar/stations",
+	products: "/products",
+	zones: "/zones",
+	allTestAlerts:
+		"alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Warning%2CTornado%20Watch&message_type=alert&limit=20",
+	allTornadoAlerts: "/alerts/active?event=Tornado%20Warning%2CTornado%20Watch",
+	tornadoWarnings: "/alerts/active?event=Tornado%20Warning&message_type=alert",
+	tornadoWarningsTest:
+		"alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Warning&message_type=alert",
+	tornadoWatches: "/alerts/active?event=Tornado%20Watch&message_type=alert",
+	tornadoWatchesTest:
+		"alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Watch&message_type=alert",
+	cancelledAlerts:
+		"alerts?event=Tornado%20Warning%2CTornado%20Watch&message_type=cancel",
+	cancelledAlertsTest:
+		"alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Warning%2CTornado%20Watch&message_type=cancel",
+	activeAlertCount: "/alerts/active/count",
+	alertTypes: "/alerts/types",
+	alertsById: "/alerts",
+});
 const PARAM = Object.freeze({
 	area: "area",
 	certainty: "certainty",
@@ -65,33 +94,6 @@ const VALUE = Object.freeze({
 		Unknown: "unknown",
 	},
 });
-
-const ENDPOINT = Object.freeze({
-	baseURL: "https://api.weather.gov",
-	active_alerts: "/alerts/active",
-	active_alert_count: "/alerts/active/count",
-	alert_by_id: "/alerts",
-	alert_types: "/alerts/types",
-	glossary: "/glossary",
-	stations: "/stations",
-	radar_servers: "/radar/servers",
-	radar_stations: "/radar/stations",
-	products: "/products",
-	zones: "/zones",
-	tornadoWarnings: "/alerts/active?event=Tornado%20Warning&message_type=alert",
-	tornadoWarningsTest:
-		"alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Warning&message_type=alert",
-	tornadoWatches: "/alerts/active?event=Tornado%20Watch&message_type=alert",
-	tornadoWatchesTest:
-		"alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Watch&message_type=alert",
-	cancelledAlerts:
-		"alerts?event=Tornado%20Warning%2CTornado%20Watch&message_type=cancel",
-	cancelledAlertsTest:
-		"alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Warning%2CTornado%20Watch&message_type=cancel",
-	activeAlertCount: "/alerts/active/count",
-	alertTypes: "/alerts/types",
-	alertsById: "/alerts",
-});
 const PATHS = Object.freeze({
 	active_tornado_warnings: `/
 		${ENDPOINT.active_alerts}?
@@ -112,6 +114,9 @@ const axiosFetchNWS = async endpoint => {
 	return await raw.data.features;
 };
 // -- ACTIVE ALERTS
+export const fetchAllTornadoAlertsFromNWS = async () => {
+	return await axiosFetchNWS(ENDPOINT.allTornadoAlerts);
+};
 export const fetchTornadoWarningsFromNWS = async () => {
 	return await axiosFetchNWS(ENDPOINT.tornadoWarnings);
 };
@@ -119,6 +124,9 @@ export const fetchTornadoWatchesFromNWS = async () => {
 	return await axiosFetchNWS(ENDPOINT.tornadoWatches);
 };
 // -- TEST ALERTS
+export const fetchAllTestAlertsFromNWS = async () => {
+	return await axiosFetchNWS(ENDPOINT.allTestAlerts);
+};
 export const fetchTestTornadoWarningsFromNWS = async () => {
 	return await axiosFetchNWS(ENDPOINT.tornadoWarningsTest);
 };
