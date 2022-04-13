@@ -3,7 +3,7 @@ import { Header } from "../Header/Header";
 
 export const PageWrapper = ({ children }) => {
 	return (
-		<div className='text-white'>
+		<div className='bg-stone-700 text-white'>
 			<Meta />
 			<Layout>
 				<Header />

@@ -1,4 +1,4 @@
-export const STATES = {
+export const STATE_ABBREVIATION_MAP = {
 	AL: "Alabama",
 	AK: "Alaska",
 	AZ: "Arizona",

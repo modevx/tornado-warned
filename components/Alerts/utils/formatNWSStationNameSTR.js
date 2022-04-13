@@ -1,3 +1,4 @@
+// format ex. 'NWS Charlotte NC' becomes 'Charlotte, NC'
 export const formatSenderNameSTR = senderName => {
 	return senderName
 		.slice(4)
