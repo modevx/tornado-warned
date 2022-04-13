@@ -45,7 +45,12 @@ export const AlertItem = ({ activeAlert }) => {
 				</p>
 
 				<div className='flex items-center'>
-					<Image src='/nws-logo.png' height={30} width={30} />
+					<Image
+						alt='National Weather Service logo'
+						src='/nws-logo.png'
+						height={30}
+						width={30}
+					/>
 					<span className='ml-2'>{formatSenderNameSTR(senderName)}</span>
 				</div>
 			</div>
@@ -92,8 +97,13 @@ export const AlertItem = ({ activeAlert }) => {
 							/>
 						</Disclosure.Button>
 						<Disclosure.Panel className='px-4 pt-4 pb-2 text-sm text-white'>
-							{description.split(/\n(?:\n)?/).map(text => (
-								<p className='text-xs mb-2'>{text}</p>
+							{description.split(/\n(?:\n)?/).map((text, index) => (
+								<p
+									className='text-xs mb-2'
+									key={`${text.slice(0, 10)}-${index}`}
+								>
+									{text}
+								</p>
 							))}
 						</Disclosure.Panel>
 					</>
