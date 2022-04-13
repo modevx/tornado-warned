@@ -2,8 +2,8 @@ import { AlertList } from "./";
 import { useAllTestAlerts, useAllTornadoAlerts } from "../../hooks";
 
 export const AlertSection = () => {
-	// const { isLoading, error, isSuccess, data } = useAllTornadoAlerts();
-	const { isLoading, error, isSuccess, data } = useAllTestAlerts();
+	const { isLoading, error, isSuccess, data } = useAllTornadoAlerts();
+	// const { isLoading, error, isSuccess, data } = useAllTestAlerts();
 	let warnings, watches;
 
 	if (data) {
