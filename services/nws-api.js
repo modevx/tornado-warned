@@ -25,7 +25,7 @@ const ENDPOINT = Object.freeze({
 	products: "/products",
 	zones: "/zones",
 	allTestAlerts:
-		"alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Warning%2CTornado%20Watch&message_type=alert&limit=20",
+		"alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Warning%2CTornado%20Watch&message_type=alert&limit=10",
 	allTornadoAlerts: "/alerts/active?event=Tornado%20Warning%2CTornado%20Watch",
 	tornadoWarnings: "/alerts/active?event=Tornado%20Warning&message_type=alert",
 	tornadoWarningsTest:
