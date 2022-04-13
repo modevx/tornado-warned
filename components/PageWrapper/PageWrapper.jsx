@@ -7,7 +7,7 @@ export const PageWrapper = ({ children }) => {
 			<Meta />
 			<Layout>
 				<Header />
-				<main className='grow'>{children}</main>
+				<main className='grow flex flex-col h-full'>{children}</main>
 				<Footer />
 			</Layout>
 		</div>
