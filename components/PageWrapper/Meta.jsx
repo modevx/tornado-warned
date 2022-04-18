@@ -21,7 +21,7 @@ export const Meta = () => {
 			<meta
 				property='og:image'
 				name='image'
-				content='https://repository-images.githubusercontent.com/450166464/b6eaab82-eac9-4844-b7a6-3a4b9c481dee'
+				content='https://repository-images.githubusercontent.com/450166464/cbf75522-24df-4440-a6dd-86f22ee693fb'
 			/>
 			<meta
 				name='description'
@@ -36,7 +36,7 @@ export const Meta = () => {
 			<meta name='twitter:site' content='@ephbuilding' />
 			<meta
 				name='twitter:image'
-				content='https://repository-images.githubusercontent.com/450166464/b6eaab82-eac9-4844-b7a6-3a4b9c481dee'
+				content='https://repository-images.githubusercontent.com/450166464/cbf75522-24df-4440-a6dd-86f22ee693fb'
 			/>
 			<meta
 				name='twitter:description'
