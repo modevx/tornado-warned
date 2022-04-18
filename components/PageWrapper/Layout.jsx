@@ -1,5 +1,3 @@
 export const Layout = ({ children }) => {
-	return (
-		<div className='bg-stone-800 flex flex-col min-h-screen'>{children}</div>
-	);
+	return <div className='flex flex-col min-h-screen'>{children}</div>;
 };

@@ -266,12 +266,9 @@ I'm basically giving you a frontrow seat to how my brain works. Hope you have a 
 - **_checking the status of returned React Query data_**
 
   - [query basics](https://react-query.tanstack.com/guides/queries)
+    - return values & options for [`useQuery`](https://react-query.tanstack.com/reference/useQuery)
   - [status checks](https://tkdodo.eu/blog/status-checks-in-react-query) on returned query data
-
-- -
-- []()
-- []()
-- []()
+    - status-checking discussion [#1108](https://github.com/tannerlinsley/react-query/pull/1108#issuecomment-718474623)
 
 ## **[ TESTING ]**
 
