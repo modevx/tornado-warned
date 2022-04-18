@@ -4,7 +4,7 @@ import { AlertItem } from ".";
 export const AlertList = ({ activeAlerts, eventType }) => {
 	console.log(activeAlerts);
 
-	if (activeAlerts.length > 1) {
+	if (activeAlerts.length > 0) {
 		return (
 			<ul className='p-4 md:grid md:grid-cols-2 xl:grid-cols-3 gap-6'>
 				{activeAlerts.map(alert => (
