@@ -2,11 +2,11 @@ import React from "react";
 import { PageWrapper } from "../components/PageWrapper";
 import { AlertSection } from "../components/Alerts";
 import { useSpcRssFeed } from "../hooks/useSpcRssFeed";
-// import RSSParser from "rss-parser";
-// const rss_parser = new RSSParser();
+import RSSParser from "rss-parser";
+const rss_parser = new RSSParser();
 
 const HomeScreen = () => {
-	React.useEffect(() => useSpcRssFeed());
+	useSpcRssFeed();
 
 	return (
 		<PageWrapper>
