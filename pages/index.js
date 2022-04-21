@@ -1,12 +1,13 @@
 import React from "react";
 import { PageWrapper } from "../components/PageWrapper";
 import { AlertSection } from "../components/Alerts";
-import { useSpcRssFeed } from "../hooks/useSpcRssFeed";
-import RSSParser from "rss-parser";
-const rss_parser = new RSSParser();
+// -----
+import axios from "axios";
 
 const HomeScreen = () => {
-	useSpcRssFeed();
+	React.useEffect(async () => {
+		await axios.get("./api/cors/spc-rss-feed");
+	});
 
 	return (
 		<PageWrapper>
