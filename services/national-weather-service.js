@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// ***************************************
 // ** AXIOS CONFIG
 // ***************************************
 const DEFAULT_TIMEOUT = 5000;
@@ -9,8 +8,7 @@ const AXIOS = axios.create({
 	baseURL: "https://api.weather.gov",
 	timeout: DEFAULT_TIMEOUT,
 });
-// ***************************************
-// ** ENDPOINT
+// ** ENDPOINTS
 // ***************************************
 const ENDPOINT = Object.freeze({
 	baseURL: "https://api.weather.gov",
@@ -106,7 +104,6 @@ const PATHS = Object.freeze({
 	test_tornado_warnings: "",
 	test_tornado_watches: "",
 });
-// ***************************************
 // ** REQUESTS
 // ***************************************
 const axiosFetchNWS = async endpoint => {

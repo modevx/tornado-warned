@@ -6,9 +6,9 @@ import {
 	fetchTornadoWatchesFromNWS,
 	fetchTestTornadoWarningsFromNWS,
 	fetchTestTornadoWatchesFromNWS,
-} from "../services/nws-api";
+} from "../services/national-weather-service";
 
-const QUERY_KEYS = Object.freeze({
+const KEYS = Object.freeze({
 	all_tornado_alerts: "all_tornado_alerts",
 	active_warnings: "active_warnings",
 	active_watches: "active_watches",
@@ -18,21 +18,21 @@ const QUERY_KEYS = Object.freeze({
 });
 // -- ACTIVE ALERT HOOKS
 export const useAllTornadoAlerts = () => {
-	return useQuery(QUERY_KEYS.all_tornado_alerts, fetchAllTornadoAlertsFromNWS);
+	return useQuery(KEYS.all_tornado_alerts, fetchAllTornadoAlertsFromNWS);
 };
 export const useTornadoWarnings = () => {
-	return useQuery(QUERY_KEYS.active_warnings, fetchTornadoWarningsFromNWS);
+	return useQuery(KEYS.active_warnings, fetchTornadoWarningsFromNWS);
 };
 export const useTornadoWatches = () => {
-	return useQuery(QUERY_KEYS.active_watches, fetchTornadoWatchesFromNWS);
+	return useQuery(KEYS.active_watches, fetchTornadoWatchesFromNWS);
 };
 // -- TEST HOOKS
 export const useAllTestAlerts = () => {
-	return useQuery(QUERY_KEYS.all_test_alerts, fetchAllTestAlertsFromNWS);
+	return useQuery(KEYS.all_test_alerts, fetchAllTestAlertsFromNWS);
 };
 export const useTestTornadoWarnings = () => {
-	return useQuery(QUERY_KEYS.test_warnings, fetchTestTornadoWarningsFromNWS);
+	return useQuery(KEYS.test_warnings, fetchTestTornadoWarningsFromNWS);
 };
 export const useTestTornadoWatches = () => {
-	return useQuery(QUERY_KEYS.test_watches, fetchTestTornadoWatchesFromNWS);
+	return useQuery(KEYS.test_watches, fetchTestTornadoWatchesFromNWS);
 };

@@ -7,6 +7,7 @@ let SpcRssParser = new RSSParser();
 const corsMiddleware = Cors({
 	origin: true,
 	methods: ["GET", "OPTIONS"],
+	preflightContinue: true,
 });
 
 // Helper method to wait for a middleware to execute before continuing
@@ -24,18 +25,21 @@ function runMiddleware(req, res, middleware) {
 }
 
 export default async function handler(req, res) {
-	// Run the middleware
-	const rss_feed = await runMiddleware(req, res, corsMiddleware);
+	await runMiddleware(req, res, corsMiddleware);
 
-	// Rest of the API logic
-	res.status(200).json(rss_feed);
+	let feed = await SpcRssParser.parseURL(
+		"http://www.spc.noaa.gov/products/spcrss.xml"
+	);
+
+	// API logic
+	res.status(200).json(feed);
 }
 
 // (async () => {
 // 	try {
-// 		let feed = await SpcRssParser.parseURL(
-// 			"http://www.spc.noaa.gov/products/spcrss.xml"
-// 		);
+// let feed = await SpcRssParser.parseURL(
+// 	"http://www.spc.noaa.gov/products/spcrss.xml"
+// );
 
 // 		console.log(feed);
 // 		feed.items.forEach(item => {
