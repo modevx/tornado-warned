@@ -12,7 +12,7 @@ export const Meta = () => {
 			/>
 			<meta
 				name='description'
-				content='tornadoaction.com | real-time tornado alerts, news, safety info, stats, and data visualizations'
+				content='tornadoaction.com | real-time tornado alerts, news, safety info, stats, and graphics'
 			/>
 
 			{/* LinkedIn Meta */}
@@ -21,26 +21,26 @@ export const Meta = () => {
 			<meta
 				property='og:image'
 				name='image'
-				content='https://repository-images.githubusercontent.com/450166464/cbf75522-24df-4440-a6dd-86f22ee693fb'
+				content='https://repository-images.githubusercontent.com/450166464/63bf8d64-176c-4715-bcff-4f42664ac2dc'
 			/>
 			<meta
 				name='description'
 				property='og:description'
-				content='tornadoaction.com | real-time tornado alerts, news, safety info, stats, and data visualizations.'
+				content='tornadoaction.com | real-time tornado alerts, news, safety info, stats, and graphics.'
 			/>
 			<meta name='author' content='Ephraim Smith' />
 
 			{/* Twitter Meta */}
 			<meta name='twitter:card' content='summary_large_image' />
-			<meta name='twitter:creator' content='@ephbuilding' />
-			<meta name='twitter:site' content='@ephbuilding' />
+			<meta name='twitter:creator' content='@tornado_action' />
+			<meta name='twitter:site' content='@tornado_action' />
 			<meta
 				name='twitter:image'
-				content='https://repository-images.githubusercontent.com/450166464/cbf75522-24df-4440-a6dd-86f22ee693fb'
+				content='https://repository-images.githubusercontent.com/450166464/63bf8d64-176c-4715-bcff-4f42664ac2dc'
 			/>
 			<meta
 				name='twitter:description'
-				content='tornadoaction.com | real-time tornado alerts, news, safety info, stats, and data visualizations'
+				content='tornadoaction.com | real-time tornado alerts, news, safety info, stats, and graphics.'
 			/>
 		</Head>
 	);
