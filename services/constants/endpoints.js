@@ -1,34 +1,28 @@
 const NATIONAL_WEATHER_SERVICE = Object.freeze({
-	baseURL: "https://api.weather.gov",
-	active_alerts: "/alerts/active",
 	active_alert_count: "/alerts/active/count",
+	active_alerts: "/alerts/active",
 	alert_types: "/alerts/types",
+	alerts: "/alerts",
+	base_url: "https://api.weather.gov",
 	glossary: "/glossary",
-	stations: "/stations",
+	products: "/products",
 	radar_servers: "/radar/servers",
 	radar_stations: "/radar/stations",
-	products: "/products",
+	stations: "/stations",
 	zones: "/zones",
-	allTestAlerts:
-		"alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Warning%2CTornado%20Watch&message_type=alert&limit=10",
-	allTornadoAlerts: "/alerts/active?event=Tornado%20Warning%2CTornado%20Watch",
-	tornadoWarnings: "/alerts/active?event=Tornado%20Warning&message_type=alert",
-	tornadoWarningsTest:
-		"alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Warning&message_type=alert",
-	tornadoWatches: "/alerts/active?event=Tornado%20Watch&message_type=alert",
-	tornadoWatchesTest:
-		"alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Watch&message_type=alert",
-	cancelledAlerts:
-		"alerts?event=Tornado%20Warning%2CTornado%20Watch&message_type=cancel",
-	cancelledAlertsTest:
-		"alerts?start=2022-03-10T20%3A00%3A00Z&event=Tornado%20Warning%2CTornado%20Watch&message_type=cancel",
-	activeAlertCount: "/alerts/active/count",
-	alertTypes: "/alerts/types",
-	alertsById: "/alerts",
+	active_tornado_alerts:
+		"/alerts/active?event=Tornado%20Warning%2CTornado%20Watch",
+	active_tornado_warnings:
+		"/alerts/active?event=Tornado%20Warning&message_type=alert",
+	active_tornado_watches:
+		"/alerts/active?event=Tornado%20Watch&message_type=alert",
 });
 const SEVERE_WEATHER_DATA_INVENTORY = Object.freeze({
-	baseURL: "https://www.ncdc.noaa.gov/swdiws",
+	base_url: "https://www.ncdc.noaa.gov/swdiws",
 	tornado_vortx_signatures_json: "/json/nx3tvs",
+	mesocyclone_signatures_json: "/json/nx3meso",
+	hail_signatures_json: "/json/nx3hail",
+	storm_cell_structure_information_json: "/json/nx3structure",
 });
 const STORM_PREDICTION_CENTER = Object.freeze({
 	spcrss: "/spcrss.xml",

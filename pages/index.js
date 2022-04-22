@@ -1,13 +1,8 @@
+import Axios from "axios";
 import React from "react";
-
-import dayjs from "dayjs";
-import localized from "dayjs/plugin/localizedFormat";
-dayjs.extend(localized);
 
 import { PageWrapper } from "../components/PageWrapper";
 import { AlertSection } from "../components/Alerts";
-
-import axios from "axios";
 
 const HomeScreen = () => {
 	const [feed, setFeed] = React.useState();
@@ -21,7 +16,7 @@ const HomeScreen = () => {
 	// }, []);
 
 	React.useEffect(async () => {
-		let feed = await axios.get(
+		let feed = await Axios.get(
 			"https://test-www-spc.woc.noaa.gov/products/spcrss.xml"
 		);
 		// setTestFeed(testFeed.data.items);
