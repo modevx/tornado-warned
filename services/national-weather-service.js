@@ -9,15 +9,18 @@ const fetchFromNationalWeatherService = async (axiosInstance, endpoint) => {
 export const fetchActiveTornadoAlerts = async () => {
 	return await fetchFromNationalWeatherService(
 		AXIOS,
-		ENDPOINTS.allTornadoAlerts
+		ENDPOINTS.active_tornado_alerts
 	);
 };
 export const fetchActiveTornadoWarnings = async () => {
 	return await fetchFromNationalWeatherService(
 		AXIOS,
-		ENDPOINTS.tornadoWarnings
+		ENDPOINTS.active_tornado_warnings
 	);
 };
 export const fetchTornadoWatches = async () => {
-	return await fetchFromNationalWeatherService(AXIOS, ENDPOINTS.tornadoWatches);
+	return await fetchFromNationalWeatherService(
+		AXIOS,
+		ENDPOINTS.active_tornado_watches
+	);
 };
