@@ -23,9 +23,9 @@ const HomeScreen = () => {
 	if (data) {
 		rssFeedDisplay = data.data.map(item => (
 			<div key={item.link} className='mb-4 bg-black p-4'>
-				{Object.entries(item).map(([key, value]) => (
-					<div key={key}>
-						<span className='font-bold italic text-red-400'>{key}: </span>
+				{Object.entries(item).map(([itemKey, value]) => (
+					<div key={itemKey}>
+						<span className='font-bold italic text-red-400'>{itemKey}: </span>
 						<span>{value}</span>
 						<br />
 					</div>
@@ -37,8 +37,8 @@ const HomeScreen = () => {
 	return (
 		<PageWrapper>
 			<AlertSection />
-			{rssFeedDisplay}
 			<FeaturesSection />
+			{rssFeedDisplay}
 		</PageWrapper>
 	);
 };
