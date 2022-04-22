@@ -1,8 +1,8 @@
-import Axios from "axios";
-import { STORM_PREDICTION_CENTER as EPS } from "./constants/endpoints";
+import { STORM_PREDICTION_CENTER as EP } from "./constants/endpoints";
+import { STORM_PREDICTION_CENTER as AXIOS } from "./constants/axios";
 
-// TODO: use environment to set httpClient ie. "SPC --> SPC_TEST"
-
-export const fetchAllRSSFeeds = async () => {
-	return await Axios.get(EPS.api_rss_all_feeds);
+export const fetchSpcRssFeed = async spcRssPath => {
+	return await AXIOS.cors.post("/storm-prediction-center-rss-feeds", {
+		rssFeedUrl: EP.base_url.concat(spcRssPath),
+	});
 };
