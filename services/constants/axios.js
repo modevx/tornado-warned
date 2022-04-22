@@ -11,10 +11,10 @@ export const SEVERE_WEATHER_DATA_INVENTORY = axios.create({
 	timeout: DEFAULT_TIMEOUT,
 });
 export const STORM_PREDICTION_CENTER = axios.create({
-	baseURL: "http://www.spc.noaa.gov/products",
+	baseURL: "http://www.spc.noaa.gov",
 	timeout: DEFAULT_TIMEOUT,
 });
 export const STORM_PREDICTION_CENTER_TEST = axios.create({
-	baseURL: "http://test-www-spc.woc.noaa.gov/products",
+	baseURL: "http://test-www-spc.woc.noaa.gov",
 	timeout: DEFAULT_TIMEOUT,
 });
