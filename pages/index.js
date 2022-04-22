@@ -2,6 +2,7 @@ import React from "react";
 
 import { PageWrapper } from "../components/PageWrapper";
 import { AlertSection } from "../components/Alerts";
+import { FeaturesSection } from "../components/FeaturesSection";
 
 import { STORM_PREDICTION_CENTER as SPC_EP } from "../services/constants/endpoints";
 import { useSPC_RSS_Feed } from "../hooks";
@@ -37,6 +38,7 @@ const HomeScreen = () => {
 		<PageWrapper>
 			<AlertSection />
 			{rssFeedDisplay}
+			<FeaturesSection />
 		</PageWrapper>
 	);
 };
