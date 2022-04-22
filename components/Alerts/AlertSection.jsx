@@ -1,8 +1,8 @@
 import { AlertList } from "./";
-import { useAllTestAlerts, useAllTornadoAlerts } from "../../hooks";
+import { useActiveTornadoAlerts } from "../../hooks";
 
 export const AlertSection = () => {
-	const { isLoading, error, isSuccess, data } = useAllTornadoAlerts();
+	const { isLoading, error, isSuccess, data } = useActiveTornadoAlerts();
 	let warnings = [],
 		watches = [];
 

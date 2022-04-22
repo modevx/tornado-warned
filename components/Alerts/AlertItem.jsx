@@ -1,12 +1,14 @@
 import React from "react";
 import Image from "next/image";
-// --
+
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
-// --
+
+import { LocaleDate } from "../LocaleDate";
+
 import { getAreaDescMAP, formatSenderNameSTR } from "./utils";
-import { STATE_ABBREVIATION_MAP as STATES } from "../states";
-// --
+import { STATE_ABBREVIATION_MAP as STATES } from "../constants/states";
+
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
 import dayjs from "dayjs";
 dayjs.extend(LocalizedFormat);
@@ -57,7 +59,7 @@ export const AlertItem = ({ activeAlert }) => {
 
 			<div className='bg-neutral-700 px-4 py-2 mb-4 rounded'>
 				<p className='text-xs text-right'>
-					Expires: {dayjs(expires).format("LT")}
+					Expires: <LocaleDate date={expires} formatString='LT' />
 				</p>
 				{areaDescMapARR.map(([state, areas]) => {
 					const joinedAreaDescSTR = areas.join(", ");
