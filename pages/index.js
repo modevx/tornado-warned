@@ -1,12 +1,12 @@
 import React from "react";
-// -----
+
 import dayjs from "dayjs";
 import localized from "dayjs/plugin/localizedFormat";
 dayjs.extend(localized);
-// -----
+
 import { PageWrapper } from "../components/PageWrapper";
 import { AlertSection } from "../components/Alerts";
-// -----
+
 import axios from "axios";
 
 const HomeScreen = () => {
