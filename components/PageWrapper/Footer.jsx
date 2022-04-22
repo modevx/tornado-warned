@@ -7,3 +7,18 @@ export const Footer = () => {
 		</footer>
 	);
 };
+
+const navItems = [
+	{
+		label: "National Weather Service",
+		href: "",
+	},
+	{
+		label: "Storm Prediction Center",
+		href: "",
+	},
+	{
+		label: "National Severe Storms Laboratory",
+		href: "",
+	},
+];
