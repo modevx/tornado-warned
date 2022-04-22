@@ -1,7 +1,8 @@
 import { useQuery } from "react-query";
-import { STORM_PREDICTION_CENTER as KEYS } from "./constants/react-query-keys";
-import { fetchAllRSSFeeds } from "../services/storm-prediction-center";
+import { fetchSpcRssFeed } from "../services/storm-prediction-center";
 
-export const useSpcRssFeeds = () => {
-	return useQuery(KEYS.all_rss_feeds, fetchAllRSSFeeds);
+export const useSPC_RSS_Feed = spcRssPath => {
+	return useQuery(["spc_rss_feeds", spcRssPath], () =>
+		fetchSpcRssFeed(spcRssPath)
+	);
 };
