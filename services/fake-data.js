@@ -1,4 +1,4 @@
-export const WARNINGS = [
+export const NWS_TORNADO_WARNINGS = [
 	{
 		"@id":
 			"https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.aeed92927fa67331b57a728f509835015fb5158a.001.1",
@@ -281,7 +281,7 @@ export const WARNINGS = [
 	},
 ];
 
-export const WATCHES = [
+export const NWS_TORNADO_WATCHES = [
 	{
 		"@id":
 			"https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.9a59fbcd6a91f92f66bccb44ae51a0eb5176bff8.001.1",
