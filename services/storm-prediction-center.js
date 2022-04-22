@@ -1,12 +1,8 @@
-import Parser from "rss-parser";
+import Axios from "axios";
+import { STORM_PREDICTION_CENTER as EPS } from "./constants/endpoints";
 
-const fetchFromStormPredictionCenter = async (axiosInstance, path) => {
-	const raw = await axiosInstance.get(path);
-	return await raw.data;
-};
+// TODO: use environment to set httpClient ie. "SPC --> SPC_TEST"
 
-// ** RSS FEEDS
-// ***************************************
-export const fetchSPC_RSS_Test = async () => {
-	return await fetchFromStormPredictionCenter(AXIOS_TEST, ENDPOINTS.spcrss);
+export const fetchAllRSSFeeds = async () => {
+	return await Axios.get(EPS.api_rss_all_feeds);
 };
