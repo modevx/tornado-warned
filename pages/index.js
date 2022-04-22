@@ -21,11 +21,11 @@ const HomeScreen = () => {
 	// }, []);
 
 	React.useEffect(async () => {
-		let testFeed = await axios.get(
+		let feed = await axios.get(
 			"https://test-www-spc.woc.noaa.gov/products/spcrss.xml"
 		);
 		// setTestFeed(testFeed.data.items);
-		console.log(testFeed);
+		console.log(feed);
 		// console.log(Object.entries(testFeed.data.items));
 	}, []);
 
