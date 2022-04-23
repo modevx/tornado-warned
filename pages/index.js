@@ -2,6 +2,8 @@ import React from "react";
 
 import { PageWrapper } from "../components/PageWrapper";
 import { AlertSection } from "../components/Alerts";
+import { FeaturesSection } from "../components/Features";
+import { Hero } from "../components/Hero";
 
 import { STORM_PREDICTION_CENTER as SPC_EP } from "../services/constants/endpoints";
 import { useSPC_RSS_Feed } from "../hooks";
@@ -22,9 +24,9 @@ const HomeScreen = () => {
 	if (data) {
 		rssFeedDisplay = data.data.map(item => (
 			<div key={item.link} className='mb-4 bg-black p-4'>
-				{Object.entries(item).map(([key, value]) => (
-					<div key={key}>
-						<span className='font-bold italic text-red-400'>{key}: </span>
+				{Object.entries(item).map(([itemKey, value]) => (
+					<div key={itemKey}>
+						<span className='font-bold italic text-red-400'>{itemKey}: </span>
 						<span>{value}</span>
 						<br />
 					</div>
@@ -35,7 +37,9 @@ const HomeScreen = () => {
 
 	return (
 		<PageWrapper>
-			<AlertSection />
+			<Hero />
+			{/* <AlertSection /> */}
+			{/* <FeaturesSection /> */}
 			{rssFeedDisplay}
 		</PageWrapper>
 	);
