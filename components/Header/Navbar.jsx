@@ -10,45 +10,64 @@ function classNames(...classes) {
 
 const navigation = [
 	{
-		label: "take cover!",
-		href: "/take cover!",
+		label: "alerts",
+		href: "/alerts",
+		isCurrent: false,
+		isDisabled: false,
 	},
 	{
 		label: "outlooks",
 		href: "/outlooks",
+		isCurrent: false,
+		isDisabled: true,
 	},
-
-	{
-		label: "safety",
-		href: "/safety",
-	},
-	{
-		label: "storm chasing",
-		href: "/storm chasing",
-	},
+	// {
+	// 	label: "safety",
+	// 	href: "/safety",
+	// isCurrent: false,
+	// 	isDisabled: true
+	// },
+	// {
+	// 	label: "storm chasing",
+	// 	href: "/storm chasing",
+	// isCurrent: false,
+	// 	isDisabled: true
+	// },
 	// {
 	// 	label: "developers",
 	// 	href: "/developers",
+	// isCurrent: false,
+	// isDisabled: true
 	// },
 	// {
 	// 	label: "images",
 	// 	href: "/images",
+	// isCurrent: false,
+	// isDisabled: true
 	// },
 	// {
 	// 	label: "interactive",
 	// 	href: "/interactive",
+	// isCurrent: false,
+	// isDisabled: true
 	// },
 	// {
 	// 	label: "pop culture",
 	// 	href: "/pop culture",
+	// isCurrent: false,
+	// isDisabled: true
 	// },
 	// {
 	// 	label: "radar",
 	// 	href: "/radar",
+	// isCurrent: false,
+	// isDisabled: true
 	// },
 	// {
-	// 	label: "visuals",
-	// 	href: "/visuals",
+	// 	label: "stats",
+	// 	href: "/stats",
+	// isCurrent: false,
+	// isDisabled: true
 	// },
 ];
 

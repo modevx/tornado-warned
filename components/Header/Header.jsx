@@ -11,7 +11,7 @@ export const Header = () => {
 				{/* <div className='text-3xl font-bold'>
 					TORNADO <span className='text-red-500'>ACTION</span>
 				</div> */}
-				<Navbar />
+				{/* <Navbar /> */}
 			</div>
 			{/* <Clock /> */}
 		</header>
