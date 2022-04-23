@@ -7,6 +7,7 @@ import { RiTornadoLine } from "react-icons/ri";
 const navigation = [
 	{ name: "alerts", href: "/alerts" },
 	{ name: "outlooks", href: "/outlooks" },
+	{ name: "be ready", href: "/be ready" },
 ];
 
 export const Hero = () => {
@@ -38,7 +39,6 @@ export const Hero = () => {
 											<RiTornadoLine
 												color='red'
 												className='h-8 w-auto sm:h-10'
-												size={45}
 											/>
 											{/* <img
 												className='h-8 w-auto sm:h-10'
