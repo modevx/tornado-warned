@@ -38,8 +38,8 @@ const HomeScreen = () => {
 	return (
 		<PageWrapper>
 			<Hero />
-			<AlertSection />
-			<FeaturesSection />
+			{/* <AlertSection /> */}
+			{/* <FeaturesSection /> */}
 			{rssFeedDisplay}
 		</PageWrapper>
 	);
