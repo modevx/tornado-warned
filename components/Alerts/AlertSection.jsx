@@ -6,11 +6,16 @@ export const AlertSection = () => {
 	let warnings = [],
 		watches = [];
 
+	if (isLoading) return <p>Loading...</p>;
+	if (error) return <p>{error.message}</p>;
+
 	if (isSuccess) {
 		warnings = data.filter(
-			alert => alert.properties.event === "Tornado Warning"
+			(alert) => alert.properties.event === "Tornado Warning"
 		);
-		watches = data.filter(alert => alert.properties.event === "Tornado Watch");
+		watches = data.filter(
+			(alert) => alert.properties.event === "Tornado Watch"
+		);
 	}
 
 	if (warnings.length > 0 || watches.length > 0) {
@@ -21,9 +26,6 @@ export const AlertSection = () => {
 			</section>
 		);
 	}
-
-	if (isLoading) return <p>Loading...</p>;
-	if (error) return <p>{error.message}</p>;
 
 	return (
 		<div className='flex-1 flex flex-col items-center justify-center text-center'>
