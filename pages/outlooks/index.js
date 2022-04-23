@@ -1,1 +1,1 @@
-export * from "./OutlooksPage";
+export { default } from "./OutlooksPage";

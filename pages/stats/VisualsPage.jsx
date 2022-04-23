@@ -1,5 +1,7 @@
 import React from "react";
 
-export const VisualsPage = () => {
+const StatsPage = () => {
 	return <div>VisualsPage</div>;
 };
+
+export default StatsPage;

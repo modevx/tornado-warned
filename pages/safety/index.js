@@ -1,1 +1,1 @@
-export * from "./PreparePage";
+export { default } from "./SafetyPage";

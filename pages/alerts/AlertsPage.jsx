@@ -1,5 +1,7 @@
 import React from "react";
 
-export const AlertsPage = () => {
+const AlertsPage = () => {
 	return <div>AlertsPage</div>;
 };
+
+export default AlertsPage;

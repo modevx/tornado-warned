@@ -1,1 +1,1 @@
-export * from "./VisualsPage";
+export { default } from "./VisualsPage";

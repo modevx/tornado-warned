@@ -1,5 +1,7 @@
 import React from "react";
 
-export const PreparePage = () => {
+const SafetyPage = () => {
 	return <div>PreparePage</div>;
 };
+
+export default SafetyPage;

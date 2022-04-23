@@ -1,1 +1,1 @@
-export * from "./AlertsPage";
+export { default } from "./AlertsPage";
