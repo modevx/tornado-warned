@@ -1,4 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
+import Link from "next/link";
 import { Fragment } from "react";
 import { Disclosure, Menu, Popover, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
@@ -11,7 +12,7 @@ function classNames(...classes) {
 const navigation = [
 	{ name: "alerts", href: "/alerts" },
 	{ name: "outlooks", href: "/outlooks" },
-	{ name: "be ready", href: "/safety" },
+	// { name: "be ready", href: "/safety" },
 	// {
 	// 	name: "safety",
 	// 	href: "/safety",
@@ -53,10 +54,17 @@ export const Navbar = () => {
 				<nav className='relative flex items-center justify-between sm:h-10'>
 					<div className='flex items-center flex-grow flex-shrink-0 lg:flex-grow-0'>
 						<div className='flex items-center justify-between w-full md:w-auto'>
-							<a href='/'>
-								<span className='sr-only'>Tornado Action</span>
-								<RiTornadoLine color='red' className='h-8 w-auto sm:h-10' />
-							</a>
+							<Link href='/'>
+								<a className='flex items-center'>
+									<RiTornadoLine
+										color='red'
+										className='h-8 w-auto sm:h-10 mr-5'
+									/>
+									<span className='text-lg'>
+										<span>TORNADO ACTION</span>
+									</span>
+								</a>
+							</Link>
 							<div className='-mr-2 flex items-center md:hidden'>
 								<Popover.Button className='bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'>
 									<span className='sr-only'>Open main menu</span>
@@ -67,13 +75,13 @@ export const Navbar = () => {
 					</div>
 					<div className='hidden md:block md:ml-10 md:pr-4 md:space-x-8'>
 						{navigation.map((item) => (
-							<a
+							<Link
 								key={item.name}
 								href={item.href}
 								className='font-medium text-neutral-200 hover:text-red-500'
 							>
 								{item.name}
-							</a>
+							</Link>
 						))}
 					</div>
 				</nav>
