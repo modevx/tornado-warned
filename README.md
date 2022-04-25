@@ -8,33 +8,33 @@
 
 <div align='right'>
 
-[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephbuilding/tornado-action/blob/dev/BUILD_NOTES.md)
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs)
 
 </div>
 
 <div align='right'>
 
-  <a href='https://github.com/ephbuilding' alt='social link icon'>
+  <a href='https://github.com/modevx' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='mailto:email@ephraimsmith.dev' alt='social link icon'>
+  <a href='mailto:email@modevx.com' alt='social link icon'>
     <img src='./assets/icon-at.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
+  <a href='https://twitter.com/modevxapps' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
+  <a href='https://instagram.com/modevxapps' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
+  <a href='https://linkedin.com/in/modevxapps' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
@@ -45,8 +45,6 @@
 There are tons of resources already available for storm safety and preparedness. The problem is, those resources are hard to find and the general public doesn't know about most of them.
 
 If it has to do with tornadoes, **[TORNADO ACTION](https://tornadoaction.com)** has ( or will have ) it!
-
-_Check out [`BUILD_NOTES.md`](https://github.com/ephbuilding/rovercam/blob/prod/BUILD_NOTES.md) to follow Tornado Action's progress in real-time!_
 
 <!-- #endregion /INTRO -->
 
@@ -62,13 +60,13 @@ _Check out [`BUILD_NOTES.md`](https://github.com/ephbuilding/rovercam/blob/prod/
 
 <div align='right'>
 
-[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephbuilding/tornado-action)
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/modevx/tornado-action)
 
 </div>
 
 <div align='right'>
 
-  <a href='https://github.com/ephbuilding' alt='social link icon'>
+  <a href='https://github.com/modevx' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -78,17 +76,17 @@ _Check out [`BUILD_NOTES.md`](https://github.com/ephbuilding/rovercam/blob/prod/
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
+  <a href='https://twitter.com/modevx' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
+  <a href='https://instagram.com/modevx' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
+  <a href='https://linkedin.com/in/modevx' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
@@ -101,7 +99,7 @@ _Check out [`BUILD_NOTES.md`](https://github.com/ephbuilding/rovercam/blob/prod/
 clone repo
 
 ```shellscript
-git clone https://github.com/ephbuilding/tornado-action.git
+git clone https://github.com/modevx/tornado-action.git
 
 ```
 
@@ -138,13 +136,13 @@ yarn dev
 
 <div align='right'>
 
-[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephbuilding/tornado-action)
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/modevx/tornado-action)
 
 </div>
 
 <div align='right'>
 
-  <a href='https://github.com/ephbuilding' alt='social link icon'>
+  <a href='https://github.com/modevx' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -154,17 +152,17 @@ yarn dev
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
+  <a href='https://twitter.com/modevx' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
+  <a href='https://instagram.com/modevx' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
+  <a href='https://linkedin.com/in/modevx' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
@@ -184,13 +182,13 @@ yarn dev
 
 <div align='right'>
 
-[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephbuilding/tornado-action)
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/modevx/tornado-action)
 
 </div>
 
 <div align='right'>
 
-  <a href='https://github.com/ephbuilding' alt='social link icon'>
+  <a href='https://github.com/modevx' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -200,17 +198,17 @@ yarn dev
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
+  <a href='https://twitter.com/modevx' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
+  <a href='https://instagram.com/modevx' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
+  <a href='https://linkedin.com/in/modevx' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
@@ -230,13 +228,13 @@ yarn dev
 
 <div align='right'>
 
-[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephbuilding/tornado-action)
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/modevx/tornado-action)
 
 </div>
 
 <div align='right'>
 
-  <a href='https://github.com/ephbuilding' alt='social link icon'>
+  <a href='https://github.com/modevx' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -246,17 +244,17 @@ yarn dev
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
+  <a href='https://twitter.com/modevx' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
+  <a href='https://instagram.com/modevx' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
+  <a href='https://linkedin.com/in/modevx' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 
@@ -276,13 +274,13 @@ yarn dev
 
 <div align='right'>
 
-[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/ephbuilding/tornado-action)
+[install](#install) | [use](#use) | [license](#license) | [contribute](#contribute) | [shout-outs](#shout-outs) | [`BUILD_NOTES.md`](https://github.com/modevx/tornado-action)
 
 </div>
 
 <div align='right'>
 
-  <a href='https://github.com/ephbuilding' alt='social link icon'>
+  <a href='https://github.com/modevx' alt='social link icon'>
     <img src='./assets/icon-gh.svg' height='20'/>
   </a>
   &nbsp;
@@ -292,17 +290,17 @@ yarn dev
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://twitter.com/ephbuilding' alt='social link icon'>
+  <a href='https://twitter.com/modevx' alt='social link icon'>
     <img src='./assets/icon-tw.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://instagram.com/ephbuilding' alt='social link icon'>
+  <a href='https://instagram.com/modevx' alt='social link icon'>
     <img src='./assets/icon-ig.svg' height='20'/>
   </a>
   &nbsp;
   &nbsp;
-  <a href='https://linkedin.com/in/ephbuilding' alt='social link icon'>
+  <a href='https://linkedin.com/in/modevx' alt='social link icon'>
     <img src='./assets/icon-li.svg' height='20'/>
   </a>
 

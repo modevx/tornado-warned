@@ -3,7 +3,18 @@ export const Footer = () => {
 
 	return (
 		<footer className='text-center'>
-			&copy; 2022 | tornadoaction.com | All Rights Reserved.
+			<div>
+				<ul>
+					<li></li>
+				</ul>
+				<ul>
+					<li></li>
+				</ul>
+				<ul>
+					<li></li>
+				</ul>
+			</div>
+			<p>&copy; 2022 | tornadoaction.com | All Rights Reserved.</p>
 		</footer>
 	);
 };
