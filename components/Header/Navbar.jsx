@@ -60,8 +60,8 @@ export const Navbar = () => {
 										color='red'
 										className='h-8 w-auto sm:h-10 mr-5'
 									/>
-									<span className='text-lg'>
-										<span>TORNADO ACTION</span>
+									<span className='hidden sm:inline text-lg'>
+										TORNADO ACTION
 									</span>
 								</a>
 							</Link>
