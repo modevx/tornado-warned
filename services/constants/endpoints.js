@@ -29,9 +29,9 @@ const STORM_PREDICTION_CENTER = Object.freeze({
 	rss_feed_all: "/products/spcrss.xml",
 	rss_feed_convective_outlook: "/products/spcacrss.xml",
 	rss_feed_mesoscale_discussions: "/products/spcmdrss.xml",
+	rss_feed_multi_media_briefing: "/products/spcmbrss.xml",
 	rss_feed_particulary_dangerous_situation: "/products/spcpdswwrss.xml",
-	rss_feed_severe_wx_outlook: "/products/spcmbrss.xml",
-	rss_feed_tornado_thunderstorm: "/products/spcwwrss.xml",
+	rss_feed_severe_wx: "/products/spcwwrss.xml",
 	test_base_url: "http://test-www-spc.woc.noaa.gov",
 });
 
