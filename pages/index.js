@@ -9,7 +9,7 @@ const HomeScreen = () => {
 		<PageWrapper>
 			<Hero />
 			{features.map((feature) => {
-				return <FeatureSection featureOBJ={feature} />;
+				return <FeatureSection featureOBJ={feature} key={feature.name} />;
 			})}
 		</PageWrapper>
 	);

@@ -54,7 +54,7 @@ export const Navbar = () => {
 				<nav className='relative flex items-center justify-between sm:h-10'>
 					<div className='flex items-center flex-grow flex-shrink-0 lg:flex-grow-0'>
 						<div className='flex items-center justify-between w-full md:w-auto'>
-							<Link href='/'>
+							<Link href='/' passHref>
 								<a className='flex items-center'>
 									<RiTornadoLine
 										color='red'
@@ -102,7 +102,7 @@ export const Navbar = () => {
 					focus
 					className='absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden'
 				>
-					<div className='rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden'>
+					<div className='rounded-lg shadow-md bg-neutral-700 overflow-hidden'>
 						<div className='px-5 pt-4 flex items-center justify-between'>
 							<div>
 								<RiTornadoLine color='red' className='h-8 w-auto' />
@@ -119,7 +119,7 @@ export const Navbar = () => {
 								<a
 									key={item.name}
 									href={item.href}
-									className='block px-3 py-2 rounded-md text-base font-medium text-white hover:text-red-900 hover:bg-gray-50'
+									className='block px-3 py-2 rounded-md text-base font-medium text-white hover:text-neutral-900 hover:bg-gray-50'
 								>
 									{item.name}
 								</a>

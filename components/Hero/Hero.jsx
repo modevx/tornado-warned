@@ -29,28 +29,26 @@ export const Hero = () => {
 							</p>
 							{/* HERO Buttons */}
 							<div className='mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start'>
-								<CTAButton
-									color=''
-									href='/alerts'
-									label='Check Alerts'
-									isSolid={true}
-								/>
-								<div className='rounded-md shadow'>
-									<a
-										href='#'
-										className='w-full flex items-center justify-center px-8 py-3 text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10'
-									>
-										Check Alerts
-									</a>
-								</div>
-								<div className='mt-3 sm:mt-0 sm:ml-3'>
-									<a
-										href='#'
-										className='w-full flex items-center justify-center px-8 py-3 border-2 border-red-500 text-base font-medium rounded-md text-neutral-200 hover:bg-red-600 md:py-4 md:text-lg md:px-10'
-									>
-										View Outlooks
-									</a>
-								</div>
+								<Link href='/alerts'>
+									<div className='rounded-md shadow'>
+										<a
+											href='#'
+											className='w-full flex items-center justify-center px-8 py-3 shadow border-2 border-red-600 text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 hover:border-red-700 md:py-4 md:text-lg md:px-10'
+										>
+											Check Alerts
+										</a>
+									</div>
+								</Link>
+								<Link href='/outlooks'>
+									<div className='mt-3 sm:mt-0 sm:ml-3'>
+										<a
+											href='\outlooks'
+											className='w-full flex items-center justify-center px-8 py-3 border-2 border-red-600 text-base font-medium rounded-md text-neutral-200 hover:bg-red-700 hover:border-red-700 md:py-4 md:text-lg md:px-10'
+										>
+											View Outlooks
+										</a>
+									</div>
+								</Link>
 							</div>
 						</div>
 					</main>
