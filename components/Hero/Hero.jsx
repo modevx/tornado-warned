@@ -33,7 +33,7 @@ export const Hero = () => {
 									<div className='rounded-md shadow'>
 										<a
 											href='#'
-											className='w-full flex items-center justify-center px-8 py-3 border-2 border-red-600 text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 hover:border-red-700 md:py-4 md:text-lg md:px-10'
+											className='w-full flex items-center justify-center px-8 py-3 shadow border-2 border-red-600 text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 hover:border-red-700 md:py-4 md:text-lg md:px-10'
 										>
 											Check Alerts
 										</a>
