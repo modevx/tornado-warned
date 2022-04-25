@@ -1,4 +1,5 @@
-/* This example requires Tailwind CSS v2.0+ */
+import Link from "next/link";
+import { CTAButton } from "../CTAButton";
 import { Navbar } from "../Header/Navbar";
 import { RiTornadoLine } from "react-icons/ri";
 
@@ -28,10 +29,16 @@ export const Hero = () => {
 							</p>
 							{/* HERO Buttons */}
 							<div className='mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start'>
+								<CTAButton
+									color=''
+									href='/alerts'
+									label='Check Alerts'
+									isSolid={true}
+								/>
 								<div className='rounded-md shadow'>
 									<a
 										href='#'
-										className='w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10'
+										className='w-full flex items-center justify-center px-8 py-3 text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10'
 									>
 										Check Alerts
 									</a>

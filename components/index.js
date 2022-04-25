@@ -1,3 +1,3 @@
 export * from "./BarChart";
-export * from "./Button";
+export * from "./CTAButton";
 export * from "./LocaleDate";
