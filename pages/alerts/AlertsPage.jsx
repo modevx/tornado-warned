@@ -1,7 +1,14 @@
-import React from "react";
+import { AlertSection } from "../../components/Alerts";
+import { PageWrapper } from "../../components/PageWrapper";
+import { Navbar } from "../../components/Header/Navbar";
 
 const AlertsPage = () => {
-	return <div>AlertsPage</div>;
+	return (
+		<PageWrapper>
+			<Navbar />
+			<AlertSection />
+		</PageWrapper>
+	);
 };
 
 export default AlertsPage;

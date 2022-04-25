@@ -9,12 +9,8 @@ import { LocaleDate } from "../LocaleDate";
 import { getAreaDescMAP, formatSenderNameSTR } from "./utils";
 import { STATE_ABBREVIATION_MAP as STATES } from "../constants/states";
 
-import LocalizedFormat from "dayjs/plugin/localizedFormat";
-import dayjs from "dayjs";
-dayjs.extend(LocalizedFormat);
-
 export const AlertItem = ({ activeAlert }) => {
-	// console.log("AlertListItem >>\n", activeAlert.properties.event);
+	console.log(">> AlertListItem >>\n", activeAlert.properties.expires);
 	const {
 		event,
 		messageType,
@@ -58,9 +54,10 @@ export const AlertItem = ({ activeAlert }) => {
 			</div>
 
 			<div className='bg-neutral-700 px-4 py-2 mb-4 rounded'>
-				<p className='text-xs text-right'>
-					Expires: <LocaleDate date={expires} formatString='LT' />
-				</p>
+				<div className='text-xs text-right'>
+					<span>Expires: </span>
+					<LocaleDate dateOBJ={expires} formatSTR='LT' />
+				</div>
 				{areaDescMapARR.map(([state, areas]) => {
 					const joinedAreaDescSTR = areas.join(", ");
 

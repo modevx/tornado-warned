@@ -1,7 +1,13 @@
-import React from "react";
+import { PageWrapper } from "../../components/PageWrapper";
+import { Navbar } from "../../components/Header/Navbar";
 
 const SafetyPage = () => {
-	return <div>PreparePage</div>;
+	return (
+		<PageWrapper>
+			<Navbar />
+			Be prepared. Stay safe.
+		</PageWrapper>
+	);
 };
 
 export default SafetyPage;
