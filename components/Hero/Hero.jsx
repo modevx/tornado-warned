@@ -39,14 +39,16 @@ export const Hero = () => {
 										</a>
 									</div>
 								</Link>
-								<div className='mt-3 sm:mt-0 sm:ml-3'>
-									<a
-										href='#'
-										className='w-full flex items-center justify-center px-8 py-3 border-2 border-red-600 text-base font-medium rounded-md text-neutral-200 hover:bg-red-700 hover:border-red-700 md:py-4 md:text-lg md:px-10'
-									>
-										View Outlooks
-									</a>
-								</div>
+								<Link href='/outlooks'>
+									<div className='mt-3 sm:mt-0 sm:ml-3'>
+										<a
+											href='\outlooks'
+											className='w-full flex items-center justify-center px-8 py-3 border-2 border-red-600 text-base font-medium rounded-md text-neutral-200 hover:bg-red-700 hover:border-red-700 md:py-4 md:text-lg md:px-10'
+										>
+											View Outlooks
+										</a>
+									</div>
+								</Link>
 							</div>
 						</div>
 					</main>
