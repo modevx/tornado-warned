@@ -1,12 +1,16 @@
 import { PageWrapper } from "../components/PageWrapper";
-import { FeaturesSection } from "../components/Features";
 import { Hero } from "../components/Hero";
+
+import { FeatureSection } from "../components/Features";
+import { features } from "../site-data/features";
 
 const HomeScreen = () => {
 	return (
 		<PageWrapper>
 			<Hero />
-			{/* <FeaturesSection /> */}
+			{features.map((feature) => {
+				return <FeatureSection featureOBJ={feature} />;
+			})}
 		</PageWrapper>
 	);
 };
