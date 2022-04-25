@@ -105,7 +105,9 @@ export const Navbar = () => {
 					<div className='rounded-lg shadow-md bg-neutral-700 overflow-hidden'>
 						<div className='px-5 pt-4 flex items-center justify-between'>
 							<div>
-								<RiTornadoLine color='red' className='h-8 w-auto' />
+								<Link href='/'>
+									<RiTornadoLine color='red' className='h-8 w-auto' />
+								</Link>
 							</div>
 							<div className='-mr-2'>
 								<Popover.Button className='bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'>
@@ -116,13 +118,11 @@ export const Navbar = () => {
 						</div>
 						<div className='px-2 pt-2 pb-3 space-y-1'>
 							{navigation.map((item) => (
-								<a
-									key={item.name}
-									href={item.href}
-									className='block px-3 py-2 rounded-md text-base font-medium text-white hover:text-neutral-900 hover:bg-gray-50'
-								>
-									{item.name}
-								</a>
+								<Link href={item.href} key={item.name}>
+									<a className='block px-3 py-2 rounded-md text-base font-medium text-white hover:text-neutral-900 hover:bg-gray-50'>
+										{item.name}
+									</a>
+								</Link>
 							))}
 						</div>
 					</div>
