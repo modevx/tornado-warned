@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { CTAButton } from "../CTAButton";
-import { Navbar } from "../Header/Navbar";
+import { CTAButton, Navbar } from "components";
 import { RiTornadoLine } from "react-icons/ri";
 
 export const Hero = () => {
