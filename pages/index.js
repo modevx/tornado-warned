@@ -1,9 +1,6 @@
 import React from "react";
-import { PageWrapper } from "../components/PageWrapper";
-import { Hero } from "../components/Hero";
-
-import { FeatureSection } from "../components/Features";
-import { features } from "../data/features";
+import { Clock, FeatureSection, Hero, Page } from "components";
+import { features } from "constants";
 
 const HomeScreen = () => {
 	const [outlook, setOutlook] = React.useState();
@@ -19,13 +16,13 @@ const HomeScreen = () => {
 	}, [outlook]);
 
 	return (
-		<PageWrapper>
+		<Page>
 			<Hero />
-			{outlook && outlook}
+			{/* {outlook && outlook.body} */}
 			{features.map((feature) => {
 				return <FeatureSection featureOBJ={feature} key={feature.name} />;
 			})}
-		</PageWrapper>
+		</Page>
 	);
 };
 
