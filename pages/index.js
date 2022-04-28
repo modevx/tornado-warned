@@ -3,7 +3,7 @@ import { PageWrapper } from "../components/PageWrapper";
 import { Hero } from "../components/Hero";
 
 import { FeatureSection } from "../components/Features";
-import { features } from "../site-data/features";
+import { features } from "../data/features";
 
 const HomeScreen = () => {
 	const [outlook, setOutlook] = React.useState();
