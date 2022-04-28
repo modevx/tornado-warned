@@ -1,5 +1,5 @@
-import { Clock } from "../PageWrapper";
-import { Navbar } from "./Navbar";
+import { Clock } from "../Page/Page.test";
+import { Navbar } from "../Navbar/Navbar";
 
 export const Header = () => {
 	return (
