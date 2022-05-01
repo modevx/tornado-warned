@@ -1,5 +1,5 @@
 import { FeatureSection, Hero, Page } from "components";
-import { features } from "constants";
+import { features } from "site-data";
 
 const HomeScreen = () => {
 	return (
