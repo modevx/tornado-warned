@@ -2,19 +2,20 @@ import { Navbar, Page } from "components";
 import { usePublicInformationStatements } from "hooks";
 
 const AlertsPage = () => {
-	usePublicInformationStatements();
-	// let display = "";
+	const { isLoading, isError, error, isSuccess, data } =
+		usePublicInformationStatements();
+	let display = "";
 
-	// if (isLoading) return <p>Loading brah..</p>;
+	if (isLoading) return <p>Loading brah..</p>;
 
-	// if (isError)
-	// 	return (
-	// 		<p>Error getting 2 weeks of tornado warnings >> `${error.message}`</p>
-	// 	);
+	if (isError)
+		return (
+			<p>Error getting 2 weeks of tornado warnings >> `${error.message}`</p>
+		);
 
-	// if (isSuccess) {
-	// 	display = data.data.map((warning) => <p>{JSON.stringify(warning)}</p>);
-	// }
+	if (isSuccess) {
+		display = data.map((warning) => <p>{JSON.stringify(warning)}</p>);
+	}
 
 	return (
 		<Page>

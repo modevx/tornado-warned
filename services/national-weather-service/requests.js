@@ -106,11 +106,9 @@ export const fetchPublicInformationStatements = async () => {
 
 	const regex = /tornado|preliminary damage assessment/i;
 
-	console.log(
-		tornadoWarnedPNSs.filter(({ productText }) => {
-			return regex.test(productText);
-		})
-	);
+	return tornadoWarnedPNSs.filter(({ productText }) => {
+		return regex.test(productText);
+	});
 };
 
 const parseLocation = (WMOidentifier) => {
