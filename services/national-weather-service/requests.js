@@ -104,7 +104,7 @@ export const fetchPublicInformationStatements = async () => {
 		})
 	);
 
-	const regex = /tornado|preliminary damage assessment/i;
+	const regex = /preliminary damage assessment/i;
 
 	return tornadoWarnedPNSs.filter(({ productText }) => {
 		return regex.test(productText);
