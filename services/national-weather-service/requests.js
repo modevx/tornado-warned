@@ -28,15 +28,76 @@ export const fetchTornadoWatches = async () => {
 
 	return responseData.features;
 };
-// used to get PRELIM DAMAGE ASSESSMENTS
+// ----- used to get PRELIM DAMAGE ASSESSMENTS
 export const fetchPublicInformationStatements = async () => {
-	// get last 2 weeks tornado warnings
+	const end_date = new Date();
+	const start_date = new Date(
+		end_date.getFullYear(),
+		end_date.getMonth(),
+		end_date.getDate() - 14
+	);
+	const locationsSET = new Set();
 
-	// parse locations (station call signs) from WMOidentifiers
+	// ***************************************
+	// 1. get tornado warnings from last 2 weeks
+	// ***************************************
+	const res = await getFromService(NATIONAL_WEATHER_SERVICE, "/alerts", {
+		params: {
+			start: start_date,
+			end: end_date,
+			message_type: "alert",
+			event: "Tornado Warning",
+		},
+	});
 
-	// get PNS (Public Info Statements) for tornado-warned locations
+	const warnings = await res.features;
 
-	//
+	// ***************************************
+	// 2. parse locations (station call signs) from WMOidentifiers
+	// ***************************************
+	const rawLocations = await warnings.map((warning) => {
+		const wmoId = warning.properties.parameters.WMOidentifier[0];
 
-	return null;
+		return parseLocation(wmoId);
+	});
+
+	// ***************************************
+	// 3. create unique array of locations (station call signs)
+	// to get PUBLIC INFORMATION STATEMENT ids for
+	// ***************************************
+	await rawLocations.forEach((location) => locationsSET.add(location));
+
+	// ***************************************
+	// 4. get PNS [id]s (Public Info Statements) for tornado-warned locations
+	// ***************************************
+	const pnsPromises = await Promise.all(
+		Array.from(locationsSET).map((location) => {
+			return getFromService(NATIONAL_WEATHER_SERVICE, "/products", {
+				params: {
+					start: start_date,
+					end: end_date,
+					type: "PNS",
+					location: location,
+				},
+			});
+		})
+	);
+
+	const pubInfoStatements = [];
+
+	await pnsPromises.forEach((location) => {
+		const locStatements = location["@graph"];
+
+		if (locStatements.length > 0) {
+			locStatements.forEach(({ id }) => pubInfoStatements.push(id));
+		}
+	});
+
+	console.log(pubInfoStatements);
+};
+
+const parseLocation = (WMOidentifier) => {
+	const splitWmoId = WMOidentifier.split(" ");
+	const station = splitWmoId.slice(1, 2)[0];
+	return station.slice(1);
 };
