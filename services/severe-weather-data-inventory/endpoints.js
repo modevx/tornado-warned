@@ -1,4 +1,12 @@
-const SEVERE_WEATHER_DATA_INVENTORY = Object.freeze({
+export const ENDPOINTS = Object.freeze({
+	base_url: "https://www.ncdc.noaa.gov/swdiws",
+	tornado_vortx_signatures_json: "/json/nx3tvs",
+	mesocyclone_signatures_json: "/json/nx3meso",
+	hail_signatures_json: "/json/nx3hail",
+	storm_cell_structure_information_json: "/json/nx3structure",
+});
+
+export const PARAMS = Object.freeze({
 	outputFormat: {
 		json: "/json",
 		csv: "/csv",
@@ -27,5 +35,3 @@ const SEVERE_WEATHER_DATA_INVENTORY = Object.freeze({
 	},
 	id: "id",
 });
-
-export { SEVERE_WEATHER_DATA_INVENTORY };

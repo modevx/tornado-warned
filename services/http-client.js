@@ -2,18 +2,18 @@ import axios from "axios";
 
 const DEFAULT_TIMEOUT = 5000;
 
-export const fetchFromService = async (httpClient, path = "", options = {}) => {
+export const getFromService = async (httpClient, path = "", options = {}) => {
 	const response = await httpClient.get(path, options);
 	return await response.data;
 };
 
-export const ARCGIS = axios.create({
-	baseURL: "https://mapservices.weather.noaa.gov/vector/rest/services",
+export const NEXT_JS_API = axios.create({
+	baseURL: "/api",
 	timeout: DEFAULT_TIMEOUT,
 });
 
-export const NEXT_JS_API = axios.create({
-	baseURL: "/api",
+export const ARCGIS = axios.create({
+	baseURL: "https://mapservices.weather.noaa.gov/vector/rest/services",
 	timeout: DEFAULT_TIMEOUT,
 });
 
