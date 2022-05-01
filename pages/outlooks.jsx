@@ -2,7 +2,7 @@ import { Navbar } from "@/components/Header";
 import { RSSFeed } from "../components/RSSFeed/RSSFeed";
 import { PageWrapper } from "../components/Page/Page.test";
 import { useSPC_RSS_Feed } from "../hooks";
-import { STORM_PREDICTION_CENTER as SPC_EP } from "../services/constants/endpoints";
+import { STORM_PREDICTION_CENTER as SPC_EP } from "../services/endpoints";
 
 const OutlooksPage = () => {
 	const all = useSPC_RSS_Feed(SPC_EP.rss_feed_all);
