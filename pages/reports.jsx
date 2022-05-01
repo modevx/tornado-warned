@@ -1,6 +1,9 @@
 import { Navbar, Page } from "components";
+import { usePublicInformationStatements } from "hooks";
 
 const AlertsPage = () => {
+	const pns = usePublicInformationStatements();
+
 	return (
 		<Page>
 			<Navbar />
