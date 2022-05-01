@@ -93,7 +93,24 @@ export const fetchPublicInformationStatements = async () => {
 		}
 	});
 
-	console.log(pubInfoStatements);
+	// ***************************************
+	// 5. get PUBLIC INFO STATEMENTS for
+	// tornado-warned locations over last
+	// 2 weeks
+	// ***************************************
+	const tornadoWarnedPNSs = await Promise.all(
+		pubInfoStatements.map((pnsId) => {
+			return getFromService(NATIONAL_WEATHER_SERVICE, `/products/${pnsId}`);
+		})
+	);
+
+	const regex = /tornado|preliminary damage assessment/i;
+
+	console.log(
+		tornadoWarnedPNSs.filter(({ productText }) => {
+			return regex.test(productText);
+		})
+	);
 };
 
 const parseLocation = (WMOidentifier) => {

@@ -7,7 +7,7 @@ export const getFromService = async (httpClient, path = "", options = {}) => {
 		const response = await httpClient.get(path, options);
 		return await response.data;
 	} catch (error) {
-		console.log(error);
+		console.log(">> getFromService() >> \n", error);
 	}
 };
 
