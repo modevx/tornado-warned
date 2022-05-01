@@ -1,8 +1,6 @@
-import { Navbar } from "@/components/Header";
-import { RSSFeed } from "../components/RSSFeed/RSSFeed";
-import { PageWrapper } from "../components/Page/Page.test";
-import { useSPC_RSS_Feed } from "../hooks";
-import { STORM_PREDICTION_CENTER as SPC_EP } from "../services/endpoints";
+import { Navbar, Page, RSSFeed } from "components";
+import { useSPC_RSS_Feed } from "hooks";
+import { STORM_PREDICTION_CENTER as SPC_EP } from "services";
 
 const OutlooksPage = () => {
 	const all = useSPC_RSS_Feed(SPC_EP.rss_feed_all);
@@ -13,7 +11,7 @@ const OutlooksPage = () => {
 	const pds = useSPC_RSS_Feed(SPC_EP.rss_feed_particulary_dangerous_situation);
 
 	return (
-		<PageWrapper>
+		<Page>
 			<Navbar />
 			<RSSFeed
 				rssFeedObjARR={all}
@@ -29,7 +27,7 @@ const OutlooksPage = () => {
 			/>
 			<RSSFeed rssFeedObjARR={severe} sectionTitle='Severe Weather Outlook' />
 			<RSSFeed rssFeedObjARR={convective} sectionTitle='Convective Outlooks' />
-		</PageWrapper>
+		</Page>
 	);
 };
 

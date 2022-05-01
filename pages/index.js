@@ -1,4 +1,4 @@
-import { Clock, FeatureSection, Hero, Page } from "components";
+import { FeatureSection, Hero, Page } from "components";
 import { features } from "constants";
 
 const HomeScreen = () => {
