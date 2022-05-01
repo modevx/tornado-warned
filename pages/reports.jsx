@@ -1,7 +1,7 @@
 import { Navbar, Page } from "components";
 import { usePublicInformationStatements } from "hooks";
 
-const AlertsPage = () => {
+const ReportsPage = () => {
 	const { isLoading, isError, error, isSuccess, data } =
 		usePublicInformationStatements();
 	let display = "";
@@ -14,9 +14,13 @@ const AlertsPage = () => {
 		);
 
 	if (isSuccess) {
-		display = data.map((warning) => (
-			<p>{JSON.stringify(warning.productText)}</p>
-		));
+		display = data.map((warning) =>
+			warning.productText.split(/\n(?:\n)?/).map((text, index) => (
+				<p className='text-xs mb-2' key={`${text.slice(0, 10)}-${index}`}>
+					{text}
+				</p>
+			))
+		);
 	}
 
 	return (
@@ -28,4 +32,4 @@ const AlertsPage = () => {
 	);
 };
 
-export default AlertsPage;
+export default ReportsPage;
