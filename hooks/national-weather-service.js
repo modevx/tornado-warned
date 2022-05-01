@@ -4,6 +4,7 @@ import {
 	fetchActiveTornadoAlerts,
 	fetchActiveTornadoWarnings,
 	fetchTornadoWatches,
+	fetchPublicInformationStatements,
 } from "services/national-weather-service/requests";
 
 export const useActiveTornadoAlerts = () => {
@@ -14,4 +15,10 @@ export const useActiveTornadoWarnings = () => {
 };
 export const useActiveTornadoWatches = () => {
 	return useQuery(KEYS.active_tornado_watches, fetchTornadoWatches);
+};
+export const usePublicInformationStatements = () => {
+	return useQuery(
+		KEYS.public_information_statements,
+		fetchPublicInformationStatements
+	);
 };
