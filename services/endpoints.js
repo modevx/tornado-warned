@@ -1,3 +1,4 @@
+const ARC_GIS = Object.freeze({});
 const NATIONAL_WEATHER_SERVICE = Object.freeze({
 	active_alert_count: "/alerts/active/count",
 	active_alerts: "/alerts/active",
@@ -36,6 +37,7 @@ const STORM_PREDICTION_CENTER = Object.freeze({
 });
 
 export {
+	ARC_GIS,
 	NATIONAL_WEATHER_SERVICE,
 	SEVERE_WEATHER_DATA_INVENTORY,
 	STORM_PREDICTION_CENTER,

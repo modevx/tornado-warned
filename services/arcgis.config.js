@@ -5,11 +5,6 @@ import axios from "axios";
 // ******************************************
 const DEFAULT_TIMEOUT = 5000;
 
-const ARCGIS_HTTP_CLIENT = axios.create({
-	baseURL: "https://mapservices.weather.noaa.gov/vector/rest/services",
-	timeout: DEFAULT_TIMEOUT,
-});
-
 // ******************************************
 // ** ENDPOINTS
 // ******************************************

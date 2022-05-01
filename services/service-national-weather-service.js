@@ -1,5 +1,5 @@
-import { NATIONAL_WEATHER_SERVICE as AXIOS } from "./constants/axios";
-import { NATIONAL_WEATHER_SERVICE as ENDPOINTS } from "./constants/endpoints";
+import { NATIONAL_WEATHER_SERVICE as AXIOS } from "./https-client-config";
+import { NATIONAL_WEATHER_SERVICE as ENDPOINTS } from "./endpoints";
 
 const fetchFromNationalWeatherService = async (axiosInstance, endpoint) => {
 	const raw = await axiosInstance.get(endpoint);
