@@ -4,7 +4,7 @@ import {
 	fetchActiveTornadoAlerts,
 	fetchActiveTornadoWarnings,
 	fetchTornadoWatches,
-} from "../services/national-weather-service";
+} from "../services/service-national-weather-service";
 
 export const useActiveTornadoAlerts = () => {
 	return useQuery(KEYS.active_tornado_alerts, fetchActiveTornadoAlerts);
