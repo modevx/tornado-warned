@@ -7,7 +7,7 @@ import { ChevronUpIcon } from "@heroicons/react/solid";
 
 import { LocaleDate } from "components";
 
-import { getAreaDescMAP, formatSenderNameSTR } from "utils";
+import { getAreaDescMAP, formatSenderNameSTR } from "components/utils";
 import { STATES_MAP } from "constants";
 
 export const TornadoAlertSection = () => {
