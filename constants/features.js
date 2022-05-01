@@ -1,5 +1,6 @@
-import { RiTornadoLine } from "react-icons/ri";
+import { RiNumbersLine, RiTornadoLine } from "react-icons/ri";
 import { ImWarning } from "react-icons/im";
+import { GiDamagedHouse } from "react-icons/gi";
 
 export const features = [
 	{
@@ -18,6 +19,24 @@ export const features = [
 				description:
 					"Conditions are right to produce a tornado.  Double check your safety list and be ready.",
 				icon: ImWarning,
+			},
+		],
+	},
+	{
+		name: "Local Storm Reports",
+		tagline: "Preliminary storm reports from the National Weather Service.",
+		benefits: [
+			{
+				name: "Damage Assessments",
+				description:
+					"Preliminary tornado event damage and F-scale estimates from the National Weather Service.",
+				icon: GiDamagedHouse,
+			},
+			{
+				name: "F-Scale Rating",
+				description:
+					"Approximated F-scale rating based on tornado velocities and damage caused.",
+				icon: RiNumbersLine,
 			},
 		],
 	},
