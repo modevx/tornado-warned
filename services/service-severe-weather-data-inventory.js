@@ -1,6 +1,8 @@
-import { SEVERE_WEATHER_DATA_INVENTORY as CLIENT } from "./https-client-config";
+import {
+	SEVERE_WEATHER_DATA_INVENTORY as CLIENT,
+	fetchFromService,
+} from "./client";
 import { SEVERE_WEATHER_DATA_INVENTORY as ENDPOINTS } from "./endpoints";
-import { fetchFromService } from "./http-client-base-request";
 
 const fetchTornadoVortexSignatures = async (dateRange) => {
 	return await fetchFromService(
