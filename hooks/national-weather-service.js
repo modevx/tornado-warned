@@ -1,10 +1,10 @@
 import { useQuery } from "react-query";
-import { NATIONAL_WEATHER_SERVICE as KEYS } from "../constants/react-query-keys";
+import { NATIONAL_WEATHER_SERVICE as KEYS } from "./react-query-keys";
 import {
 	fetchActiveTornadoAlerts,
 	fetchActiveTornadoWarnings,
 	fetchTornadoWatches,
-} from "../services/service-national-weather-service";
+} from "services/national-weather-service/requests";
 
 export const useActiveTornadoAlerts = () => {
 	return useQuery(KEYS.active_tornado_alerts, fetchActiveTornadoAlerts);
