@@ -1,6 +1,13 @@
-import { RiNumbersLine, RiTornadoLine } from "react-icons/ri";
+import { BiMapAlt, BiTargetLock } from "react-icons/bi";
+import {
+	GiAwareness,
+	GiDamagedHouse,
+	GiDeathSkull,
+	GiModernCity,
+} from "react-icons/gi";
 import { ImWarning } from "react-icons/im";
-import { GiDamagedHouse } from "react-icons/gi";
+import { RiNumbersLine, RiPercentLine, RiTornadoLine } from "react-icons/ri";
+import { TiWeatherStormy } from "react-icons/ti";
 
 export const features = [
 	{
@@ -9,16 +16,22 @@ export const features = [
 			"Tornado warnings and watches straight from the National Weather Service.",
 		benefits: [
 			{
-				name: "Tornado Warnings",
+				name: "Particulary Dangerous Situation",
 				description:
-					"A spotter has confirmed a tornado or radar has picked up rotation.  Either way, if you see one of these for your area, haul ass to the safest place possible.  NOW!",
+					"Visually confirmed, life-threatening tornado on the ground.  Get to a basement or storm shelter NOW.  Your life depends on it.",
+				icon: GiDeathSkull,
+			},
+			{
+				name: "Tornado Warning",
+				description:
+					"Visually or radar-confirmed storm rotation.  Get to the center-most room on the lowest floor A.S.A.P.",
 				icon: RiTornadoLine,
 			},
 			{
-				name: "Tornado Watches",
+				name: "Tornado Watch",
 				description:
-					"Conditions are right to produce a tornado.  Double check your safety list and be ready.",
-				icon: ImWarning,
+					'Conditions are right to produce a tornado.  Double check your safety list and "keep your head on a swivel."',
+				icon: GiAwareness,
 			},
 		],
 	},
@@ -42,19 +55,25 @@ export const features = [
 	},
 	{
 		name: "Severe Weather Outlooks",
-		tagline: "Never get caught off-guard.  Stay proactive.  Stay alive.",
+		tagline:
+			"Never get caught off-guard.  Be proactive and stay aware of building storm systems.",
 		benefits: [
 			{
-				name: "Particulary Dangerous Situations",
+				name: "Severe Thunderstorm Outlooks",
 				description:
-					"A spotter has confirmed a tornado or radar has picked up rotation.  Either way, if you see one of these for your area, haul ass to the safest place possible.  NOW!",
-				icon: RiTornadoLine,
+					"Maps displaying areas at increased risk of severe weather over the next 8 days.",
+				icon: TiWeatherStormy,
 			},
 			{
-				name: "Tornado Watches",
-				description:
-					"Conditions are right to produce a tornado.  Double check your safety list and be ready.",
+				name: "Elevated Risk Levels",
+				description: "Specific risk probablities for high-risk locations.",
 				icon: ImWarning,
+			},
+			{
+				name: "Major Cities",
+				description:
+					"Largely populated areas likely to be impacted by severe weather.",
+				icon: GiModernCity,
 			},
 		],
 	},
