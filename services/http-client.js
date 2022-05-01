@@ -3,8 +3,12 @@ import axios from "axios";
 const DEFAULT_TIMEOUT = 5000;
 
 export const getFromService = async (httpClient, path = "", options = {}) => {
-	const response = await httpClient.get(path, options);
-	return await response.data;
+	try {
+		const response = await httpClient.get(path, options);
+		return await response.data;
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 export const NEXT_JS_API = axios.create({
