@@ -28,3 +28,15 @@ export const fetchTornadoWatches = async () => {
 
 	return responseData.features;
 };
+// used to get PRELIM DAMAGE ASSESSMENTS
+export const fetchPublicInformationStatements = async () => {
+	// get last 2 weeks tornado warnings
+
+	// parse locations (station call signs) from WMOidentifiers
+
+	// get PNS (Public Info Statements) for tornado-warned locations
+
+	//
+
+	return null;
+};
