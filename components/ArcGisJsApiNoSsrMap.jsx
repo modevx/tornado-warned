@@ -2,12 +2,13 @@ import React from "react";
 
 import { SPC_MAP_SERVICE as SPC } from "services/constants/endpoints";
 
+import { TabSelector } from "./TabSelector";
+
 import esriConfig from "@arcgis/core/config";
 import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import GroupLayer from "@arcgis/core/layers/GroupLayer";
-import MyApp from "pages/_app";
 
 const ArcGISMap = () => {
 	const mapRef = React.useRef(null);
@@ -49,6 +50,7 @@ const ArcGISMap = () => {
 	return (
 		<div className='h-96 bg-red-500'>
 			<h1>ArcGIS API for JavaScript Map</h1>
+			<TabSelector />
 			<div ref={mapRef} className='w-full h-96 bg-stone-400'></div>
 		</div>
 	);
