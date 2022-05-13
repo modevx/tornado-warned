@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PageWrapper } from "../components/Page/Page.test";
+import { PageWrapper } from "components";
 
 export default function Custom500() {
 	return (

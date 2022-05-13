@@ -1,5 +1,4 @@
-import { Clock } from "../Page/Page.test";
-import { Navbar } from "../Navbar/Navbar";
+import { Clock, Navbar } from "components";
 
 export const Header = () => {
 	return (
