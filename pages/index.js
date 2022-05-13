@@ -1,12 +1,15 @@
-import React from "react";
-import { PageWrapper } from "../components/PageWrapper";
-import { AlertSection } from "../components/Alerts";
+import { Clock, FeatureSection, Hero, Page } from "components";
+import { features } from "constants";
 
 const HomeScreen = () => {
 	return (
-		<PageWrapper>
-			<AlertSection />
-		</PageWrapper>
+		<Page>
+			<Hero />
+			{features &&
+				features.map((feature) => {
+					return <FeatureSection featureOBJ={feature} key={feature.name} />;
+				})}
+		</Page>
 	);
 };
 
