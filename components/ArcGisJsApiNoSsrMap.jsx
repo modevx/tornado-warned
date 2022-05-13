@@ -7,46 +7,35 @@ import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import GroupLayer from "@arcgis/core/layers/GroupLayer";
+import MyApp from "pages/_app";
 
 const ArcGISMap = () => {
 	const mapRef = React.useRef(null);
 
-	const day1convective = SPC.base_url.concat(SPC.day1.convective);
-	const day2convective = SPC.base_url.concat(SPC.day2.convective);
-	const day3convective = SPC.base_url.concat(SPC.day3.convective);
-	const days4_8_convective = SPC.base_url.concat(SPC.days_4_8.convective);
-	const day4_probabilistic = SPC.base_url.concat(
-		SPC.days_4_8.day4_probabilistic
-	);
-	const day5_probabilistic = SPC.base_url.concat(
-		SPC.days_4_8.day5_probabilistic
-	);
-	const day6_probabilistic = SPC.base_url.concat(
-		SPC.days_4_8.day6_probabilistic
-	);
-	const day7_probabilistic = SPC.base_url.concat(
-		SPC.days_4_8.day7_probabilistic
-	);
-	const day8_probabilistic = SPC.base_url.concat(
-		SPC.days_4_8.day8_probabilistic
-	);
-
-	console.log("URL TEST >> ", day1convective);
+	const day3cat = SPC.base_url.concat(SPC.day3.categorical);
+	const day3prob = SPC.base_url.concat(SPC.day3.probabilistic);
+	const day3sig = SPC.base_url.concat(SPC.day3.significant_severe);
 
 	React.useEffect(() => {
 		if (mapRef.current) {
 			esriConfig.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
-			const map = new Map({ basemap: "arcgis-imagery-standard" });
+			const catLayer = new FeatureLayer({ url: day3cat });
+			const probLayer = new FeatureLayer({ url: day3prob });
+			const sigLayer = new FeatureLayer({ url: day3sig });
 
-			const day1group = new GroupLayer({ url: day1convective });
-			const day2group = new GroupLayer({ url: day2convective });
-			const day3group = new GroupLayer({ url: day3convective });
-			const days4_8_group = new GroupLayer({ url: days4_8_convective });
+			const day3group = new GroupLayer({
+				visibilityMode: "inherited",
+				opacity: 0.5,
+			});
 
-			console.log("GROUP LAYER >> ", day1group);
+			const map = new Map({ basemap: "arcgis-navigation-night" });
 
-			map.add(day1group);
+			day3group.add(catLayer);
+			day3group.add(probLayer);
+			day3group.add(sigLayer);
+
+			map.add(day3group);
 
 			const mapView = new MapView({
 				map: map,
