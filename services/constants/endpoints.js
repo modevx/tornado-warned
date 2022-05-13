@@ -24,6 +24,44 @@ const SEVERE_WEATHER_DATA_INVENTORY = Object.freeze({
 	hail_signatures_json: "/json/nx3hail",
 	storm_cell_structure_information_json: "/json/nx3structure",
 });
+const SPC_OUTLOOK_MAP_SERVICE = Object.freeze({
+	base_url:
+		"https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer",
+	day1: {
+		convective: "/0",
+		categorical: "/1",
+		probabilistic_tornado: "/2",
+		probabilistic_hail: "/3",
+		probabilistic_wind: "/4",
+		significant_tornado: "/5",
+		significant_hail: "/6",
+		significant_wind: "/7",
+	},
+	day2: {
+		convective: "/8",
+		categorical: "/9",
+		probabilistic_tornado: "/10",
+		probabilistic_hail: "/11",
+		probabilistic_wind: "/12",
+		significant_tornado: "/13",
+		significant_hail: "/14",
+		significant_wind: "/15",
+	},
+	day3: {
+		convective: "/16",
+		categorical: "/17",
+		probabilistic: "/18",
+		significant_severe: "/19",
+	},
+	days_4_8: {
+		convective: "/20",
+		day4_probabilistic: "/21",
+		day5_probabilistic: "/22",
+		day6_probabilistic: "/23",
+		day7_probabilistic: "/24",
+		day8_probabilistic: "/25",
+	},
+});
 const STORM_PREDICTION_CENTER = Object.freeze({
 	base_url: "http://www.spc.noaa.gov",
 	rss_feed_all: "/products/spcrss.xml",
@@ -38,5 +76,6 @@ const STORM_PREDICTION_CENTER = Object.freeze({
 export {
 	NATIONAL_WEATHER_SERVICE,
 	SEVERE_WEATHER_DATA_INVENTORY,
+	SPC_OUTLOOK_MAP_SERVICE as SPC_MAP_SERVICE,
 	STORM_PREDICTION_CENTER,
 };
