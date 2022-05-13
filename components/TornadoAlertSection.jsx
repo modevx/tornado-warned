@@ -62,7 +62,6 @@ const List = ({ activeAlerts, eventType }) => {
 		</p>
 	);
 };
-
 const ListItem = ({ activeAlert }) => {
 	console.log(">> AlertListItem >>\n", activeAlert.properties.expires);
 	const {
