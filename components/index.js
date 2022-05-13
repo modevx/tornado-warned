@@ -1,4 +1,4 @@
-export * from "./ArcGISMap";
+// export * from "./ArcGISMap";
 export * from "./Clock";
 export * from "./CTAButton";
 export * from "./Error";
