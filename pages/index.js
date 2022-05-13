@@ -22,12 +22,12 @@ const HomeScreen = () => {
 
 	return (
 		<Page>
-			{/* <Hero />
-			{features &&
+			<Hero />
+			{/* {features &&
 				features.map((feature) => {
 					return <FeatureSection featureOBJ={feature} key={feature.name} />;
 				})} */}
-			{data && <p>{JSON.stringify(data)}</p>}
+			{/* {data && <p>{JSON.stringify(data)}</p>} */}
 		</Page>
 	);
 };
