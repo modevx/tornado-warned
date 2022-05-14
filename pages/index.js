@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { Clock, FeatureSection, Hero, Page } from "components";
 import { features } from "constants";
 // ----- testing ArcGIS + Next.js
-const ArcGISMap = dynamic(() => import("../components/ArcGisJsApiNoSsrMap"), {
+const ArcGISMap = dynamic(() => import("../components/ArcGisSpcOutlookMap"), {
 	ssr: false,
 });
 

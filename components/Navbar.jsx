@@ -12,39 +12,6 @@ function classNames(...classes) {
 const navigation = [
 	{ name: "alerts", href: "/alerts" },
 	{ name: "outlooks", href: "/outlooks" },
-	// { name: "be ready", href: "/safety" },
-	// {
-	// 	name: "safety",
-	// 	href: "/safety",
-	// },
-	// {
-	// 	name: "storm chasing",
-	// 	href: "/storm chasing",
-	// },
-	// {
-	// 	name: "developers",
-	// 	href: "/developers",
-	// },
-	// {
-	// 	name: "images",
-	// 	href: "/images",
-	// },
-	// {
-	// 	name: "interactive",
-	// 	href: "/interactive",
-	// },
-	// {
-	// 	name: "pop culture",
-	// 	href: "/pop culture",
-	// },
-	// {
-	// 	name: "radar",
-	// 	href: "/radar",
-	// },
-	// {
-	// 	name: "stats",
-	// 	href: "/stats",
-	// },
 ];
 
 export const Navbar = () => {
