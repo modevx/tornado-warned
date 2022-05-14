@@ -19,50 +19,43 @@ const ArcGISMap = () => {
 
 	React.useEffect(() => {
 		if (mapRef.current) {
-			const createMap = async () => {
-				// -- CREATE [GROUP_LAYER]
-				// --------------------------
-				// const day3GroupLayer = createGroupLayer(Object.values(SPC.day3));
-				// create FeatureLayer[] from SPC MapService urls
-				const day3FeatureLayerARR = await Object.values(SPC.day3).map(
-					(layerUrl) => new FeatureLayer({ url: layerUrl, opacity: 0.4 })
-				);
+			// ////////////////////////////////
+			// create FeatureLayer array
+			// ////////////////////////////////
+			const featureLayerUrlARR = Object.values(SPC.day1.sub_layers);
+			const featureLayerARR = featureLayerUrlARR.map(
+				(url) => new FeatureLayer(url)
+			);
+			// ////////////////////////////////
+			// create GroupLayer
+			// ////////////////////////////////
+			const groupLayer = new GroupLayer({
+				layers: featureLayerARR,
+				opacity: 0.4,
+			});
 
-				// create ArcGIS GroupLayer
-				// const day3GroupLayer = new GroupLayer({
-				// 	opacity: 0.3,
-				// });
+			// ////////////////////////////////
+			// instantiate new Map
+			// ////////////////////////////////
+			esriConfig.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
+			const map = new Map({
+				basemap: "arcgis-navigation-night",
+			});
+			// ////////////////////////////////
+			// add GroupLayer to Map
+			// ////////////////////////////////
+			map.add(groupLayer);
 
-				// add Feature Layers to GroupLayer
-				// day3FeatureLayerARR.forEach((layer) => day3GroupLayer.add(layer));
-
-				// -- CREATE [MAP]
-				// --------------------------
-				// const map = createMap(process.env.NEXT_PUBLIC_ARCGIS_KEY, day3GroupLayer);
-				// set API key to access [Basemap layer service]
-				esriConfig.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
-				// create ArcGIS Map
-				const map = new Map({ basemap: "arcgis-navigation-night" });
-				// add GroupLayer to Map
-				// map.add(day3GroupLayer);
-
-				// -- *test
-				day3FeatureLayerARR.forEach((layer) => map.add(layer));
-
-				// -- CREATE [MAPVIEW]
-				// --------------------------
-				// const mapView = createMapView(map, mapRef);
-				// create MapView & place it in ref'd Map
-				const mapView = new MapView({
-					map: map,
-					container: mapRef.current,
-					center: [-97.29, 37.7],
-					zoom: 3,
-				});
-			};
+			// ////////////////////////////////
+			// instantiate Map-rendering MapView
+			// ////////////////////////////////
+			const mapView = new MapView({
+				map: map,
+				container: mapRef.current,
+				center: [-97.29, 37.7],
+				zoom: 3,
+			});
 		}
-
-		createMap();
 	});
 
 	return (
