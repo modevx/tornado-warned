@@ -10,8 +10,8 @@ function classNames(...classes) {
 }
 
 const navigation = [
-	{ name: "alerts", href: "/alerts" },
 	{ name: "outlooks", href: "/outlooks" },
+	{ name: "alerts", href: "/alerts" },
 ];
 
 export const Navbar = () => {
