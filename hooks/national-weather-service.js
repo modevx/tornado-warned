@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { NATIONAL_WEATHER_SERVICE as KEYS } from "../constants/react-query-keys";
+import { NATIONAL_WEATHER_SERVICE as KEYS } from "../site_data/react-query-keys";
 import {
 	fetchActiveTornadoAlerts,
 	fetchActiveTornadoWarnings,
