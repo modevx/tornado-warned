@@ -1,7 +1,7 @@
 import { RiTornadoLine } from "react-icons/ri";
 import { ImWarning } from "react-icons/im";
 
-export const features = [
+export const app_features = [
 	{
 		name: "Real-Time Alerts",
 		tagline:
