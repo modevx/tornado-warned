@@ -8,7 +8,7 @@ import MapView from "@arcgis/core/views/MapView";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import GroupLayer from "@arcgis/core/layers/GroupLayer";
 
-const SpcConvectiveOutlookMap = ({ day_layers }) => {
+const SpcConvectiveOutlookMap = () => {
 	const mapRef = React.useRef(null);
 
 	const createFeatureLayerARR = (opacity, subLayersUrlOBJ) => {
@@ -23,7 +23,10 @@ const SpcConvectiveOutlookMap = ({ day_layers }) => {
 	React.useEffect(() => {
 		if (mapRef.current) {
 			// ** create FeatureLayer array
-			const featureLayerARR = createFeatureLayerARR(day_layers);
+			const featureLayerARR = createFeatureLayerARR(
+				0.5,
+				Object.keys((key) => MAP_SERVICE[key].sub_layers)
+			);
 
 			// ** create GroupLayer
 			const groupLayer = new GroupLayer({ layers: featureLayerARR });
@@ -58,7 +61,8 @@ const SpcConvectiveOutlookMap = ({ day_layers }) => {
 export default SpcConvectiveOutlookMap;
 
 // TODO:
-// [ ] display all 8 days of outlooks
+// [x] display all 8 days of outlooks
+// [ ] give layers same transparency
 // [ ] disable zooming
 // [ ] access FeatureLayer data for labeling
 // [ ] add day selector
