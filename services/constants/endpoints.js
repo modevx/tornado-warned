@@ -24,56 +24,7 @@ const SEVERE_WEATHER_DATA_INVENTORY = Object.freeze({
 	hail_signatures_json: "/json/nx3hail",
 	storm_cell_structure_information_json: "/json/nx3structure",
 });
-
-const SPC_OMS_BASE =
-	"https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer";
-const SPC_OUTLOOK_MAP_SERVICE = Object.freeze({
-	base_url:
-		"https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer",
-	day1: {
-		convective_group_layer: `${SPC_OMS_BASE}/0`,
-		sub_layers: {
-			categorical: `${SPC_OMS_BASE}/1`,
-			probabilistic_tornado: `${SPC_OMS_BASE}/2`,
-			probabilistic_hail: `${SPC_OMS_BASE}/3`,
-			probabilistic_wind: `${SPC_OMS_BASE}/4`,
-			significant_tornado: `${SPC_OMS_BASE}/5`,
-			significant_hail: `${SPC_OMS_BASE}/6`,
-			significant_wind: `${SPC_OMS_BASE}/7`,
-		},
-	},
-	day2: {
-		convective_group_layer: `${SPC_OMS_BASE}/8`,
-		sub_layers: {
-			categorical: `${SPC_OMS_BASE}/9`,
-			probabilistic_tornado: `${SPC_OMS_BASE}/10`,
-			probabilistic_hail: `${SPC_OMS_BASE}/11`,
-			probabilistic_wind: `${SPC_OMS_BASE}/12`,
-			significant_tornado: `${SPC_OMS_BASE}/13`,
-			significant_hail: `${SPC_OMS_BASE}/14`,
-			significant_wind: `${SPC_OMS_BASE}/15`,
-		},
-	},
-	day3: {
-		convective_group_layer: `${SPC_OMS_BASE}/16`,
-		sub_layers: {
-			categorical: `${SPC_OMS_BASE}/17`,
-			probabilistic: `${SPC_OMS_BASE}/18`,
-			significant_severe: `${SPC_OMS_BASE}/19`,
-		},
-	},
-	days_4_8: {
-		convective_group_layer: `${SPC_OMS_BASE}/20`,
-		sub_layers: {
-			day4_probabilistic: `${SPC_OMS_BASE}/21`,
-			day5_probabilistic: `${SPC_OMS_BASE}/22`,
-			day6_probabilistic: `${SPC_OMS_BASE}/23`,
-			day7_probabilistic: `${SPC_OMS_BASE}/24`,
-			day8_probabilistic: `${SPC_OMS_BASE}/25`,
-		},
-	},
-});
-const STORM_PREDICTION_CENTER = Object.freeze({
+const SPC_RSS = Object.freeze({
 	base_url: "http://www.spc.noaa.gov",
 	rss_feed_all: "/products/spcrss.xml",
 	rss_feed_convective_outlook: "/products/spcacrss.xml",
@@ -87,6 +38,5 @@ const STORM_PREDICTION_CENTER = Object.freeze({
 export {
 	NATIONAL_WEATHER_SERVICE,
 	SEVERE_WEATHER_DATA_INVENTORY,
-	SPC_OUTLOOK_MAP_SERVICE as SPC_MAP_SERVICE,
-	STORM_PREDICTION_CENTER,
+	SPC_RSS as STORM_PREDICTION_CENTER,
 };
