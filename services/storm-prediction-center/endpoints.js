@@ -1,6 +1,19 @@
 const MAP_SERVICE_BASE =
 	"https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer";
 
+const SPC_RSS = Object.freeze({
+	base_url: "http://www.spc.noaa.gov",
+	rss_feed_all: "/products/spcrss.xml",
+	rss_feed_convective_outlook: "/products/spcacrss.xml",
+	rss_feed_mesoscale_discussions: "/products/spcmdrss.xml",
+	rss_feed_multi_media_briefing: "/products/spcmbrss.xml",
+	rss_feed_particulary_dangerous_situation: "/products/spcpdswwrss.xml",
+	rss_feed_severe_wx: "/products/spcwwrss.xml",
+	test_base_url: "http://test-www-spc.woc.noaa.gov",
+});
+
+export const CONVECTIVE_OUTLOOK_LAYERS = `${MAP_SERVICE_BASE}/layers`;
+
 export const MAP_SERVICE = Object.freeze({
 	day1: {
 		convective_group_layer: `${MAP_SERVICE_BASE}/0`,
