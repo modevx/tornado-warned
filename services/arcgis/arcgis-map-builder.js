@@ -14,7 +14,7 @@ config.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 const app = {};
 let handler;
 
-export const buildMap = async (container, outlookLayers) => {
+export const buildArcGISMap = async (container, outlookLayers) => {
 	if (app.mapView) {
 		app.mapView.destroy();
 	}
