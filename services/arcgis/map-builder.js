@@ -7,7 +7,7 @@ import MapView from "@arcgis/core/views/MapView";
 import ArcGISMap from "@arcgis/core/Map";
 import config from "@arcgis/core/config";
 import GroupLayer from "@arcgis/core/layers/GroupLayer";
-import { group } from "d3";
+import { MAP_SERVICE as SPC } from "services/storm-prediction-center/";
 
 config.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
@@ -15,59 +15,63 @@ const app = {};
 let handler;
 
 export const buildMap = async (container, outlookLayers) => {
-	if (app.mapView) {
-		app.mapView.destroy();
-	}
+  if (app.mapView) {
+    app.mapView.destroy();
+  }
 
-	// const groupLayer = new GroupLayer({ layers: [...outlookLayers] });
+  const layers = Object.values(SPC.day1.sub_layers).map(
+    (url) => new FeatureLayer({ url })
+  );
 
-	// const featureLayer = new FeatureLayer({
-	// 	url: mapServiceUrl,
-	// });
+  // const groupLayer = new GroupLayer({ layers: [...outlookLayers] });
 
-	console.log("map-builder/outlookLayers", outlookLayers);
+  // const featureLayer = new FeatureLayer({
+  // 	url: mapServiceUrl,
+  // });
 
-	const map = new ArcGISMap({
-		basemap: "arcgis-dark-gray",
-		layers: outlookLayers,
-	});
+  console.log("map-builder/outlookLayers", layers);
 
-	const mapView = new MapView({
-		map,
-		container,
-	});
+  const map = new ArcGISMap({
+    basemap: "arcgis-dark-gray",
+    layers: layers,
+  });
 
-	// if (app.savedExtent) {
-	// 	mapView.extent = Extent.fromJSON(app.savedExtent);
-	// } else {
-	// 	groupLayer.when(() => {
-	// 		mapView.extent = groupLayer.fullExtent;
-	// 	});
-	// }
+  const mapView = new MapView({
+    map,
+    container,
+  });
 
-	handler = watch(
-		() => mapView.stationary && mapView.extent,
-		() => {
-			app.savedExtent = mapView.extent.toJSON();
-		}
-	);
-	// [reactiveUtils];
-	mapView.when(async () => {
-		// await groupLayer.when(); // returns "truthy" when [featureLayer] exists
-		const layerList = new LayerList({
-			view: mapView,
-		});
-		mapView.ui.add(layerList, "top-right");
-	});
+  // if (app.savedExtent) {
+  // 	mapView.extent = Extent.fromJSON(app.savedExtent);
+  // } else {
+  // 	groupLayer.when(() => {
+  // 		mapView.extent = groupLayer.fullExtent;
+  // 	});
+  // }
 
-	app.map = map;
-	// app.featureLayer = featureLayer;
-	app.mapView = mapView;
+  handler = watch(
+    () => mapView.stationary && mapView.extent,
+    () => {
+      app.savedExtent = mapView.extent.toJSON();
+    }
+  );
+  // [reactiveUtils];
+  mapView.when(async () => {
+    // await groupLayer.when(); // returns "truthy" when [featureLayer] exists
+    const layerList = new LayerList({
+      view: mapView,
+    });
+    mapView.ui.add(layerList, "top-right");
+  });
 
-	return cleanup;
+  app.map = map;
+  // app.featureLayer = featureLayer;
+  app.mapView = mapView;
+
+  return cleanup;
 };
 
 function cleanup() {
-	handler?.remove();
-	app.mapView?.destroy();
+  handler?.remove();
+  app.mapView?.destroy();
 }
