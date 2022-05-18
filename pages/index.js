@@ -1,21 +1,21 @@
 import dynamic from "next/dynamic";
 import { useQuery } from "react-query";
-import { Clock, FeatureSection, Hero, Page } from "components";
+import { FeatureSection, Hero, Page } from "components";
 import { app_features } from "site_data";
 // ----- testing ArcGIS + Next.js
-const SpcOutlookMap = dynamic(
-	() => import("../components/ConvectiveOutlookMap/ConvectiveOutlookMap"),
-	{
-		ssr: false,
-	}
-);
+// const SpcOutlookMap = dynamic(
+// 	() => import("../components/ConvectiveOutlookMap"),
+// 	{
+// 		ssr: false,
+// 	}
+// );
 import { MAP_SERVICE } from "services/storm-prediction-center/";
 
 const HomeScreen = () => {
 	return (
 		<Page>
 			<Hero />
-			<SpcOutlookMap />
+			{/* <SpcOutlookMap /> */}
 			{/* {features &&
 				features.map((feature) => {
 					return <FeatureSection featureOBJ={feature} key={feature.name} />;

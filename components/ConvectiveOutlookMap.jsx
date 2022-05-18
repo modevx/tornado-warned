@@ -29,7 +29,7 @@ const ConvectiveOutlookMap = () => {
 	};
 
 	async function loadPreBuiltMap(container, outlookLayers) {
-		const { buildMap } = await import("services/arcgis/map-builder");
+		const { buildMap } = await import("services/arcgis-map-builder");
 		return buildMap(container, outlookLayers);
 	}
 
