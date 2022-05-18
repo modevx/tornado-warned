@@ -1,46 +1,26 @@
 import React from "react";
 
-import { MAP_SERVICE as SPC } from "services/spc";
-
 const ConvectiveOutlookMap = () => {
 	const mapRef = React.useRef(null);
-	let catLayer;
 
-	const testLayerFiltering = async () => {
-		const res = await fetch(
-			"https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer/layers?f=json"
-		);
-		const { layers } = await res.json();
-
-		// console.log("ALL LAYERS >>: ", layers);
-
-		const day_1_layers = await layers.filter(
-			(layer) => layer.name.includes("Day 1") && layer.type === "Feature Layer"
-		);
-		return day_1_layers;
-		// console.log("LAYERS >>: ", await day_1_layers);
-	};
-
-	async function loadPreBuiltMap(container, outlookLayers) {
-		const { buildMap } = await import("services/arcgis-map-builder");
-		return buildMap(container, outlookLayers);
+	// >> DYNAMICALLY IMPORTS ARCGIS-BUILT MAP
+	async function loadMap(container) {
+		const { buildArcGISMap } = await import("services/arcgis");
+		return buildArcGISMap(container);
 	}
 
 	React.useEffect(() => {
-		let asyncCleanup;
+		let asyncLoadMapCleanup;
 
-		const layers = async () => {
-			const outlookLayers = await testLayerFiltering();
-
-			// if (mapRef.current && outlookLayers) {
-			// 	asyncCleanup = loadPreBuiltMap(mapRef.current, outlookLayers);
-			// }
-		};
-
-		layers();
+		// VERIFY MAP DIV IN DOM
+		if (mapRef.current) {
+			// BUILDS MAP & RETURNS CLEANUP FUNC (Promise)
+			asyncLoadMapCleanup = loadMap(mapRef.current);
+		}
 
 		return () => {
-			asyncCleanup && asyncCleanup.then((cleanup) => cleanup());
+			// VERIFY RETURNED MAP THEN REMOVE buildMap() [handler] & destroy buildMap() [mapView]
+			asyncLoadMapCleanup && asyncLoadMapCleanup.then((cleanup) => cleanup());
 		};
 	}, [mapRef]);
 
