@@ -9,7 +9,7 @@ import { ImWarning } from "react-icons/im";
 import { RiNumbersLine, RiPercentLine, RiTornadoLine } from "react-icons/ri";
 import { TiWeatherStormy } from "react-icons/ti";
 
-export const features = [
+export const app_features = [
 	{
 		name: "Real-Time Alerts",
 		tagline:

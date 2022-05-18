@@ -24,7 +24,7 @@ const SEVERE_WEATHER_DATA_INVENTORY = Object.freeze({
 	hail_signatures_json: "/json/nx3hail",
 	storm_cell_structure_information_json: "/json/nx3structure",
 });
-const STORM_PREDICTION_CENTER = Object.freeze({
+const SPC_RSS = Object.freeze({
 	base_url: "http://www.spc.noaa.gov",
 	rss_feed_all: "/products/spcrss.xml",
 	rss_feed_convective_outlook: "/products/spcacrss.xml",
@@ -38,5 +38,5 @@ const STORM_PREDICTION_CENTER = Object.freeze({
 export {
 	NATIONAL_WEATHER_SERVICE,
 	SEVERE_WEATHER_DATA_INVENTORY,
-	STORM_PREDICTION_CENTER,
+	SPC_RSS as STORM_PREDICTION_CENTER,
 };
