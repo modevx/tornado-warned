@@ -1,26 +1,20 @@
-import React from "react";
+import { SectionHeading } from "./SectionHeading";
 
 export const RSSFeed = ({ rssFeedObjARR, sectionTitle }) => {
 	const { isLoading, error, data } = rssFeedObjARR;
-	let rssFeedDisplay;
+	let display;
 
-	if (error) {
-		rssFeedDisplay = <p>ERROR: Storm Prediction Center - RSS feed</p>;
-	}
+	if (error) return <p>ERROR: Storm Prediction Center - RSS feed</p>;
 
-	if (isLoading) {
-		rssFeedDisplay = <p>Storm Prediction Center RSS feed loading...</p>;
-	}
+	if (isLoading) return <p>Storm Prediction Center RSS feed loading...</p>;
 
-	if (data) {
-		rssFeedDisplay = (
+	if (data)
+		return (
 			<section className='mb-4 p-4'>
-				<h2 className='text-xl uppercase font-bold text-blue-500'>
-					{sectionTitle}
-				</h2>
+				<SectionHeading title={sectionTitle} />
 				{data.data.map((rssFeed) =>
 					Object.entries(rssFeed).map(([rssFeedKey, value]) => (
-						<div key={rssFeedKey}>
+						<div key={rssFeedKey} className='text-sm'>
 							<span className='font-bold italic text-red-400'>
 								{rssFeedKey}:{" "}
 							</span>
@@ -31,7 +25,4 @@ export const RSSFeed = ({ rssFeedObjARR, sectionTitle }) => {
 				)}
 			</section>
 		);
-	}
-
-	return <>{rssFeedDisplay}</>;
 };
