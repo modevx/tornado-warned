@@ -1,7 +1,12 @@
 import dynamic from "next/dynamic";
 import { useQuery } from "react-query";
-import { FeatureSection, Hero, PageWrapper } from "components";
 import { app_features } from "site_data";
+import {
+	ConvectiveOutlookMap,
+	FeatureSection,
+	Hero,
+	PageWrapper,
+} from "components";
 // ----- testing ArcGIS + Next.js
 // const SpcOutlookMap = dynamic(
 // 	() => import("../components/ConvectiveOutlookMap"),
@@ -14,7 +19,7 @@ const HomeScreen = () => {
 	return (
 		<PageWrapper>
 			<Hero />
-			{/* <SpcOutlookMap /> */}
+			<ConvectiveOutlookMap />
 			{/* {features &&
 				features.map((feature) => {
 					return <FeatureSection featureOBJ={feature} key={feature.name} />;
