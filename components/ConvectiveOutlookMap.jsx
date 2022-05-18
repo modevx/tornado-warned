@@ -1,13 +1,6 @@
 import React from "react";
 
-import { MAP_SERVICE as SPC } from "services/storm-prediction-center/";
-
-import esriConfig from "@arcgis/core/config";
-import Map from "@arcgis/core/Map";
-import MapView from "@arcgis/core/views/MapView";
-import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
-import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
-import GroupLayer from "@arcgis/core/layers/GroupLayer";
+import { MAP_SERVICE as SPC } from "services/spc";
 
 const ConvectiveOutlookMap = () => {
 	const mapRef = React.useRef(null);
@@ -39,9 +32,9 @@ const ConvectiveOutlookMap = () => {
 		const layers = async () => {
 			const outlookLayers = await testLayerFiltering();
 
-			if (mapRef.current && outlookLayers) {
-				asyncCleanup = loadPreBuiltMap(mapRef.current, outlookLayers);
-			}
+			// if (mapRef.current && outlookLayers) {
+			// 	asyncCleanup = loadPreBuiltMap(mapRef.current, outlookLayers);
+			// }
 		};
 
 		layers();
@@ -50,30 +43,6 @@ const ConvectiveOutlookMap = () => {
 			asyncCleanup && asyncCleanup.then((cleanup) => cleanup());
 		};
 	}, [mapRef]);
-
-	// React.useEffect(() => {
-	// 	if (mapRef.current) {
-	// 		catLayer = new FeatureLayer({
-	// 			url: SPC.day1.sub_layers.categorical,
-	// 			id: "catLayer",
-	// 			opacity: 0.4,
-	// 		});
-
-	// 		esriConfig.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
-	// 		const map = new Map({
-	// 			basemap: "arcgis-navigation-night",
-	// 			layers: [catLayer],
-	// 		});
-
-	// 		const mapView = new MapView({
-	// 			map: map,
-	// 			container: mapRef.current,
-	// 			center: [-97.29, 37.7],
-	// 			zoom: 3,
-	// 			spatialReferenceLocked: true,
-	// 		});
-	// 	}
-	// });
 
 	return (
 		<div className='h-96'>

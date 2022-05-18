@@ -11,4 +11,5 @@ export * from "./LocaleDate";
 export * from "./Navbar";
 export * from "./PageWrapper";
 export * from "./RSSFeed";
+export * from "./SectionHeading";
 export * from "./TornadoAlertSection";

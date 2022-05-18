@@ -1,14 +1,14 @@
 import { Footer } from "components";
 import Head from "next/head";
 
-export const Page = ({ children }) => {
+export const PageWrapper = ({ children }) => {
 	return (
 		<div className='bg-stone-700 text-white'>
 			<Meta />
-			<Layout>
+			<PageLayout>
 				<main className='grow flex flex-col h-full'>{children}</main>
 				<Footer />
-			</Layout>
+			</PageLayout>
 		</div>
 	);
 };
@@ -59,6 +59,6 @@ const Meta = () => {
 	);
 };
 
-const Layout = ({ children }) => {
+const PageLayout = ({ children }) => {
 	return <div className='flex flex-col min-h-screen'>{children}</div>;
 };
