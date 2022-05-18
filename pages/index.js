@@ -4,7 +4,7 @@ import { Clock, FeatureSection, Hero, Page } from "components";
 import { app_features } from "site_data";
 // ----- testing ArcGIS + Next.js
 const SpcOutlookMap = dynamic(
-	() => import("../components/SpcConvectiveOutlookMap"),
+	() => import("../components/ConvectiveOutlookMap/ConvectiveOutlookMap"),
 	{
 		ssr: false,
 	}

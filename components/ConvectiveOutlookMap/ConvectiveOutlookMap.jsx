@@ -9,7 +9,7 @@ import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import GroupLayer from "@arcgis/core/layers/GroupLayer";
 
-const SpcConvectiveOutlookMap = () => {
+const ConvectiveOutlookMap = () => {
 	const mapRef = React.useRef(null);
 	let catLayer;
 
@@ -82,4 +82,4 @@ const SpcConvectiveOutlookMap = () => {
 	);
 };
 
-export default SpcConvectiveOutlookMap;
+export default ConvectiveOutlookMap;
