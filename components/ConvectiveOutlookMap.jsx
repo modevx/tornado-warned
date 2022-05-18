@@ -1,6 +1,6 @@
 import React from "react";
 
-const ConvectiveOutlookMap = () => {
+export const ConvectiveOutlookMap = () => {
 	const mapRef = React.useRef(null);
 
 	// dynamically import ArcGIS-built map
@@ -34,5 +34,3 @@ const ConvectiveOutlookMap = () => {
 		</div>
 	);
 };
-
-export default ConvectiveOutlookMap;
