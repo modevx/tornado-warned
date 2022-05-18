@@ -7,71 +7,84 @@ import MapView from "@arcgis/core/views/MapView";
 import ArcGISMap from "@arcgis/core/Map";
 import config from "@arcgis/core/config";
 import GroupLayer from "@arcgis/core/layers/GroupLayer";
+
 import { MAP_SERVICE as SPC } from "services/spc";
 
 config.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
+// holds map values
 const app = {};
-let handler;
+// saves map Extent (x,y coords) anytime the map moves
+let mapExtentHandler;
 
-export const buildArcGISMap = async (container, outlookLayers) => {
+export const buildArcGISMap = async (container) => {
 	if (app.mapView) {
 		app.mapView.destroy();
 	}
 
-	const layers = Object.values(SPC.day1.sub_layers).map(
-		(url) => new FeatureLayer({ url })
-	);
+	const featureLayer = new FeatureLayer({
+		url: "https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer",
+		// layerId: 1
+	});
 
-	// const groupLayer = new GroupLayer({ layers: [...outlookLayers] });
-
-	// const featureLayer = new FeatureLayer({
-	// 	url: mapServiceUrl,
-	// });
-
-	console.log("map-builder/outlookLayers", layers);
-
-	const map = new ArcGISMap({
+	const arcgisMap = new ArcGISMap({
 		basemap: "arcgis-dark-gray",
-		layers: layers,
+		layers: featureLayer,
 	});
 
 	const mapView = new MapView({
-		map,
+		map: arcgisMap,
 		container,
 	});
 
-	// if (app.savedExtent) {
-	// 	mapView.extent = Extent.fromJSON(app.savedExtent);
-	// } else {
-	// 	groupLayer.when(() => {
-	// 		mapView.extent = groupLayer.fullExtent;
-	// 	});
-	// }
+	// sets the visible part of the map equal to the app coords (no animation)
+	// * for animated transition: use .goTo()
+	if (app.savedExtent) {
+		mapView.extent = Extent.fromJSON(app.savedExtent);
+	} else {
+		// if [app] doesn't have a saved Extent, set mapView to worldwide extent once the FeatureLayer loads
+		featureLayer.when(() => {
+			mapView.extent = featureLayer.fullExtent;
+		});
+	}
 
-	handler = watch(
+	// save map coords [Extent] ANYTIME the map moves/changes
+	mapExtentHandler = watch(
 		() => mapView.stationary && mapView.extent,
 		() => {
 			app.savedExtent = mapView.extent.toJSON();
 		}
 	);
-	// [reactiveUtils];
+
+	// when [mapView] loads, add ArcGIS widgets to DOM
 	mapView.when(async () => {
-		// await groupLayer.when(); // returns "truthy" when [featureLayer] exists
+		// wait for [FeatureLayer] load
+		await featureLayer.when();
+
+		const element = document.createElement("div");
+		element.classList.add(
+			"esri-component",
+			"esri-widget",
+			"esri-widget--panel",
+			"item-description"
+		);
+		element.innerHTML = featureLayer.portalItem.description;
+
 		const layerList = new LayerList({
 			view: mapView,
 		});
+
 		mapView.ui.add(layerList, "top-right");
 	});
 
-	app.map = map;
-	// app.featureLayer = featureLayer;
+	app.map = arcgisMap;
+	app.featureLayer = featureLayer;
 	app.mapView = mapView;
 
 	return cleanup;
 };
 
 function cleanup() {
-	handler?.remove();
+	mapExtentHandler?.remove();
 	app.mapView?.destroy();
 }
