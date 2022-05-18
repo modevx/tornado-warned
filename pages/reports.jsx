@@ -4,7 +4,11 @@ const ReportsPage = () => {
 	return (
 		<PageWrapper>
 			<Navbar />
-			<h1>Local Storm Reports and Damage Assessments</h1>
+			<div className='grow flex items-center justify-center'>
+				<h1 className='text-center'>
+					Local Storm Reports and Damage Assessments
+				</h1>
+			</div>
 		</PageWrapper>
 	);
 };

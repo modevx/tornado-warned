@@ -5,7 +5,7 @@ const OutlooksPage = () => {
 		<PageWrapper>
 			<Navbar />
 			<div className='grow flex items-center justify-center'>
-				<h1>Convective Outlooks Page</h1>
+				<h1 className='text-center'>Convective Outlooks Page</h1>
 			</div>
 		</PageWrapper>
 	);
