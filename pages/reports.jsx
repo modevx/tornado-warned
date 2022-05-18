@@ -1,12 +1,12 @@
-import { Navbar, Page } from "components";
+import { Navbar, PageWrapper } from "components";
 
-const AlertsPage = () => {
+const ReportsPage = () => {
 	return (
-		<Page>
+		<PageWrapper>
 			<Navbar />
 			<h1>Local Storm Reports and Damage Assessments</h1>
-		</Page>
+		</PageWrapper>
 	);
 };
 
-export default AlertsPage;
+export default ReportsPage;

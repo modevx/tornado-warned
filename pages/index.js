@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { useQuery } from "react-query";
-import { FeatureSection, Hero, Page } from "components";
+import { FeatureSection, Hero, PageWrapper } from "components";
 import { app_features } from "site_data";
 // ----- testing ArcGIS + Next.js
 // const SpcOutlookMap = dynamic(
@@ -9,18 +9,17 @@ import { app_features } from "site_data";
 // 		ssr: false,
 // 	}
 // );
-import { MAP_SERVICE } from "services/storm-prediction-center/";
 
 const HomeScreen = () => {
 	return (
-		<Page>
+		<PageWrapper>
 			<Hero />
 			{/* <SpcOutlookMap /> */}
 			{/* {features &&
 				features.map((feature) => {
 					return <FeatureSection featureOBJ={feature} key={feature.name} />;
 				})} */}
-		</Page>
+		</PageWrapper>
 	);
 };
 
