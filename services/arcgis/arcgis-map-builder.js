@@ -6,7 +6,10 @@ import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import GroupLayer from "@arcgis/core/layers/GroupLayer";
 import LayerList from "@arcgis/core/widgets/LayerList";
 import { MAP_SERVICE as SPC } from "services/spc";
-
+import {
+	disableViewNavigation,
+	setDefaultUiComponents,
+} from "services/arcgis/utils";
 config.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
 const app = {};
@@ -38,9 +41,6 @@ export const buildArcGISMap = async (container) => {
 	const view = new MapView({
 		map: map,
 		container,
-		ui: {
-			components: ["attribution"],
-		},
 		extent: {
 			xmin: -128,
 			ymin: 18,
@@ -58,6 +58,9 @@ export const buildArcGISMap = async (container) => {
 		const layerList = new LayerList({
 			view,
 		});
+
+		disableViewNavigation(app.view);
+		setDefaultUiComponents(["attribution"], app.view);
 
 		view.ui.add(layerList, "top-left");
 	});
