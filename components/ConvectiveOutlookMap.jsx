@@ -3,7 +3,6 @@ import React from "react";
 export const ConvectiveOutlookMap = () => {
 	const mapRef = React.useRef(null);
 
-	// dynamically import ArcGIS-built map
 	async function loadMap(container) {
 		const { buildArcGISMap } = await import("services/arcgis");
 		return buildArcGISMap(container);
@@ -12,14 +11,11 @@ export const ConvectiveOutlookMap = () => {
 	React.useEffect(() => {
 		let asyncLoadMapCleanup;
 
-		// verify #arcgis-map exists in DOM
 		if (mapRef.current) {
-			// build map & return cleanup() <Promise>
 			asyncLoadMapCleanup = loadMap(mapRef.current);
 		}
 
 		return () => {
-			// if existing map in DOM, .remove() [mapExtentHandler] & .destroy() [mapView]
 			asyncLoadMapCleanup && asyncLoadMapCleanup.then((cleanup) => cleanup());
 		};
 	}, [mapRef]);
