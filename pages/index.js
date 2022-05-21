@@ -7,23 +7,16 @@ import {
 	Hero,
 	PageWrapper,
 } from "components";
-// ----- testing ArcGIS + Next.js
-// const SpcOutlookMap = dynamic(
-// 	() => import("../components/ConvectiveOutlookMap"),
-// 	{
-// 		ssr: false,
-// 	}
-// );
 
 const HomeScreen = () => {
 	return (
 		<PageWrapper>
 			<Hero />
 			<ConvectiveOutlookMap />
-			{/* {features &&
-				features.map((feature) => {
+			{app_features &&
+				app_features.map((feature) => {
 					return <FeatureSection featureOBJ={feature} key={feature.name} />;
-				})} */}
+				})}
 		</PageWrapper>
 	);
 };
