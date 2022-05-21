@@ -38,6 +38,9 @@ export const buildArcGISMap = async (container) => {
 	const view = new MapView({
 		map: map,
 		container,
+		ui: {
+			components: ["attribution"],
+		},
 		extent: {
 			xmin: -128,
 			ymin: 18,
