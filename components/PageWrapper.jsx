@@ -55,6 +55,10 @@ const Meta = () => {
 				name='twitter:description'
 				content='tornadoaction.com | real-time tornado alerts, news, safety info, stats, and graphics.'
 			/>
+			<link
+				rel='stylesheet'
+				href='https://js.arcgis.com/4.23/esri/themes/light/main.css'
+			/>
 		</Head>
 	);
 };
