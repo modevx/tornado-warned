@@ -1,7 +1,4 @@
-const MAP_SERVICE_BASE =
-	"https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer";
-
-const SPC_RSS = Object.freeze({
+export const SPC_RSS = Object.freeze({
 	base_url: "http://www.spc.noaa.gov",
 	rss_feed_all: "/products/spcrss.xml",
 	rss_feed_convective_outlook: "/products/spcacrss.xml",
@@ -12,59 +9,66 @@ const SPC_RSS = Object.freeze({
 	test_base_url: "http://test-www-spc.woc.noaa.gov",
 });
 
-export const CONVECTIVE_OUTLOOK_LAYERS = `${MAP_SERVICE_BASE}/layers`;
+export const CONVECTIVE_OUTLOOK_LAYERS = `${MAP_SERVICE_URLS}/layers`;
 
-export const MAP_SERVICE = Object.freeze({
+const BASE_URL =
+	"https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer";
+
+export const MAP_SERVICE_URLS = Object.freeze({
+	base_url: BASE_URL,
+	layers: `${BASE_URL}/layers?f=json`,
+	webmap_service:
+		"https://mapservices.weather.noaa.gov/vector/services/outlooks/SPC_wx_outlks/MapServer/WMSServer?request=GetCapabilities&service=WMS",
 	day1: {
-		convective_group_layer: `${MAP_SERVICE_BASE}/0`,
+		convective_group_layer: `${BASE_URL}/0`,
 		sub_layers: {
-			categorical: `${MAP_SERVICE_BASE}/1`,
-			probabilistic_tornado: `${MAP_SERVICE_BASE}/2`,
-			probabilistic_hail: `${MAP_SERVICE_BASE}/3`,
-			probabilistic_wind: `${MAP_SERVICE_BASE}/4`,
-			significant_tornado: `${MAP_SERVICE_BASE}/5`,
-			significant_hail: `${MAP_SERVICE_BASE}/6`,
-			significant_wind: `${MAP_SERVICE_BASE}/7`,
+			categorical: `${BASE_URL}/1`,
+			probabilistic_tornado: `${BASE_URL}/2`,
+			probabilistic_hail: `${BASE_URL}/3`,
+			probabilistic_wind: `${BASE_URL}/4`,
+			significant_tornado: `${BASE_URL}/5`,
+			significant_hail: `${BASE_URL}/6`,
+			significant_wind: `${BASE_URL}/7`,
 		},
 	},
 	day2: {
-		convective_group_layer: `${MAP_SERVICE_BASE}/8`,
+		convective_group_layer: `${BASE_URL}/8`,
 		sub_layers: {
-			categorical: `${MAP_SERVICE_BASE}/9`,
-			probabilistic_tornado: `${MAP_SERVICE_BASE}/10`,
-			probabilistic_hail: `${MAP_SERVICE_BASE}/11`,
-			probabilistic_wind: `${MAP_SERVICE_BASE}/12`,
-			significant_tornado: `${MAP_SERVICE_BASE}/13`,
-			significant_hail: `${MAP_SERVICE_BASE}/14`,
-			significant_wind: `${MAP_SERVICE_BASE}/15`,
+			categorical: `${BASE_URL}/9`,
+			probabilistic_tornado: `${BASE_URL}/10`,
+			probabilistic_hail: `${BASE_URL}/11`,
+			probabilistic_wind: `${BASE_URL}/12`,
+			significant_tornado: `${BASE_URL}/13`,
+			significant_hail: `${BASE_URL}/14`,
+			significant_wind: `${BASE_URL}/15`,
 		},
 	},
 	day3: {
-		convective_group_layer: `${MAP_SERVICE_BASE}/16`,
+		convective_group_layer: `${BASE_URL}/16`,
 		sub_layers: {
-			categorical: `${MAP_SERVICE_BASE}/17`,
-			probabilistic: `${MAP_SERVICE_BASE}/18`,
-			significant_severe: `${MAP_SERVICE_BASE}/19`,
+			categorical: `${BASE_URL}/17`,
+			probabilistic: `${BASE_URL}/18`,
+			significant_severe: `${BASE_URL}/19`,
 		},
 	},
 	day4: {
-		convective_group_layer: `${MAP_SERVICE_BASE}/20`,
-		sub_layers: { probabilistic: `${MAP_SERVICE_BASE}/21` },
+		convective_group_layer: `${BASE_URL}/20`,
+		sub_layers: { probabilistic: `${BASE_URL}/21` },
 	},
 	day5: {
-		convective_group_layer: `${MAP_SERVICE_BASE}/20`,
-		sub_layers: { probabilistic: `${MAP_SERVICE_BASE}/22` },
+		convective_group_layer: `${BASE_URL}/20`,
+		sub_layers: { probabilistic: `${BASE_URL}/22` },
 	},
 	day6: {
-		convective_group_layer: `${MAP_SERVICE_BASE}/20`,
-		sub_layers: { probabilistic: `${MAP_SERVICE_BASE}/23` },
+		convective_group_layer: `${BASE_URL}/20`,
+		sub_layers: { probabilistic: `${BASE_URL}/23` },
 	},
 	day7: {
-		convective_group_layer: `${MAP_SERVICE_BASE}/20`,
-		sub_layers: { probabilistic: `${MAP_SERVICE_BASE}/24` },
+		convective_group_layer: `${BASE_URL}/20`,
+		sub_layers: { probabilistic: `${BASE_URL}/24` },
 	},
 	day8: {
-		convective_group_layer: `${MAP_SERVICE_BASE}/20`,
-		sub_layers: { probabilistic: `${MAP_SERVICE_BASE}/25` },
+		convective_group_layer: `${BASE_URL}/20`,
+		sub_layers: { probabilistic: `${BASE_URL}/25` },
 	},
 });
