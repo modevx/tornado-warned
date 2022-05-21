@@ -1,101 +1,63 @@
 import { watch, when } from "@arcgis/core/core/reactiveUtils";
+import config from "@arcgis/core/config";
 import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
-import Extent from "@arcgis/core/geometry/Extent";
-import Expand from "@arcgis/core/widgets/Expand";
-import config from "@arcgis/core/config";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import GroupLayer from "@arcgis/core/layers/GroupLayer";
-import LayerList from "@arcgis/core/widgets/LayerList"; // for filtering Layers
-import UniqueValueRenderer from "@arcgis/core/renderers/UniqueValueRenderer";
-import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
+import LayerList from "@arcgis/core/widgets/LayerList";
 import { MAP_SERVICE as SPC } from "services/spc";
 
 config.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
 const app = {};
-let layer = {};
-let arcgisMap = {};
-let mapView = {};
+const labelClass = {};
 
-const BASE_URL =
-	"https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer";
-const TEST_URL =
-	"https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer";
 export const buildArcGISMap = async (container) => {
 	if (app.mapView) {
 		app.mapView.destroy();
 	}
 
-	const labelClass = {
-		symbol: {
-			type: "text",
-			color: "white",
-			haloColor: "blue",
-			haloSize: 1,
-			font: {
-				family: "Ubuntu Mono",
-				size: 14,
-				weight: "bold",
-			},
-		},
-		labelPlacement: "center-center",
-		labelExpressionInfo: {
-			expression: "$feature.objectid",
-		},
-	};
+	const layers = Object.values(SPC.day1.sub_layers).map(
+		(url) =>
+			new FeatureLayer({
+				url,
+				opacity: 0.2,
+				labelingInfo: [labelClass],
+			})
+	);
 
-	// ArcGIS MapImageLayer - Toggle Sublayer visibility Sample
-	layer = new MapImageLayer({
-		url: `${TEST_URL}`,
-		// sublayers: [
-		// 	{
-		// 		id: 0,
-		// 		visible: true,
-		// 	},
-		// 	{
-		// 		id: 1,
-		// 		visible: true,
-		// 	},
-		// 	{
-		// 		id: 2,
-		// 		visible: true,
-		// 	},
-		// 	{
-		// 		id: 3,
-		// 		visible: true,
-		// 	},
-		// ],
-	});
+	const layer = new GroupLayer({});
 
-	// layer = new GroupLayer({
-	// 	url: `${BASE_URL}`,
-	// 	layerId: 0,
-	// 	subLayers: [{ id: 1 }],
-	// });
+	layer.addMany(layers);
 
-	layer.when(() => console.log("ARCGIS MAP LAYER >> ", layer.toJSON()));
-	layer.when(() => console.log("ARCGIS MAP LAYER PROPERTIES >> ", layer.query));
-
-	arcgisMap = new Map({
+	const map = new Map({
 		basemap: "arcgis-dark-gray",
-		layers: layer,
+		layers: [layer],
 	});
 
-	// arcgisMap.when(() => console.log("ARCGIS MAP >> ", arcgisMap.toJSON()));
-	// console.log("ARCGIS MAP >> ", arcgisMap);
-
-	mapView = new MapView({
-		map: arcgisMap,
-		center: [-98, 38],
+	const view = new MapView({
+		map: map,
 		container,
+		extent: {
+			xmin: -128,
+			ymin: 18,
+			xmax: -60,
+			ymax: 64,
+			spatialReference: 4269,
+		},
 	});
-
-	// mapView.when(() => console.log("ARCGIS MAP VIEW >> ", layer.toJSON()));
 
 	app.layer = layer;
-	app.map = arcgisMap;
-	app.mapView = mapView;
+	app.map = map;
+	app.view = view;
+
+	app.view.when(() => {
+		const layerList = new LayerList({
+			view,
+		});
+
+		view.ui.add(layerList, "top-left");
+	});
 
 	return cleanup;
 };
