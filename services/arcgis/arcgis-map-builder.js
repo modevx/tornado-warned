@@ -20,50 +20,26 @@ import {
 config.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
 const app = {};
-const labelClass = {
-	// autocasts as new LabelClass()
-	symbol: {
-		type: "text", // autocasts as new TextSymbol()
-		color: "green",
-		font: {
-			// autocast as new Font()
-			family: "Playfair Display",
-			size: 12,
-			weight: "bold",
-		},
-	},
-};
+let watchHandle;
 
 export const buildArcGISMap = async (container) => {
 	if (app.mapView) {
 		app.mapView.destroy();
 	}
 
-	const states_feature_layer = new FeatureLayer({
+	const state_lines_layer = new FeatureLayer({
 		url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/2",
 	});
 
-	// all layers as JSON
-	// const spcGeoJSON = await esriRequest(MAP_SERVICE_URLS.layers, {
-	// 	responseType: "json",
-	// })
-	// 	.then((res) => {
-	// 		console.log("geoJSON RESPONSE >>\n", res.data);
-	// 	})
-	// 	.catch((err) => console.log("geoJSON FETCH ERROR >>\n", err));
-
-	// call to WMS endpoint
-	const spc_outlook_wms_layer = new WMSLayer({
+	const spc_wms_outlook_layer = new WMSLayer({
 		title: "SPC Convective Outlooks",
 		url: MAP_SERVICE_URLS.webmap_service,
 		opacity: 0.2,
 	});
-
 	const map = new Map({
 		basemap: "arcgis-dark-gray",
-		layers: [states_feature_layer, spc_outlook_wms_layer],
+		layers: [state_lines_layer, spc_wms_outlook_layer],
 	});
-
 	const view = new MapView({
 		map: map,
 		container,
@@ -76,20 +52,23 @@ export const buildArcGISMap = async (container) => {
 		},
 	});
 
-	app.layer = spc_outlook_wms_layer;
+	// app.layer = spc_wms_outlook_layer;
 	app.map = map;
 	app.view = view;
 
-	app.view.when(async () => {
-		await app.layer.sublayers?.forEach((layer) =>
-			console.log("WMSLayer >>\n", layer.toJSON())
-		);
+	watchHandle = app.view.when().then(async () => {
+		const mapLayers = await app.view.get("map.allLayers");
+		const jsonLayers = await mapLayers.toJSON();
+		jsonLayers.forEach((layer) => console.log(`${layer}\n`, layer.toJSON()));
+		// console.log("app.view >>\n", await mapLayers.toJSON());
+		// app.view?.forEach((layer) => console.log("WMSLayer >>\n", layer.toJSON()));
 
-		app.view.extent = spc_outlook_wms_layer.fullExtent;
+		app.view.extent = spc_wms_outlook_layer.fullExtent;
 
 		const layerList = new LayerList({
 			view,
 		});
+
 		const legend = new Legend({
 			view,
 			basemapLegendVisible: true,
@@ -107,4 +86,5 @@ export const buildArcGISMap = async (container) => {
 
 function cleanup() {
 	app.mapView?.destroy();
+	watchHandle.remove();
 }
