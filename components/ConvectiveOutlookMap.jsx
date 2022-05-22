@@ -30,7 +30,7 @@ export const ConvectiveOutlookMap = () => {
 			<div
 				id='arcgis-map'
 				ref={mapRef}
-				className='w-screen h-96 bg-stone-400 '
+				className='w-screen h-[50vh] bg-stone-400 '
 			></div>
 			<div id='outlook-day-radio-btns' className='absolute top-0 left-0'>
 				<label>
