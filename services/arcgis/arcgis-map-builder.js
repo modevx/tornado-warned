@@ -39,6 +39,10 @@ export const buildArcGISMap = async (container) => {
 		app.mapView.destroy();
 	}
 
+	const states_feature_layer = new FeatureLayer({
+		url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/2",
+	});
+
 	// all layers as JSON
 	// const spcGeoJSON = await esriRequest(MAP_SERVICE_URLS.layers, {
 	// 	responseType: "json",
@@ -49,16 +53,15 @@ export const buildArcGISMap = async (container) => {
 	// 	.catch((err) => console.log("geoJSON FETCH ERROR >>\n", err));
 
 	// call to WMS endpoint
-	const wmsLayer = new WMSLayer({
+	const spc_outlook_wms_layer = new WMSLayer({
+		title: "SPC Convective Outlooks",
 		url: MAP_SERVICE_URLS.webmap_service,
-		opacity: 0.3,
-		// sublayers: [{}],
+		opacity: 0.2,
 	});
 
 	const map = new Map({
 		basemap: "arcgis-dark-gray",
-		// layers: [layer],
-		layers: [wmsLayer],
+		layers: [states_feature_layer, spc_outlook_wms_layer],
 	});
 
 	const view = new MapView({
@@ -73,17 +76,16 @@ export const buildArcGISMap = async (container) => {
 		},
 	});
 
-	app.layer = wmsLayer;
+	app.layer = spc_outlook_wms_layer;
 	app.map = map;
 	app.view = view;
 
 	app.view.when(async () => {
-		console.log(
-			"WMS LAYERS >>\n",
-			await app.layer.sublayers.toJSON()[0].toJSON()
+		await app.layer.sublayers?.forEach((layer) =>
+			console.log("WMSLayer >>\n", layer.toJSON())
 		);
 
-		app.view.extent = wmsLayer.fullExtent;
+		app.view.extent = spc_outlook_wms_layer.fullExtent;
 
 		const layerList = new LayerList({
 			view,
@@ -96,7 +98,7 @@ export const buildArcGISMap = async (container) => {
 		disableViewNavigation(app.view);
 		setDefaultUiComponents(["attribution"], app.view);
 
-		app.view.ui.add(layerList, "top-left");
+		// app.view.ui.add(layerList, "top-left");
 		// app.view.ui.add(legend, "bottom-left");
 	});
 
