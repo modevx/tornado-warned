@@ -17,6 +17,8 @@
 		"d3": "^7.3.0",
 		"dayjs": "^1.11.0",
 		"dotenv": "^14.2.0",
+		"esri-loader": "^3.5.0",
+		"esri-loader-hooks": "^0.4.0",
 		"next": "12.0.8",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
