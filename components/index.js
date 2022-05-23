@@ -1,7 +1,6 @@
 export * from "./ArcGISMap";
 export * from "./Clock";
 export * from "./ConvectiveOutlookMap";
-export * from "./CTAButton";
 export * from "./Error";
 export * from "./FeatureSection";
 export * from "./Footer";
