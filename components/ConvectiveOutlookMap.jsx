@@ -5,7 +5,7 @@ export const ConvectiveOutlookMap = () => {
 	const mapRef = React.useRef(null);
 
 	const handleCheckboxOnChange = (e) => {
-		console.log("SELECTED CHECKBOX", e.target.value);
+		console.log("COMPONENT >>\n", e.target.value);
 	};
 
 	async function loadMap(container) {
@@ -32,13 +32,14 @@ export const ConvectiveOutlookMap = () => {
 				ref={mapRef}
 				className='w-screen h-[50vh] bg-stone-400 '
 			></div>
-			<div id='outlook-day-radio-btns' className='absolute top-0 left-0'>
+			<div id='outlook-radio-btns' className='absolute top-0 left-0'>
 				<label>
 					<input
 						type='radio'
 						id='day-1'
 						name='outlook-day'
-						value='day-1-outlook'
+						value='1'
+						defaultChecked
 						onChange={handleCheckboxOnChange}
 					/>
 					1
@@ -46,9 +47,9 @@ export const ConvectiveOutlookMap = () => {
 				<label>
 					<input
 						type='radio'
-						id='day-1'
+						id='day-2'
 						name='outlook-day'
-						value='day-2-outlook'
+						value='2'
 						onChange={handleCheckboxOnChange}
 					/>
 					2
@@ -56,9 +57,9 @@ export const ConvectiveOutlookMap = () => {
 				<label>
 					<input
 						type='radio'
-						id='day-1'
+						id='day-3'
 						name='outlook-day'
-						value='day-3-outlook'
+						value='3'
 						onChange={handleCheckboxOnChange}
 					/>
 					3
