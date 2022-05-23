@@ -1,5 +1,5 @@
 import React from "react";
 
-export const ArcGISMap = () => {
+export const OutlookMap = () => {
 	return <div>ArcGISMap</div>;
 };

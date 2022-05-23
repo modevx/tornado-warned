@@ -1,8 +1,13 @@
-import { Navbar, PageWrapper } from "components";
-import { ConvectiveOutlookMap } from "components";
+import {
+	Navbar,
+	OutlookMap,
+	OutlookMapView,
+	OutlookSelectBtns,
+	PageWrapper,
+} from "components";
 
 const OutlooksPage = () => {
-	// const [outlookMap, setOutlookMap] = React.useState("day-1-convective");
+	// const [layer, setLayer] = React.useState("1");
 
 	return (
 		<PageWrapper>
@@ -10,12 +15,8 @@ const OutlooksPage = () => {
 			<div className='grow flex items-center justify-center'>
 				<h1 className='text-center'>Convective Outlooks Page</h1>
 			</div>
-			{/* <OutlookMapView map={outlookMap} />
-				<OutlookDaySelect
-					value={{ outlookMap }}
-					onChange={{ setOutlookMap }}
-				/>
-			*/}
+			{/* <OutlookMapView layer_id={layer} /> */}
+			{/* <OutlookSelectBtns value={{ outlookMap }} onChange={{ setLayer }}/> */}
 		</PageWrapper>
 	);
 };
