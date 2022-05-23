@@ -26,38 +26,32 @@ export const OutlookMapView = () => {
 		console.log("COMPONENT >>\n", e.target.value);
 	};
 
-	async function loadMap(container) {
-		const { buildArcGISMap } = await import("services/arcgis");
-		return buildArcGISMap(container);
+	async function createMapView(container) {
+		const { initializeMapView } = await import("services/arcgis");
+		return initializeMapView(container);
 	}
 
 	// run when user clicks an outlook select btn
 	// (or initial page load with day 1 outlook map)
 	React.useEffect(() => {
-		let asyncLoadMapCleanup;
+		let mapView;
 
 		if (ref_mapView.current) {
-			asyncLoadMapCleanup = loadMap(ref_mapView.current);
+			mapView = createMapView(ref_mapView.current);
 		}
 
 		return () => {
-			asyncLoadMapCleanup && asyncLoadMapCleanup.then((cleanup) => cleanup());
+			mapView && mapView.then((cleanup) => cleanup());
 		};
 	}, [ref_mapView]);
 
 	return (
 		<div className='h-96 relative'>
-			<MapView ref={ref_mapView} />
+			<div
+				id='arcgis-map'
+				ref={ref_mapView}
+				className='w-screen h-[50vh] bg-stone-400 '
+			></div>
 		</div>
 	);
 };
-
-const MapView = React.forwardRef(function (props, ref) {
-	return (
-		<div
-			id='arcgis-map'
-			ref={ref}
-			className='w-screen h-[50vh] bg-stone-400 '
-		></div>
-	);
-});
