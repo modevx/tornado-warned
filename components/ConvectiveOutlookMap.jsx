@@ -1,8 +1,8 @@
 import React from "react";
 
 export const ConvectiveOutlookMap = () => {
-	const mapSelectorsRef = React.useRef(null);
-	const mapRef = React.useRef(null);
+	const ref_outlookDayBtns = React.useRef(null);
+	const ref_mapView = React.useRef(null);
 
 	const handleOutlookDaySelect = (e) => {
 		console.log("COMPONENT >>\n", e.target.value);
@@ -16,24 +16,24 @@ export const ConvectiveOutlookMap = () => {
 	React.useEffect(() => {
 		let asyncLoadMapCleanup;
 
-		if (mapRef.current) {
-			asyncLoadMapCleanup = loadMap(mapRef.current);
+		if (ref_mapView.current) {
+			asyncLoadMapCleanup = loadMap(ref_mapView.current);
 		}
 
 		return () => {
 			asyncLoadMapCleanup && asyncLoadMapCleanup.then((cleanup) => cleanup());
 		};
-	}, [mapRef]);
+	}, [ref_mapView]);
 
 	return (
 		<div className='h-96 relative'>
-			{/* <OutlookMapSelectors ref={mapSelectorsRef} /> */}
-			<ArcGISMap ref={mapRef} />
+			<OutlookDayBtns ref={ref_outlookDayBtns} />
+			<MapView ref={ref_mapView} />
 		</div>
 	);
 };
 
-const ArcGISMap = React.forwardRef(function (props, ref) {
+const MapView = React.forwardRef(function (props, ref) {
 	return (
 		<div
 			id='arcgis-map'
@@ -43,7 +43,7 @@ const ArcGISMap = React.forwardRef(function (props, ref) {
 	);
 });
 
-const OutlookMapSelectors = React.forwardRef(function (props, ref) {
+const OutlookDayBtns = React.forwardRef(function (props, ref) {
 	return (
 		<div ref={ref}>
 			<h2>Categorical Outlooks</h2>
