@@ -1,18 +1,13 @@
+import React from "react";
 import dynamic from "next/dynamic";
-import {
-	Navbar,
-	OutlookMap,
-	OutlookMapView,
-	OutlookSelectBtns,
-	PageWrapper,
-} from "components";
+import { Navbar, OutlookMap, OutlookSelectBtns, PageWrapper } from "components";
 
-// const OutlookMapView = dynamic(() =>
-// 	import("../components/OutlookMapView").then((mod) => mod.OutlookMapView)
-// );
+const OutlookMapView = dynamic(() =>
+	import("../components/OutlookMapView").then((mod) => mod.OutlookMapView)
+);
 
 const OutlooksPage = () => {
-	// const [layer, setLayer] = React.useState("1");
+	const [outlookDay, setOutlookDay] = React.useState("1");
 
 	return (
 		<PageWrapper>
@@ -21,9 +16,11 @@ const OutlooksPage = () => {
 				<h1 className='uppercase font-bold text-4xl'>
 					Convective Outlooks Page
 				</h1>
-				<OutlookSelectBtns />
+				<div className='flex space-x-4 items-center'>
+					<OutlookSelectBtns setOutlookDay={setOutlookDay} />
+					{<span>{outlookDay}</span>}
+				</div>
 				<OutlookMapView />
-				{/* <OutlookMapView layer_id={layer} /> */}
 			</div>
 		</PageWrapper>
 	);
