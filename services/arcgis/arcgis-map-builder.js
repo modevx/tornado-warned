@@ -7,6 +7,7 @@ import MapView from "@arcgis/core/views/MapView";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
 
+import Extent from "@arcgis/core/geometry/Extent";
 import LayerList from "@arcgis/core/widgets/LayerList";
 import Legend from "@arcgis/core/widgets/Legend";
 // --
@@ -57,30 +58,30 @@ export const buildArcGISMap = async (container) => {
 	app.map = map;
 	app.view = view;
 
-	whenHandle = app.view.when().then(async () => {
+	whenHandle = mapImageLayer.when().then(async () => {
 		disableViewNavigation(app.view);
 		setDefaultUiComponents(["attribution"], app.view);
 
-		view.goTo(mapImageLayer.fullExtent);
+		await view.goTo(Extent.fromJSON(mapImageLayer.sourceJSON?.initialExtent));
 
-		const outlookRadioBtns = document.getElementById("outlook-radio-btns");
+		const selectOutlookBtns = document.getElementById("select-outlook-btns");
 
-		outlookRadioBtns.addEventListener("change", (e) => {
-			const id = e.target.value;
+		// selectOutlookBtns.addEventListener("change", (e) => {
+		// 	const id = e.target.value;
 
-			if (id) {
-				const sublayer = mapImageLayer.findSublayerById(parseInt(id));
+		// 	if (id) {
+		// 		const sublayer = mapImageLayer.findSublayerById(parseInt(id));
 
-				sublayer.visible = !sublayer.visible;
+		// 		sublayer.visible = !sublayer.visible;
 
-				console.log("layer", sublayer);
+		// 		console.log("layer", sublayer);
 
-				// const node = document.querySelector(
-				// 	".sublayers-item[data-id='" + id + "']"
-				// );
-				// node.classList.toggle("visible-layer");
-			}
-		});
+		// const node = document.querySelector(
+		// 	".sublayers-item[data-id='" + id + "']"
+		// );
+		// node.classList.toggle("visible-layer");
+		// }
+		// });
 	});
 
 	return cleanup;
@@ -88,5 +89,5 @@ export const buildArcGISMap = async (container) => {
 
 function cleanup() {
 	app.view?.destroy();
-	whenHandle?.remove();
+	// whenHandle?.remove();
 }
