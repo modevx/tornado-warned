@@ -9,7 +9,7 @@ export const SPC_RSS = Object.freeze({
 	test_base_url: "http://test-www-spc.woc.noaa.gov",
 });
 
-export const CONVECTIVE_OUTLOOK_LAYERS = `${MAP_SERVICE_URLS}/layers`;
+// export const CONVECTIVE_OUTLOOK_LAYERS = `${MAP_SERVICE_URLS}/layers`;
 
 const BASE_URL =
 	"https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer";

@@ -1,5 +1,5 @@
 import { watch, when } from "@arcgis/core/core/reactiveUtils";
-import config from "@arcgis/core/config";
+import esriConfig from "@arcgis/core/config";
 import esriRequest from "@arcgis/core/request";
 import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
@@ -17,12 +17,12 @@ import {
 	setDefaultUiComponents,
 } from "services/arcgis/utils";
 
-config.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
+esriConfig.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
 const app = {};
 let whenHandle;
 
-export const initializeOutlookMapView = async (container) => {
+export const initializeOutlookMapView = async (container, outlookLayerId) => {
 	if (app.mapView) {
 		app.mapView.destroy();
 	}
@@ -33,9 +33,12 @@ export const initializeOutlookMapView = async (container) => {
 		legendEnabled: false,
 	});
 
+	const spcJson = esriRequest(MAP_SERVICE_URLS.base_url);
+
 	const mapImageLayer = new MapImageLayer({
 		url: MAP_SERVICE_URLS.base_url,
 		opacity: 0.4,
+		sublayers: [{ id: outlookLayerId }],
 	});
 
 	const map = new Map({
@@ -46,6 +49,7 @@ export const initializeOutlookMapView = async (container) => {
 	const view = new MapView({
 		map,
 		container,
+		ui: { components: [] },
 		// extent: {
 		// 	xmin: -109.03,
 		// 	ymin: 19.75,
@@ -58,30 +62,11 @@ export const initializeOutlookMapView = async (container) => {
 	app.map = map;
 	app.view = view;
 
-	whenHandle = mapImageLayer.when().then(async () => {
+	whenHandle = app.view.when().then(async () => {
 		disableViewNavigation(app.view);
 		setDefaultUiComponents(["attribution"], app.view);
 
-		await view.goTo(Extent.fromJSON(mapImageLayer.sourceJSON?.initialExtent));
-
-		const selectOutlookBtns = document.getElementById("select-outlook-btns");
-
-		// selectOutlookBtns.addEventListener("change", (e) => {
-		// 	const id = e.target.value;
-
-		// 	if (id) {
-		// 		const sublayer = mapImageLayer.findSublayerById(parseInt(id));
-
-		// 		sublayer.visible = !sublayer.visible;
-
-		// 		console.log("layer", sublayer);
-
-		// const node = document.querySelector(
-		// 	".sublayers-item[data-id='" + id + "']"
-		// );
-		// node.classList.toggle("visible-layer");
-		// }
-		// });
+		// await view.goTo(Extent.fromJSON(mapImageLayer.sourceJSON?.initialExtent));
 	});
 
 	return cleanup;
@@ -89,5 +74,5 @@ export const initializeOutlookMapView = async (container) => {
 
 function cleanup() {
 	app.view?.destroy();
-	// whenHandle?.remove();
+	whenHandle?.remove();
 }

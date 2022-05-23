@@ -18,7 +18,7 @@ import React from "react";
 // 	return <div ref={mapViewRef} />;
 // };
 
-export const OutlookMapView = () => {
+export const OutlookMapView = ({ outlookLayerId }) => {
 	const ref_outlookDayBtns = React.useRef(null);
 	const ref_mapView = React.useRef(null);
 
@@ -28,7 +28,7 @@ export const OutlookMapView = () => {
 
 	async function createMapView(container) {
 		const { initializeOutlookMapView } = await import("services/arcgis");
-		return initializeOutlookMapView(container);
+		return initializeOutlookMapView(container, outlookLayerId);
 	}
 
 	// create MapView
@@ -49,11 +49,12 @@ export const OutlookMapView = () => {
 
 	return (
 		<div className='h-96 relative'>
-			<div
+			{/* <div
 				id='arcgis-map'
 				ref={ref_mapView}
 				className='w-screen h-[50vh] bg-stone-400 '
-			></div>
+			></div> */}
+			<div className='text-4xl font-bold uppercase'>{`Layer ID: ${outlookLayerId}`}</div>
 		</div>
 	);
 };
