@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"@arcgis/core": "^4.23.7",
+		"@esri/react-arcgis": "^5.2.0",
 		"@headlessui/react": "^1.5.0",
 		"@heroicons/react": "^1.0.6",
 		"axios": "^0.25.0",
