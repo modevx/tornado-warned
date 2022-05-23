@@ -1,5 +1,11 @@
 import dynamic from "next/dynamic";
-import { Navbar, OutlookMap, OutlookSelectBtns, PageWrapper } from "components";
+import {
+	Navbar,
+	OutlookMap,
+	OutlookMapView,
+	OutlookSelectBtns,
+	PageWrapper,
+} from "components";
 
 // const OutlookMapView = dynamic(() =>
 // 	import("../components/OutlookMapView").then((mod) => mod.OutlookMapView)
@@ -11,11 +17,14 @@ const OutlooksPage = () => {
 	return (
 		<PageWrapper>
 			<Navbar />
-			<div className='grow flex items-center justify-center'>
-				<h1 className='text-center'>Convective Outlooks Page</h1>
+			<div className='grow'>
+				<h1 className='uppercase font-bold text-4xl'>
+					Convective Outlooks Page
+				</h1>
+				<OutlookSelectBtns />
+				<OutlookMapView />
+				{/* <OutlookMapView layer_id={layer} /> */}
 			</div>
-			{/* <OutlookMapView layer_id={layer} /> */}
-			{/* <OutlookSelectBtns value={{ outlookMap }} onChange={{ setLayer }}/> */}
 		</PageWrapper>
 	);
 };
