@@ -22,7 +22,7 @@ config.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 const app = {};
 let whenHandle;
 
-export const initializeMapView = async (container) => {
+export const initializeOutlookMapView = async (container) => {
 	if (app.mapView) {
 		app.mapView.destroy();
 	}

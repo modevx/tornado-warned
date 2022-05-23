@@ -7,7 +7,7 @@ const HomeScreen = () => {
 	return (
 		<PageWrapper>
 			<Hero />
-			<OutlookMapView />
+
 			{app_features &&
 				app_features.map((feature) => {
 					return <FeatureSection featureOBJ={feature} key={feature.name} />;

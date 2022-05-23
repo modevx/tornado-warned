@@ -27,12 +27,11 @@ export const OutlookMapView = () => {
 	};
 
 	async function createMapView(container) {
-		const { initializeMapView } = await import("services/arcgis");
-		return initializeMapView(container);
+		const { initializeOutlookMapView } = await import("services/arcgis");
+		return initializeOutlookMapView(container);
 	}
 
-	// run when user clicks an outlook select btn
-	// (or initial page load with day 1 outlook map)
+	// create MapView
 	React.useEffect(() => {
 		let mapView;
 
@@ -44,6 +43,9 @@ export const OutlookMapView = () => {
 			mapView && mapView.then((cleanup) => cleanup());
 		};
 	}, [ref_mapView]);
+
+	// update Map in MapView
+	// React.useEffect(() => {}, [layer]);
 
 	return (
 		<div className='h-96 relative'>
