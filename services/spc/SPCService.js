@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const BASE_URL = {
 	app_api: "/api",
 	map_serv:
