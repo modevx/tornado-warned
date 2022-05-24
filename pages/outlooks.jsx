@@ -1,10 +1,14 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { Navbar, OutlookMap, OutlookSelectBtns, PageWrapper } from "component";
+import { useQuery } from "react-query";
+
+import { Navbar, PageWrapper } from "component/shared";
+import { OutlookMap, OutlookSelectBtns } from "components/feature";
+
 import esriConfig from "@arcgis/core/config";
 import esriRequest from "@arcgis/core/request";
-import { MAP_SERVICE_URLS } from "services/SPC";
-import { useQuery } from "react-query";
+
+import { ENDPOINTS as SPC_URLS } from "services/SPC";
 
 const OutlookMapView = dynamic(() =>
 	import("../components/OutlookMapView").then((mod) => mod.OutlookMapView)
@@ -12,7 +16,7 @@ const OutlookMapView = dynamic(() =>
 
 const useSPCOutlookLayers = () => {
 	return useQuery("spc-outlook-layers", () =>
-		esriRequest(MAP_SERVICE_URLS.layers).then(({ data }) => {
+		esriRequest(SPC_URLS.oms_layers).then(({ data }) => {
 			const layers = [1, 9, 17, 21, 22, 23, 24, 25];
 			return data.layers.filter((layer) => layers.includes(layer.id));
 		})
