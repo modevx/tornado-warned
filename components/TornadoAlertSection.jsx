@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { useActiveTornadoAlerts } from "hooks";
+import { useActiveTornadoAlerts } from "hooks/national-weather-service";
 
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
