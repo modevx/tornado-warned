@@ -1,5 +1,8 @@
 import axios from "axios";
 
+// //////////////////////////////////
+// ENDPOINTS
+// //////////////////////////////////
 const BASE_URL = {
 	app_api: "/api",
 	map_serv:
@@ -9,7 +12,6 @@ const BASE_URL = {
 	web_map_svc:
 		"https://mapservices.weather.noaa.gov/vector/services/outlooks/SPC_wx_outlks/MapServer/WMSServer?request=GetCapabilities&service=WMS",
 };
-
 // "oms" --> outlook map service
 // "wms" --> web map service
 const ENDPOINT = Object.freeze({
@@ -54,8 +56,10 @@ const ENDPOINT = Object.freeze({
 	wms: "",
 });
 
+// //////////////////////////////////
+// CLIENT CONFIG
+// //////////////////////////////////
 const DEFAULT_TIMEOUT = 5000;
-
 const CLIENT = {
 	app_api: axios.create({
 		baseURL: BASE_URL.app_api,
@@ -79,6 +83,9 @@ const CLIENT = {
 	}),
 };
 
+// //////////////////////////////////
+// SERVICE REQUESTS
+// //////////////////////////////////
 export const getSpcRssFeedMesoDiscussions = async () => {
 	return await CLIENT.app_api.post("/spc-rss-feeds", {
 		feed_url: ENDPOINT.rss_mesos,
