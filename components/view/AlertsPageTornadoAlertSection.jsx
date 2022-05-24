@@ -1,17 +1,18 @@
 import React from "react";
 import Image from "next/image";
-import { useTornadoAlertsQuery } from "hooks";
-
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
-
 import { LocaleDate } from "components/shared";
 
+import { useTornadoAlertsQuery } from "services/NWS";
+
 import { getAreaDescMAP, formatSenderNameSTR } from "utils";
-import { STATES_MAP } from "constants";
+import { STATES_MAP } from "site_data";
 
 export const AlertsPageTornadoAlertSection = () => {
-	const { isLoading, error, isSuccess, data } = useTornadoAlertsQuery();
+	const { isLoading, error, isSuccess, data } =
+		useTornadoAlertsQuery("warning");
+
 	let warnings = [],
 		watches = [];
 
