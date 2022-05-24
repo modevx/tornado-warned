@@ -7,12 +7,8 @@ export const Header = () => {
 			className='text-center p-4 sm:flex sm:justify-between sm:items-center'
 		>
 			<div className='mb-4 sm:mb-0 w-full'>
-				{/* <div className='text-3xl font-bold'>
-					TORNADO <span className='text-red-500'>ACTION</span>
-				</div> */}
-				{/* <Navbar /> */}
+				<Navbar />
 			</div>
-			{/* <Clock /> */}
 		</header>
 	);
 };

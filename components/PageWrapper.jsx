@@ -1,11 +1,12 @@
-import { Footer } from "components";
+import { Footer, Header } from "components";
 import Head from "next/head";
 
 export const PageWrapper = ({ children }) => {
 	return (
-		<div className='bg-stone-700 text-white'>
+		<div className='bg-stone-900 text-white'>
 			<Meta />
 			<PageLayout>
+				<Header />
 				<main className='grow flex flex-col h-full'>{children}</main>
 				<Footer />
 			</PageLayout>
