@@ -12,11 +12,11 @@ import {
 const HomeScreen = () => {
 	return (
 		<PageWrapper>
-			<Hero />
+			<HomeHero />
 			<TornadoAlertSection />
 			{app_features &&
 				app_features.map((feature) => {
-					return <FeatureSection featureOBJ={feature} key={feature.name} />;
+					return <HomeFeatureSection featureOBJ={feature} key={feature.name} />;
 				})}
 		</PageWrapper>
 	);
