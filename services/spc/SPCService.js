@@ -87,14 +87,6 @@ const CLIENT = {
 // SERVICE REQUESTS
 // //////////////////////////////////
 export const getSpcRssFeed = async (feedType) => {
-	const feedTypes = ["outlooks", "media", "meso", "pds", "swx"];
-
-	if (!feedTypes.includes(feedType)) {
-		throw new Error(
-			`${feedType} is not a valid RSS Feed.  Valid feed types: 'outlooks', 'media','meso','pds','swx'.`
-		);
-	}
-
 	const feedMap = {
 		outlooks: `${BASE_URL.spc}/products/spcacrss.xml`,
 		media: `${BASE_URL.spc}/products/spcmbrss.xml`,
@@ -103,7 +95,17 @@ export const getSpcRssFeed = async (feedType) => {
 		swx: `${BASE_URL.spc}/products/spcwwrss.xml`,
 	};
 
-	return await CLIENT.app_api.post("/api/spc-rss-feeds", {
+	if (!Object.keys(feedMap).includes(feedType)) {
+		throw new Error(
+			`${feedType} is not a valid RSS Feed.  Valid feed types: ${Object.keys(
+				feedMap
+			).toString()}.`
+		);
+	}
+
+	const { data } = await CLIENT.app_api.post("/api/spc-rss-feeds", {
 		feed_url: feedMap[feedType],
 	});
+
+	return data;
 };
