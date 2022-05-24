@@ -86,28 +86,24 @@ const CLIENT = {
 // //////////////////////////////////
 // SERVICE REQUESTS
 // //////////////////////////////////
-export const getSpcRssFeedMesoDiscussions = async () => {
-	return await CLIENT.app_api.post("/spc-rss-feeds", {
-		feed_url: ENDPOINTS.rss_mesos,
-	});
-};
-export const getSpcRssFeedMultiMediaBriefings = async () => {
-	return await CLIENT.app_api.post("/spc-rss-feeds", {
-		feed_url: ENDPOINTS.rss_mul_med_brfs,
-	});
-};
-export const getSpcRssFeedOutlooks = async () => {
-	return await CLIENT.app_api.post("/spc-rss-feeds", {
-		feed_url: ENDPOINTS.rss_outlooks,
-	});
-};
-export const getSpcRssFeedParticularlyDangerousSituations = async () => {
-	return await CLIENT.app_api.post("/spc-rss-feeds", {
-		feed_url: ENDPOINTS.rss_pds,
-	});
-};
-export const getSpcRssFeedSevereWeather = async () => {
-	return await CLIENT.app_api.post("/spc-rss-feeds", {
-		feed_url: ENDPOINTS.rss_sev_wx,
+export const getSpcRssFeed = async (feedType) => {
+	const feedTypes = ["outlooks", "media", "meso", "pds", "swx"];
+
+	if (!feedTypes.includes(feedType)) {
+		throw new Error(
+			`${feedType} is not a valid RSS Feed.  Valid feed types: 'outlooks', 'media','meso','pds','swx'.`
+		);
+	}
+
+	const feedMap = {
+		outlooks: `${BASE_URL.spc}/products/spcacrss.xml`,
+		media: `${BASE_URL.spc}/products/spcmbrss.xml`,
+		meso: `${BASE_URL.spc}/products/spcmdrss.xml`,
+		pds: `${BASE_URL.spc}/products/spcpdswwrss.xml`,
+		swx: `${BASE_URL.spc}/products/spcwwrss.xml`,
+	};
+
+	return await CLIENT.app_api.post("/api/spc-rss-feeds", {
+		feed_url: feedMap[feedType],
 	});
 };
