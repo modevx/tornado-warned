@@ -1,2 +1,2 @@
-export * from "./useActiveTornadoAlertQuery";
 export * from "./useSpcRssFeedQuery";
+export * from "./useNwsTornadoAlertsQuery";

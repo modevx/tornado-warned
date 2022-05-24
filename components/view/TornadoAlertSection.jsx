@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { useActiveTornadoAlerts } from "hooks/useActiveTornadoAlertQuery";
+import { useNwsTornadoAlertsQuery } from "hooks/useNwsTornadoAlertsQuery";
 
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
@@ -11,7 +11,7 @@ import { getAreaDescMAP, formatSenderNameSTR } from "utils";
 import { STATES_MAP } from "constants";
 
 export const TornadoAlertSection = () => {
-	const { isLoading, error, isSuccess, data } = useActiveTornadoAlerts();
+	const { isLoading, error, isSuccess, data } = useNwsTornadoAlertsQuery();
 	let warnings = [],
 		watches = [];
 
