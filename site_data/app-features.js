@@ -1,5 +1,5 @@
-import { BiMapAlt, BiTargetLock } from "react-icons/bi";
 import { GiAwareness, GiDeathSkull } from "react-icons/gi";
+import { BiMapAlt, BiTargetLock } from "react-icons/bi";
 import { RiTornadoLine } from "react-icons/ri";
 
 export const app_features = [

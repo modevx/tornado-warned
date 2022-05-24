@@ -10,7 +10,7 @@ import { LocaleDate } from "components/shared";
 import { getAreaDescMAP, formatSenderNameSTR } from "utils";
 import { STATES_MAP } from "constants";
 
-export const TornadoAlertSection = () => {
+export const AlertsPageTornadoAlertSection = () => {
 	const { isLoading, error, isSuccess, data } = useNwsTornadoAlertsQuery();
 	let warnings = [],
 		watches = [];

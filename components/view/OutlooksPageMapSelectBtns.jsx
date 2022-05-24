@@ -1,6 +1,6 @@
 import React from "react";
 
-export const OutlookSelectBtns = ({ setOutlookDay }) => {
+export const OutlooksPageMapSelectBtns = ({ setOutlookDay }) => {
 	const updateSelectedOutlook = (outlookDay) => {
 		return () => setOutlookDay(outlookDay);
 	};

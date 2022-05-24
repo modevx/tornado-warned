@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FaChevronDown } from "react-icons/fa";
 
-export const Hero = () => {
+export const HomePageHero = () => {
 	return (
 		<div className='h-[50vh] flex flex-col items-center sm:text-center lg:text-left  border-b-2 border-red-500'>
 			<div className='grow flex flex-col justify-center'>

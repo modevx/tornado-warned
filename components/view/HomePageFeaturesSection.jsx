@@ -8,7 +8,7 @@ import {
 import { RiTornadoLine } from "react-icons/ri";
 import { ImWarning } from "react-icons/im";
 
-export const FeatureSection = ({ featureOBJ }) => {
+export const HomePageFeatureSection = ({ featureOBJ }) => {
 	const { benefits: benefitsObjARR } = featureOBJ;
 	// {titleSTR, taglineSTR, benefitsObjARR}
 	return (
