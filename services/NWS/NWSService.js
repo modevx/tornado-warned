@@ -1,5 +1,4 @@
 import axios from "axios";
-import { ENDPOINTS } from "services/SPC";
 
 // //////////////////////////////////
 // ENDPOINTS
