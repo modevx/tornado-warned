@@ -1,9 +1,15 @@
-const SEVERE_WEATHER_DATA_INVENTORY = Object.freeze({
-	base_url: "https://www.ncdc.noaa.gov/swdiws",
-	tornado_vortx_signatures_json: "/json/nx3tvs",
-	mesocyclone_signatures_json: "/json/nx3meso",
-	hail_signatures_json: "/json/nx3hail",
-	storm_cell_structure_information_json: "/json/nx3structure",
+import axios from "axios";
+
+// //////////////////////////////////
+// ENDPOINTS
+// //////////////////////////////////
+const BASE_URL = "https://www.ncdc.noaa.gov/swdiws";
+
+const ENDPOINT = Object.freeze({
+	hail_json: `${BASE_URL}/json/nx3hail`,
+	meso_json: `${BASE_URL}/json/nx3meso`,
+	strm_cell_json: `${BASE_URL}/json/nx3structure`,
+	tvs_json: `${BASE_URL}/json/nx3tvs`,
 });
 
 const SEVERE_WEATHER_DATA_INVENTORY = Object.freeze({
@@ -35,10 +41,39 @@ const SEVERE_WEATHER_DATA_INVENTORY = Object.freeze({
 	},
 	id: "id",
 });
+// //////////////////////////////////
+// CLIENT CONFIG
+// //////////////////////////////////
+const DEFAULT_TIMEOUT = 5000;
 
-const SEVERE_WEATHER_DATA_INVENTORY = axios.create({
-	baseURL: "https://www.ncdc.noaa.gov/swdiws",
+const CLIENT = axios.create({
+	baseURL: BASE_URL,
 	timeout: DEFAULT_TIMEOUT,
 });
 
-const fetchTornadoVortexSignatures = async (dateRange) => {};
+// //////////////////////////////////
+// SERVICE REQUESTS
+// //////////////////////////////////
+// * format options:
+// csv, kmz, json, shp, xml
+export const getSevereWeatherDataInventoryProducts = async ({
+	outputFormat,
+	dataset
+	dateRange,
+}) => {
+	const validOutputFormats = ["json", "csv", "xml", "shp", "kmz"];
+	const validDatasets = ["nx3tvs", "nx3meso", "nx3hail", "nx3structure", "plsr", "warn"]
+
+	if(!validOutputFormats.includes(outputFormat)) {
+		throw new Error(`${outputFormat} is not a valid output format.  Valid formats: "json", "csv", "xml", "shp", "kmz".`)
+	}
+
+	if(!validDatasets.includes(dataset)) {
+		throw new Error(`${dataset} is not a valid dataset.  Valid datasets: "nx3tvs", "nx3meso", "nx3hail", "nx3structure", "plsr", and "warn".`)
+	}
+
+	const res = await CLIENT.get(
+		`${BASE_URL}/${outputFormat}/${dataset}/${dateRange}`
+	);
+	return res.data;
+};
