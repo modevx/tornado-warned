@@ -1,109 +1,104 @@
-import { STORM_PREDICTION_CENTER as EP } from "./constants/endpoints";
-import { STORM_PREDICTION_CENTER as AXIOS } from "./constants/axios";
+const BASE_URL = {
+	app_api: "/api",
+	map_serv:
+		"https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer",
+	spc: "http://www.spc.noaa.gov",
+	spc_test: "http://test-www-spc.woc.noaa.gov",
+	web_map_svc:
+		"https://mapservices.weather.noaa.gov/vector/services/outlooks/SPC_wx_outlks/MapServer/WMSServer?request=GetCapabilities&service=WMS",
+};
 
-const NEXT_JS_API = axios.create({
-	baseURL: "/api",
-	timeout: DEFAULT_TIMEOUT,
+// "oms" --> outlook map service
+// "wms" --> web map service
+const ENDPOINT = Object.freeze({
+	oms: BASE_URL.map_serv,
+	oms_layers: `${BASE_URL.map_serv}/layers`,
+	oms_1_convective_outlook: `${BASE_URL.map_serv}/0`,
+	oms_1_categorical: `${BASE_URL.map_serv}/1`,
+	oms_1_significant_tornado: `${BASE_URL.map_serv}/2`,
+	oms_1_probabilistic_tornado: `${BASE_URL.map_serv}/3`,
+	oms_1_significant_hail: `${BASE_URL.map_serv}/4`,
+	oms_1_probabilistic_hail: `${BASE_URL.map_serv}/5`,
+	oms_1_significant_wind: `${BASE_URL.map_serv}/6`,
+	oms_1_probabilistic_wind: `${BASE_URL.map_serv}/7`,
+	oms_2_convective_outlook: `${BASE_URL.map_serv}/8`,
+	oms_2_categorical: `${BASE_URL.map_serv}/9`,
+	oms_2_significant_tornado: `${BASE_URL.map_serv}/10`,
+	oms_2_probabilistic_tornado: `${BASE_URL.map_serv}/11`,
+	oms_2_significant_hail: `${BASE_URL.map_serv}/12`,
+	oms_2_probabilistic_hail: `${BASE_URL.map_serv}/13`,
+	oms_2_significant_wind: `${BASE_URL.map_serv}/14`,
+	oms_2_probabilistic_wind: `${BASE_URL.map_serv}/15`,
+	oms_3_convective_outlook: `${BASE_URL.map_serv}/16`,
+	oms_3_categorical: `${BASE_URL.map_serv}/17`,
+	oms_3_significant: `${BASE_URL.map_serv}/19`,
+	oms_3_probabilistic: `${BASE_URL.map_serv}/18`,
+	oms_4_8_convective_outlooks: `${BASE_URL.map_serv}/20`,
+	oms_4_probabilistic: `${BASE_URL.map_serv}/21`,
+	oms_5_probabilistic: `${BASE_URL.map_serv}/22`,
+	oms_6_probabilistic: `${BASE_URL.map_serv}/23`,
+	oms_7_probabilistic: `${BASE_URL.map_serv}/24`,
+	oms_8_probabilistic: `${BASE_URL.map_serv}/25`,
+	rss_outlooks: `${BASE_URL.spc}/products/spcacrss.xml`,
+	rss_mesos: `${BASE_URL.spc}/products/spcmdrss.xml`,
+	rss_mul_med_brfs: `${BASE_URL.spc}/products/spcmbrss.xml`,
+	rss_pds: `${BASE_URL.spc}/products/spcpdswwrss.xml`,
+	rss_sev_wx: `${BASE_URL.spc}/products/spcwwrss.xml`,
+	rss_test_outlooks: `${BASE_URL.spc_test}/products/spcacrss.xml`,
+	rss_test_mesos: `${BASE_URL.spc_test}/products/spcmdrss.xml`,
+	rss_test_mul_med_brfs: `${BASE_URL.spc_test}/products/spcmbrss.xml`,
+	rss_test_pds: `${BASE_URL.spc_test}/products/spcpdswwrss.xml`,
+	rss_test_sev_wx: `${BASE_URL.spc_test}/products/spcwwrss.xml`,
+	wms: "",
 });
 
-const STORM_PREDICTION_CENTER = {
-	base: axios.create({
-		baseURL: "http://www.spc.noaa.gov",
+const DEFAULT_TIMEOUT = 5000;
+
+const CLIENT = {
+	app_api: axios.create({
+		baseURL: BASE_URL.app_api,
 		timeout: DEFAULT_TIMEOUT,
 	}),
-	cors: NEXT_JS_API,
-	test_base: axios.create({
-		baseURL: "http://test-www-spc.woc.noaa.gov",
+	map_service: axios.create({
+		baseURL: BASE_URL.map_serv,
+		timeout: DEFAULT_TIMEOUT,
+	}),
+	spc: axios.create({
+		baseURL: BASE_URL.spc,
+		timeout: DEFAULT_TIMEOUT,
+	}),
+	spc_test: axios.create({
+		baseURL: BASE_URL.spc_test,
+		timeout: DEFAULT_TIMEOUT,
+	}),
+	web_map_svc: axios.create({
+		baseURL: BASE_URL.web_map_svc,
 		timeout: DEFAULT_TIMEOUT,
 	}),
 };
 
-const SPC_RSS = Object.freeze({
-	base_url: "http://www.spc.noaa.gov",
-	rss_feed_all: "/products/spcrss.xml",
-	rss_feed_convective_outlook: "/products/spcacrss.xml",
-	rss_feed_mesoscale_discussions: "/products/spcmdrss.xml",
-	rss_feed_multi_media_briefing: "/products/spcmbrss.xml",
-	rss_feed_particulary_dangerous_situation: "/products/spcpdswwrss.xml",
-	rss_feed_severe_wx: "/products/spcwwrss.xml",
-	test_base_url: "http://test-www-spc.woc.noaa.gov",
-});
-
-export const SPC_RSS = Object.freeze({
-	base_url: "http://www.spc.noaa.gov",
-	rss_feed_all: "/products/spcrss.xml",
-	rss_feed_convective_outlook: "/products/spcacrss.xml",
-	rss_feed_mesoscale_discussions: "/products/spcmdrss.xml",
-	rss_feed_multi_media_briefing: "/products/spcmbrss.xml",
-	rss_feed_particulary_dangerous_situation: "/products/spcpdswwrss.xml",
-	rss_feed_severe_wx: "/products/spcwwrss.xml",
-	test_base_url: "http://test-www-spc.woc.noaa.gov",
-});
-
-const BASE_URL =
-	"https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer";
-
-export const MAP_SERVICE_URLS = Object.freeze({
-	base_url: BASE_URL,
-	layers: `${BASE_URL}/layers?f=json`,
-	webmap_service:
-		"https://mapservices.weather.noaa.gov/vector/services/outlooks/SPC_wx_outlks/MapServer/WMSServer?request=GetCapabilities&service=WMS",
-	day1: {
-		convective_group_layer: `${BASE_URL}/0`,
-		sub_layers: {
-			categorical: `${BASE_URL}/1`,
-			probabilistic_tornado: `${BASE_URL}/2`,
-			probabilistic_hail: `${BASE_URL}/3`,
-			probabilistic_wind: `${BASE_URL}/4`,
-			significant_tornado: `${BASE_URL}/5`,
-			significant_hail: `${BASE_URL}/6`,
-			significant_wind: `${BASE_URL}/7`,
-		},
-	},
-	day2: {
-		convective_group_layer: `${BASE_URL}/8`,
-		sub_layers: {
-			categorical: `${BASE_URL}/9`,
-			probabilistic_tornado: `${BASE_URL}/10`,
-			probabilistic_hail: `${BASE_URL}/11`,
-			probabilistic_wind: `${BASE_URL}/12`,
-			significant_tornado: `${BASE_URL}/13`,
-			significant_hail: `${BASE_URL}/14`,
-			significant_wind: `${BASE_URL}/15`,
-		},
-	},
-	day3: {
-		convective_group_layer: `${BASE_URL}/16`,
-		sub_layers: {
-			categorical: `${BASE_URL}/17`,
-			probabilistic: `${BASE_URL}/18`,
-			significant_severe: `${BASE_URL}/19`,
-		},
-	},
-	day4: {
-		convective_group_layer: `${BASE_URL}/20`,
-		sub_layers: { probabilistic: `${BASE_URL}/21` },
-	},
-	day5: {
-		convective_group_layer: `${BASE_URL}/20`,
-		sub_layers: { probabilistic: `${BASE_URL}/22` },
-	},
-	day6: {
-		convective_group_layer: `${BASE_URL}/20`,
-		sub_layers: { probabilistic: `${BASE_URL}/23` },
-	},
-	day7: {
-		convective_group_layer: `${BASE_URL}/20`,
-		sub_layers: { probabilistic: `${BASE_URL}/24` },
-	},
-	day8: {
-		convective_group_layer: `${BASE_URL}/20`,
-		sub_layers: { probabilistic: `${BASE_URL}/25` },
-	},
-});
-
-export const fetchSpcRssFeed = async (spcRssPath) => {
-	return await AXIOS.cors.post("/storm-prediction-center-rss-feeds", {
-		rssFeedUrl: EP.base_url.concat(spcRssPath),
+export const getSpcRssFeedMesoDiscussions = async () => {
+	return await CLIENT.app_api.post("/spc-rss-feeds", {
+		feed_url: ENDPOINT.rss_mesos,
+	});
+};
+export const getSpcRssFeedMultiMediaBriefings = async () => {
+	return await CLIENT.app_api.post("/spc-rss-feeds", {
+		feed_url: ENDPOINT.rss_mul_med_brfs,
+	});
+};
+export const getSpcRssFeedOutlooks = async () => {
+	return await CLIENT.app_api.post("/spc-rss-feeds", {
+		feed_url: ENDPOINT.rss_outlooks,
+	});
+};
+export const getSpcRssFeedParticularlyDangerousSituations = async () => {
+	return await CLIENT.app_api.post("/spc-rss-feeds", {
+		feed_url: ENDPOINT.rss_pds,
+	});
+};
+export const getSpcRssFeedSevereWeather = async () => {
+	return await CLIENT.app_api.post("/spc-rss-feeds", {
+		feed_url: ENDPOINT.rss_sev_wx,
 	});
 };

@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
 	await runMiddleware(req, res, corsMiddleware);
 
-	await rss_parser.parseURL(req.body.rssFeedUrl, (error, feed) => {
+	await rss_parser.parseURL(req.body.feed_url, (error, feed) => {
 		if (error) throw error;
 		res.status(200).json(feed.items);
 	});
