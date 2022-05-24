@@ -1,4 +1,4 @@
-import { PageWrapper } from "components";
+import { PageWrapper } from "component";
 
 export default function Custom404() {
 	return (

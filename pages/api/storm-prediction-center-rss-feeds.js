@@ -1,6 +1,5 @@
 import Cors from "cors";
 import RSSParser from "rss-parser";
-import { STORM_PREDICTION_CENTER as SPC } from "services/constants/endpoints";
 
 export default async function handler(req, res) {
 	let rss_parser = new RSSParser();

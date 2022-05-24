@@ -7,7 +7,7 @@ import {
 	Hero,
 	PageWrapper,
 	TornadoAlertSection,
-} from "components";
+} from "component";
 
 const HomeScreen = () => {
 	return (

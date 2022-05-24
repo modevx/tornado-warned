@@ -1,13 +1,13 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { Navbar, OutlookMap, OutlookSelectBtns, PageWrapper } from "components";
+import { Navbar, OutlookMap, OutlookSelectBtns, PageWrapper } from "component";
 import esriConfig from "@arcgis/core/config";
 import esriRequest from "@arcgis/core/request";
-import { MAP_SERVICE_URLS } from "services/spc";
+import { MAP_SERVICE_URLS } from "services/SPC";
 import { useQuery } from "react-query";
 
 const OutlookMapView = dynamic(() =>
-	import("../components/OutlookMapView").then((mod) => mod.OutlookMapView)
+	import("../component/OutlookMapView").then((mod) => mod.OutlookMapView)
 );
 
 const useSPCOutlookLayers = () => {

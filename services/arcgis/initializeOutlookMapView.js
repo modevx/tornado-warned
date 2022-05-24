@@ -11,11 +11,11 @@ import Extent from "@arcgis/core/geometry/Extent";
 import LayerList from "@arcgis/core/widgets/LayerList";
 import Legend from "@arcgis/core/widgets/Legend";
 // --
-import { MAP_SERVICE_URLS } from "services/spc";
+import { MAP_SERVICE_URLS } from "services/SPC";
 import {
 	disableViewNavigation,
 	setDefaultUiComponents,
-} from "services/arcgis/utils";
+} from "services/ArcGIS/helpers";
 
 esriConfig.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
