@@ -5,7 +5,7 @@ import { useActiveTornadoAlerts } from "hooks/useActiveTornadoAlertQuery";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 
-import { LocaleDate } from "component";
+import { LocaleDate } from "components/shared";
 
 import { getAreaDescMAP, formatSenderNameSTR } from "utils";
 import { STATES_MAP } from "constants";

@@ -7,7 +7,7 @@ import { MAP_SERVICE_URLS } from "services/SPC";
 import { useQuery } from "react-query";
 
 const OutlookMapView = dynamic(() =>
-	import("../component/OutlookMapView").then((mod) => mod.OutlookMapView)
+	import("../components/OutlookMapView").then((mod) => mod.OutlookMapView)
 );
 
 const useSPCOutlookLayers = () => {

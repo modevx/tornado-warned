@@ -1,4 +1,4 @@
-import { Footer, Header } from "component/shared";
+import { Footer, Header } from "components/shared";
 import Head from "next/head";
 
 export const PageWrapper = ({ children }) => {

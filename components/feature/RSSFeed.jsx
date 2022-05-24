@@ -1,4 +1,4 @@
-import { SectionHeading } from "component/shared";
+import { SectionHeading } from "components/shared";
 
 export const RSSFeed = ({ rssFeedObjARR, sectionTitle }) => {
 	const { isLoading, error, data } = rssFeedObjARR;
