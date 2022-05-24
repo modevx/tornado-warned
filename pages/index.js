@@ -1,13 +1,19 @@
 import dynamic from "next/dynamic";
 import { useQuery } from "react-query";
 import { app_features } from "site_data";
-import { OutlookMapView, FeatureSection, Hero, PageWrapper } from "components";
+import {
+	OutlookMapView,
+	FeatureSection,
+	Hero,
+	PageWrapper,
+	TornadoAlertSection,
+} from "components";
 
 const HomeScreen = () => {
 	return (
 		<PageWrapper>
 			<Hero />
-
+			<TornadoAlertSection />
 			{app_features &&
 				app_features.map((feature) => {
 					return <FeatureSection featureOBJ={feature} key={feature.name} />;
