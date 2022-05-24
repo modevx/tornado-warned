@@ -77,3 +77,6 @@ export const getSevereWeatherDataInventoryProducts = async ({
 	);
 	return res.data;
 };
+
+
+// TODO: add dateRange format validation with RegEx
