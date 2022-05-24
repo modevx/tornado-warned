@@ -14,7 +14,7 @@ const BASE_URL = {
 };
 // "oms" --> outlook map service
 // "wms" --> web map service
-const ENDPOINT = Object.freeze({
+export const ENDPOINTS = Object.freeze({
 	oms: BASE_URL.map_serv,
 	oms_layers: `${BASE_URL.map_serv}/layers`,
 	oms_1_convective_outlook: `${BASE_URL.map_serv}/0`,
@@ -88,26 +88,26 @@ const CLIENT = {
 // //////////////////////////////////
 export const getSpcRssFeedMesoDiscussions = async () => {
 	return await CLIENT.app_api.post("/spc-rss-feeds", {
-		feed_url: ENDPOINT.rss_mesos,
+		feed_url: ENDPOINTS.rss_mesos,
 	});
 };
 export const getSpcRssFeedMultiMediaBriefings = async () => {
 	return await CLIENT.app_api.post("/spc-rss-feeds", {
-		feed_url: ENDPOINT.rss_mul_med_brfs,
+		feed_url: ENDPOINTS.rss_mul_med_brfs,
 	});
 };
 export const getSpcRssFeedOutlooks = async () => {
 	return await CLIENT.app_api.post("/spc-rss-feeds", {
-		feed_url: ENDPOINT.rss_outlooks,
+		feed_url: ENDPOINTS.rss_outlooks,
 	});
 };
 export const getSpcRssFeedParticularlyDangerousSituations = async () => {
 	return await CLIENT.app_api.post("/spc-rss-feeds", {
-		feed_url: ENDPOINT.rss_pds,
+		feed_url: ENDPOINTS.rss_pds,
 	});
 };
 export const getSpcRssFeedSevereWeather = async () => {
 	return await CLIENT.app_api.post("/spc-rss-feeds", {
-		feed_url: ENDPOINT.rss_sev_wx,
+		feed_url: ENDPOINTS.rss_sev_wx,
 	});
 };
