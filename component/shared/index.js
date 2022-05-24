@@ -5,5 +5,5 @@ export * from "./Footer";
 export * from "./Header";
 export * from "./LocaleDate";
 export * from "./Navbar";
-export * from "./PageWraper";
+export * from "./PageWrapper";
 export * from "./SectionHeading";

@@ -2,12 +2,12 @@ import dynamic from "next/dynamic";
 import { useQuery } from "react-query";
 import { app_features } from "site_data";
 import { PageWrapper } from "component/shared";
+import { OutlookMapView } from "component/feature";
 import {
-	OutlookMapView,
-	FeatureSection,
-	Hero,
+	HomeFeatureSection,
+	HomeHero,
 	TornadoAlertSection,
-} from "component";
+} from "component/view";
 
 const HomeScreen = () => {
 	return (
