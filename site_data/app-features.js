@@ -1,13 +1,6 @@
 import { BiMapAlt, BiTargetLock } from "react-icons/bi";
-import {
-	GiAwareness,
-	GiDamagedHouse,
-	GiDeathSkull,
-	GiModernCity,
-} from "react-icons/gi";
-import { ImWarning } from "react-icons/im";
-import { RiNumbersLine, RiPercentLine, RiTornadoLine } from "react-icons/ri";
-import { TiWeatherStormy } from "react-icons/ti";
+import { GiAwareness, GiDeathSkull } from "react-icons/gi";
+import { RiTornadoLine } from "react-icons/ri";
 
 export const app_features = [
 	{
