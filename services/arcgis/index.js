@@ -1,1 +1,1 @@
-export * from "./initializeOutlookMapView";
+export * from "./initializeMapView";

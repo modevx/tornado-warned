@@ -1,3 +1,3 @@
-export const Error = () => {
+export const Alert = () => {
 	return <div>Error</div>;
 };

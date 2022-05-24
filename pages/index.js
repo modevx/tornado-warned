@@ -1,11 +1,11 @@
 import dynamic from "next/dynamic";
 import { useQuery } from "react-query";
 import { app_features } from "site_data";
+import { PageWrapper } from "component/shared";
 import {
 	OutlookMapView,
 	FeatureSection,
 	Hero,
-	PageWrapper,
 	TornadoAlertSection,
 } from "component";
 

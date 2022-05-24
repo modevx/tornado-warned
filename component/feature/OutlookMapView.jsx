@@ -27,7 +27,9 @@ export const OutlookMapView = ({ outlookLayerId }) => {
 	};
 
 	async function createMapView(container) {
-		const { initializeOutlookMapView } = await import("services/ArcGIS");
+		const { initializeMapView: initializeOutlookMapView } = await import(
+			"services/ArcGIS"
+		);
 		return initializeOutlookMapView(container, outlookLayerId);
 	}
 
