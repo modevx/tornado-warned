@@ -1,19 +1,24 @@
 import axios from "axios";
+import { ENDPOINTS } from "services/SPC";
 
 // //////////////////////////////////
 // ENDPOINTS
 // //////////////////////////////////
 const BASE_URL = "https://api.weather.gov";
-const ENDPOINT = Object.freeze({
-	alert_count: `$${BASE_URL}/alerts/active/count`,
-	alert_tornadoes: `$${BASE_URL}/alerts/active?event=Tornado%20Warning%2CTornado%20Watch&message_type=alert`,
-	alert_types: `${BASE_URL}/alerts/types`,
-	glossary: `${BASE_URL}/glossary`,
-	products: `${BASE_URL}/products`,
-	radar_servers: `${BASE_URL}/radar/servers`,
-	radar_stations: `${BASE_URL}/radar/stations`,
-	zones: `${BASE_URL}/zones`,
-});
+
+const ENDPOINT = {
+	alert_count: "/alerts/active/count",
+	alert_tornado_warnings:
+		"/alerts/active?event=Tornado%20Warning&message_type=alert",
+	alert_tornado_watches:
+		"/alerts/active?event=Tornado%20Watch&message_type=alert",
+	alert_types: "/alerts/types",
+	glossary: "/glossary",
+	products: "/products",
+	radar_servers: "/radar/servers",
+	radar_stations: "/radar/stations",
+	zones: "/zones",
+};
 
 // //////////////////////////////////
 // CLIENT CONFIG
@@ -27,7 +32,20 @@ const CLIENT = axios.create({
 // //////////////////////////////////
 // SERVICE REQUESTS
 // //////////////////////////////////
-export const getActiveTornadoAlerts = async () => {
-	const res = await CLIENT.get(ENDPOINT.alert_tornadoes);
-	return res.data.features;
+export const getTornadoAlerts = async (alertType) => {
+	const ALERT_MAP = {
+		warning: `${ENDPOINT.alert_tornado_warnings}`,
+		watch: `${ENDPOINT.alert_tornado_watches}`,
+	};
+
+	if (!Object.keys(ALERT_MAP).includes(alertType)) {
+		throw new Error(
+			`${alertType} is not a valid tornado alert type.  Valid tornado alerts: ${Object.keys(
+				ALERT_MAP
+			).toString()}.`
+		);
+	}
+
+	const { data } = await CLIENT.get(ENDPOINT.alert_tornadoes);
+	return data.features;
 };
