@@ -11,7 +11,7 @@ import Extent from "@arcgis/core/geometry/Extent";
 import LayerList from "@arcgis/core/widgets/LayerList";
 import Legend from "@arcgis/core/widgets/Legend";
 // --
-import { MAP_SERVICE_URLS } from "services/SPC";
+import { ENDPOINTS } from "services/SPC";
 import {
 	disableViewNavigation,
 	setDefaultUiComponents,
@@ -20,11 +20,12 @@ import {
 esriConfig.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
 const app = {};
-let whenHandle;
+let whenHandle, watchHandle;
+let layer = 1;
 
-export const initializeMapView = async (container, outlookLayerId) => {
-	if (app.mapView) {
-		app.mapView.destroy();
+export const initializeMapView = async (container) => {
+	if (app.view) {
+		app.view.destroy();
 	}
 
 	const statesLayer = new FeatureLayer({
@@ -32,13 +33,9 @@ export const initializeMapView = async (container, outlookLayerId) => {
 		listMode: "hide",
 		legendEnabled: false,
 	});
-
-	const spcJson = esriRequest(MAP_SERVICE_URLS.base_url);
-
 	const mapImageLayer = new MapImageLayer({
-		url: MAP_SERVICE_URLS.base_url,
+		url: ENDPOINTS.oms,
 		opacity: 0.4,
-		sublayers: [{ id: outlookLayerId }],
 	});
 
 	const map = new Map({
@@ -50,13 +47,6 @@ export const initializeMapView = async (container, outlookLayerId) => {
 		map,
 		container,
 		ui: { components: [] },
-		// extent: {
-		// 	xmin: -109.03,
-		// 	ymin: 19.75,
-		// 	xmax: -79,
-		// 	ymax: 62,
-		// 	spatialReference: 4269,
-		// },
 	});
 
 	app.map = map;
@@ -66,10 +56,10 @@ export const initializeMapView = async (container, outlookLayerId) => {
 		disableViewNavigation(app.view);
 		setDefaultUiComponents(["attribution"], app.view);
 
-		// await view.goTo(Extent.fromJSON(mapImageLayer.sourceJSON?.initialExtent));
+		await view.goTo(Extent.fromJSON(mapImageLayer.sourceJSON?.initialExtent));
 	});
 
-	return cleanup;
+	return { view, cleanup };
 };
 
 function cleanup() {

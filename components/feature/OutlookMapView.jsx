@@ -18,45 +18,40 @@ import React from "react";
 // 	return <div ref={mapViewRef} />;
 // };
 
-export const OutlookMapView = ({ outlookLayerId }) => {
-	const ref_outlookDayBtns = React.useRef(null);
+export const OutlookMapView = ({ layerIds: { prev_layer, new_layer } }) => {
 	const ref_mapView = React.useRef(null);
-
-	const handleOutlookDaySelect = (e) => {
-		console.log("COMPONENT >>\n", e.target.value);
-	};
+	let mapView = {};
 
 	async function createMapView(container) {
-		const { initializeMapView: initializeOutlookMapView } = await import(
-			"services/ArcGIS"
-		);
-		return initializeOutlookMapView(container, outlookLayerId);
+		const { initializeMapView } = await import("services/ArcGIS");
+		return initializeMapView(container);
 	}
 
-	// create MapView
+	// create MapView (run ONCE until its unmounted)
 	React.useEffect(() => {
-		let mapView;
-
 		if (ref_mapView.current) {
 			mapView = createMapView(ref_mapView.current);
 		}
 
 		return () => {
-			mapView && mapView.then((cleanup) => cleanup());
+			mapView && mapView.then(({ cleanup }) => cleanup());
 		};
 	}, [ref_mapView]);
 
-	// update Map in MapView
-	// React.useEffect(() => {}, [layer]);
+	// update MapView
+	React.useEffect(() => {
+		if (mapView) {
+			mapView.then((res) => console.log("mapView", res));
+		}
+	}, [new_layer]);
 
 	return (
 		<div className='h-96 relative'>
-			{/* <div
+			<div
 				id='arcgis-map'
 				ref={ref_mapView}
 				className='w-screen h-[50vh] bg-stone-400 '
-			></div> */}
-			<div className='text-4xl font-bold uppercase'>{`Layer ID: ${outlookLayerId}`}</div>
+			></div>
 		</div>
 	);
 };
