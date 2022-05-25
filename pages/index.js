@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import { useQuery } from "react-query";
 import { app_features } from "site_data";
 import { PageWrapper } from "components/shared";
-import { OutlookMapView } from "components/feature";
+import { SPCOutlookMap } from "components/feature";
 import {
 	HomePageFeatureSection,
 	HomePageHero,

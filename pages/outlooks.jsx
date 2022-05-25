@@ -1,9 +1,8 @@
 import React from "react";
 import esriConfig from "@arcgis/core/config";
 import esriRequest from "@arcgis/core/request";
-import { Map } from "@esri/react-arcgis";
 import { PageWrapper } from "components/shared";
-import { OutlookMapImageLayer, OutlookMapView } from "components/feature";
+import { SPCOutlookMap } from "components/feature";
 import { ENDPOINTS } from "services/SPC";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
@@ -52,9 +51,7 @@ const OutlooksPage = (props) => {
 				{/* ------------------------ */}
 				{/* MAP */}
 				{/* ------------------------ */}
-				<Map mapProperties={{ basemap: "arcgis-dark-gray" }}>
-					{/* <OutlookMapImageLayer /> */}
-				</Map>
+				<SPCOutlookMap layerIds={outlookLayers} />
 			</div>
 		</PageWrapper>
 	);

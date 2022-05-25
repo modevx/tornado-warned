@@ -1,24 +1,6 @@
 import React from "react";
 
-// -- [REFERENCE]
-// const MapView = ({ mapProps, viewProps }) => {
-// 	const mapViewRef = React.useRef(null);
-
-// 	React.useEffect(() => {
-// 		const mapView = createMapView(
-// 			mapViewRef.current,
-// 			...mapProps,
-// 			...viewProps
-// 		);
-// 		return () => {
-// 			mapView && mapView.destroy();
-// 		};
-// 	}, []);
-
-// 	return <div ref={mapViewRef} />;
-// };
-
-export const OutlookMapView = ({ layerIds: { prev_layer, new_layer } }) => {
+export const SPCOutlookMap = ({ layerIds: { prev_layer, new_layer } }) => {
 	const ref_mapView = React.useRef(null);
 	let mapView = {};
 
