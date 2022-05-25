@@ -4,14 +4,13 @@ import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import { LocaleDate } from "components/shared";
 
-import { useTornadoAlertsQuery } from "services/NWS";
+import { useTornadoAlerts } from "custom_hooks";
 
 import { getAreaDescMAP, formatSenderNameSTR } from "utils";
 import { STATES_MAP } from "site_data";
 
 export const AlertsPageTornadoAlertSection = () => {
-	const { isLoading, error, isSuccess, data } =
-		useTornadoAlertsQuery("warning");
+	const { isLoading, error, data, isSuccess } = useTornadoAlerts("warning");
 
 	let warnings = [],
 		watches = [];

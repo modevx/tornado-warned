@@ -9,6 +9,8 @@ import {
 	AlertsPageTornadoAlertSection,
 } from "components/view";
 
+import { Clock } from "components/shared";
+
 const HomeScreen = () => {
 	return (
 		<PageWrapper>

@@ -45,6 +45,7 @@ export const getTornadoAlerts = async (alertType) => {
 		);
 	}
 
-	const { data } = await CLIENT.get(ENDPOINT.alert_tornadoes);
-	return data.features;
+	const { data } = await CLIENT.get(ENDPOINT.alert_tornado_warnings);
+	console.log("getTornadoes", data);
+	return await data.features;
 };
