@@ -7,30 +7,14 @@ import { ENDPOINTS } from "services/SPC";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const OutlooksPage = (props) => {
-	const [outlookLayers, setOutlookLayers] = React.useState({
-		prev_layer: 1,
-		new_layer: 1,
-	});
+	const [layerId, setLayerId] = React.useState(1);
 
 	const handleLayerChange = (type) => {
-		if (type === "-") {
-			if (outlookLayers.prev_layer > 0) {
-				setOutlookLayers(({ prev_layer, new_layer }) => {
-					return {
-						prev_layer: new_layer + 1,
-						new_layer: prev_layer - 1,
-					};
-				});
-			}
-		} else {
-			if (outlookLayers.prev_layer < 25) {
-				setOutlookLayers(({ prev_layer, new_layer }) => {
-					return {
-						prev_layer: new_layer - 1,
-						new_layer: prev_layer + 1,
-					};
-				});
-			}
+		if (type === "-" && layerId > 0) {
+			setLayerId((prev) => prev - 1);
+		}
+		if (type === "+" && layerId < 25) {
+			setLayerId((prev) => prev + 1);
 		}
 	};
 
@@ -45,13 +29,14 @@ const OutlooksPage = (props) => {
 				{/* ------------------------ */}
 				<div className='flex justify-center items-center'>
 					<FaChevronLeft onClick={() => handleLayerChange("-")} />
-					<span className='mx-5'>Outlook Layer: {outlookLayers.new_layer}</span>
+					<span className='mx-5'>Outlook Layer: {layerId}</span>
 					<FaChevronRight onClick={() => handleLayerChange("+")} />
 				</div>
 				{/* ------------------------ */}
 				{/* MAP */}
 				{/* ------------------------ */}
-				<SPCOutlookMap layerIds={outlookLayers} />
+				<SPCOutlookMap layerId={layerId} />
+				<div>LayerID: {layerId}</div>
 			</div>
 		</PageWrapper>
 	);

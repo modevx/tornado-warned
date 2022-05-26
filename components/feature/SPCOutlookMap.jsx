@@ -1,37 +1,43 @@
 import React from "react";
+import dynamic from "next/dynamic";
 
-export const SPCOutlookMap = ({ layerIds: { prev_layer, new_layer } }) => {
-	const ref_mapView = React.useRef(null);
-	let mapView = {};
+const createMap = async (container, layerId) => {
+	const { initializeMapView } = await import("services/ArcGIS");
+	return initializeMapView(container, layerId);
+};
 
-	async function createMapView(container) {
-		const { initializeMapView } = await import("services/ArcGIS");
-		return initializeMapView(container);
-	}
+export const SPCOutlookMap = ({ layerId }) => {
+	const [layer, setLayer] = React.useState(1);
+	const mapDivREF = React.useRef(null);
+	let asyncMap;
 
-	// create MapView (run ONCE until its unmounted)
 	React.useEffect(() => {
-		if (ref_mapView.current) {
-			mapView = createMapView(ref_mapView.current);
+		setLayer(layerId);
+	}, [layerId]);
+
+	// create MapView (run ONCE when it's mounted)
+	React.useEffect(() => {
+		if (mapDivREF.current && layer) {
+			asyncMap = createMap(mapDivREF.current, layer);
 		}
 
 		return () => {
-			mapView && mapView.then(({ cleanup }) => cleanup());
+			asyncMap && asyncMap.then(({ cleanup }) => cleanup());
 		};
-	}, [ref_mapView]);
+	}, [mapDivREF, layer]);
 
 	// update MapView
 	React.useEffect(() => {
-		if (mapView) {
-			mapView.then((res) => console.log("mapView", res));
+		if (asyncMap) {
+			asyncMap.then((res) => console.log("mapView", res));
 		}
-	}, [new_layer]);
+	}, [asyncMap, layerId]);
 
 	return (
 		<div className='h-96 relative'>
 			<div
 				id='arcgis-map'
-				ref={ref_mapView}
+				ref={mapDivREF}
 				className='w-screen h-[50vh] bg-stone-400 '
 			></div>
 		</div>

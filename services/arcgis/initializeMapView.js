@@ -20,14 +20,13 @@ import {
 esriConfig.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
 const app = {};
-let whenHandle, watchHandle;
-let layer = 1;
 
 export const initializeMapView = async (container) => {
-	if (app.view) {
+	if (!app.view) {
+		return;
+	} else {
 		app.view.destroy();
 	}
-
 	const statesLayer = new FeatureLayer({
 		url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/2",
 		listMode: "hide",
@@ -49,20 +48,20 @@ export const initializeMapView = async (container) => {
 		ui: { components: [] },
 	});
 
-	app.map = map;
-	app.view = view;
-
-	whenHandle = app.view.when().then(async () => {
+	app.view.when(async () => {
 		disableViewNavigation(app.view);
 		setDefaultUiComponents(["attribution"], app.view);
 
 		await view.goTo(Extent.fromJSON(mapImageLayer.sourceJSON?.initialExtent));
 	});
 
+	app.layer = mapImageLayer;
+	app.map = map;
+	app.view = view;
+
 	return { view, cleanup };
 };
 
 function cleanup() {
 	app.view?.destroy();
-	whenHandle?.remove();
 }
