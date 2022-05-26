@@ -1,4 +1,4 @@
-import { Clock, Navbar } from "components/shared";
+import { Clock, Navbar } from "@components/common";
 
 export const Header = () => {
 	return (

@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { useQuery } from "react-query";
 import { app_features } from "site_data";
-import { PageWrapper } from "components/shared";
+import { PageWrapper } from "@components/common";
 import { SPCOutlookMap } from "components/feature";
 import {
 	HomePageFeatureSection,
@@ -9,7 +9,7 @@ import {
 	AlertsPageTornadoAlertSection,
 } from "components/view";
 
-import { Clock } from "components/shared";
+import { Clock } from "@components/common";
 
 const HomeScreen = () => {
 	return (
