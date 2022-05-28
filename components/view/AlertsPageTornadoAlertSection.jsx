@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
-import { LocaleDate } from "@components/common";
+import { LocaleDate } from "components/common";
 
 import { useTornadoAlerts } from "custom_hooks";
 

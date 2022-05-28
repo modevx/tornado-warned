@@ -1,4 +1,4 @@
-import { SectionHeading } from "@components/common";
+import { SectionHeading } from "components/common";
 
 export const RSSFeed = ({ rssFeedObjARR, sectionTitle }) => {
 	const { isLoading, error, data } = rssFeedObjARR;

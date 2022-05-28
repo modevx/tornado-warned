@@ -11,27 +11,27 @@ export const SPCOutlookMap = ({ layerId }) => {
 	const mapDivREF = React.useRef(null);
 	let asyncMap;
 
-	React.useEffect(() => {
-		setLayer(layerId);
-	}, [layerId]);
+	// React.useEffect(() => {
+	// 	setLayer(layerId);
+	// }, [layerId]);
 
 	// create MapView (run ONCE when it's mounted)
-	React.useEffect(() => {
-		if (mapDivREF.current && layer) {
-			asyncMap = createMap(mapDivREF.current, layer);
-		}
+	// React.useEffect(() => {
+	// 	if (mapDivREF.current && layer) {
+	// 		asyncMap = createMap(mapDivREF.current, layer);
+	// 	}
 
-		return () => {
-			asyncMap && asyncMap.then(({ cleanup }) => cleanup());
-		};
-	}, [mapDivREF, layer]);
+	// 	return () => {
+	// 		asyncMap && asyncMap.then(({ cleanup }) => cleanup());
+	// 	};
+	// }, [mapDivREF, layer]);
 
 	// update MapView
-	React.useEffect(() => {
-		if (asyncMap) {
-			asyncMap.then((res) => console.log("mapView", res));
-		}
-	}, [asyncMap, layerId]);
+	// React.useEffect(() => {
+	// 	if (asyncMap) {
+	// 		asyncMap.then((res) => console.log("mapView", res));
+	// 	}
+	// }, [asyncMap, layerId]);
 
 	return (
 		<div className='h-96 relative'>
