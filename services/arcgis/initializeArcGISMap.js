@@ -1,15 +1,9 @@
-import { watch, when } from "@arcgis/core/core/reactiveUtils";
 import esriConfig from "@arcgis/core/config";
-import esriRequest from "@arcgis/core/request";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
-
-import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
-import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
-
+import { watch, when } from "@arcgis/core/core/reactiveUtils";
 import Extent from "@arcgis/core/geometry/Extent";
-import LayerList from "@arcgis/core/widgets/LayerList";
-import Legend from "@arcgis/core/widgets/Legend";
 // --
 import { ENDPOINTS } from "services/SPC";
 import {
@@ -21,7 +15,7 @@ esriConfig.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
 const app = {};
 
-export const initializeMapView = async (container) => {
+export const initializeArcGISMap = async (container) => {
 	if (!app.view) {
 		return;
 	} else {
@@ -32,34 +26,30 @@ export const initializeMapView = async (container) => {
 		listMode: "hide",
 		legendEnabled: false,
 	});
-	const mapImageLayer = new MapImageLayer({
-		url: ENDPOINTS.oms,
-		opacity: 0.4,
-	});
 
 	const map = new Map({
 		basemap: "arcgis-dark-gray",
-		layers: [statesLayer, mapImageLayer],
+		layers: [statesLayer],
+		// layers: [statesLayer, mapImageLayer],
 	});
 
 	const view = new MapView({
 		map,
 		container,
-		ui: { components: [] },
 	});
 
-	app.view.when(async () => {
+	app.view.when(() => {
 		disableViewNavigation(app.view);
-		setDefaultUiComponents(["attribution"], app.view);
+		// setDefaultUiComponents(["attribution"], app.view);
 
-		await view.goTo(Extent.fromJSON(mapImageLayer.sourceJSON?.initialExtent));
+		// view.goTo(Extent.fromJSON(mapImageLayer.sourceJSON?.initialExtent));
 	});
 
-	app.layer = mapImageLayer;
+	// app.layer = mapImageLayer;
 	app.map = map;
 	app.view = view;
 
-	return { view, cleanup };
+	return { cleanup };
 };
 
 function cleanup() {

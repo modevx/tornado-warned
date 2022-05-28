@@ -1,1 +1,1 @@
-export * from "./initializeMapView";
+export * from "./initializeArcGISMap";
