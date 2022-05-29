@@ -6,16 +6,11 @@ import { LocaleDate } from "components/common";
 
 import { useTornadoAlerts } from "custom_hooks";
 
-<<<<<<< HEAD:components/view/AlertsPageTornadoAlertSection.jsx
 import { getAreaDescMAP, formatSenderNameSTR } from "utils";
 import { STATES_MAP } from "site_data";
 
 export const AlertsPageTornadoAlertSection = () => {
 	const { isLoading, error, data, isSuccess } = useTornadoAlerts("warning");
-=======
-import { getAreaDescMAP, formatSenderNameSTR } from "components/utils";
-import { STATES_MAP } from "constants";
->>>>>>> nws-service:components/TornadoAlertSection/TornadoAlertSection.jsx
 
 	let warnings = [],
 		watches = [];
