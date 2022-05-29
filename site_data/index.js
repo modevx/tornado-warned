@@ -1,2 +1,2 @@
 export * from "./app-features";
-export * from "./states";
+export * from "./state-abbr-map";
