@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import dynamic from "next/dynamic";
 import { useQuery } from "react-query";
 import { app_features } from "site_data";
@@ -11,10 +10,6 @@ import {
 } from "components/view";
 
 import { Clock } from "components/common";
-=======
-import { FeatureSection, Hero, Page } from "components";
-import { features } from "site-data";
->>>>>>> nws-service
 
 const HomeScreen = () => {
 	return (
