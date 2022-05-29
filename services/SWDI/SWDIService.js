@@ -58,18 +58,29 @@ const CLIENT = axios.create({
 // csv, kmz, json, shp, xml
 export const getSevereWeatherDataInventoryProducts = async ({
 	outputFormat,
-	dataset
+	dataset,
 	dateRange,
 }) => {
 	const validOutputFormats = ["json", "csv", "xml", "shp", "kmz"];
-	const validDatasets = ["nx3tvs", "nx3meso", "nx3hail", "nx3structure", "plsr", "warn"]
+	const validDatasets = [
+		"nx3tvs",
+		"nx3meso",
+		"nx3hail",
+		"nx3structure",
+		"plsr",
+		"warn",
+	];
 
-	if(!validOutputFormats.includes(outputFormat)) {
-		throw new Error(`${outputFormat} is not a valid output format.  Valid formats: "json", "csv", "xml", "shp", "kmz".`)
+	if (!validOutputFormats.includes(outputFormat)) {
+		throw new Error(
+			`${outputFormat} is not a valid output format.  Valid formats: "json", "csv", "xml", "shp", "kmz".`
+		);
 	}
 
-	if(!validDatasets.includes(dataset)) {
-		throw new Error(`${dataset} is not a valid dataset.  Valid datasets: "nx3tvs", "nx3meso", "nx3hail", "nx3structure", "plsr", and "warn".`)
+	if (!validDatasets.includes(dataset)) {
+		throw new Error(
+			`${dataset} is not a valid dataset.  Valid datasets: "nx3tvs", "nx3meso", "nx3hail", "nx3structure", "plsr", and "warn".`
+		);
 	}
 
 	const res = await CLIENT.get(
@@ -78,5 +89,5 @@ export const getSevereWeatherDataInventoryProducts = async ({
 	return res.data;
 };
 
-
 // TODO: add dateRange format validation with RegEx
+// TODO: explore lightweight TS alts
