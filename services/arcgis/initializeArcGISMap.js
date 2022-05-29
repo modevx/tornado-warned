@@ -68,7 +68,7 @@ export const initializeArcGISMap = async (container, layerId) => {
 		await spcLayer.when();
 		console.log("ArcGIS MAP LAYER >>\n", spcLayer.toJSON());
 		disableViewNavigation(view);
-		setDefaultUiComponents(["attribution"], app.view);
+		setDefaultUiComponents([], view);
 	});
 
 	app.spcLayer = spcLayer;

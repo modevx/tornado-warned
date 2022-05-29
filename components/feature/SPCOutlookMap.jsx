@@ -22,7 +22,7 @@ export const SPCOutlookMap = ({ layer }) => {
 	}, [refMap, layer]);
 
 	return (
-		<div className='h-96'>
+		<div className='h-96 my-10'>
 			<h2>{layer && layer.name}</h2>
 			<div ref={refMap} className='w-screen h-[50vh] bg-stone-400 '></div>
 		</div>
