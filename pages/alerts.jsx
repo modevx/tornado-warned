@@ -1,11 +1,11 @@
-import { Navbar, Page, TornadoAlertSection } from "components";
+import { Navbar, PageWrapper } from "components/common";
+import { AlertsPageTornadoAlertSection } from "components/view";
 
 const AlertsPage = () => {
 	return (
-		<Page>
-			<Navbar />
-			<TornadoAlertSection />
-		</Page>
+		<PageWrapper>
+			<AlertsPageTornadoAlertSection />
+		</PageWrapper>
 	);
 };
 
