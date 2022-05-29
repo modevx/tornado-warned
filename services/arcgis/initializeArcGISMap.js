@@ -30,10 +30,6 @@ export const initializeArcGISMap = async (container, layerId) => {
 		// legendEnabled: false,
 	});
 
-	// const spcLayer = new MapImageLayer({
-	// 	url: `${ENDPOINTS.spcms}/${layerId}`,
-	// });
-
 	const spcLayer = new FeatureLayer({
 		url: `${ENDPOINTS.spcms}/${layerId}`,
 		opacity: 0.3,
@@ -47,26 +43,28 @@ export const initializeArcGISMap = async (container, layerId) => {
 	const view = new MapView({
 		map,
 		container,
+		center: [-97, 38],
+		scale: 70000000,
+		// extent: {
+		// 	xmin: -125,
+		// 	xmax: -65,
+		// 	ymin: 25,
+		// 	ymax: 50,
+		// 	// spatialReference: { wkid: 102100 },
+		// },
 	});
 
-	if (app.savedExtent) {
-		view.extent = Extent.fromJSON(app.savedExtent);
-	} else {
-		spcLayer.when(() => {
-			view.extent = spcLayer.fullExtent;
-		});
-	}
-
-	watchHandler = watch(
-		() => view.extent,
-		() => {
-			app.savedExtent = view.extent.toJSON();
-		}
-	);
+	// watchHandler = watch(
+	// 	() => view.extent,
+	// 	() => {
+	// 		app.savedExtent = view.extent.toJSON();
+	// 	}
+	// );
 
 	view.when(async () => {
 		await spcLayer.when();
 		console.log("ArcGIS MAP LAYER >>\n", spcLayer.toJSON());
+		console.log("MAP VIEW SIZE >>\n", view.size);
 		disableViewNavigation(view);
 		setDefaultUiComponents([], view);
 	});

@@ -24,6 +24,8 @@ const OutlooksPage = ({ spcOutlooks }) => {
 		const categorical = spcOutlooks.filter((layer) =>
 			layer.name.toLowerCase().includes("categorical")
 		);
+		const prob4Day = spcOutlooks.filter((layer) => layer.parentLayerId == 20);
+
 		const tornado = spcOutlooks.filter((layer) =>
 			layer.name.toLowerCase().includes("tornado")
 		);
@@ -34,16 +36,16 @@ const OutlooksPage = ({ spcOutlooks }) => {
 			layer.name.toLowerCase().includes("wind")
 		);
 
-		setOutlooks(convective);
-		// setFilteredLayers(categorical);
-		setFilteredLayers(tornado);
+		setOutlooks(categorical);
+		setFilteredLayers(prob4Day);
+		// setFilteredLayers(tornado);
 		// setFilteredLayers(hail);
 		// setFilteredLayers(wind);
 	}, [spcOutlooks]);
 
-	// if (outlooks.length) console.log("CONVECTIVE OUTLOOKS >>\n", outlooks);
+	if (outlooks.length) console.log("CONVECTIVE OUTLOOKS >>\n", outlooks);
 	if (filteredLayers.length)
-		console.log("FILTERED LAYERS >>\n", filteredLayers);
+		console.log("4-DAY PROBABILISTIC >>\n", filteredLayers);
 
 	return (
 		<PageWrapper>
@@ -51,6 +53,10 @@ const OutlooksPage = ({ spcOutlooks }) => {
 				<h1 className='uppercase font-bold text-4xl'>
 					Convective Outlooks Page
 				</h1>
+				{outlooks &&
+					outlooks.map((layer) => (
+						<SPCOutlookMap layer={layer} key={layer.name} />
+					))}
 				{filteredLayers &&
 					filteredLayers.map((layer) => (
 						<SPCOutlookMap layer={layer} key={layer.name} />

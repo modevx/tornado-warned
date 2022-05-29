@@ -22,9 +22,9 @@ export const SPCOutlookMap = ({ layer }) => {
 	}, [refMap, layer]);
 
 	return (
-		<div className='h-96 my-10'>
+		<div className='mb-4 border-2 border-red-500'>
 			<h2>{layer && layer.name}</h2>
-			<div ref={refMap} className='w-screen h-[50vh] bg-stone-400 '></div>
+			<div ref={refMap} className='w-full h-48 bg-stone-400 '></div>
 		</div>
 	);
 };
