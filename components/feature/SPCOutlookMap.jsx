@@ -1,28 +1,30 @@
-import React from "react";
-import dynamic from "next/dynamic";
+import React, { useEffect, useRef } from "react";
 
 const createMap = async (container, layerId) => {
 	const { initializeArcGISMap } = await import("services/ArcGIS");
 	return initializeArcGISMap(container, layerId);
 };
 
-export const SPCOutlookMap = ({ layerId }) => {
-	const mapREF = React.useRef(null);
-	let createdMap;
+export const SPCOutlookMap = ({ layer }) => {
+	const refMap = useRef(null);
 
-	React.useEffect(() => {
-		if (mapREF.current && layerId) {
-			createdMap = createMap(mapREF.current, layerId);
+	useEffect(() => {
+		console.log("OUTLOOK MAP FEATURE LAYER >>\n", layer);
+		let createdMap;
+
+		if (refMap.current && layer) {
+			createdMap = createMap(refMap.current, layer.id);
 		}
 
 		return () => {
 			createdMap && createdMap.then((cleanup) => cleanup());
 		};
-	}, [mapREF, createdMap, layerId]);
+	}, [refMap, layer]);
 
 	return (
 		<div className='h-96'>
-			<div ref={mapREF} className='w-screen h-[50vh] bg-stone-400 '></div>
+			<h2>{layer && layer.name}</h2>
+			<div ref={refMap} className='w-screen h-[50vh] bg-stone-400 '></div>
 		</div>
 	);
 };

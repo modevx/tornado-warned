@@ -15,16 +15,35 @@ export async function getStaticProps() {
 }
 
 const OutlooksPage = ({ spcOutlooks }) => {
-	const [convectiveGroupLayers, setConvectiveGroupLayers] = React.useState([]);
-	const [featureLayers, setFeatureLayers] = React.useState([]);
+	const [outlooks, setOutlooks] = React.useState([]);
+	const [filteredLayers, setFilteredLayers] = React.useState([]);
 
 	React.useEffect(() => {
-		setConvectiveGroupLayers(spcOutlooks.filter((layer) => layer.subLayerIds));
+		const convective = spcOutlooks.filter((layer) => layer.subLayerIds);
 
-		setFeatureLayers(
-			spcOutlooks.filter((layer) => layer.type.includes("Feature Layer"))
+		const categorical = spcOutlooks.filter((layer) =>
+			layer.name.toLowerCase().includes("categorical")
 		);
+		const tornado = spcOutlooks.filter((layer) =>
+			layer.name.toLowerCase().includes("tornado")
+		);
+		const hail = spcOutlooks.filter((layer) =>
+			layer.name.toLowerCase().includes("hail")
+		);
+		const wind = spcOutlooks.filter((layer) =>
+			layer.name.toLowerCase().includes("wind")
+		);
+
+		setOutlooks(convective);
+		// setFilteredLayers(categorical);
+		setFilteredLayers(tornado);
+		// setFilteredLayers(hail);
+		// setFilteredLayers(wind);
 	}, [spcOutlooks]);
+
+	// if (outlooks.length) console.log("CONVECTIVE OUTLOOKS >>\n", outlooks);
+	if (filteredLayers.length)
+		console.log("FILTERED LAYERS >>\n", filteredLayers);
 
 	return (
 		<PageWrapper>
@@ -32,9 +51,9 @@ const OutlooksPage = ({ spcOutlooks }) => {
 				<h1 className='uppercase font-bold text-4xl'>
 					Convective Outlooks Page
 				</h1>
-				{featureLayers &&
-					featureLayers.map((layer) => (
-						<SPCOutlookMap key={layer.name} layerId={layer.id} />
+				{filteredLayers &&
+					filteredLayers.map((layer) => (
+						<SPCOutlookMap layer={layer} key={layer.name} />
 					))}
 			</div>
 		</PageWrapper>

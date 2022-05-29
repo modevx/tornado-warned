@@ -17,31 +17,26 @@ import {
 esriConfig.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
 const app = {};
+let watchHandler;
 
 export const initializeArcGISMap = async (container, layerId) => {
-	if (app.view) {
-		app.view.destroy();
-	}
+	// if (app.view) {
+	// 	app.view.destroy();
+	// }
 
 	const stateLinesLayer = new FeatureLayer({
 		url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/2",
-		listMode: "hide",
-		legendEnabled: false,
+		// listMode: "hide",
+		// legendEnabled: false,
 	});
 
 	// const spcLayer = new MapImageLayer({
-	// 	url: ENDPOINTS.spcms,
-	// 	opacity: 0.3,
-	// 	sublayers: [
-	// 		{
-	// 			id: layerId,
-	// 			visible: true,
-	// 		},
-	// 	],
+	// 	url: `${ENDPOINTS.spcms}/${layerId}`,
 	// });
 
 	const spcLayer = new FeatureLayer({
 		url: `${ENDPOINTS.spcms}/${layerId}`,
+		opacity: 0.3,
 	});
 
 	const map = new Map({
@@ -54,8 +49,24 @@ export const initializeArcGISMap = async (container, layerId) => {
 		container,
 	});
 
-	view.when(() => {
-		console.log("SPC LAYER >>\n", spcLayer.toJSON());
+	if (app.savedExtent) {
+		view.extent = Extent.fromJSON(app.savedExtent);
+	} else {
+		spcLayer.when(() => {
+			view.extent = spcLayer.fullExtent;
+		});
+	}
+
+	watchHandler = watch(
+		() => view.extent,
+		() => {
+			app.savedExtent = view.extent.toJSON();
+		}
+	);
+
+	view.when(async () => {
+		await spcLayer.when();
+		console.log("ArcGIS MAP LAYER >>\n", spcLayer.toJSON());
 		disableViewNavigation(view);
 		setDefaultUiComponents(["attribution"], app.view);
 	});
