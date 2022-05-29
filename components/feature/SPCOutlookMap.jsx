@@ -1,36 +1,28 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-const createMap = async (container) => {
-	const { initializeArcGISMap: initializeMapView } = await import(
-		"services/ArcGIS"
-	);
-	return initializeMapView(container);
+const createMap = async (container, layerId) => {
+	const { initializeArcGISMap } = await import("services/ArcGIS");
+	return initializeArcGISMap(container, layerId);
 };
 
-export const SPCOutlookMap = () => {
-	const [asyncMap, setAsyncMap] = React.useState(null);
-
-	const mapDivREF = React.useRef(null);
+export const SPCOutlookMap = ({ layerId }) => {
+	const mapREF = React.useRef(null);
+	let createdMap;
 
 	React.useEffect(() => {
-		if (mapDivREF.current) {
-			const divRefMap = createMap(mapDivREF.current);
-			setAsyncMap(divRefMap);
+		if (mapREF.current && layerId) {
+			createdMap = createMap(mapREF.current, layerId);
 		}
 
 		return () => {
-			asyncMap && asyncMap.then((cleanup) => cleanup());
+			createdMap && createdMap.then((cleanup) => cleanup());
 		};
-	}, [mapDivREF]);
+	}, [mapREF, createdMap, layerId]);
 
 	return (
-		<div className='h-96 relative'>
-			<div
-				id='arcgis-map'
-				ref={mapDivREF}
-				className='w-screen h-[50vh] bg-stone-400 '
-			></div>
+		<div className='h-96'>
+			<div ref={mapREF} className='w-screen h-[50vh] bg-stone-400 '></div>
 		</div>
 	);
 };

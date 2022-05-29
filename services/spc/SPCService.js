@@ -5,44 +5,49 @@ import axios from "axios";
 // //////////////////////////////////
 const BASE_URL = {
 	app_api: "/api",
-	map_serv:
-		"https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer",
 	spc: "http://www.spc.noaa.gov",
-	spc_test: "http://test-www-spc.woc.noaa.gov",
-	web_map_svc:
+	map_server:
+		"https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer",
+	// SPC OGC Web Feature Services Server
+	wfs_server:
+		"https://mapservices.weather.noaa.gov/vector/services/outlooks/SPC_wx_outlks/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+	// SPC OGC Web Map Services Server
+	wms_server:
 		"https://mapservices.weather.noaa.gov/vector/services/outlooks/SPC_wx_outlks/MapServer/WMSServer?request=GetCapabilities&service=WMS",
 };
 // "oms" --> outlook map service
 // "wms" --> web map service
 export const ENDPOINTS = Object.freeze({
-	oms: BASE_URL.map_serv,
-	oms_layers: `${BASE_URL.map_serv}/layers`,
-	oms_1_convective_outlook: `${BASE_URL.map_serv}/0`,
-	oms_1_categorical: `${BASE_URL.map_serv}/1`,
-	oms_1_significant_tornado: `${BASE_URL.map_serv}/2`,
-	oms_1_probabilistic_tornado: `${BASE_URL.map_serv}/3`,
-	oms_1_significant_hail: `${BASE_URL.map_serv}/4`,
-	oms_1_probabilistic_hail: `${BASE_URL.map_serv}/5`,
-	oms_1_significant_wind: `${BASE_URL.map_serv}/6`,
-	oms_1_probabilistic_wind: `${BASE_URL.map_serv}/7`,
-	oms_2_convective_outlook: `${BASE_URL.map_serv}/8`,
-	oms_2_categorical: `${BASE_URL.map_serv}/9`,
-	oms_2_significant_tornado: `${BASE_URL.map_serv}/10`,
-	oms_2_probabilistic_tornado: `${BASE_URL.map_serv}/11`,
-	oms_2_significant_hail: `${BASE_URL.map_serv}/12`,
-	oms_2_probabilistic_hail: `${BASE_URL.map_serv}/13`,
-	oms_2_significant_wind: `${BASE_URL.map_serv}/14`,
-	oms_2_probabilistic_wind: `${BASE_URL.map_serv}/15`,
-	oms_3_convective_outlook: `${BASE_URL.map_serv}/16`,
-	oms_3_categorical: `${BASE_URL.map_serv}/17`,
-	oms_3_significant: `${BASE_URL.map_serv}/19`,
-	oms_3_probabilistic: `${BASE_URL.map_serv}/18`,
-	oms_4_8_convective_outlooks: `${BASE_URL.map_serv}/20`,
-	oms_4_probabilistic: `${BASE_URL.map_serv}/21`,
-	oms_5_probabilistic: `${BASE_URL.map_serv}/22`,
-	oms_6_probabilistic: `${BASE_URL.map_serv}/23`,
-	oms_7_probabilistic: `${BASE_URL.map_serv}/24`,
-	oms_8_probabilistic: `${BASE_URL.map_serv}/25`,
+	spcms: BASE_URL.map_server,
+	wfs_server: BASE_URL.wfs_server,
+	wms_server: BASE_URL.wms_server,
+	spcms_layers: `${BASE_URL.map_server}/layers`,
+	spcms_1_conv: `${BASE_URL.map_server}/0`,
+	spcms_1_cat: `${BASE_URL.map_server}/1`,
+	spcms_1_sig_tornado: `${BASE_URL.map_server}/2`,
+	spcms_1_prob_tornado: `${BASE_URL.map_server}/3`,
+	spcms_1_sig_hail: `${BASE_URL.map_server}/4`,
+	spcms_1_prob_hail: `${BASE_URL.map_server}/5`,
+	spcms_1_sig_wind: `${BASE_URL.map_server}/6`,
+	spcms_1_prob_wind: `${BASE_URL.map_server}/7`,
+	spcms_2_conv: `${BASE_URL.map_server}/8`,
+	spcms_2_cat: `${BASE_URL.map_server}/9`,
+	spcms_2_sig_tornado: `${BASE_URL.map_server}/10`,
+	spcms_2_prob_tornado: `${BASE_URL.map_server}/11`,
+	spcms_2_sig_hail: `${BASE_URL.map_server}/12`,
+	spcms_2_prob_hail: `${BASE_URL.map_server}/13`,
+	spcms_2_sig_wind: `${BASE_URL.map_server}/14`,
+	spcms_2_prob_wind: `${BASE_URL.map_server}/15`,
+	spcms_3_conv: `${BASE_URL.map_server}/16`,
+	spcms_3_cat: `${BASE_URL.map_server}/17`,
+	spcms_3_sig: `${BASE_URL.map_server}/19`,
+	spcms_3_prob: `${BASE_URL.map_server}/18`,
+	spcms_4_8_conv: `${BASE_URL.map_server}/20`,
+	spcms_4_prob: `${BASE_URL.map_server}/21`,
+	spcms_5_prob: `${BASE_URL.map_server}/22`,
+	spcms_6_prob: `${BASE_URL.map_server}/23`,
+	spcms_7_prob: `${BASE_URL.map_server}/24`,
+	spcms_8_prob: `${BASE_URL.map_server}/25`,
 	rss_outlooks: `${BASE_URL.spc}/products/spcacrss.xml`,
 	rss_mesos: `${BASE_URL.spc}/products/spcmdrss.xml`,
 	rss_mul_med_brfs: `${BASE_URL.spc}/products/spcmbrss.xml`,
@@ -65,8 +70,8 @@ const CLIENT = {
 		baseURL: BASE_URL.app_api,
 		timeout: DEFAULT_TIMEOUT,
 	}),
-	map_service: axios.create({
-		baseURL: BASE_URL.map_serv,
+	map_serverice: axios.create({
+		baseURL: BASE_URL.map_server,
 		timeout: DEFAULT_TIMEOUT,
 	}),
 	spc: axios.create({
