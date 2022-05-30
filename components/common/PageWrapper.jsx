@@ -5,11 +5,11 @@ export const PageWrapper = ({ children }) => {
 	return (
 		<div className='bg-stone-900 text-white'>
 			<Meta />
-			<PageLayout>
+			<div className='flex flex-col min-h-screen'>
 				<Header />
 				<main className='grow flex flex-col h-full'>{children}</main>
 				<Footer />
-			</PageLayout>
+			</div>
 		</div>
 	);
 };
@@ -58,8 +58,4 @@ const Meta = () => {
 			/>
 		</Head>
 	);
-};
-
-const PageLayout = ({ children }) => {
-	return <div className='flex flex-col min-h-screen'>{children}</div>;
 };
