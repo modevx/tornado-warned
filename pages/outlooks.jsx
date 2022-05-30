@@ -21,7 +21,7 @@ const OutlooksPage = () => {
 
 				{OUTLOOKS.map((outlook) => (
 					<>
-						<h2>Day {outlook.day} Outlook</h2>
+						<h2 className='mb-2'>Day {outlook.day} Outlook</h2>
 						<Image
 							alt={`Day ${outlook.day} Outlook Image`}
 							src={outlook.src}
