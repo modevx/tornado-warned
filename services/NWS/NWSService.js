@@ -36,8 +36,10 @@ export const getTornadoAlerts = async (alertType) => {
 		warning: `${ENDPOINT.alert_tornado_warnings}`,
 		watch: `${ENDPOINT.alert_tornado_watches}`,
 	};
+	const alertEndpoint = ALERT_MAP[alertType];
 
-	if (!Object.keys(ALERT_MAP).includes(alertType)) {
+	// TODO: create map validation util func
+	if (!Object.keys(ALERT_MAP).includes(alertType.toLowerCase())) {
 		throw new Error(
 			`${alertType} is not a valid tornado alert type.  Valid tornado alerts: ${Object.keys(
 				ALERT_MAP
@@ -45,8 +47,8 @@ export const getTornadoAlerts = async (alertType) => {
 		);
 	}
 
-	const { data } = await CLIENT.get(ENDPOINT.alert_tornado_warnings);
-	console.log("getTornadoes", data);
+	const { data } = await CLIENT.get(alertEndpoint);
+	console.log(`GET TORNADO ALERT TYPE: ${alertType} >>\n`, data);
 	return await data.features;
 };
 // ----- used to get PRELIM DAMAGE ASSESSMENTS
