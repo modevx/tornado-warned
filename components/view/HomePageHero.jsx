@@ -11,12 +11,7 @@ export const HomePageHero = () => {
 
 				<p className='text-neutral-200 text-4xl'>stay ahead of the storm.</p>
 			</div>
-			<div className='mb-5'>
-				<div className='flex flex-col items-center justify-center mt-6'>
-					<FaChevronDown size={50} />
-					<FaChevronDown size={30} />
-				</div>
-			</div>
+			<div className='mb-5'></div>
 		</div>
 	);
 };

@@ -15,7 +15,6 @@ const HomeScreen = () => {
 	return (
 		<PageWrapper>
 			<HomePageHero />
-			<AlertsPageTornadoAlertSection />
 			{app_features &&
 				app_features.map((feature) => {
 					return (

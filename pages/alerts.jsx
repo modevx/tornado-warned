@@ -1,4 +1,4 @@
-import { Navbar, PageWrapper } from "components/common";
+import { PageWrapper } from "components/common";
 import { AlertsPageTornadoAlertSection } from "components/view";
 
 const AlertsPage = () => {

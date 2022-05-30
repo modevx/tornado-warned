@@ -1,6 +1,13 @@
-import { GiAwareness, GiDeathSkull } from "react-icons/gi";
+import {
+	GiAwareness,
+	GiDamagedHouse,
+	GiDeathSkull,
+	GiModernCity,
+} from "react-icons/gi";
 import { BiMapAlt, BiTargetLock } from "react-icons/bi";
-import { RiTornadoLine } from "react-icons/ri";
+import { RiNumbersLine, RiTornadoLine } from "react-icons/ri";
+import { TiWeatherStormy } from "react-icons/ti";
+import { ImWarning } from "react-icons/im";
 
 export const app_features = [
 	{
