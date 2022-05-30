@@ -1,6 +1,19 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
 
-module.exports = nextConfig
+module.exports = {
+	reactStrictMode: true,
+	images: {
+		domains: ["www.spc.noaa.gov"],
+	},
+	// async rewrites() {
+	// 	source: '',
+	// 	destination: '',
+	// 	has: [
+	// 		{
+	// 			type: '',
+	// 			key: '',
+	// 			value: ''
+	// 		}
+	// 	]
+	// }
+};

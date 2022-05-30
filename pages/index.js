@@ -1,11 +1,12 @@
-import React from "react";
-import { PageWrapper } from "../components/PageWrapper";
-import { AlertSection } from "../components/Alerts";
+import { PageWrapper } from "components/common";
+import { TornadoAlertSection } from "components/view";
+import { Clock } from "components/common";
 
 const HomeScreen = () => {
 	return (
 		<PageWrapper>
-			<AlertSection />
+			<TornadoAlertSection alertType='Warning' />
+			<TornadoAlertSection alertType='Watch' />
 		</PageWrapper>
 	);
 };
