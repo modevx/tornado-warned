@@ -52,7 +52,7 @@ export const getTornadoAlerts = async (alertType) => {
 	return await data.features;
 };
 // ----- used to get PRELIM DAMAGE ASSESSMENTS
-export const fetchPublicInformationStatements = async () => {
+export const fetchPublicInfoStatements = async () => {
 	const end_date = new Date();
 	const start_date = new Date(
 		end_date.getFullYear(),
