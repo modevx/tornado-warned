@@ -117,7 +117,7 @@ const ListItem = ({ activeAlert }) => {
 					return (
 						<div key={state}>
 							<h4 className='text-lg font-medium mb-2 uppercase'>
-								{STATES[state]}
+								{STATES_MAP[state]}
 							</h4>
 							<p className='text-sm mb-2'>{joinedAreaDescSTR}</p>
 						</div>
