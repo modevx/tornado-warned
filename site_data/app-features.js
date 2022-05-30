@@ -35,24 +35,24 @@ export const app_features = [
 			},
 		],
 	},
-	{
-		name: "Local Storm Reports",
-		tagline: "Preliminary storm reports from the National Weather Service.",
-		benefits: [
-			{
-				name: "Damage Assessments",
-				description:
-					"Preliminary tornado event damage and F-scale estimates from the National Weather Service.",
-				icon: GiDamagedHouse,
-			},
-			{
-				name: "F-Scale Rating",
-				description:
-					"Approximated F-scale rating based on tornado velocities and damage caused.",
-				icon: RiNumbersLine,
-			},
-		],
-	},
+	// {
+	// 	name: "Local Storm Reports",
+	// 	tagline: "Preliminary storm reports from the National Weather Service.",
+	// 	benefits: [
+	// 		{
+	// 			name: "Damage Assessments",
+	// 			description:
+	// 				"Preliminary tornado event damage and F-scale estimates from the National Weather Service.",
+	// 			icon: GiDamagedHouse,
+	// 		},
+	// 		{
+	// 			name: "F-Scale Rating",
+	// 			description:
+	// 				"Approximated F-scale rating based on tornado velocities and damage caused.",
+	// 			icon: RiNumbersLine,
+	// 		},
+	// 	],
+	// },
 	{
 		name: "Severe Weather Outlooks",
 		tagline:
