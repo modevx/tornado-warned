@@ -1,12 +1,12 @@
 import { PageWrapper } from "components/common";
-import { AlertsPageTornadoAlertSection } from "components/view";
-
+import { TornadoAlertSection } from "components/view";
 import { Clock } from "components/common";
 
 const HomeScreen = () => {
 	return (
 		<PageWrapper>
-			<AlertsPageTornadoAlertSection />
+			<TornadoAlertSection alertType='Warning' />
+			<TornadoAlertSection alertType='Watch' />
 		</PageWrapper>
 	);
 };

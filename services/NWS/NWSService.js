@@ -36,7 +36,7 @@ export const getTornadoAlerts = async (alertType) => {
 		warning: `${ENDPOINT.alert_tornado_warnings}`,
 		watch: `${ENDPOINT.alert_tornado_watches}`,
 	};
-	const alertEndpoint = ALERT_MAP[alertType];
+	const alertEndpoint = ALERT_MAP[alertType.toLowerCase()];
 
 	// TODO: create map validation util func
 	if (!Object.keys(ALERT_MAP).includes(alertType.toLowerCase())) {
