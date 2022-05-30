@@ -23,6 +23,7 @@ const OutlooksPage = () => {
 					<>
 						<h2 className='mb-2'>Day {outlook.day} Outlook</h2>
 						<Image
+							key={outlook.src}
 							alt={`Day ${outlook.day} Outlook Image`}
 							src={outlook.src}
 							height={555}
