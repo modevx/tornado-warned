@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { RiTornadoLine } from "react-icons/ri";
 
+const NAV_ITEMS = [
+	{ name: "alerts", href: "/" },
+	{ name: "outlooks", href: "/outlooks" },
+];
+
 export const Navbar = () => {
 	return (
 		<nav className='flex items-center justify-between'>
@@ -15,9 +20,13 @@ export const Navbar = () => {
 					</div>
 				</a>
 			</Link>
-			<Link href='/outlooks'>
-				<a className='text-stone-200 hover:text-red-500'>outlooks</a>
-			</Link>
+			<div className='space-x-4'>
+				{NAV_ITEMS.map((navItem) => (
+					<Link href={navItem.href}>
+						<a className='text-stone-200 hover:text-red-500'>{navItem.name}</a>
+					</Link>
+				))}
+			</div>
 		</nav>
 	);
 };
