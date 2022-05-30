@@ -22,10 +22,8 @@ export const Navbar = () => {
 			</Link>
 			<div className='space-x-4'>
 				{NAV_ITEMS.map((navItem) => (
-					<Link href={navItem.href}>
-						<a key={navItem.name} className='text-stone-200 hover:text-red-500'>
-							{navItem.name}
-						</a>
+					<Link key={navItem.name} href={navItem.href}>
+						<a className='text-stone-200 hover:text-red-500'>{navItem.name}</a>
 					</Link>
 				))}
 			</div>
