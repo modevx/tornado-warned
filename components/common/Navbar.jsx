@@ -1,26 +1,23 @@
 import Link from "next/link";
 import { RiTornadoLine } from "react-icons/ri";
 
-const navigation = [
-	{ name: "outlooks", href: "/outlooks" },
-	{ name: "alerts", href: "/alerts" },
-];
-
 export const Navbar = () => {
 	return (
 		<nav className='flex items-center justify-between'>
 			<Link href='/' passHref>
 				<a className='flex items-center'>
-					<RiTornadoLine color='red' className='h-8 w-auto mr-5' />
+					<RiTornadoLine color='red' className='h-9 w-auto mr-2' />
+					<div className='flex flex-col leading-4 text-right italic'>
+						<span className='inline-block'>TORNADO</span>
+						<span className='inline-block text-red-500 text-xs'>
+							&nbsp;ACTION
+						</span>
+					</div>
 				</a>
 			</Link>
-			<div className='space-x-3'>
-				{navigation.map((item) => (
-					<Link key={item.name} href={item.href} className=''>
-						<a className='text-stone-200 hover:text-red-500'>{item.name}</a>
-					</Link>
-				))}
-			</div>
+			<Link href='/outlooks'>
+				<a className='text-stone-200 hover:text-red-500'>outlooks</a>
+			</Link>
 		</nav>
 	);
 };
