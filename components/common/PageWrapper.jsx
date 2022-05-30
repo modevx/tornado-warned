@@ -47,11 +47,12 @@ const Meta = () => {
 			{/* Twitter Meta */}
 			<meta name='twitter:card' content='summary_large_image' />
 			<meta name='twitter:creator' content='@ephbuilding' />
-			<meta name='twitter:site' content='@ephbuilding' />
 			<meta
 				name='twitter:image'
-				content='https://repository-images.githubusercontent.com/450166464/d5820a8c-ce6a-438a-bca8-af79668f2e57'
+				content='https://www.tornadoaction.com/preview.png'
 			/>
+			<meta name='twitter:site' content='@ephbuilding' />
+			<meta name='twitter:title' content='tornadoaction.com' />
 			<meta
 				name='twitter:description'
 				content='tornadoaction.com | real-time tornado alerts, news, safety info, stats, and graphics.'
