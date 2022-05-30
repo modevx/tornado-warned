@@ -35,7 +35,7 @@ const Meta = () => {
 			<meta
 				property='og:image'
 				name='image'
-				content='https://repository-images.githubusercontent.com/450166464/63bf8d64-176c-4715-bcff-4f42664ac2dc'
+				content='https://repository-images.githubusercontent.com/450166464/d5820a8c-ce6a-438a-bca8-af79668f2e57'
 			/>
 			<meta
 				name='description'
@@ -46,11 +46,11 @@ const Meta = () => {
 
 			{/* Twitter Meta */}
 			<meta name='twitter:card' content='summary_large_image' />
-			<meta name='twitter:creator' content='@tornado_action' />
-			<meta name='twitter:site' content='@tornado_action' />
+			<meta name='twitter:creator' content='@ephbuilding' />
+			<meta name='twitter:site' content='@ephbuilding' />
 			<meta
 				name='twitter:image'
-				content='https://repository-images.githubusercontent.com/450166464/63bf8d64-176c-4715-bcff-4f42664ac2dc'
+				content='https://repository-images.githubusercontent.com/450166464/d5820a8c-ce6a-438a-bca8-af79668f2e57'
 			/>
 			<meta
 				name='twitter:description'
