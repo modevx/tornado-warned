@@ -8,7 +8,7 @@ const NAV_ITEMS = [
 
 export const Navbar = () => {
 	return (
-		<nav className='flex items-center justify-between'>
+		<nav className='flex items-center justify-between container mx-auto'>
 			<Link href='/' passHref>
 				<a className='flex items-center'>
 					<RiTornadoLine color='red' className='h-9 w-auto mr-2' />
