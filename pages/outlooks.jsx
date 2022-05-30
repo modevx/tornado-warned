@@ -2,7 +2,7 @@ import React from "react";
 import esriConfig from "@arcgis/core/config";
 import { PageWrapper } from "components/common";
 import { SPCOutlookMap } from "components/feature";
-import { ENDPOINTS } from "services/SPC";
+import { ENDPOINTS } from "services/spc";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useQuery } from "react-query";
 

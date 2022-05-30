@@ -1,6 +1,6 @@
 import { executeQueryJSON } from "@arcgis/core/rest/query";
 import esriRequest from "@arcgis/core/request";
-import { ENDPOINTS } from "services/SPC";
+import { ENDPOINTS } from "services/spc";
 
 export default async function handler(req, res) {
 	const query = {

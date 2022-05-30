@@ -8,7 +8,7 @@ import MapView from "@arcgis/core/views/MapView";
 import { watch, when } from "@arcgis/core/core/reactiveUtils";
 import Extent from "@arcgis/core/geometry/Extent";
 // --
-import { ENDPOINTS } from "services/SPC";
+import { ENDPOINTS } from "services/spc";
 import {
 	disableViewNavigation,
 	setDefaultUiComponents,
