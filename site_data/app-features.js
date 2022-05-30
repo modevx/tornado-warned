@@ -11,7 +11,7 @@ import { ImWarning } from "react-icons/im";
 
 export const app_features = [
 	{
-		name: "Real-Time Alerts",
+		name: "Tornado Alerts",
 		tagline:
 			"Tornado warnings and watches straight from the National Weather Service.",
 		benefits: [
