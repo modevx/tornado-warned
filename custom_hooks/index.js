@@ -1,3 +1,3 @@
-export * from "./useRssFeedQuery.js";
-export * from "./useTornadoAlertsQuery.js";
-export * from "./usePublicInfoStatements.js";
+export * from "./useRssFeedQuery";
+export * from "./useTornadoAlertsQuery";
+export * from "./usePublicInfoStatements";

@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
-import { usePublicInfoStatements } from "services/spc";
+import { fetchPublicInfoStatements } from "services/nws";
 
 export const usePublicInfoStatementQuery = () => {
-	return useQuery(["nws-pub-info-stmt"], () => usePublicInfoStatements());
+	return useQuery(["nws-pub-info-stmt"], () => fetchPublicInfoStatements());
 };
