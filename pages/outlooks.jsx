@@ -60,6 +60,24 @@ const OutlooksPage = ({ spcOutlooks }) => {
 					height={555}
 					width={815}
 				/>
+				<Image
+					alt='Day 2 Outlook Image'
+					src='http://www.spc.noaa.gov/products/outlook/day2otlk.gif'
+					height={555}
+					width={815}
+				/>
+				<Image
+					alt='Day 3 Outlook Image'
+					src='http://www.spc.noaa.gov/products/outlook/day3otlk.gif'
+					height={555}
+					width={815}
+				/>
+				<Image
+					alt='Days 4-8 Outlook Image'
+					src='http://www.spc.noaa.gov/products/outlook/day48prob.gif'
+					height={555}
+					width={815}
+				/>
 				{/* {outlooks &&
 					outlooks.map((layer) => (
 						<SPCOutlookMap layer={layer} key={layer.name} />
