@@ -48,7 +48,7 @@ const Meta = () => {
 			<meta name='twitter:card' content='summary_large_image' />
 			<meta name='twitter:creator' content='@ephbuilding' />
 			<meta
-				name='twitter:image'
+				name='twitter:image:src'
 				content='https://www.tornadoaction.com/preview.png'
 			/>
 			<meta name='twitter:site' content='@ephbuilding' />
