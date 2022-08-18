@@ -1,8 +1,5 @@
 import axios from "axios";
 
-// //////////////////////////////////
-// ENDPOINTS
-// //////////////////////////////////
 const BASE_URL = "https://api.weather.gov";
 
 const ENDPOINT = {
@@ -19,18 +16,12 @@ const ENDPOINT = {
 	zones: "/zones",
 };
 
-// //////////////////////////////////
-// CLIENT CONFIG
-// //////////////////////////////////
 const DEFAULT_TIMEOUT = 5000;
 const CLIENT = axios.create({
 	baseURL: BASE_URL,
 	timeout: DEFAULT_TIMEOUT,
 });
 
-// //////////////////////////////////
-// SERVICE REQUESTS
-// //////////////////////////////////
 export const getTornadoAlerts = async (alertType) => {
 	const ALERT_MAP = {
 		warning: `${ENDPOINT.alert_tornado_warnings}`,

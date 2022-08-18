@@ -1,5 +1,5 @@
 import React from "react";
-import { Page } from "components";
+import { Page } from "../layout";
 
 const StatsDashboard = () => {
 	return <Page></Page>;

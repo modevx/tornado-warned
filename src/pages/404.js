@@ -1,4 +1,4 @@
-import { Page } from "components";
+import { Page } from "../layout";
 
 export default function Custom404() {
 	return (

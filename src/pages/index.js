@@ -1,5 +1,5 @@
-import { Page } from "components";
-import { TornadoAlert } from "components";
+import { Page } from "../layout";
+import { TornadoAlert } from "../features";
 
 const HomeScreen = () => {
 	return (

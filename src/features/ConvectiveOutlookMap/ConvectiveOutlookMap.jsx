@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-export const SpcConvOutlookMap = ({ layer }) => {
+export const ConvectiveOutlookMap = ({ layer }) => {
 	const refMap = useRef(null);
 
 	useEffect(() => {

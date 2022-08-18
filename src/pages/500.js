@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Page } from "components";
+import { Page } from "../layout";
 
 export default function Custom500() {
 	return (

@@ -4,8 +4,8 @@ import { RiTornadoLine } from "react-icons/ri";
 const NAV_ITEMS = [
 	{ name: "alerts", href: "/" },
 	{ name: "outlooks", href: "/outlooks" },
-	{ name: "live", href: "/dashboard.live" },
-	{ name: "stats", href: "/dashboard.stats" },
+	{ name: "live", href: "/dashboard-live" },
+	{ name: "stats", href: "/dashboard-stats" },
 ];
 
 export const Navbar = () => {

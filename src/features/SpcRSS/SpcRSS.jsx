@@ -1,6 +1,6 @@
 import { SectionHeading } from "components";
 
-export const SpcRssFeed = ({ rssFeedObjARR, sectionTitle }) => {
+export const SpcRSS = ({ rssFeedObjARR, sectionTitle }) => {
 	const { isLoading, error, data } = rssFeedObjARR;
 	let display;
 

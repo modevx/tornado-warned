@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Page } from "components";
+import { Page } from "../layout";
 
 const OutlooksPage = () => {
 	const OUTLOOKS = [
