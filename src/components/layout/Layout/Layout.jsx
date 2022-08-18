@@ -1,4 +1,3 @@
-/** @jsxImportSource theme-ui */
 import PropTypes from "prop-types";
 
 export const Layout = () => {

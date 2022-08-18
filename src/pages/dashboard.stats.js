@@ -1,8 +1,8 @@
 import React from "react";
 import { Page } from "components";
 
-const LiveDashboard = () => {
+const StatsDashboard = () => {
 	return <Page></Page>;
 };
 
-export default LiveDashboard;
+export default StatsDashboard;
