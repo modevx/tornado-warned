@@ -5,14 +5,8 @@ import { ALERT_TYPES } from "services/national_weather_service/config";
 const HomeScreen = () => {
 	return (
 		<Page>
-			<NationalWeatherServiceAlerts
-				alertType={ALERT_TYPES.tornadoWarning}
-				isTest={true}
-			/>
-			<NationalWeatherServiceAlerts
-				alertType={ALERT_TYPES.tornadoWatch}
-				isTest={true}
-			/>
+			<NationalWeatherServiceAlerts alertType={ALERT_TYPES.tornadoWarning} />
+			<NationalWeatherServiceAlerts alertType={ALERT_TYPES.tornadoWatch} />
 		</Page>
 	);
 };
