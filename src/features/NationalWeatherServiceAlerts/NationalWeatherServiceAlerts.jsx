@@ -14,11 +14,14 @@ import { useFakeNationalWeatherServiceAlerts } from "custom_hooks/useFakeNationa
 
 // [alertType] --> use "Watch" or "Warning"
 export const NationalWeatherServiceAlerts = ({ alertType, isTest = false }) => {
-	// const { data, error } = useTornadoAlertsQuery(alertType);
+	let data;
+	let error;
 
-	const { data, error } = isTest
-		? useFakeNationalWeatherServiceAlerts(alertType)
-		: useTornadoAlertsQuery(alertType);
+	const testAlerts = useFakeNationalWeatherServiceAlerts(alertType);
+	const alerts = useTornadoAlertsQuery(alertType);
+
+	data = isTest ? testAlerts.data : alerts.data;
+	error = isTest ? testAlerts.error : alerts.error;
 
 	if (data) {
 		return data.length > 0 ? (

@@ -5,8 +5,8 @@ export const TornadoAlertsProvider = createContext(
 	dispatchers,
 	initState
 );
-const TornadoAlertsReducer = (state,action) => {
-	switch() {}
-}
+// const TornadoAlertsReducer = (state,action) => {
+// 	switch() {}
+// }
 const useTornadoAlertsContext = useContext(TornadoAlertsContext);
 const useTornadoAlertsDispatch = useContext(TornadoAlertsDispatch);
