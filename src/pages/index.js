@@ -1,11 +1,12 @@
 import { Page } from "../layout";
-import { TornadoAlert } from "../features";
+import { NationalWeatherServiceAlerts } from "features";
+import { ALERT_TYPES } from "services/national_weather_service/config";
 
 const HomeScreen = () => {
 	return (
 		<Page>
-			<TornadoAlert alertType='Warning' />
-			<TornadoAlert alertType='Watch' />
+			<NationalWeatherServiceAlerts alertType={ALERT_TYPES.tornadoWarning} />
+			<NationalWeatherServiceAlerts alertType={ALERT_TYPES.tornadoWatch} />
 		</Page>
 	);
 };

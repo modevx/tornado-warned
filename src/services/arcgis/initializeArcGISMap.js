@@ -8,7 +8,7 @@ import MapView from "@arcgis/core/views/MapView";
 import { watch, when } from "@arcgis/core/core/reactiveUtils";
 import Extent from "@arcgis/core/geometry/Extent";
 // --
-import { ENDPOINTS } from "services/storm-prediction-center";
+import { ENDPOINTS } from "services/storm_prediction_center";
 import {
 	disableViewNavigation,
 	setDefaultUiComponents,
@@ -63,8 +63,6 @@ export const initializeArcGISMap = async (container, layerId) => {
 
 	view.when(async () => {
 		await spcLayer.when();
-		console.log("ArcGIS MAP LAYER >>\n", spcLayer.toJSON());
-		console.log("MAP VIEW SIZE >>\n", view.size);
 		disableViewNavigation(view);
 		setDefaultUiComponents([], view);
 	});

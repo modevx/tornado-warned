@@ -6,8 +6,6 @@ export const handleSelectOnChange = (
 	const property = selectOnChangeEvent.target.name;
 	const value = selectOnChangeEvent.target.value;
 
-	console.log(property, '|', value);
-
 	setState({
 		...currentState,
 		[property]: value,

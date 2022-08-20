@@ -17,7 +17,7 @@ export const createMonthRangeDates = (year, month, day = "01") => {
 			start: formattedStartDate,
 			end: formattedEndDate,
 		};
-		// console.log(DATE_RANGE);
+
 		return DATE_RANGE;
 	} else {
 		throw new Error("Missing year/month value.");

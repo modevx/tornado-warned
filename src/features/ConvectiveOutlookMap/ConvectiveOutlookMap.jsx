@@ -4,7 +4,6 @@ export const ConvectiveOutlookMap = ({ layer }) => {
 	const refMap = useRef(null);
 
 	useEffect(() => {
-		console.log("OUTLOOK MAP FEATURE LAYER >>\n", layer);
 		let createdMap;
 
 		if (refMap.current && layer) {
