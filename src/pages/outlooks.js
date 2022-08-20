@@ -20,7 +20,7 @@ const OutlooksPage = () => {
 				</h1>
 
 				{OUTLOOKS.map((outlook) => (
-					<>
+					<div key={outlook.day}>
 						<h2 className='mb-2'>Day {outlook.day} Outlook</h2>
 						<Image
 							key={outlook.src}
@@ -29,7 +29,7 @@ const OutlooksPage = () => {
 							height={555}
 							width={815}
 						/>
-					</>
+					</div>
 				))}
 			</div>
 		</Page>

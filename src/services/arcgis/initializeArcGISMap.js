@@ -12,7 +12,7 @@ import { ENDPOINTS } from "services/storm_prediction_center";
 import {
 	disableViewNavigation,
 	setDefaultUiComponents,
-} from "services/ArcGIS/helpers";
+} from "services/arcgis/helpers";
 
 esriConfig.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
