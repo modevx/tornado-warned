@@ -24,6 +24,6 @@ export const ConvectiveOutlookMap = ({ layer }) => {
 };
 
 const createMap = async (container, layerId) => {
-	const { initializeArcGISMap } = await import("services/ArcGIS");
+	const { initializeArcGISMap } = await import("services/arcgis");
 	return initializeArcGISMap(container, layerId);
 };
