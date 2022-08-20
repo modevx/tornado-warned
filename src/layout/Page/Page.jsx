@@ -17,7 +17,7 @@ export const Page = ({ children }) => {
 const Meta = () => {
 	return (
 		<Head>
-			<title>Tornado Action</title>
+			<title>Tornado Warned</title>
 			<link rel='icon' href='/favicon.ico' />
 			<meta name='viewport' content='initial-scale=1.0, width=device-width' />
 			<meta
@@ -26,11 +26,11 @@ const Meta = () => {
 			/>
 			<meta
 				name='description'
-				content='tornadoaction.com | real-time tornado alerts, news, safety info, stats, and graphics'
+				content='tornadowarned.com | real-time tornado alerts, news, safety info, stats, and graphics'
 			/>
 
 			{/* LinkedIn Meta */}
-			<meta property='og:title' name='title' content='tornadoaction.com' />
+			<meta property='og:title' name='title' content='tornadowarned.com' />
 			<meta property='og:type' content='website' />
 			<meta
 				property='og:image'
@@ -40,22 +40,22 @@ const Meta = () => {
 			<meta
 				name='description'
 				property='og:description'
-				content='tornadoaction.com | real-time tornado alerts, news, safety info, stats, and graphics.'
+				content='tornadowarned.com | real-time tornado alerts, news, safety info, stats, and graphics.'
 			/>
 			<meta name='author' content='Ephraim Smith' />
 
 			{/* Twitter Meta */}
 			<meta name='twitter:card' content='summary_large_image' />
-			<meta name='twitter:creator' content='@ephbuilding' />
+			<meta name='twitter:creator' content='@_tornadowarned' />
 			<meta
 				name='twitter:image:src'
-				content='https://www.tornadoaction.com/preview.png'
+				content='https://www.tornadowarned.com/preview.png'
 			/>
-			<meta name='twitter:site' content='@ephbuilding' />
-			<meta name='twitter:title' content='tornadoaction.com' />
+			<meta name='twitter:site' content='@_tornadowarned' />
+			<meta name='twitter:title' content='tornadowarned.com' />
 			<meta
 				name='twitter:description'
-				content='tornadoaction.com | real-time tornado alerts, news, safety info, stats, and graphics.'
+				content='tornadowarned.com | real-time tornado alerts, news, safety info, stats, and graphics.'
 			/>
 		</Head>
 	);

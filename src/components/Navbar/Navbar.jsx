@@ -16,7 +16,7 @@ export const Navbar = () => {
 					<RiTornadoLine color='red' className='h-9 w-auto mr-2 md:h-16' />
 					<div className='flex flex-col leading-4 text-right italic md:text-2xl md:flex-row'>
 						<span className='inline-block'>TORNADO</span>
-						<span className='inline-block text-red-500'>&nbsp;ACTION</span>
+						<span className='inline-block text-red-500'>&nbsp;WARNED</span>
 					</div>
 				</a>
 			</Link>
