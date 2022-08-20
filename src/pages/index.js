@@ -7,11 +7,11 @@ const HomeScreen = () => {
 		<Page>
 			<NationalWeatherServiceAlerts
 				alertType={ALERT_TYPES.tornadoWarning}
-				isTest={false}
+				isTest={true}
 			/>
 			<NationalWeatherServiceAlerts
 				alertType={ALERT_TYPES.tornadoWatch}
-				isTest={false}
+				isTest={true}
 			/>
 		</Page>
 	);

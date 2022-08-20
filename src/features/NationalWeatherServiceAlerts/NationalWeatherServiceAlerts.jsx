@@ -50,12 +50,10 @@ export const NationalWeatherServiceAlerts = ({ alertType, isTest = false }) => {
 };
 
 const AlertList = ({ activeAlerts }) => {
-	console.log(activeAlerts);
-
 	return (
 		<>
 			{activeAlerts.map((alert) => (
-				<AlertListItem activeAlert={alert} />
+				<AlertListItem key={alert.properties.id} activeAlert={alert} />
 			))}
 		</>
 	);
