@@ -64,3 +64,7 @@ run `"gh-pages": "gh-pages -d build"`
 ### React Simple Maps
 
 [repo](https://github.com/zcreativelabs/react-simple-maps) | [site](https://www.react-simple-maps.io/)
+
+module.exports = {
+presets: [["@babel/preset-env", { targets: { node: "current" } }]],
+};

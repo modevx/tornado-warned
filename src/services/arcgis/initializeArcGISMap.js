@@ -9,10 +9,7 @@ import { watch, when } from "@arcgis/core/core/reactiveUtils";
 import Extent from "@arcgis/core/geometry/Extent";
 // --
 import { ENDPOINTS } from "services/storm_prediction_center";
-import {
-	disableViewNavigation,
-	setDefaultUiComponents,
-} from "services/arcgis/helpers";
+import { disableViewNavigation, setDefaultEsriUIComponents } from "./utils";
 
 esriConfig.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
 
@@ -64,7 +61,7 @@ export const initializeArcGISMap = async (container, layerId) => {
 	view.when(async () => {
 		await spcLayer.when();
 		disableViewNavigation(view);
-		setDefaultUiComponents([], view);
+		setDefaultEsriUIComponents([], view);
 	});
 
 	app.spcLayer = spcLayer;
