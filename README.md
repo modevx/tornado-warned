@@ -1,10 +1,10 @@
 # BUILD NOTES
 
-## FEATURES
+## | FEATURES
 
 ### Real-Time Alerts
 
-## TOOLING
+## | TOOLING
 
 ### Deploy to GitHub Pages with Custom Domain
 
@@ -16,7 +16,7 @@ create `build/CNAME` file with `tornadowarned.com` text in it
 
 run `"gh-pages": "gh-pages -d build"`
 
-## DESIGN SYSTEM
+## | DESIGN SYSTEM
 
 ### Minimal Customization
 
@@ -36,3 +36,31 @@ run `"gh-pages": "gh-pages -d build"`
 
 - [TW default theme](https://unpkg.com/browse/tailwindcss@3.0.23/stubs/defaultConfig.stub.js)
   - [ITCSS](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/#what-is-itcss)
+
+## | PROTOTYPING
+
+## | TESTING
+
+### Unit
+
+- [Next.js + React Testing Library](https://nextjs.org/docs/testing#jest-and-react-testing-library)
+  - `jest`, `jest-environment-jsdom`, `@testing-library/react`, `@testing-library/jest-dom`
+  - [Next.js test env vars](https://nextjs.org/docs/basic-features/environment-variables#test-environment-variables)
+
+### Integration
+
+- []()
+
+### E2E
+
+- [Cypress](https://docs.cypress.io/guides/getting-started/installing-cypress) | [repo](https://github.com/cypress-io/github-action)
+
+## | MAP VISUALIZATIONS
+
+### React Vector Maps
+
+[repo](https://github.com/South-Paw/react-vector-maps) | [site](https://react-vector-maps.netlify.app/)
+
+### React Simple Maps
+
+[repo](https://github.com/zcreativelabs/react-simple-maps) | [site](https://www.react-simple-maps.io/)

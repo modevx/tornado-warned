@@ -1,93 +1,55 @@
-import axios from "axios";
+import { SWDI_CLIENT } from "./config";
 
-// //////////////////////////////////
-// ENDPOINTS
-// //////////////////////////////////
-const BASE_URL = "https://www.ncdc.noaa.gov/swdiws";
+// const AxiosResponse = {
+// 	data: {},
+// 	status: "",
+// 	statusText: "",
+// 	headers: {},
+// 	config: {},
+// 	request: {},
+// };
 
-const ENDPOINT = Object.freeze({
-	hail_json: `${BASE_URL}/json/nx3hail`,
-	meso_json: `${BASE_URL}/json/nx3meso`,
-	strm_cell_json: `${BASE_URL}/json/nx3structure`,
-	tvs_json: `${BASE_URL}/json/nx3tvs`,
-});
+export const getProductById = async ({ outputFormat, dataset, id }) => {
+	// try {
+	const res = await SWDI_CLIENT.get(`/${outputFormat}/${dataset}/id=${id}`);
+	return res.data;
+	// } catch (error) {
+	// 	throw new Error(`>> ERROR FETCHING SWDI PRODUCT BY ID:\n${error}`);
+	// }
+};
 
-const SEVERE_WEATHER_DATA_INVENTORY = Object.freeze({
-	outputFormat: {
-		json: "/json",
-		csv: "/csv",
-		xml: "/xml",
-		shp: "/shp",
-		kmz: "/kmz",
-	},
-	dataset: {
-		tornado_vortex_signatures: "nx3tvs",
-		mesocyclone_signatures: "nx3meso",
-		hail: "nx3hail",
-		storm_cell_structure: "nx3structure",
-		prelim_local_storm_reports: "plsr",
-		storm_warnings: "warn",
-		dataset_inventory: ":inv",
-	},
-	optionalParams: {
-		bounding_box: "bbox",
-		degree_tile: "tile",
-		statistics: "stat",
-		results_count: "count",
-		daily_feature_counts: "tilesum",
-		column_value_count: "countGroupBy",
-		filter: "filterBy",
-		filter_many: "filterBy[]",
-	},
-	id: "id",
-});
-// //////////////////////////////////
-// CLIENT CONFIG
-// //////////////////////////////////
-const DEFAULT_TIMEOUT = 5000;
-
-const CLIENT = axios.create({
-	baseURL: BASE_URL,
-	timeout: DEFAULT_TIMEOUT,
-});
-
-// //////////////////////////////////
-// SERVICE REQUESTS
-// //////////////////////////////////
-// * format options:
-// csv, kmz, json, shp, xml
-export const getSevereWeatherDataInventoryProducts = async ({
+export const getProduct = async ({
 	outputFormat,
 	dataset,
 	dateRange,
+	options = {},
 }) => {
-	const validOutputFormats = ["json", "csv", "xml", "shp", "kmz"];
-	const validDatasets = [
-		"nx3tvs",
-		"nx3meso",
-		"nx3hail",
-		"nx3structure",
-		"plsr",
-		"warn",
-	];
-
-	if (!validOutputFormats.includes(outputFormat)) {
-		throw new Error(
-			`${outputFormat} is not a valid output format.  Valid formats: "json", "csv", "xml", "shp", "kmz".`
+	try {
+		const res = await SWDI_CLIENT.get(
+			`/${outputFormat}/${dataset}/${dateRange}`,
+			{
+				params: { ...options },
+			}
 		);
+		return res.data;
+	} catch (error) {
+		throw new Error(`>> ERROR FETCHING SWDI PRODUCT:\n${error}`);
 	}
-
-	if (!validDatasets.includes(dataset)) {
-		throw new Error(
-			`${dataset} is not a valid dataset.  Valid datasets: "nx3tvs", "nx3meso", "nx3hail", "nx3structure", "plsr", and "warn".`
-		);
-	}
-
-	const res = await CLIENT.get(
-		`${BASE_URL}/${outputFormat}/${dataset}/${dateRange}`
-	);
-	return res.data;
 };
 
-// TODO: add dateRange format validation with RegEx
-// TODO: explore lightweight TS alts
+export const getPeriodOfRecord = async ({ dataset }) => {
+	return await SWDI_CLIENT.get(`/json/${dataset}/periodOfRecord`);
+};
+
+export const getDatasetInventory = async ({ outputFormat, dataset }) => {
+	return await SWDI_CLIENT.get(`/${outputFormat}/${dataset}:inv`);
+};
+export const getAllDatasetInventory = async ({ outputFormat, dataset }) => {
+	return await SWDI_CLIENT.get(`/${outputFormat}/${dataset}:inv`);
+};
+export const getByDataRange = async ({
+	outputFormat,
+	dataset,
+	dateRange,
+}) => {};
+export const getWithLimit = async ({ outputFormat, dataset }) => {};
