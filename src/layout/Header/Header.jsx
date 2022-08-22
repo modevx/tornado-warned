@@ -1,4 +1,5 @@
-import { Clock, Navbar } from "components";
+import { Clock } from "components";
+import { Navbar } from "layout";
 
 export const Header = () => {
 	return (

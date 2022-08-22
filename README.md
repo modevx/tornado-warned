@@ -57,6 +57,14 @@ run `"gh-pages": "gh-pages -d build"`
 
 ## | MAP VISUALIZATIONS
 
+### [ Issues ]
+
+#### **_SVG MAPS: creating a [`linear gradient`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/linearGradient#attributes)_**
+
+- SOLUTION: [`gradientUnits = "userSpaceOneUse"`](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Gradients#linear_gradient)
+  - found here: [S.O. thread](https://stackoverflow.com/a/5522370)
+    - also: [`<stop>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/stop#attributes) | [`<radialGradient>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/radialGradient)
+
 ### React Vector Maps
 
 [repo](https://github.com/South-Paw/react-vector-maps) | [site](https://react-vector-maps.netlify.app/)

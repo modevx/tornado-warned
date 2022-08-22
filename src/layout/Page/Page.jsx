@@ -1,4 +1,4 @@
-import { Footer, Header } from "components";
+import { Footer, Header } from "layout";
 import Head from "next/head";
 
 export const Page = ({ children }) => {

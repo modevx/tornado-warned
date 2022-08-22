@@ -23,7 +23,7 @@ const LiveDashboard = () => {
 					{/* -- MAP GRID TILE */}
 					<div className=' sm:col-span-2'>
 						{data && (
-							<div className='stroke-blue-500'>
+							<div className='stroke-blue-400'>
 								<VectorMap
 									{...USA_MAP}
 									layerProps={{ className: "hover:fill-yellow-400" }}
@@ -32,13 +32,13 @@ const LiveDashboard = () => {
 										<linearGradient
 											id='SvgMapGradient'
 											gradientUnits='userSpaceOnUse'
-											x1='50%'
-											y1='0%'
-											x2='100%'
-											y2='100%'
+											gradientTransform='rotate(45)'
 										>
-											<stop offset='0%' stopColor='blue' />
-											<stop offset='100%' stopColor='black' />
+											<stop offset='0%' stopColor='#111' />
+											<stop offset='50%' stopColor='#333' />
+											<stop offset='60%' stopColor='#f00' />
+											<stop offset='70%' stopColor='#333' />
+											<stop offset='100%' stopColor='#111' />
 										</linearGradient>
 									</defs>
 								</VectorMap>
