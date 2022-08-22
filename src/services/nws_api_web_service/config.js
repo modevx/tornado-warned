@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const URLS = {
-	webServiceBase: "https://api.weather.gov",
+	base: "https://api.weather.gov",
 	stormWatches:
 		"/alerts/active?event=Severe%20Thunderstorm%20Watch&message_type=alert",
 	stormWarnings:
@@ -20,6 +20,6 @@ export const ALERT_TYPES = {
 const DEFAULT_TIMEOUT = 5000;
 
 export const CLIENT = axios.create({
-	baseURL: URLS.webServiceBase,
+	baseURL: URLS.base,
 	timeout: DEFAULT_TIMEOUT,
 });

@@ -1,6 +1,6 @@
 import { executeQueryJSON } from "@arcgis/core/rest/query";
 import esriRequest from "@arcgis/core/request";
-import { ENDPOINTS } from "services/storm_prediction_center";
+import { ENDPOINTS } from "services/spc_rss_feeds";
 
 export default async function handler(req, res) {
 	const query = {

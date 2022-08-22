@@ -1,4 +1,3 @@
-import axios from "axios";
 import { CLIENT, ALERT_TYPES, URLS } from "./config";
 import * as FAKE_ALERTS from "./fakeData";
 
@@ -99,4 +98,21 @@ export const getPublicInfoStatements = async () => {
 	return tornadoWarnedPNSs.filter(({ productText }) => {
 		return regex.test(productText);
 	});
+};
+
+export const getStormWarnings = async (endpoint) => {
+	const { data } = await CLIENT.get(endpoint);
+	return data.features;
+};
+export const getStormWatches = async (endpoint) => {
+	const { data } = await CLIENT.get(endpoint);
+	return data.features;
+};
+export const getTornadoWarnings = async (endpoint) => {
+	const { data } = await CLIENT.get(endpoint);
+	return data.features;
+};
+export const getTornadoWatches = async (endpoint) => {
+	const { data } = await CLIENT.get(endpoint);
+	return data.features;
 };

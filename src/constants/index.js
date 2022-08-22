@@ -61,7 +61,7 @@ export const app_features = [
 	},
 ];
 
-export const STATES_MAP = {
+export const STATES_ABBR_MAP = {
 	AL: "Alabama",
 	AK: "Alaska",
 	AZ: "Arizona",

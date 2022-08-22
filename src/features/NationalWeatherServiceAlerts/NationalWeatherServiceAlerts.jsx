@@ -6,7 +6,7 @@ import { LocaleDate } from "components";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 
-import { STATES_MAP } from "constants";
+import { STATES_ABBR_MAP } from "constants";
 import { useTornadoAlertsQuery } from "custom_hooks";
 import { getAreaDescMAP, formatSenderNameSTR } from "utils";
 
@@ -131,7 +131,7 @@ const AlertListItem = ({ activeAlert }) => {
 							return (
 								<div key={state}>
 									<h4 className='text-lg font-medium mb-2 uppercase'>
-										{STATES_MAP[state]}
+										{STATES_ABBR_MAP[state]}
 									</h4>
 									<p className='text-sm mb-2'>{joinedAreaDescSTR}</p>
 								</div>

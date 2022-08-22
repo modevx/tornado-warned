@@ -8,7 +8,7 @@ import MapView from "@arcgis/core/views/MapView";
 import { watch, when } from "@arcgis/core/core/reactiveUtils";
 import Extent from "@arcgis/core/geometry/Extent";
 // --
-import { ENDPOINTS } from "services/storm_prediction_center";
+import { ENDPOINTS } from "services/spc_rss_feeds";
 import { disableViewNavigation, setDefaultEsriUIComponents } from "./utils";
 
 esriConfig.apiKey = process.env.NEXT_PUBLIC_ARCGIS_KEY;
