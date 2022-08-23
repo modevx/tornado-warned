@@ -1,21 +1,30 @@
-import { CLIENT, ALERT_TYPES, URLS } from "./config";
-import * as FAKE_ALERTS from "./fakeData";
+import { useQuery } from "react-query";
+import { CLIENT, ENDPOINT } from "./config";
 
-export const getFakeNationalWeatherServiceAlerts = async (alertType) => {
-	return FAKE_ALERTS[alertType.toUpperCase().split(" ").join("_")];
-};
+export const getNwsAlerts = async (alertType) => {
+	const endpoint = {
+		// ["Severe Thunderstorm Warning"]: ENDPOINT.stormWarnings,
+		// ["Severe Thunderstorm Watch"]: ENDPOINT.stormWatches,
+		// ["Tornado Warning"]: ENDPOINT.tornadoWarnings,
+		// ["Tornado Watch"]: ENDPOINT.tornadoWatches,
+		["Severe Thunderstorm Warning"]: ENDPOINT.testStormWarnings,
+		["Severe Thunderstorm Watch"]: ENDPOINT.testStormWatches,
+		["Tornado Warning"]: ENDPOINT.testTornadoWarnings,
+		["Tornado Watch"]: ENDPOINT.testTornadoWatches,
+	};
 
-export const getNationalWeatherServiceAlerts = async (alertType) => {};
-
-export const getTornadoAlerts = async (alertType) => {
-	const endpoint =
-		alertType === ALERT_TYPES.tornadoWarning
-			? URLS.tornadoWarnings
-			: URLS.tornadoWatches;
-
-	const { data } = await CLIENT.get(endpoint);
-
-	return await data.features;
+	try {
+		const { data } = await CLIENT.get(endpoint[alertType]);
+		console.log(`>> ${alertType}:\n`, data);
+		return data.features;
+	} catch (error) {
+		console.log(
+			`>> Error fetching ${alertType.toUpperCase()} from the National Weather Service:\n`,
+			error
+		);
+		// notify user
+		// notify this.service
+	}
 };
 
 export const getPublicInfoStatements = async () => {
@@ -98,21 +107,4 @@ export const getPublicInfoStatements = async () => {
 	return tornadoWarnedPNSs.filter(({ productText }) => {
 		return regex.test(productText);
 	});
-};
-
-export const getStormWarnings = async (endpoint) => {
-	const { data } = await CLIENT.get(endpoint);
-	return data.features;
-};
-export const getStormWatches = async (endpoint) => {
-	const { data } = await CLIENT.get(endpoint);
-	return data.features;
-};
-export const getTornadoWarnings = async (endpoint) => {
-	const { data } = await CLIENT.get(endpoint);
-	return data.features;
-};
-export const getTornadoWatches = async (endpoint) => {
-	const { data } = await CLIENT.get(endpoint);
-	return data.features;
 };

@@ -1,65 +1,15 @@
 import React from "react";
 import Image from "next/image";
-
-import { Button, Modal, Table } from "react-daisyui";
 import { LocaleDate } from "components";
-import { Disclosure } from "@headlessui/react";
-import { ChevronUpIcon } from "@heroicons/react/solid";
+import { Button, Modal, Table } from "react-daisyui";
 
 import { STATES_ABBR_MAP } from "constants";
-import { useTornadoAlertsQuery } from "custom_hooks";
-import { getAreaDescMAP, formatSenderNameSTR } from "utils";
+import {
+	getAreaDescMAP,
+	formatSenderNameSTR,
+} from "services/nws_api_web_service";
 
-import { useFakeNationalWeatherServiceAlerts } from "custom_hooks/useFakeNationalWeatherServiceAlerts";
-
-// [alertType] --> use "Watch" or "Warning"
-export const NationalWeatherServiceAlerts = ({ alertType, isTest = false }) => {
-	let data;
-	let error;
-
-	const testAlerts = useFakeNationalWeatherServiceAlerts(alertType);
-	const alerts = useTornadoAlertsQuery(alertType);
-
-	data = isTest ? testAlerts.data : alerts.data;
-	error = isTest ? testAlerts.error : alerts.error;
-
-	if (data) {
-		return data.length > 0 ? (
-			<section className='grow'>
-				<AlertList activeAlerts={data} />
-			</section>
-		) : (
-			<div
-				className={`flex flex-col items-center justify-center container w-full h-[25vh] shadow-md shadow-stone-900 mb-6 mx-auto border-dashed border-2 border-stone-300 rounded-md p-2`}
-			>
-				<p className='text-5xl text-stone-300 text-center'>No active alerts.</p>
-			</div>
-		);
-	}
-
-	if (error) {
-		return (
-			<>
-				<p>Something went wrong...</p>
-				<p>{error.message}</p>
-			</>
-		);
-	}
-
-	return <p>Loading...</p>;
-};
-
-const AlertList = ({ activeAlerts }) => {
-	return (
-		<>
-			{activeAlerts.map((alert) => (
-				<AlertListItem key={alert.properties.id} activeAlert={alert} />
-			))}
-		</>
-	);
-};
-
-const AlertListItem = ({ activeAlert }) => {
+export const AlertListItem = ({ activeAlert }) => {
 	const {
 		event,
 		messageType,

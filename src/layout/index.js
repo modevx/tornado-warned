@@ -1,3 +1,4 @@
+export * from "./Dashboard/Dashboard";
 export * from "./FeatureSection/FeatureSection";
 export * from "./Footer/Footer";
 export * from "./Header/Header";

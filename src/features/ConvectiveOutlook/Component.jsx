@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-export const ConvectiveOutlookMap = ({ layer }) => {
+export const ConvectiveOutlook = ({ layer }) => {
 	const refMap = useRef(null);
 
 	useEffect(() => {
@@ -24,6 +24,6 @@ export const ConvectiveOutlookMap = ({ layer }) => {
 };
 
 const createMap = async (container, layerId) => {
-	const { initializeArcGISMap } = await import("services/arcgis");
+	const { initializeArcGISMap } = await import("services/esri_arcgis");
 	return initializeArcGISMap(container, layerId);
 };

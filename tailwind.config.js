@@ -9,7 +9,17 @@ module.exports = {
 		"./src/layout/**/*.{js,jsx}",
 	],
 	theme: {
-		extend: {},
+		extend: {
+			animation: {
+				marquee: "marquee 25s linear infinite",
+			},
+			keyframes: {
+				marquee: {
+					"0%": { transform: "translateX(100%)" },
+					"100%": { transform: "translateX(-101%)" },
+				},
+			},
+		},
 	},
 	plugins: [require("daisyui")],
 };

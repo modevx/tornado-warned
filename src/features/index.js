@@ -1,3 +1,4 @@
-export * from "./ConvectiveOutlookMap/ConvectiveOutlookMap";
+export * from "./ConvectiveOutlook";
+export * from "./DangerousSituationMarquee";
 export * from "./SpcRSS/SpcRSS";
-export * from "./NationalWeatherServiceAlerts/NationalWeatherServiceAlerts";
+export * from "./NWSAlerts";

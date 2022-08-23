@@ -2,10 +2,9 @@ import Link from "next/link";
 import { RiTornadoLine } from "react-icons/ri";
 
 const NAV_ITEMS = [
-	{ name: "alerts", href: "/" },
+	{ name: "home", href: "/" },
 	{ name: "outlooks", href: "/outlooks" },
-	{ name: "live", href: "/dashboard-live" },
-	{ name: "stats", href: "/dashboard-stats" },
+	{ name: "stats", href: "/historic-stats" },
 ];
 
 export const Navbar = () => {
