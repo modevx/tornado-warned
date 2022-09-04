@@ -1,6 +1,6 @@
 export const createContext = (reducer, dispatchActions, initState) => {
-	const Context = React.createContext();
-	const Dispatch = React.createContext();
+	const StateContext = React.createContext();
+	const DispatchContext = React.createContext();
 
 	const Provider = ({ children }) => {
 		const [state, dispatch] = useReducer(reducer, initState);
@@ -16,11 +16,13 @@ export const createContext = (reducer, dispatchActions, initState) => {
 		return (
 			// return separate providers to cut down on..
 			// ..re-renders from dispatch-only components
-			<Dispatch.Provider value={{ ...dispatchActions }}>
-				<Context.Provider value={{ state }}>{children}</Context.Provider>
-			</Dispatch.Provider>
+			<DispatchContext.Provider value={{ ...dispatchActions }}>
+				<StateContext.Provider value={{ state }}>
+					{children}
+				</StateContext.Provider>
+			</DispatchContext.Provider>
 		);
 	};
 
-	return { Context, Dispatch, Provider };
+	return { StateContext, DispatchContext, Provider };
 };

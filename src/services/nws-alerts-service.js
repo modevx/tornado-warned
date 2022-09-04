@@ -12,29 +12,22 @@ export const URLS = {
 	tornadoWatches: "/alerts/active?event=Tornado%20Watch&message_type=alert",
 	tornadoWarnings: "/alerts/active?event=Tornado%20Warning&message_type=alert",
 };
-
 export const ALERT_TYPES = {
 	stormWatch: "Severe Thunderstorm Warning",
 	stormWarning: "Severe Thunderstorm Watch",
 	tornadoWatch: "Tornado Watch",
 	tornadoWarning: "Tornado Warning",
 };
-
 const DEFAULT_TIMEOUT = 5000;
-
 export const CLIENT = axios.create({
 	baseURL: URLS.webServiceBase,
 	timeout: DEFAULT_TIMEOUT,
 });
-
 // -- SERVICE CALLS
-
 export const getFakeNationalWeatherServiceAlerts = async (alertType) => {
 	return FAKE_ALERTS[alertType.toUpperCase().split(" ").join("_")];
 };
-
 export const getNationalWeatherServiceAlerts = async (alertType) => {};
-
 export const getTornadoAlerts = async (alertType) => {
 	const endpoint =
 		alertType === ALERT_TYPES.tornadoWarning
@@ -45,7 +38,6 @@ export const getTornadoAlerts = async (alertType) => {
 
 	return await data.features;
 };
-
 export const getPublicInfoStatements = async () => {
 	const end_date = new Date();
 	const start_date = new Date(
