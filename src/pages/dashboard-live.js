@@ -1,10 +1,10 @@
-import { Page } from "../layout";
-import { ALERT_TYPES } from "services/national_weather_service/config";
+import { PageLayout } from "../components";
+import { ALERT_TYPES } from "services/nws-alerts-service";
 import { NationalWeatherServiceAlerts } from "../features";
 
 const LiveDashboard = () => {
 	return (
-		<Page>
+		<PageLayout>
 			<div className='grow flex flex-col mx-auto'>
 				{/* -- DASHBOARD */}
 				<div className='m-4 grow grid gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-5 md:grid-rows-2 md:gap-6 '>
@@ -34,7 +34,7 @@ const LiveDashboard = () => {
 					</div>
 				</div>
 			</div>
-		</Page>
+		</PageLayout>
 	);
 };
 

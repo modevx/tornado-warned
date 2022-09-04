@@ -1,8 +1,8 @@
 import React from "react";
-import { Page } from "../layout";
+import { PageLayout } from "../components";
 
 const StatsDashboard = () => {
-	return <Page></Page>;
+	return <PageLayout></PageLayout>;
 };
 
 export default StatsDashboard;

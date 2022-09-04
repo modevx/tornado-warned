@@ -61,6 +61,13 @@ export const app_features = [
 	},
 ];
 
+export const MAIN_NAV_ITEMS = [
+	{ name: "alerts", href: "/" },
+	{ name: "outlooks", href: "/convective-outlooks" },
+	// { name: "live", href: "/dashboard-live" },
+	// { name: "stats", href: "/dashboard-stats" },
+];
+
 export const STATES_MAP = {
 	AL: "Alabama",
 	AK: "Alaska",

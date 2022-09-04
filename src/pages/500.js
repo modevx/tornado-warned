@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { Page } from "../layout";
+import { PageLayout } from "../components";
 
 export default function Custom500() {
 	return (
-		<Page>
+		<PageLayout>
 			<div className='h-screen flex flex-col items-center justify-center'>
 				<h1 className='sr-only'>500 - Server-side error occurred</h1>
 				<p className='font-bold text-7xl text-yellow-300 mb-10 italic'>
@@ -24,6 +24,6 @@ export default function Custom500() {
 					(can&apos;t have nice things)
 				</p>
 			</div>
-		</Page>
+		</PageLayout>
 	);
 }
