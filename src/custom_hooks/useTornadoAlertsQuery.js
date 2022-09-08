@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getTornadoAlerts } from "services/nws-alerts-service";
 
 export const useTornadoAlertsQuery = (alertType) => {

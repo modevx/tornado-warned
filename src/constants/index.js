@@ -9,7 +9,7 @@ import { RiNumbersLine, RiTornadoLine } from "react-icons/ri";
 import { TiWeatherStormy } from "react-icons/ti";
 import { ImWarning } from "react-icons/im";
 
-export const app_features = [
+export const FEATURES = [
 	{
 		name: "Tornado Alerts",
 		tagline:
@@ -61,14 +61,14 @@ export const app_features = [
 	},
 ];
 
-export const MAIN_NAV_ITEMS = [
+export const NAV_ITEMS = [
 	{ name: "alerts", href: "/" },
 	{ name: "outlooks", href: "/convective-outlooks" },
 	// { name: "live", href: "/dashboard-live" },
 	// { name: "stats", href: "/dashboard-stats" },
 ];
 
-export const STATES_MAP = {
+export const STATE_NAMES_ABBR = {
 	AL: "Alabama",
 	AK: "Alaska",
 	AZ: "Arizona",

@@ -1,11 +1,11 @@
-import { NwsAlerts, PageLayout } from "components";
-import { ALERT_TYPES } from "services/nws-alerts-service";
+import { PageLayout } from "components";
+import { NwsAlerts } from "features/NationalWeatherServiceAlerts";
 
 const HomeScreen = () => {
 	return (
 		<PageLayout>
-			<NwsAlerts alertType={ALERT_TYPES.tornadoWarning} />
-			<NwsAlerts alertType={ALERT_TYPES.tornadoWatch} />
+			{/* <NwsAlerts alertType={ALERT_TYPES.tornadoWarning} />
+			<NwsAlerts alertType={ALERT_TYPES.tornadoWatch} /> */}
 		</PageLayout>
 	);
 };

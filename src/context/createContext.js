@@ -7,15 +7,17 @@ export const createContext = (reducer, dispatchActions, initState) => {
 
 		const actions = {};
 
-		// every passed dispatch action becomes key in new actions {}
-		// dispatch gets passed as callback to newly assigned action funcs
+		/**
+		 * {
+		 * 		functionName: functionName(dispatch)
+		 * }
+		 */
+
 		for (let key in dispatchActions) {
 			actions[key] = dispatchActions[key](dispatch);
 		}
 
 		return (
-			// return separate providers to cut down on..
-			// ..re-renders from dispatch-only components
 			<DispatchContext.Provider value={{ ...dispatchActions }}>
 				<StateContext.Provider value={{ state }}>
 					{children}

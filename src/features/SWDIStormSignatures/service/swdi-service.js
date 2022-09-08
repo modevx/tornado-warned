@@ -25,9 +25,6 @@ const SEVERE_WEATHER_DATA_INVENTORY = Object.freeze({
 		mesocyclone_signatures: "nx3meso",
 		hail: "nx3hail",
 		storm_cell_structure: "nx3structure",
-		prelim_local_storm_reports: "plsr",
-		storm_warnings: "warn",
-		dataset_inventory: ":inv",
 	},
 	optionalParams: {
 		bounding_box: "bbox",
@@ -41,9 +38,7 @@ const SEVERE_WEATHER_DATA_INVENTORY = Object.freeze({
 	},
 	id: "id",
 });
-// //////////////////////////////////
-// CLIENT CONFIG
-// //////////////////////////////////
+
 const DEFAULT_TIMEOUT = 5000;
 
 const CLIENT = axios.create({

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MAIN_NAV_ITEMS } from "constants/index.js";
+import { NAV_ITEMS } from "constants/index.js";
 
 export const Navbar = () => {
 	return (
@@ -18,7 +18,7 @@ export const Navbar = () => {
 						</a>
 					</Link>
 					<div className='space-x-4 md:text-2xl'>
-						{MAIN_NAV_ITEMS.map((navItem) => (
+						{NAV_ITEMS.map((navItem) => (
 							<Link key={navItem.name} href={navItem.href}>
 								<a className='text-stone-200 hover:text-red-500'>
 									{navItem.name}

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { PageLayout } from "components";
-import { useConvectiveOutlookQuery } from "services/spc-convective-outlooks-service";
+import { useConvectiveOutlookQuery } from "features/SPCConvectiveOutlooks";
 
 const OutlooksPage = () => {
 	// const OUTLOOKS = [
