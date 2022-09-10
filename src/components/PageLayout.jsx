@@ -1,9 +1,9 @@
-import { Footer, Navbar } from "components";
 import Head from "next/head";
+import { Footer, Navbar } from "components";
 
 export const PageLayout = ({ children }) => {
 	return (
-		<div className='bg-stone-900 text-white'>
+		<div className='bg-[#111] text-white'>
 			<Meta />
 			<div className='flex flex-col min-h-screen'>
 				<Navbar />

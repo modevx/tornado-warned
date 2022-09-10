@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .dashboard-tile {
+    @apply flex justify-center items-center py-5 bg-zinc-900 rounded-lg  
+  }
+}

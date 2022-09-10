@@ -17,7 +17,7 @@ export const Basemap = ({ children }) => {
 	}, []);
 
 	return (
-		<svg viewBox='0 0 975 610' fill="url('#linear-gradient')">
+		<svg viewBox='0 -60 975 610' fill="url('#linear-gradient')">
 			<LinearGradient />
 			{basemap &&
 				basemap.features.map((feature) => {

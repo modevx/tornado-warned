@@ -5,13 +5,13 @@ const HTTP_CLIENT = axios.create({
 	baseURL: "https://api.weather.gov",
 	timeout: 5000,
 });
+
 export const EVENT_NAME = Object.freeze({
 	tornadoWarning: "Tornado Warning",
 	tornadoWatch: "Tornado Watch",
 	severeStormWarning: "Severe Thunderstorm Watch",
 	severeStormWatch: "Severe Thunderstorm Warning",
 });
-
 export const QUERY_KEY = {
 	alerts: ["alerts"],
 	tornadoWarning: ["alerts", EVENT_NAME.tornadoWarning],
@@ -27,16 +27,32 @@ const fetchActiveAlerts = async (eventName) => {
 	return res.data;
 };
 const fetchPrev2WeeksAlerts = async (eventName) => {
-	const { start, end } = genPrev2WeekISODateRange();
-	console.log(start, end);
+	const { start, end } = gen2WeekISODateRange();
 	const res = await HTTP_CLIENT.get(
 		`/alerts?start=${start}&end=${end}&message_type=alert&event=${eventName}`
 	);
 	return res.data;
 };
 
-export const useActiveAlerts = (eventName) => {
-	return useQuery(["alerts", eventName], () => fetchActiveAlerts(eventName));
+export const useActiveTornadoWarnings = () => {
+	return useQuery(QUERY_KEY.tornadoWarning, () =>
+		fetchActiveAlerts(EVENT_NAME.tornadoWarning)
+	);
+};
+export const useActiveTornadoWatches = () => {
+	return useQuery(QUERY_KEY.tornadoWatch, () =>
+		fetchActiveAlerts(EVENT_NAME.tornadoWatch)
+	);
+};
+export const useActiveStormWarnings = () => {
+	return useQuery(QUERY_KEY.severeStormWarning, () =>
+		fetchActiveAlerts(EVENT_NAME.severeStormWarning)
+	);
+};
+export const useActiveStormWatches = () => {
+	return useQuery(QUERY_KEY.severeStormWatch, () =>
+		fetchActiveAlerts(EVENT_NAME.severeStormWatch)
+	);
 };
 export const usePrev2WeeksAlerts = (eventName) => {
 	return useQuery(["alerts", eventName], () =>
@@ -45,7 +61,7 @@ export const usePrev2WeeksAlerts = (eventName) => {
 };
 
 // -- UTILS
-const genPrev2WeekISODateRange = () => {
+const gen2WeekISODateRange = () => {
 	const today = new Date();
 	const end = new Date(today).toISOString();
 	const start = new Date(

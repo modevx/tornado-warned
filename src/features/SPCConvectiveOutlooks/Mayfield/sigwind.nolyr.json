@@ -1,0 +1,19 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"geometry": { "type": "GeometryCollection", "geometries": [] },
+			"properties": {
+				"DN": 0,
+				"VALID": "202112110100",
+				"EXPIRE": "202112111200",
+				"ISSUE": "202112110047",
+				"LABEL": "",
+				"LABEL2": "",
+				"stroke": "",
+				"fill": ""
+			}
+		}
+	]
+}

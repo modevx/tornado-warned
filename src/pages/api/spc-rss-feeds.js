@@ -2,11 +2,11 @@ import Cors from "cors";
 import RSSParser from "rss-parser";
 
 export default async function handler(req, res) {
-	let rss_parser = new RSSParser();
+	let parser = new RSSParser();
 
 	await runMiddleware(req, res, corsMiddleware);
 
-	await rss_parser.parseURL(req.body.feed_url, (error, feed) => {
+	await parser.parseURL(req.body.feedURL, (error, feed) => {
 		if (error) throw error;
 		res.status(200).json(feed.items);
 	});
