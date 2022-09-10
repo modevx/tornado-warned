@@ -5,7 +5,7 @@ const HTTP_CLIENT = axios.create({
 	baseURL: "https://api.weather.gov",
 	timeout: 5000,
 });
-const EVENT_NAME = Object.freeze({
+export const EVENT_NAME = Object.freeze({
 	tornadoWarning: "Tornado Warning",
 	tornadoWatch: "Tornado Watch",
 	severeStormWarning: "Severe Thunderstorm Watch",
@@ -20,27 +20,28 @@ export const QUERY_KEY = {
 	severeStormWatch: ["alerts", EVENT_NAME.severeStormWatch],
 };
 
-const fetchActiveAlerts = async (queryKey) => {
-	const [, eventName] = queryKey;
+const fetchActiveAlerts = async (eventName) => {
 	const res = await HTTP_CLIENT.get(
 		`/alerts/active?event=${encodeURIComponent(eventName)}&message_type=alert`
 	);
 	return res.data;
 };
-const fetchPrev2WeeksAlerts = async (queryKey) => {
-	const [, eventName] = queryKey;
+const fetchPrev2WeeksAlerts = async (eventName) => {
 	const { start, end } = genPrev2WeekISODateRange();
+	console.log(start, end);
 	const res = await HTTP_CLIENT.get(
 		`/alerts?start=${start}&end=${end}&message_type=alert&event=${eventName}`
 	);
 	return res.data;
 };
 
-export const useActiveAlerts = (queryKey) => {
-	return useQuery(queryKey, fetchActiveAlerts);
+export const useActiveAlerts = (eventName) => {
+	return useQuery(["alerts", eventName], () => fetchActiveAlerts(eventName));
 };
-export const usePrev2WeeksAlerts = (queryKey) => {
-	return useQuery(queryKey, fetchPrev2WeeksAlerts);
+export const usePrev2WeeksAlerts = (eventName) => {
+	return useQuery(["alerts", eventName], () =>
+		fetchPrev2WeeksAlerts(eventName)
+	);
 };
 
 // -- UTILS

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NAV_ITEMS } from "constants/index.js";
+import { NAV_ITEMS } from "constants/site-data.js";
 
 export const Navbar = () => {
 	return (
