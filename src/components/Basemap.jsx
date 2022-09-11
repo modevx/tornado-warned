@@ -21,7 +21,7 @@ export const Basemap = ({ children }) => {
 
 	return (
 		// <svg viewBox='0 -70 975 610'>
-		<svg viewBox={`0 0 ${svgW} ${svgH}`}>
+		<svg viewBox={`50 0 ${svgW} ${svgH}`}>
 			{basemap &&
 				basemap.features.map((feature) => {
 					return (

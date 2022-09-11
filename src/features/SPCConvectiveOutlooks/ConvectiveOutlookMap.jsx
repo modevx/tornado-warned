@@ -116,7 +116,7 @@ export const ConvectiveOutlookMap = () => {
 			<div className='px-6'>
 				<div className='grid gap-4'>
 					<DashboardTile>
-						<h2 className='text-base text-center'>
+						<h2 className='text-sm text-center mb-5'>
 							Day {parseInt(outlookDay) + 1} Convective Outlook
 						</h2>
 						<Basemap>
