@@ -9,6 +9,9 @@ const pathGen = geoPath(projection);
 
 export const Basemap = ({ children }) => {
 	const [basemap, setBasemap] = React.useState();
+	const aspectRatio = 1.6;
+	const svgW = 850;
+	const svgH = svgW / aspectRatio;
 
 	React.useEffect(() => {
 		const geojsonAlbers = topojson.feature(AlbersBasemap, "states");
@@ -17,8 +20,8 @@ export const Basemap = ({ children }) => {
 	}, []);
 
 	return (
-		<svg viewBox='0 -60 975 610' fill="url('#linear-gradient')">
-			<LinearGradient />
+		// <svg viewBox='0 -70 975 610'>
+		<svg viewBox={`0 0 ${svgW} ${svgH}`}>
 			{basemap &&
 				basemap.features.map((feature) => {
 					return (

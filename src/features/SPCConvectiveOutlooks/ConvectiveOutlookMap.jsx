@@ -12,6 +12,7 @@ import {
 import { BsTornado } from "react-icons/bs";
 import { GiDamagedHouse } from "react-icons/gi";
 import { MAYFIELD } from "./Mayfield";
+import { useCategoricalOutlookQuery } from "./service";
 
 // (1-MRGL-dark green, 2-SLGT-yellow, 3-ENH-orange, 4-MDT-red, and 5-HIGH-magenta
 const dnMap = {
@@ -112,33 +113,24 @@ export const ConvectiveOutlookMap = () => {
 
 	return (
 		<>
-			<h2 className='text-4xl mb-16 mt-10 text-center'>
-				Day {parseInt(outlookDay) + 1} Convective Outlook
-			</h2>
 			<div className='px-6'>
 				<div className='grid gap-4'>
 					<DashboardTile>
-						<CategoricalLegend state={legendState} />
+						<h2 className='text-base text-center'>
+							Day {parseInt(outlookDay) + 1} Convective Outlook
+						</h2>
+						<Basemap>
+							{outlooks && (
+								<GeoJsonSVGPathGroup
+									geojsonGeometry={outlooks[outlookDay]}
+									setState={setLegendState}
+								/>
+							)}
+						</Basemap>
 					</DashboardTile>
 
-					<div className='flex'>
-						<DashboardTile>
-							<Basemap>
-								{outlooks && (
-									<GeoJsonSVGPathGroup
-										geojsonGeometry={outlooks[outlookDay]}
-										setState={setLegendState}
-									/>
-								)}
-							</Basemap>
-						</DashboardTile>
-						<DashboardTile className='grow'>
-							<LayerSelectRadioButtons setLayerFunc={setLayers} />
-						</DashboardTile>
-					</div>
-
 					<DashboardTile>
-						<DaySelectRadioButtons setDayFunc={setOutlookDay} />
+						<DaySelectRadioButtons setDayCallback={setOutlookDay} />
 					</DashboardTile>
 				</div>
 			</div>
@@ -148,30 +140,9 @@ export const ConvectiveOutlookMap = () => {
 
 // -- COMPONENTS
 const DashboardTile = ({ children }) => {
-	return <div className='dashboard-tile'>{children}</div>;
-};
-const CategoricalLegend = ({ state }) => {
 	return (
-		<div className='flex flex-wrap justify-center mb-5 mx-10'>
-			{Object.values(dnMap).map((cat, index, array) => {
-				const LabelIcon = cat.icon;
-
-				return (
-					<>
-						<div
-							className={`flex flex-col items-center space-y-3 ${
-								state[cat.label] ? cat.activeColor : ""
-							}`}
-						>
-							<LabelIcon size={50} color={cat.stroke} />
-							<span className={`text-[calc(12px+1vw)] uppercase mx-4 mb-2`}>
-								{cat.label}
-							</span>
-						</div>
-						{index < array.length ? <Divider /> : null}
-					</>
-				);
-			})}
+		<div className='p-5 bg-zinc-900 rounded-lg shadow-black shadow-lg'>
+			{children}
 		</div>
 	);
 };
@@ -214,31 +185,40 @@ const GeoJsonSVGPathGroup = ({ geojsonGeometry, setState }) => {
 		</g>
 	);
 };
-const DaySelectRadioButtons = ({ setDayFunc }) => {
+const DaySelectRadioButtons = ({ setDayCallback }) => {
 	return (
-		<Form className='flex flex-row justify-center'>
+		<Form
+			id='outlook-day-select'
+			className='flex flex-row w-full justify-between'
+		>
 			{[0, 1, 2].map((num) => (
-				<Form.Label
-					key={`outlook-day-radio-btn-${num + 1}`}
-					title={`Day ${num + 1}`}
-					className='flex my-2'
-				>
+				<div className='flex items-center'>
+					<label
+						key={`outlook-day-radio-btn-${num + 1}`}
+						form='outlook-day-select'
+						for={`outlook-day-radio-btn-${num + 1}`}
+						className='text-xs'
+					>
+						{`Day ${num + 1}`}
+					</label>
 					<Radio
 						id={`outlook-day-${num + 1}`}
 						defaultChecked={num == 0}
 						name='day'
 						value={num}
-						onChange={(e) => setDayFunc(e.target.value)}
-						className='ml-3'
+						onChange={(e) => setDayCallback(e.target.value)}
+						className='ml-2'
 					/>
-				</Form.Label>
+				</div>
 			))}
 		</Form>
 	);
 };
+
+// -- LATER
 // consolidate radio select groups into single "valueSet" component
 // args: setValueFun, range/count
-const LayerSelectRadioButtons = ({ setLayerFunc }) => {
+const LayerSelectRadioButtons = ({ setActiveLayerFunc }) => {
 	return (
 		<Form>
 			{[0, 1, 2, 3, 4, 5, 6].map((num) => (
@@ -255,7 +235,31 @@ const LayerSelectRadioButtons = ({ setLayerFunc }) => {
 		</Form>
 	);
 };
+const CategoricalLegend = ({ state }) => {
+	return (
+		<div className='flex flex-wrap justify-center mb-5 mx-10'>
+			{Object.values(dnMap).map((cat, index, array) => {
+				const LabelIcon = cat.icon;
 
+				return (
+					<>
+						<div
+							className={`flex flex-col items-center space-y-3 ${
+								state[cat.label] ? cat.activeColor : ""
+							}`}
+						>
+							<LabelIcon size={50} color={cat.stroke} />
+							<span className={`text-[calc(12px+1vw)] uppercase mx-4 mb-2`}>
+								{cat.label}
+							</span>
+						</div>
+						{index < array.length ? <Divider /> : null}
+					</>
+				);
+			})}
+		</div>
+	);
+};
 // -- FUNCTIONS
 const fetchOutlookLayerById = async (layerId) => {
 	const url = `https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer/${layerId}/query?&outFields=*&geometry=true&f=geojson`;
