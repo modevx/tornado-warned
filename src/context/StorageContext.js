@@ -1,4 +1,4 @@
-import React from "react";
+import { createContext } from "./createContext";
 
 // -- CONSTANTS
 const TYPES = {
@@ -42,7 +42,7 @@ const reducer = (state, action) => {
 };
 
 // -- SERVICE (Context) PROVIDER
-export const LocalSessionStorageProvider = ({ children }) => {
+export const StorageServiceProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(reducer, {});
 
   return (
