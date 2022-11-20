@@ -62,9 +62,11 @@ export const FEATURES = [
 ];
 
 export const NAV_ITEMS = [
-  { name: "alerts", href: "/" },
+  // { name: "alerts", href: "/" },
   { name: "outlooks", href: "/convective-outlooks" },
-  { name: "stats", href: "/dashboard-stats" },
+  // { name: "stats", href: "/dashboard-stats" },
+  // { name: "local storm reports", href: "/local-storm-reports" },
+  // { name: "radar", href: "/radar" },
 ];
 
 export const STATE_NAMES_ABBR = {
