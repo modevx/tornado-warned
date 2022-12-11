@@ -13,6 +13,9 @@ import { BsTornado } from "react-icons/bs";
 import { GiDamagedHouse } from "react-icons/gi";
 import { MAYFIELD } from "./Mayfield";
 import { useCategoricalOutlookQuery } from "./service";
+import dayjs from "dayjs";
+import dayJSlocFormat from "dayjs/plugin/localizedFormat";
+dayjs.extend(dayJSlocFormat);
 
 // (1-MRGL-dark green, 2-SLGT-yellow, 3-ENH-orange, 4-MDT-red, and 5-HIGH-magenta
 const dnMap = {
@@ -103,9 +106,9 @@ export const ConvectiveOutlookMap = () => {
     2: false,
     3: false,
   });
-  let currentOutlook = React.useRef();
-  let activeDate = React.useRef();
-  let expirationDate = React.useRef();
+  let [currentOutlook, setCurrentOutlook] = React.useState([]);
+  let [activeDate, setActiveDate] = React.useState();
+  let [expirationDate, setExpirationDate] = React.useState();
 
   const handleBtnOnClick = (key) => {
     console.log("Day: ", key);
@@ -131,15 +134,6 @@ export const ConvectiveOutlookMap = () => {
     };
     getOutlooks();
   }, []);
-
-  React.useEffect(() => {
-    if (outlooks) {
-      currentOutlook.current = outlooks[outlookDay];
-      activeDate.current = currentOutlook.current.features[0].properties.valid;
-      expirationDate.current =
-        currentOutlook.current.features[0].properties.expire;
-    }
-  }, [outlooks, outlookDay]);
 
   React.useEffect(() => {
     if (outlooks) console.log("> CONVECTIVE OUTLOOKS\n", outlooks);
@@ -174,12 +168,21 @@ export const ConvectiveOutlookMap = () => {
       {outlooks ? (
         <div className="flex justify-center mt-5">
           <div className="flex flex-col">
-            <span className="text-2xl bold text-left my-3">Outlook Day:</span>{" "}
-            {outlookDay + 1}
-            <span className="text-2xl bold text-left my-3">Active:</span>
-            {activeDate.current}
-            <span className="text-2xl bold text-left my-3">Expires:</span>
-            {expirationDate.current}
+            <span className="text-2xl bold text-left my-3">
+              OUTLOOK DAY: {outlookDay + 1}
+            </span>
+            <span className="text-2xl bold text-left my-3">
+              ACTIVE:{" "}
+              {dayjs(outlooks[outlookDay].features[0].properties.valid).format(
+                "dddd - MMM DD, YYYY - h:mm A"
+              )}
+            </span>
+            <span className="text-2xl bold text-left my-3">
+              EXPIRES:{" "}
+              {dayjs(outlooks[outlookDay].features[0].properties.expire).format(
+                "dddd - MMM DD, YYYY - h:mm A"
+              )}
+            </span>
           </div>
         </div>
       ) : null}
