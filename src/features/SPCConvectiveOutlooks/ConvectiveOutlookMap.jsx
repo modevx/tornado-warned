@@ -103,6 +103,9 @@ export const ConvectiveOutlookMap = () => {
     2: false,
     3: false,
   });
+  let currentOutlook = React.useRef();
+  let activeDate = React.useRef();
+  let expirationDate = React.useRef();
 
   const handleBtnOnClick = (key) => {
     console.log("Day: ", key);
@@ -128,6 +131,19 @@ export const ConvectiveOutlookMap = () => {
     };
     getOutlooks();
   }, []);
+
+  React.useEffect(() => {
+    if (outlooks) {
+      currentOutlook.current = outlooks[outlookDay];
+      activeDate.current = currentOutlook.current.features[0].properties.valid;
+      expirationDate.current =
+        currentOutlook.current.features[0].properties.expire;
+    }
+  }, [outlooks, outlookDay]);
+
+  React.useEffect(() => {
+    if (outlooks) console.log("> CONVECTIVE OUTLOOKS\n", outlooks);
+  }, [outlooks]);
 
   return (
     <>
@@ -155,13 +171,26 @@ export const ConvectiveOutlookMap = () => {
         </Button>
       </ButtonGroup>
 
+      {outlooks ? (
+        <div className="flex justify-center mt-5">
+          <div className="flex flex-col">
+            <span className="text-2xl bold text-left my-3">Outlook Day:</span>{" "}
+            {outlookDay + 1}
+            <span className="text-2xl bold text-left my-3">Active:</span>
+            {activeDate.current}
+            <span className="text-2xl bold text-left my-3">Expires:</span>
+            {expirationDate.current}
+          </div>
+        </div>
+      ) : null}
+
       <Basemap>
-        {outlooks && (
+        {outlooks ? (
           <GeoJsonSVGPathGroup
             geojsonGeometry={outlooks[outlookDay]}
             setState={setLegendState}
           />
-        )}
+        ) : null}
       </Basemap>
     </>
   );
