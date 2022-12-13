@@ -1,4 +1,4 @@
-import { PageLayout } from "../components";
+import { PageLayout } from "components/_shared";
 
 export default function Custom404() {
 	return (
