@@ -1,12 +1,12 @@
 import Head from "next/head";
-import { Footer, Navbar } from "components";
+import { Footer, MainNav } from "components/_shared";
 
 export const PageLayout = ({ children }) => {
 	return (
 		<div className='bg-zinc-700 text-white'>
 			<Meta />
 			<div className='flex flex-col min-h-screen'>
-				<Navbar />
+				<MainNav />
 				<main className='grow flex flex-col h-full'>{children}</main>
 				<Footer />
 			</div>

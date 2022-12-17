@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { NAV_ITEMS } from "constants/site-data.js";
 
-export const Navbar = () => {
+export const MainNav = () => {
 	return (
 		<header
 			data-testid='header'

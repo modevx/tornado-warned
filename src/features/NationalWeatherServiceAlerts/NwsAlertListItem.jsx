@@ -40,7 +40,7 @@ export const NwsAlertListItem = ({ activeAlert }) => {
 						Expires: &nbsp;
 					</span>
 					<span key={3} className='text-xs'>
-						<LocaleDate dateOBJ={expires} formatSTR='LT' />
+						<LocaleDate date={expires} format='LT' />
 					</span>
 				</div>
 			</button>
@@ -63,7 +63,7 @@ export const NwsAlertListItem = ({ activeAlert }) => {
 						<div className='bg-neutral-700 px-4 py-2 mb-4 rounded w-full'>
 							<div className='text-xs text-center'>
 								<span>Expires: </span>
-								<LocaleDate dateOBJ={expires} formatSTR='LT' />
+								<LocaleDate date={expires} format='LT' />
 							</div>
 						</div>
 					</div>
