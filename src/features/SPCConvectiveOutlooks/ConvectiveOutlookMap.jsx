@@ -3,7 +3,7 @@ import rewind from "@turf/rewind";
 import { Button, Divider, Form, Radio, ButtonGroup } from "react-daisyui";
 import { geoAlbers, geoPath } from "d3-geo";
 import { Basemap } from "components/maps";
-import * as ICONS from "site_data/icons";
+import * as ICONS from "constants/icons";
 import {
 	IoRainy,
 	IoSkull,

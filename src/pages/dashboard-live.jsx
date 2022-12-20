@@ -1,5 +1,5 @@
-import { PageLayout } from "../components";
-import { ALERT_TYPES } from "services/nws-alerts-service";
+import { PageLayout } from "../components/_shared";
+import { ALERT_TYPES } from "services/national-weather-service";
 import { NationalWeatherServiceAlerts } from "../features";
 
 const LiveDashboard = () => {

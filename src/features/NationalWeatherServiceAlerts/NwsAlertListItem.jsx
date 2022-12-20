@@ -1,5 +1,5 @@
 import React from "react";
-import { LocaleDate } from "components";
+import { LocaleDate } from "components/_shared";
 import { getAreaDescMAP } from "utils";
 
 export const NwsAlertListItem = ({ activeAlert }) => {

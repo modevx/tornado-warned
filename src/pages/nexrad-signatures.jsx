@@ -1,7 +1,7 @@
 import { PageLayout } from "components/_shared";
 
-const LocalStormReportsPage = () => {
+const NexradSignaturesPage = () => {
 	return <PageLayout></PageLayout>;
 };
 
-export default LocalStormReportsPage;
+export default NexradSignaturesPage;

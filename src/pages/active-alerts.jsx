@@ -9,7 +9,7 @@ import {
 import { geoAlbers, geoPath } from "d3-geo";
 import rewind from "@turf/rewind";
 
-const TornadoAlertsPage = () => {
+const ActiveAlertsPage = () => {
 	const { data, error, isLoading } = usePrev2WeeksAlerts(
 		EVENT_NAME.tornadoWarning
 	);
@@ -53,4 +53,4 @@ const TornadoAlertsPage = () => {
 	if (isLoading) return <p>...Loading</p>;
 };
 
-export default TornadoAlertsPage;
+export default ActiveAlertsPage;

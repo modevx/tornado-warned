@@ -1,10 +1,10 @@
-import * as ICONS from "site_data/icons";
+import * as ICONS from "constants/icons";
 
 export const FEATURES = [
 	{
 		name: "Tornado Alerts",
 		tagline:
-			"Tornado warnings and watches straight from the National Weather Service.",
+			"Real-time storm and tornado alerts from the National Weather Service.",
 		benefits: [
 			{
 				name: "Particulary Dangerous Situation",
@@ -27,7 +27,7 @@ export const FEATURES = [
 		],
 	},
 	{
-		name: "Severe Weather Outlooks",
+		name: "Severe Weather Convective Outlooks",
 		tagline:
 			"Never get caught off-guard.  Be proactive and stay aware of building storm systems.",
 		benefits: [
