@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Radio } from "react-daisyui";
-import { Basemap, DashboardTile, Heading } from "components";
+import { Basemap } from "components/maps";
 
 import rewind from "@turf/rewind";
 import { geoAlbers, geoPath } from "d3-geo";
@@ -83,13 +83,11 @@ export const NwsAlertsMap = () => {
 	if (alerts) {
 		return (
 			<div className='grid gap-4'>
-				<DashboardTile>
-					<Basemap>
-						{alerts.map((featureCollection) => (
-							<AlertSVGPathGroup featureCollection={featureCollection} />
-						))}
-					</Basemap>
-				</DashboardTile>
+				<Basemap>
+					{alerts.map((featureCollection) => (
+						<AlertSVGPathGroup featureCollection={featureCollection} />
+					))}
+				</Basemap>
 			</div>
 		);
 	}
