@@ -1,8 +1,8 @@
 import { PageLayout } from "../components/_shared";
-import { ALERT_TYPES } from "services/national-weather-service";
-import { NationalWeatherServiceAlerts } from "../features";
+import { EVENT_NAME } from "../features/NationalWeatherServiceAlerts";
+// import { NationalWeatherServiceAlerts } from "../features/NationalWeatherServiceAlerts";
 
-const LiveDashboard = () => {
+const LiveDashboardPage = () => {
 	return (
 		<PageLayout>
 			<div className='grow flex flex-col mx-auto'>
@@ -15,19 +15,19 @@ const LiveDashboard = () => {
 						<h2 className='text-xl uppercase font-bold text-left'>
 							Tornado Warnings
 						</h2>
-						<NationalWeatherServiceAlerts
-							alertType={ALERT_TYPES.tornadoWarning}
+						{/* <NationalWeatherServiceAlerts
+							alertType={EVENT_NAME.tornadoWarning}
 							isTest={true}
-						/>
+						/> */}
 					</div>
 					<div className='md:row-span-2 bg-stone-800 flex flex-col justify-center text-center'>
 						<h2 className='text-xl uppercase font-bold text-left'>
 							Tornado Watches
 						</h2>
-						<NationalWeatherServiceAlerts
-							alertType={ALERT_TYPES.tornadoWatch}
+						{/* <NationalWeatherServiceAlerts
+							alertType={EVENT_NAME.tornadoWatch}
 							isTest={true}
-						/>
+						/> */}
 					</div>
 					<div className='sm:col-span-2 md:col-span-3 bg-stone-800 flex flex-col justify-center text-center'>
 						LOCAL STORM REPORTS
@@ -38,4 +38,4 @@ const LiveDashboard = () => {
 	);
 };
 
-export default LiveDashboard;
+export default LiveDashboardPage;

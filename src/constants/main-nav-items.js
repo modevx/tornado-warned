@@ -1,4 +1,8 @@
 export const MAIN_NAV_ITEMS = {
+	live_dashboard: {
+		label: "dashboard",
+		href: "/live-dashboard",
+	},
 	convective_outlooks: {
 		label: "outlooks",
 		href: "/",
