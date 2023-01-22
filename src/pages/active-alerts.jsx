@@ -5,7 +5,7 @@ import {
 	NwsAlerts,
 	usePrev2WeeksAlerts,
 	EVENT_NAME,
-} from "features/NationalWeatherServiceAlerts";
+} from "features/nws-tornado-alerts";
 import { geoAlbers, geoPath } from "d3-geo";
 import rewind from "@turf/rewind";
 

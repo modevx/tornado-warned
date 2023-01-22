@@ -1,6 +1,6 @@
 import React from "react";
 import { PageLayout } from "components/_shared";
-import { ConvectiveOutlookMap } from "features/SPCConvectiveOutlooks";
+import { ConvectiveOutlookMap } from "features/spc-convective-outlooks";
 
 const OutlooksPage = () => {
 	return (

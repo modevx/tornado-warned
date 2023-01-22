@@ -1,5 +1,5 @@
 import { PageLayout } from "../components/_shared";
-import { EVENT_NAME } from "../features/NationalWeatherServiceAlerts";
+import { EVENT_NAME } from "../features/nws-tornado-alerts";
 // import { NationalWeatherServiceAlerts } from "../features/NationalWeatherServiceAlerts";
 
 const LiveDashboardPage = () => {
