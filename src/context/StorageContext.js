@@ -29,10 +29,10 @@ const reducer = (state, action) => {
     case TYPES.SET_SESSION_STORAGE: {
       return sessionStorage.setItem(action.payload);
     }
-    case TYPES.REMOVE_LOCAL_STORAGE: {
+    case TYPES.REMOVE_FROM_LOCAL_STORAGE: {
       return localStorage.removeItem(action.payload);
     }
-    case TYPES.REMOVE_SESSION_STORAGE: {
+    case TYPES.REMOVE_FROM_SESSION_STORAGE: {
       return sessionStorage.removeItem(action.payload);
     }
     default: {
