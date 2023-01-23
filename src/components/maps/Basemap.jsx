@@ -14,9 +14,9 @@ export const Basemap = ({ children }) => {
 	const svgH = svgW / aspectRatio;
 
 	React.useEffect(() => {
-		const geojsonAlbers = topojson.feature(AlbersBasemap, "states");
+		const albersMapWithStateLines = topojson.feature(AlbersBasemap, "states");
 
-		setBasemap(geojsonAlbers);
+		setBasemap(albersMapWithStateLines);
 	}, []);
 
 	return (
