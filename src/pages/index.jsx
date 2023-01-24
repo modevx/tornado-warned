@@ -19,18 +19,20 @@ const OutlooksPage = () => {
   return (
     <PageLayout>
       <ConvectiveOutlookMap />
-      {outlooks
-        ? outlooks.map((outlook, index) => {
-            const { data: geometry } = outlook;
+      <div className="flex grid-cols-3">
+        {outlooks
+          ? outlooks.map((outlook, index) => {
+              const { data: geometry } = outlook;
 
-            return (
-              <OutlookPreviewCard
-                key={`outlook-${index}`}
-                outlookDayGeoJson={geometry}
-              />
-            );
-          })
-        : null}
+              return (
+                <OutlookPreviewCard
+                  key={`outlook-${index}`}
+                  outlookDayGeoJson={geometry}
+                />
+              );
+            })
+          : null}
+      </div>
     </PageLayout>
   );
 };
