@@ -27,6 +27,7 @@ const OutlooksPage = () => {
               return (
                 <OutlookPreviewCard
                   key={`outlook-${index}`}
+                  day={index + 1}
                   outlookDayGeoJson={geometry}
                 />
               );

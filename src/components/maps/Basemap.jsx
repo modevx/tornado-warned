@@ -20,24 +20,22 @@ export const Basemap = ({ children }) => {
   }, []);
 
   return (
-    <div className="bg-slate-500 rounded-md my-4 hover:bg-slate-500/80 cursor-pointer md:mx-4">
-      <svg
-        viewBox={`0 -60 ${svgW} ${svgH}`}
-        xmlns="http://www.w3.org/2000/svg"
-        className="my-auto"
-      >
-        {basemap &&
-          basemap.features.map((feature) => {
-            return (
-              <path
-                key={feature.properties.name}
-                d={pathGen(feature)}
-                stroke="white"
-              />
-            );
-          })}
-        {children}
-      </svg>
-    </div>
+    <svg
+      viewBox={`0 -60 ${svgW} ${svgH}`}
+      xmlns="http://www.w3.org/2000/svg"
+      className="bg-stone-300 rounded-t-md"
+    >
+      {basemap &&
+        basemap.features.map((feature) => {
+          return (
+            <path
+              key={feature.properties.name}
+              d={pathGen(feature)}
+              stroke="white"
+            />
+          );
+        })}
+      {children}
+    </svg>
   );
 };
