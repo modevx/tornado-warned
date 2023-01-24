@@ -10,8 +10,7 @@ const pathGen = geoPath(projection);
 export const Basemap = ({ children }) => {
   const [basemap, setBasemap] = React.useState();
   const aspectRatio = 1.6;
-  // const svgW = 850;
-  const svgW = 2000;
+  const svgW = 975;
   const svgH = svgW / aspectRatio;
 
   React.useEffect(() => {
@@ -21,19 +20,24 @@ export const Basemap = ({ children }) => {
   }, []);
 
   return (
-    <svg viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">
-      {/* <svg viewBox={`0 0 ${svgW} ${svgH}`} xmlns="http://www.w3.org/2000/svg"> */}
-      {basemap &&
-        basemap.features.map((feature) => {
-          return (
-            <path
-              key={feature.properties.name}
-              d={pathGen(feature)}
-              stroke="white"
-            />
-          );
-        })}
-      {children}
-    </svg>
+    <div className="bg-slate-500 rounded-md my-4 hover:bg-slate-500/80 cursor-pointer md:mx-4">
+      <svg
+        viewBox={`0 -60 ${svgW} ${svgH}`}
+        xmlns="http://www.w3.org/2000/svg"
+        className="my-auto"
+      >
+        {basemap &&
+          basemap.features.map((feature) => {
+            return (
+              <path
+                key={feature.properties.name}
+                d={pathGen(feature)}
+                stroke="white"
+              />
+            );
+          })}
+        {children}
+      </svg>
+    </div>
   );
 };

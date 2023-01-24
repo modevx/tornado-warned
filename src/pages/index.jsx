@@ -18,8 +18,8 @@ const OutlooksPage = () => {
 
   return (
     <PageLayout>
-      <ConvectiveOutlookMap />
-      <div className="flex grid-cols-3">
+      {/* <ConvectiveOutlookMap /> */}
+      <div className="md:grid md:grid-cols-2 lg:grid-cols-3">
         {outlooks
           ? outlooks.map((outlook, index) => {
               const { data: geometry } = outlook;
