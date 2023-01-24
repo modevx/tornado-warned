@@ -6,13 +6,33 @@ import { useCategoricalOutlooksQuery } from "features/spc-convective-outlooks/se
 import { OUTLOOK_LAYERS } from "features/spc-convective-outlooks/constants";
 
 const OutlooksPage = () => {
-	const { data, error } = useCategoricalOutlooksQuery();
+  const { data: outlooks, error } = useCategoricalOutlooksQuery();
 
-	return (
-		<PageLayout>
-			<ConvectiveOutlookMap />
-		</PageLayout>
-	);
+  React.useEffect(() => {
+    outlooks &&
+      console.log(
+        "useCategoricalOutlooksQuery [0].data >>\n",
+        outlooks[0].data
+      );
+  });
+
+  return (
+    <PageLayout>
+      <ConvectiveOutlookMap />
+      {outlooks
+        ? outlooks.map((outlook, index) => {
+            const { data: geometry } = outlook;
+
+            return (
+              <OutlookPreviewCard
+                key={`outlook-${index}`}
+                outlookDayGeoJson={geometry}
+              />
+            );
+          })
+        : null}
+    </PageLayout>
+  );
 };
 
 export default OutlooksPage;
