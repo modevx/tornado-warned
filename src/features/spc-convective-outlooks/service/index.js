@@ -3,26 +3,38 @@ import { useQuery } from "@tanstack/react-query";
 import { OUTLOOK_CATEGORIES } from "../constants/outlook-categories";
 import { OUTLOOK_LAYERS } from "../constants";
 
+// ------------------------------------------------------
+// -- STORM PREDICTION CENTER MAP SERVER:
+// -- Convective Outlook Geometry
+// ------------------------------------------------------
+const OUTLOOKS_MAP_SERVER_URL =
+  "https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer/";
 const DEFAULT_TIMEOUT = 5000;
 
-const SPC_OUTLOOKS_URL =
-  "https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer";
-
-// const QUERY_ENDPOINT =
-//   "query?f=json&geometry=true&outFields=objectid,dn,valid,expire,idp_source";
-
-const QUERY_ENDPOINT = "query?&outFields=*&geometry=true&f=geojson";
-
 const MAP_SERVER_CLIENT = axios.create({
-  baseURL: SPC_OUTLOOKS_URL,
+  baseURL: OUTLOOKS_MAP_SERVER_URL,
   timeout: DEFAULT_TIMEOUT,
 });
 
+const QUERY_ENDPOINT = "query?&outFields=*&geometry=true&f=geojson";
+
+const LEGEND_ENDPOINT = "legend?f=pjson";
+
 const fetchOutlookLayerById = async (outlookLayerId) => {
-  return await MAP_SERVER_CLIENT.get(`/${outlookLayerId}/${QUERY_ENDPOINT}`);
+  return await MAP_SERVER_CLIENT.get(`${outlookLayerId}/${QUERY_ENDPOINT}`);
 };
 
-export const useCategoricalOutlooksQuery = () => {
+const fetchOutlookLegendData = async () => {
+  return await MAP_SERVER_CLIENT.get(`${LEGEND_ENDPOINT}`);
+};
+
+export const useConvectiveOutlookLegendQuery = () => {
+  return useQuery(["convective-outlooks", "legend"], async () => {
+    return await fetchOutlookLegendData();
+  });
+};
+
+export const useConvectiveOutlooksQuery = () => {
   return useQuery(["convective-outlooks"], async () => {
     return await Promise.all([
       fetchOutlookLayerById(1),
@@ -31,3 +43,12 @@ export const useCategoricalOutlooksQuery = () => {
     ]);
   });
 };
+
+// ------------------------------------------------------
+// -- STORM PREDICTION CENTER MAP SERVER:
+// -- Convective Outlook Legend
+// ------------------------------------------------------
+
+// ------------------------------------------------------
+// -- Convective Outlook Text Product
+// ------------------------------------------------------
