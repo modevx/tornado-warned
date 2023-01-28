@@ -1,4 +1,5 @@
 import { Footer as DUIFooter } from "react-daisyui";
+import { Link } from "./Link";
 
 export const Footer = () => {
   const year = new Date().getFullYear();
@@ -7,7 +8,9 @@ export const Footer = () => {
     <DUIFooter className="p-10 bg-neutral text-neutral-content">
       <div>
         <DUIFooter.Title>National Weather Service</DUIFooter.Title>
-        <a className="link link-hover">Branding</a>
+        <Link href="https://www.weather.gov/gis/AWIPSShapefiles">
+          <a>AWIPS Basemaps</a>
+        </Link>
         <a className="link link-hover">Design</a>
         <a className="link link-hover">Marketing</a>
         <a className="link link-hover">Advertisement</a>
