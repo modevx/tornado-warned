@@ -5,7 +5,7 @@ import { OutlookPreviewCard } from "features/spc-convective-outlooks/components"
 import {
 	useConvectiveOutlooksQuery,
 	useConvectiveOutlookLegendQuery,
-} from "features/spc-convective-outlooks/service";
+} from "services/spc-map-server";
 import { OUTLOOK_LAYERS } from "features/spc-convective-outlooks/constants";
 
 const OutlooksPage = () => {

@@ -10,8 +10,6 @@ export const OutlookPreviewCard = ({ day, featuresARR }) => {
 		properties: { valid, expire },
 	} = featuresARR[0];
 
-	console.log("OutlookPreviewCard\n", featuresARR[0]?.properties);
-
 	return (
 		<Card className='rounded-md my-4 bg-stone-800 cursor-pointer md:mx-4 hover:scale-105'>
 			<Basemap>

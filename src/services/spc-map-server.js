@@ -18,7 +18,7 @@ const fetchConvectiveOutlookLegend = async () => {
 	return await MAP_SERVER_CLIENT.get(SPC.outlooks_legend);
 };
 
-export const useConvectiveOutlookLayerByIdQuery = () => {
+export const useConvectiveOutlooksQuery = () => {
 	return useQuery(["convective-outlooks", "days 1, 2 & 3"], async () => {
 		return await Promise.all([
 			fetchConvectiveOutlookLayerById(1),
