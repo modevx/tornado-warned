@@ -16,6 +16,7 @@ export const Footer = () => {
 			forecast_products: "https://www.spc.noaa.gov/products/",
 			outlook_mapserver:
 				"https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Forecasts_Guidance_Warnings/SPC_wx_outlks/MapServer",
+			rss_feeds: "https://www.spc.noaa.gov/aboutrss.html",
 		},
 		NOAA: {
 			base_reflectivity_imgserver:
@@ -34,10 +35,11 @@ export const Footer = () => {
 			</div>
 			<div>
 				<DaisyFooter.Title>Storm Prediction Center</DaisyFooter.Title>
-				<Link href={URLS.SPC.forecast_products}>Forecast Products</Link>
 				<Link href={URLS.SPC.outlook_mapserver}>
 					Convective Outlook MapServer
 				</Link>
+				<Link href={URLS.SPC.forecast_products}>Forecast Products</Link>
+				<Link href={URLS.SPC.rss_feeds}>RSS Feeds</Link>
 			</div>
 			<div>
 				<DaisyFooter.Title>NOAA</DaisyFooter.Title>
