@@ -29,12 +29,6 @@ const fetchOutlookLegendData = async () => {
 	return await MAP_SERVER_CLIENT.get(`${LEGEND_ENDPOINT}`);
 };
 
-const fetchOutlookRSSFeed = async () => {
-	const parser = new RSSParser();
-
-	const feed = await parser.parseURL();
-};
-
 export const useConvectiveOutlookLegendQuery = () => {
 	return useQuery(["convective-outlooks", "legend"], async () => {
 		return await fetchOutlookLegendData();
