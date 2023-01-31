@@ -81,7 +81,7 @@ const ENDPOINT = Object.freeze({
 	rss_test_sev_wx: "/products/spcwwrss.xml",
 });
 
-export const fetchRssFeed = async (feedEndointString) => {
+export const fetchRssFeed = async (feedEndpointString) => {
 	const feedMap = {
 		outlooks: `${BASE_URL}${ENDPOINT.rss_outlooks}`,
 		media: `${BASE_URL}${ENDPOINT.rss_mul_med_brfs}`,
