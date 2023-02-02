@@ -16,17 +16,17 @@ export const OutlookPreviewCard = ({ day, featuresARR }) => {
 				<OutlookSVGPathGroup featuresARR={featuresARR} />
 			</Basemap>
 			<Card.Body>
-				<Card.Title className='uppercase'>{`Day ${day} Outlook`}</Card.Title>
+				<Card.Title className='uppercase text-red-500'>{`Day ${day} Outlook`}</Card.Title>
+				{/* <div className='flex justify-between'> */}
 				<div className='flex justify-between'>
-					<div className='flex flex-col'>
-						<span>FROM:</span>
-						<span>{dayjs(valid).format(`ddd MMM D, YYYY HHmm`)}</span>
-					</div>
-					<div className='flex flex-col'>
-						<span>TO:</span>
-						<span>{dayjs(expire).format(`ddd MMM D, YYYY HHmm`)}</span>
-					</div>
+					<span className='font-bold'>FROM:</span>&nbsp;
+					<span>{dayjs(valid).format(`ddd MMM D, YYYY - HHmm`)}</span>
 				</div>
+				<div className='flex justify-between'>
+					<span className='font-bold'>TO:</span>&nbsp;
+					<span>{dayjs(expire).format(`ddd MMM D, YYYY - HHmm`)}</span>
+				</div>
+				{/* </div> */}
 			</Card.Body>
 		</Card>
 	);
