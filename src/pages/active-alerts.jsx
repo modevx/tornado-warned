@@ -1,6 +1,6 @@
 import React from "react";
 import { Basemap, LinearGradient } from "components/maps";
-import { PageLayout } from "components/_shared";
+import { PageLayout } from "components";
 import {
 	NwsAlerts,
 	usePrev2WeeksAlerts,

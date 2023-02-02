@@ -1,7 +1,9 @@
 import React from "react";
-import { PageLayout } from "components/_shared";
-import { ConvectiveOutlookMap } from "features/spc-convective-outlooks";
-import { OutlookPreviewCard } from "features/spc-convective-outlooks/components";
+import { PageLayout } from "components";
+import {
+	ConvectiveOutlookMap,
+	OutlookPreviewCard,
+} from "features/spc-convective-outlooks/components";
 import {
 	useConvectiveOutlooksQuery,
 	useConvectiveOutlookLegendQuery,

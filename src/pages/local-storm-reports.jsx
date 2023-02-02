@@ -1,4 +1,4 @@
-import { PageLayout } from "components/_shared";
+import { PageLayout } from "components";
 
 const LocalStormReportsPage = () => {
 	return <PageLayout></PageLayout>;

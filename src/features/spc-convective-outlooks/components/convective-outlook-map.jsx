@@ -12,7 +12,7 @@ import {
 } from "react-icons/io5";
 import { BsTornado } from "react-icons/bs";
 import { GiDamagedHouse } from "react-icons/gi";
-import { MAYFIELD } from "./Mayfield";
+import { MAYFIELD } from "../Mayfield";
 import { useConvectiveOutlookQuery } from "services/spc-map-server";
 import dayjs from "dayjs";
 import dayJSlocFormat from "dayjs/plugin/localizedFormat";

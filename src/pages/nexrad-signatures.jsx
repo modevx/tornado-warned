@@ -1,4 +1,4 @@
-import { PageLayout } from "components/_shared";
+import { PageLayout } from "components";
 
 const NexradSignaturesPage = () => {
 	return <PageLayout></PageLayout>;

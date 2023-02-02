@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Footer } from "components/_shared";
+import { Footer } from "components";
 import { MainNav } from "components/navigation";
 
 export const PageLayout = ({ children }) => {
