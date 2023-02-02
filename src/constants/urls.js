@@ -10,7 +10,7 @@ const BASE = Object.freeze({
 
 export const ENDPOINT = Object.freeze({
 	SPC: {
-		outlook_geometry: "query?&outFields=*&geometry=true&f=geojson",
+		OTLK_GEOMETRY: "query?&outFields=*&geometry=true&f=geojson",
 	},
 });
 

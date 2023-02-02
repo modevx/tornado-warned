@@ -1,6 +1,6 @@
 import { Footer as DaisyFooter } from "react-daisyui";
 import { Link } from "./Link";
-import { FOOTER_NAV_ITEMS } from "constants/nav-items";
+import { FOOTER_NAV_ITEMS } from "constants/footer-nav-items";
 
 const year = new Date().getFullYear();
 

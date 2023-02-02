@@ -1,4 +1,4 @@
-export const OUTLOOK_LAYERS = Object.freeze({
+export const OTLK_MAP_SERVER_LAYER_IDS = Object.freeze({
 	day_1_convective: "0",
 	day_1_categorical: "1",
 	day_1_significant_tornado: "2",
