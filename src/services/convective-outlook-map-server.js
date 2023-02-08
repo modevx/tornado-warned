@@ -8,24 +8,102 @@ const MAP_SERVER_CLIENT = axios.create({
 	timeout: DEFAULT_TIMEOUT,
 });
 
-const fetchConvectiveOutlookByLayerId = async (layerId) => {
+// **********************************************
+// -- CONVECTIVE OUTLOOK MAP SERVER LAYERS
+// **********************************************
+
+const OUTLOOK_MAP_SERVER_LAYERS = Object.freeze({
+	GroupLayers: {
+		day_1_convective: "0",
+		day_2_convective: "8",
+		day_3_convective: "16",
+		day_4_8_convective: "20",
+	},
+	FeatureLayers: {
+		day_1_categorical: "1",
+		day_1_significant_tornado: "2",
+		day_1_probabilistic_tornado: "3",
+		day_1_significant_hail: "4",
+		day_1_probabilistic_hail: "5",
+		day_1_significant_wind: "6",
+		day_1_probabilistic_wind: "7",
+		day_2_categorical: "9",
+		day_2_significant_tornado: "10",
+		day_2_probabilistic_tornado: "11",
+		day_2_significant_hail: "12",
+		day_2_probabilistic_hail: "13",
+		day_2_significant_wind: "14",
+		day_2_probabilistic_wind: "15",
+		day_3_categorical: "17",
+		day_3_probabilistic: "18",
+		day_3_significant_severe: "19",
+		day_4_probabilistic: "21",
+		day_5_probabilistic: "22",
+		day_6_probabilistic: "23",
+		day_7_probabilistic: "24",
+		day_8_probabilistic: "25",
+	},
+});
+
+// -- Group Layers (Convective Outlook )
+
+const fetchConvectiveOutlookGroupLayerById = async (layerId) => {
+	return await MAP_SERVER_CLIENT.get("/${layerId}");
+};
+
+const fetchAllConvectiveOutlookGroupLayers = async () => {
+	const groupLayerIds = Object.values(OUTLOOK_MAP_SERVER_LAYERS.GroupLayers);
+
+	return await Promise.all(
+		groupLayerIds.map((groupLayerId) =>
+			fetchConvectiveOutlookGroupLayerById(groupLayerId)
+		)
+	);
+};
+
+// -- Feature Layers
+
+const fetchConvectiveOutlookFeatureLayerById = async (layerId) => {
 	return await MAP_SERVER_CLIENT.get(
 		`/${layerId}/${URLS.ENDPOINT.SPC.OTLK_GEOMETRY}`
 	);
 };
 
-const fetchConvectiveOutlookLegend = async () => {
-	return await MAP_SERVER_CLIENT.get(URLS.SPC.OTLK_MAP_SERV_LGND);
+const fetchAllConvectiveOutlookFeatureLayers = async () => {
+	const featureLayerIds = Object.values(
+		OUTLOOK_MAP_SERVER_LAYERS.FeatureLayers
+	);
+
+	return await Promise.all(
+		featureLayerIds.map((featureLayerId) =>
+			fetchConvectiveOutlookFeatureLayerById(featureLayerId)
+		)
+	);
+};
+
+export const useAllConvectiveOutlookLayersQuery = () => {
+	return useQuery(
+		["convective-outlooks", "all"],
+		async () => await fetchAllConvectiveOutlookFeatureLayers()
+	);
 };
 
 export const useConvectiveOutlooksQuery = () => {
-	return useQuery(["convective-outlooks", "days 1, 2 & 3"], async () => {
+	return useQuery(["convective-outlooks", "categorical"], async () => {
 		return await Promise.all([
-			fetchConvectiveOutlookByLayerId(1),
-			fetchConvectiveOutlookByLayerId(9),
-			fetchConvectiveOutlookByLayerId(17),
+			fetchConvectiveOutlookFeatureLayerById(1),
+			fetchConvectiveOutlookFeatureLayerById(9),
+			fetchConvectiveOutlookFeatureLayerById(17),
 		]);
 	});
+};
+
+// **********************************************
+// -- CONVECTIVE OUTLOOK LEGEND
+// **********************************************
+
+const fetchConvectiveOutlookLegend = async () => {
+	return await MAP_SERVER_CLIENT.get(URLS.SPC.OTLK_MAP_SERV_LGND);
 };
 
 export const useConvectiveOutlookLegendQuery = () => {
@@ -44,8 +122,8 @@ const fetchConvectiveOutlookDataForDay = async (dayNumber) => {
 	};
 
 	const outlookLayers = await Promise.all(() => {
-		outlookDayLayerIdMap[dayNumber].map((layerId) =>
-			fetchConvectiveOutlookByLayerId(layerId)
+		return outlookDayLayerIdMap[dayNumber].map((layerId) =>
+			fetchConvectiveOutlookFeatureLayerById(layerId)
 		);
 	});
 };

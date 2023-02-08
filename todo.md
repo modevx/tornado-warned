@@ -1,5 +1,9 @@
 # TODOS
 
+## 23FEB08
+
+- [ ] fetch layer data as pjson to get label info
+
 ## 23JAN30
 
 - [ ] create NWS alerts util that parses life-threatening verbiage for TORNADO EMERGENCIES or PARTICULARLY DANGEROUS SITUATION alerts
