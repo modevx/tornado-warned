@@ -1,26 +1,30 @@
 export const MAIN_NAV_ITEMS = {
-  // live_dashboard: {
-  // 	label: "dashboard",
-  // 	href: "/live-dashboard",
-  // },
-  convective_outlooks: {
-    label: "outlooks",
-    href: "/",
-  },
-  // alerts: {
-  // 	label: "alerts",
-  // 	href: "/active-alerts",
-  // },
-  // local_storm_reports: {
-  // 	label: "storm reports",
-  // 	href: "/local-storm-reports",
-  // },
-  // radar_signatures: {
-  //   label: "signatures",
-  //   href: "/nexrad-signatures",
-  // },
-  // latest_info: {
-  //   label: "latest info",
-  //   href: "/latest-info",
-  // },
+	alerts: {
+		label: "active alerts",
+		href: "/active-alerts",
+	},
+	convective_outlooks: {
+		label: "convective outlooks",
+		href: "/",
+	},
+	radar: {
+		label: "radar",
+		href: "/radar",
+	},
+	// live_dashboard: {
+	// 	label: "dashboard",
+	// 	href: "/live-dashboard",
+	// },
+	// local_storm_reports: {
+	// 	label: "storm reports",
+	// 	href: "/local-storm-reports",
+	// },
+	// radar_signatures: {
+	//   label: "signatures",
+	//   href: "/nexrad-signatures",
+	// },
+	// latest_info: {
+	//   label: "latest info",
+	//   href: "/latest-info",
+	// },
 };
