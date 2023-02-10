@@ -5,15 +5,15 @@ import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
 dayjs.extend(LocalizedFormat);
 
-export const OutlookPreviewCard = ({ day, featuresCollection }) => {
+export const OutlookPreviewCard = ({ day, featureCollection }) => {
 	const {
 		properties: { valid, expire },
-	} = featuresCollection[0];
+	} = featureCollection[0];
 
 	return (
 		<Card className='rounded-md my-4 bg-stone-800 cursor-pointer md:mx-4 hover:scale-105'>
 			<Basemap>
-				<OutlookSVGPathGroup featuresARR={featuresCollection} />
+				<OutlookSVGPathGroup featuresARR={featureCollection} />
 			</Basemap>
 			<Card.Body>
 				<Card.Title className='uppercase text-red-500'>{`Day ${day} Outlook`}</Card.Title>
