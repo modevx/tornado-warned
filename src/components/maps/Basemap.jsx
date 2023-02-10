@@ -20,11 +20,7 @@ export const Basemap = ({ children }) => {
   }, []);
 
   return (
-    <svg
-      viewBox={`0 -60 ${svgW} ${svgH}`}
-      xmlns="http://www.w3.org/2000/svg"
-      className="bg-stone-300 rounded-t-md"
-    >
+    <svg viewBox={`0 -60 ${svgW} ${svgH}`} xmlns="http://www.w3.org/2000/svg">
       {basemap &&
         basemap.features.map((feature) => {
           return (
