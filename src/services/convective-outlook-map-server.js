@@ -45,22 +45,23 @@ const OUTLOOK_MAP_SERVER_LAYERS = Object.freeze({
   },
 });
 
+// NOTE: 1st layer for each day is the Convective Outlook [GROUP] Layer
 const MAP_SERVER_LAYERS = Object.freeze({
   DAY_1: {
     group: 0,
-    feature: [1, 2, 3, 4, 5, 6, 7],
+    features: [1, 2, 3, 4, 5, 6, 7],
   },
   DAY_2: {
     group: 8,
-    feature: [9, 10, 11, 12, 13, 14, 15],
+    features: [9, 10, 11, 12, 13, 14, 15],
   },
   DAY_3: {
     group: 16,
-    feature: [17, 18, 19],
+    features: [17, 18, 19],
   },
-  DAYS_4_THRU_8: {
+  DAY_4_THRU_8: {
     group: 20,
-    feature: [21, 22, 23, 24, 25],
+    features: [21, 22, 23, 24, 25],
   },
 });
 
@@ -74,54 +75,62 @@ const fetchMapServerLayerGeoJSON = async (featureLayerId) => {
   );
 };
 
-// const fetchSPCConvectiveOutlooks = async () => {
-//   const outlookDays = {
-//     1: {
-//       json: null,
-//       geoJson: null,
-//     },
-//     2: {
-//       json: null,
-//       geoJson: null,
-//     },
-//     3: {
-//       json: null,
-//       geoJson: null,
-//     },
-//     4: {
-//       json: null,
-//       geoJson: null,
-//     },
-//     5: {
-//       json: null,
-//       geoJson: null,
-//     },
-//     6: {
-//       json: null,
-//       geoJson: null,
-//     },
-//     7: {
-//       json: null,
-//       geoJson: null,
-//     },
-//     8: {
-//       json: null,
-//       geoJson: null,
-//     },
-//   };
+const fetchSPCConvectiveOutlooks = async () => {
+  const outlooks = {
+    // DAY_1: {
+    //   convective_group_layer: null,
+    //   feature_layers: {
+    //     meta: null,
+    //     geometry: null,
+    //   },
+    // },
+    // DAY_2: {
+    //   convective_group_layer: null,
+    //   feature_layers: {
+    //     meta: null,
+    //     geometry: null,
+    //   },
+    // },
+    // DAY_3: {
+    //   convective_group_layer: null,
+    //   feature_layers: {
+    //     meta: null,
+    //     geometry: null,
+    //   },
+    // },
+    // DAY_4_THRU_8: {
+    //   convective_group_layer: null,
+    //   feature_layers: {
+    //     meta: null,
+    //     geometry: null,
+    //   },
+    // },
+  };
 
-// 	const days = Object.keys(outlookDays)
+  const mapServerLayerDays = Object.keys(MAP_SERVER_LAYERS);
 
-// 	days.map(day => {
-// 		outlookDays[day].json = await
-// 	})
+  for (const day of mapServerLayerDays) {
+    const convectiveOutlookGroupLayer = await fetchMapServerLayerJSON(
+      MAP_SERVER_LAYERS[day].group
+    );
+    const featureLayerJSON = MAP_SERVER_LAYERS[day].features.map(
+      async (featureLayerId) => await fetchMapServerLayerJSON(featureLayerId)
+    );
+    const featureLayerGeoJSON = MAP_SERVER_LAYERS[day].features.map(
+      async (featureLayerId) => await fetchMapServerLayerGeoJSON(featureLayerId)
+    );
 
-// 	for(const day of outlookDays) {
-// 		const json = fetchMapServerLayerJSON(day);
-// 		const geoJson = fetchMapServerLayerGeoJSON(day);
+    const outlookLayers = {
+      convectiveOutlookGroupLayer,
+      featureLayerJSON,
+      featureLayerGeoJSON,
+    };
 
-// 	}
-// };
+    outlooks[day] = { ...outlookLayers };
+  }
+
+  return outlooks;
+};
 
 const fetchAllConvectiveOutlookGroupLayers = async () => {
   const groupLayerIds = Object.values(OUTLOOK_MAP_SERVER_LAYERS.GroupLayers);
