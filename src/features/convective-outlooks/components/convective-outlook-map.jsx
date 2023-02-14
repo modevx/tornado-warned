@@ -13,7 +13,10 @@ import {
 import { BsTornado } from "react-icons/bs";
 import { GiDamagedHouse } from "react-icons/gi";
 import { MAYFIELD } from "../Mayfield";
-import { useConvectiveOutlookQuery } from "services/convective-outlook-map-server";
+import {
+	useConvectiveOutlookQuery,
+	useSPCConvectiveOutlooks,
+} from "services/convective-outlook-map-server";
 import dayjs from "dayjs";
 import dayJSlocFormat from "dayjs/plugin/localizedFormat";
 dayjs.extend(dayJSlocFormat);
@@ -94,7 +97,17 @@ export const ConvectiveOutlookMap = () => {
 	// --------------------------------------------------
 	// -- New State Using Formatted Service Outlook Data
 	// --------------------------------------------------
+	const { data: dataOutlooks, error: errorOutlooks } =
+		useSPCConvectiveOutlooks();
+	const [newOutlooks, setNewOutlooks] = React.useState();
 
+	React.useEffect(() => {
+		setNewOutlooks(dataOutlooks?.outlooks);
+	}, []);
+
+	React.useEffect(() => {
+		console.log("newOutlooks >>\n", newOutlooks);
+	}, [newOutlooks]);
 	// --------------------------------------------------
 	const [outlooks, setOutlooks] = React.useState();
 	const [layers, setLayers] = React.useState(MAYFIELD);
@@ -182,9 +195,15 @@ export const ConvectiveOutlookMap = () => {
 			) : null}
 
 			<Basemap>
-				{outlooks ? (
+				{/* {outlooks ? (
 					<GeoJsonSVGPathGroup
 						geojsonGeometry={outlooks[outlookDay]}
+						setState={setLegendState}
+					/>
+				) : null} */}
+				{newOutlooks ? (
+					<GeoJsonSVGPathGroup
+						geojsonGeometry={newOutlooks?.DAY_3.features.geoJSON[2]}
 						setState={setLegendState}
 					/>
 				) : null}
