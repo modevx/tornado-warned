@@ -91,6 +91,11 @@ const projection = geoAlbers();
 const pathGen = geoPath(projection);
 
 export const ConvectiveOutlookMap = () => {
+	// --------------------------------------------------
+	// -- New State Using Formatted Service Outlook Data
+	// --------------------------------------------------
+
+	// --------------------------------------------------
 	const [outlooks, setOutlooks] = React.useState();
 	const [layers, setLayers] = React.useState(MAYFIELD);
 	const [outlookDay, setOutlookDay] = React.useState(0);
@@ -136,9 +141,9 @@ export const ConvectiveOutlookMap = () => {
 		getOutlooks();
 	}, []);
 
-	React.useEffect(() => {
-		if (outlooks) console.log("> CONVECTIVE OUTLOOKS\n", outlooks);
-	}, [outlooks]);
+	// React.useEffect(() => {
+	// 	outlooks && console.log("> CONVECTIVE OUTLOOKS\n", outlooks);
+	// }, [outlooks]);
 
 	return (
 		<>

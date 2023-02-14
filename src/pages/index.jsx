@@ -6,37 +6,25 @@ import {
 	OutlookPreviewCardList,
 } from "features/convective-outlooks/components";
 import {
-	useAllConvectiveOutlookGroupLayersQuery,
-	useAllConvectiveOutlookFeatureLayersQuery,
-	useConvectiveOutlooksQuery,
 	useConvectiveOutlookLegendQuery,
+	useSPCConvectiveOutlooks,
 } from "services/convective-outlook-map-server";
 import { OUTLOOK_LAYERS } from "features/convective-outlooks/constants";
 import { feature } from "topojson-client";
 
 const OutlooksPage = () => {
-	const { data: groupLayers, error: groupLayersError } =
-		useAllConvectiveOutlookGroupLayersQuery();
-	const { data: featureLayers, error: featureLayersError } =
-		useAllConvectiveOutlookFeatureLayersQuery();
-	const { data: outlookLegendData, error: legendDataError } =
+	const { data: dataOutlooks, error: errorOutlooks } =
+		useSPCConvectiveOutlooks();
+	const { data: dataLegend, error: errorLegend } =
 		useConvectiveOutlookLegendQuery();
 
 	React.useEffect(() => {
-		groupLayers && console.log("{data: groupLayers} >>\n", groupLayers);
-	}, [groupLayers]);
+		console.log("outlooks >>\n", dataOutlooks);
+	}, [dataOutlooks]);
 
-	// React.useEffect(() => {
-	//   featureLayers && console.log("{data: featureLayers} >>\n", featureLayers);
-	// }, [featureLayers]);
-
-	// React.useEffect(() => {
-	//   outlookLegendData &&
-	//     console.log(
-	//       "{data: outlookLegendData} >>\n",
-	//       outlookLegendData?.data.layers
-	//     );
-	// }, [outlookLegendData]);
+	React.useEffect(() => {
+		console.log("legend >>\n", dataLegend);
+	}, [dataLegend]);
 
 	return (
 		<PageLayout>
