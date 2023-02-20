@@ -94,85 +94,62 @@ const projection = geoAlbers();
 const pathGen = geoPath(projection);
 
 export const ConvectiveOutlookMap = () => {
-	// --------------------------------------------------
-	// -- New State Using Formatted Service Outlook Data
-	// --------------------------------------------------
-	const { data: dataOutlooks, error: errorOutlooks } =
-		useSPCConvectiveOutlooks();
-	const [newOutlooks, setNewOutlooks] = React.useState();
-
-	React.useEffect(() => {
-		setNewOutlooks(dataOutlooks?.outlooks);
-	}, []);
-
-	React.useEffect(() => {
-		console.log("newOutlooks >>\n", newOutlooks);
-	}, [newOutlooks]);
-	// --------------------------------------------------
-	const [outlooks, setOutlooks] = React.useState();
-	const [layers, setLayers] = React.useState(MAYFIELD);
-	const [outlookDay, setOutlookDay] = React.useState(0);
-	const [legendState, setLegendState] = React.useState({
-		storm: false,
-		marginal: false,
-		slight: false,
-		enhanced: false,
-		moderate: false,
-		high: false,
-	});
-	const [isActiveButton, setIsActiveButton] = React.useState({
+	const { data: outlooks, error: errorOutlooks } = useSPCConvectiveOutlooks();
+	const [btnStatusMap, setBtnStatusMap] = React.useState({
 		1: true,
 		2: false,
 		3: false,
+		4: false,
+		5: false,
+		6: false,
+		7: false,
+		8: false,
 	});
+	const [outlookDay, setOutlookDay] = React.useState(0);
+
+	const [layers, setLayers] = React.useState(MAYFIELD);
+	// const [legendState, setLegendState] = React.useState({
+	// 	storm: false,
+	// 	marginal: false,
+	// 	slight: false,
+	// 	enhanced: false,
+	// 	moderate: false,
+	// 	high: false,
+	// });
 	let [currentOutlook, setCurrentOutlook] = React.useState([]);
 	let [activeDate, setActiveDate] = React.useState();
 	let [expirationDate, setExpirationDate] = React.useState();
 
-	const handleBtnOnClick = (key) => {
+	const handleOutlookDaySelect = (key) => {
 		console.log("Day: ", key);
 
-		const clearedState = {
+		const clearedDaySelectBtns = {
 			1: false,
 			2: false,
 			3: false,
+			4: false,
+			5: false,
+			6: false,
+			7: false,
+			8: false,
 		};
 
-		setIsActiveButton({ ...clearedState, [key]: true });
+		setBtnStatusMap({ ...clearedDaySelectBtns, [key]: true });
 		setOutlookDay(key - 1);
 	};
 
 	React.useEffect(() => {
-		const getOutlooks = async () => {
-			const outlooks = await Promise.all([
-				fetchOutlookLayerById(1),
-				fetchOutlookLayerById(9),
-				fetchOutlookLayerById(17),
-			]);
-			setOutlooks(outlooks);
-		};
-		getOutlooks();
-	}, []);
-
-	// React.useEffect(() => {
-	// 	outlooks && console.log("> CONVECTIVE OUTLOOKS\n", outlooks);
-	// }, [outlooks]);
+		outlooks && console.log("> FORMATTED OUTLOOKS FROM SERVICE\n", outlooks);
+	}, [outlooks]);
 
 	return (
 		<>
-			<ButtonGroup className='w-full justify-center'>
-				{[1, 2, 3].map((day) => (
-					<Button
-						key={`day-${day}`}
-						active={isActiveButton[day]}
-						onClick={() => handleBtnOnClick(day)}
-					>
-						{day}
-					</Button>
-				))}
-			</ButtonGroup>
+			<DaySelectBtns
+				btnStatuses={btnStatusMap}
+				onClickHandler={handleOutlookDaySelect}
+			/>
 
-			{outlooks ? (
+			{/* {outlooks ? (
 				<div className='flex justify-center mt-5'>
 					<div className='flex flex-col'>
 						<span className='text-2xl bold text-left my-3'>
@@ -192,38 +169,42 @@ export const ConvectiveOutlookMap = () => {
 						</span>
 					</div>
 				</div>
-			) : null}
+			) : null} */}
 
-			<Basemap>
-				{/* {outlooks ? (
+			{/* <Basemap>
+				{outlooks ? (
 					<GeoJsonSVGPathGroup
-						geojsonGeometry={outlooks[outlookDay]}
-						setState={setLegendState}
-					/>
-				) : null} */}
-				{newOutlooks ? (
-					<GeoJsonSVGPathGroup
-						geojsonGeometry={newOutlooks?.DAY_3.features.geoJSON[2]}
+						featureCollectionOBJ={outlooks[outlookDay]}
 						setState={setLegendState}
 					/>
 				) : null}
-			</Basemap>
+			</Basemap> */}
+
+			{/* <FeatureLayerSwitches layers={}/> */}
 		</>
 	);
 };
 
-// -- COMPONENTS
-const DashboardTile = ({ children }) => {
+const DaySelectBtns = ({ btnStatuses, onClickHandler }) => {
 	return (
-		<div className='p-5 bg-zinc-900 rounded-lg shadow-black shadow-lg'>
-			{children}
-		</div>
+		<ButtonGroup className='w-full justify-center'>
+			{[1, 2, 3, 4, 5, 6, 7, 8].map((day) => (
+				<Button
+					key={`day-${day}`}
+					active={btnStatuses[day]}
+					onClick={() => onClickHandler(day)}
+				>
+					{day}
+				</Button>
+			))}
+		</ButtonGroup>
 	);
 };
-const GeoJsonSVGPathGroup = ({ geojsonGeometry, setState }) => {
+
+const GeoJsonSVGPathGroup = ({ featureCollectionOBJ, setState }) => {
 	return (
 		<g>
-			{geojsonGeometry.features.map((feature, index) => {
+			{featureCollectionOBJ.features.map((feature, index) => {
 				const {
 					properties: { dn, valid, expire, idp_source },
 				} = feature;
@@ -260,37 +241,33 @@ const GeoJsonSVGPathGroup = ({ geojsonGeometry, setState }) => {
 	);
 };
 
+const FeatureLayerSwitches = () => {};
+
 // -- LATER
 // consolidate radio select groups into single "valueSet" component
 // args: setValueFun, range/count
-const CategoricalLegend = ({ state }) => {
-	return (
-		<div className='flex flex-wrap justify-center mb-5 mx-10'>
-			{Object.values(dnMap).map((cat, index, array) => {
-				const LabelIcon = cat.icon;
+// const CategoricalLegend = ({ state }) => {
+// 	return (
+// 		<div className='flex flex-wrap justify-center mb-5 mx-10'>
+// 			{Object.values(dnMap).map((cat, index, array) => {
+// 				const LabelIcon = cat.icon;
 
-				return (
-					<>
-						<div
-							className={`flex flex-col items-center space-y-3 ${
-								state[cat.label] ? cat.activeColor : ""
-							}`}
-						>
-							<LabelIcon size={50} color={cat.stroke} />
-							<span className={`text-[calc(12px+1vw)] uppercase mx-4 mb-2`}>
-								{cat.label}
-							</span>
-						</div>
-						{index < array.length ? <Divider /> : null}
-					</>
-				);
-			})}
-		</div>
-	);
-};
-// -- FUNCTIONS
-const fetchOutlookLayerById = async (layerId) => {
-	const url = `https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer/${layerId}/query?&outFields=*&geometry=true&f=geojson`;
-	const res = await fetch(url);
-	return await res.json();
-};
+// 				return (
+// 					<>
+// 						<div
+// 							className={`flex flex-col items-center space-y-3 ${
+// 								state[cat.label] ? cat.activeColor : ""
+// 							}`}
+// 						>
+// 							<LabelIcon size={50} color={cat.stroke} />
+// 							<span className={`text-[calc(12px+1vw)] uppercase mx-4 mb-2`}>
+// 								{cat.label}
+// 							</span>
+// 						</div>
+// 						{index < array.length ? <Divider /> : null}
+// 					</>
+// 				);
+// 			})}
+// 		</div>
+// 	);
+// };

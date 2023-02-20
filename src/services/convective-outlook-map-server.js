@@ -55,7 +55,7 @@ const fetchMapServerLayerGeoJSON = async (featureLayerId) => {
 	);
 };
 
-const getOutlookFeaturesJSON = async (featureLayerIdArray) => {
+const getOutlookFeaturesAsJSON = async (featureLayerIdArray) => {
 	return await Promise.all([
 		...featureLayerIdArray.map(async (featureLayerId) => {
 			const response = await fetchMapServerLayerJSON(featureLayerId);
@@ -64,7 +64,7 @@ const getOutlookFeaturesJSON = async (featureLayerIdArray) => {
 	]);
 };
 
-const getOutlookFeaturesGeoJSON = async (featureLayerIdArray) => {
+const getOutlookFeaturesAsGeoJSON = async (featureLayerIdArray) => {
 	return await Promise.all(
 		featureLayerIdArray.map(async (featureLayerId) => {
 			const response = await fetchMapServerLayerGeoJSON(featureLayerId);
@@ -96,8 +96,8 @@ const fetchSPCConvectiveOutlooks = async () => {
 		const featureLayerIds = outlookDay.slice(1);
 
 		const convective_outlook = await fetchMapServerLayerJSON(groupLayerId);
-		const features_json = await getOutlookFeaturesJSON(featureLayerIds);
-		const features_geojson = await getOutlookFeaturesGeoJSON(featureLayerIds);
+		const features_json = await getOutlookFeaturesAsJSON(featureLayerIds);
+		const features_geojson = await getOutlookFeaturesAsGeoJSON(featureLayerIds);
 
 		const outlookData = {
 			outlookMeta: convective_outlook.data,
@@ -110,7 +110,7 @@ const fetchSPCConvectiveOutlooks = async () => {
 		outlooks[day] = await { ...outlookData };
 	}
 
-	return await { outlooks };
+	return await outlooks;
 };
 
 export const useSPCConvectiveOutlooks = () => {
