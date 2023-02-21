@@ -8,41 +8,16 @@ const MAP_SERVER_CLIENT = axios.create({
 	timeout: DEFAULT_TIMEOUT,
 });
 
-// **********************************************
-// -- CONVECTIVE OUTLOOK MAP SERVER LAYERS
-// **********************************************
-
-const OUTLOOK_MAP_SERVER_LAYERS = Object.freeze({
-	Group: {
-		day_1_convective: "0",
-		day_2_convective: "8",
-		day_3_convective: "16",
-		day_4_8_convective: "20",
-	},
-	Feature: {
-		day_1_categorical: "1",
-		day_1_significant_tornado: "2",
-		day_1_probabilistic_tornado: "3",
-		day_1_significant_hail: "4",
-		day_1_probabilistic_hail: "5",
-		day_1_significant_wind: "6",
-		day_1_probabilistic_wind: "7",
-		day_2_categorical: "9",
-		day_2_significant_tornado: "10",
-		day_2_probabilistic_tornado: "11",
-		day_2_significant_hail: "12",
-		day_2_probabilistic_hail: "13",
-		day_2_significant_wind: "14",
-		day_2_probabilistic_wind: "15",
-		day_3_categorical: "17",
-		day_3_probabilistic: "18",
-		day_3_significant_severe: "19",
-		day_4_probabilistic: "21",
-		day_5_probabilistic: "22",
-		day_6_probabilistic: "23",
-		day_7_probabilistic: "24",
-		day_8_probabilistic: "25",
-	},
+const OUTLOOK_GROUP_LAYER_IDS = [0, 8, 16, 20];
+const OUTLOOK_FEATURE_LAYER_IDS = Object.freeze({
+	1: [1, 2, 3, 4, 5, 6, 7],
+	2: [9, 10, 11, 12, 13, 14, 15],
+	3: [17, 18, 19],
+	4: [21],
+	5: [22],
+	6: [23],
+	7: [24],
+	8: [25],
 });
 
 const fetchMapServerLayerJSON = async (layerId) => {
@@ -100,7 +75,7 @@ const fetchSPCConvectiveOutlooks = async () => {
 		const features_geojson = await getOutlookFeaturesAsGeoJSON(featureLayerIds);
 
 		const outlookData = {
-			outlookMeta: convective_outlook.data,
+			meta: convective_outlook.data,
 			features: {
 				JSON: features_json,
 				geoJSON: features_geojson,

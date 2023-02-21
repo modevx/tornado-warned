@@ -139,8 +139,10 @@ export const ConvectiveOutlookMap = () => {
 	};
 
 	React.useEffect(() => {
+		console.clear();
 		outlooks && console.log("> FORMATTED OUTLOOKS FROM SERVICE\n", outlooks);
-	}, [outlooks]);
+		console.log("DAY SELECT BTNS\n", btnStatusMap);
+	}, [btnStatusMap, outlooks]);
 
 	return (
 		<>
