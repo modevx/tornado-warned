@@ -1,6 +1,13 @@
 import React from "react";
 import rewind from "@turf/rewind";
-import { Button, Divider, Form, Radio, ButtonGroup } from "react-daisyui";
+import {
+	Button,
+	Checkbox,
+	Divider,
+	Form,
+	Radio,
+	ButtonGroup,
+} from "react-daisyui";
 import { geoAlbers, geoPath } from "d3-geo";
 import { Basemap } from "components/maps";
 import * as ICONS from "constants/icons";
@@ -14,11 +21,7 @@ import { BsTornado } from "react-icons/bs";
 import { GiDamagedHouse } from "react-icons/gi";
 import { MAYFIELD } from "../Mayfield";
 import {
-	getMapServerLayerJSON,
-	getMapServerFeatureLayerGeoJSON,
-	getOutlookDayFeatureLayersJSON,
-	getOutlookDayFeatureLayersGeoJSON,
-	useConvectiveOutlookQuery,
+	getSPCConvectiveOutlooks,
 	useSPCConvectiveOutlooks,
 } from "services/convective-outlook-map-server";
 import dayjs from "dayjs";
@@ -98,28 +101,8 @@ const projection = geoAlbers();
 const pathGen = geoPath(projection);
 
 export const ConvectiveOutlookMap = () => {
-	React.useEffect(() => {
-		const testServiceFunction = async () => {
-			const layerJSON = await getMapServerLayerJSON(17);
-			const layerGeoJSON = await getMapServerFeatureLayerGeoJSON(17);
-			const layersJSON = await getOutlookDayFeatureLayersJSON([17, 18, 19]);
-			const layersGeoJSON = await getOutlookDayFeatureLayersGeoJSON([
-				17, 18, 19,
-			]);
-
-			console.clear();
-
-			console.log("LAYER JSON >>\n", layerJSON);
-			console.log("FEATURE LAYER GEOJSON >>\n", layerGeoJSON);
-			console.log("LAYERS JSON >>\n", layersJSON);
-			console.log("FEATURE LAYERS GEOJSON >>\n", layersGeoJSON);
-		};
-
-		testServiceFunction();
-	}, []);
-
-	// const { data: outlooks, error: errorOutlooks } = useSPCConvectiveOutlooks();
-	const [btnStatusMap, setBtnStatusMap] = React.useState({
+	const { data: outlooks, error: errorOutlooks } = useSPCConvectiveOutlooks();
+	const [dayBtnStatuses, setDayBtnStatuses] = React.useState({
 		1: true,
 		2: false,
 		3: false,
@@ -129,7 +112,8 @@ export const ConvectiveOutlookMap = () => {
 		7: false,
 		8: false,
 	});
-	const [outlookDay, setOutlookDay] = React.useState(0);
+	const [outlookLayers, setOutlookLayers] = React.useState();
+	const [dayNumber, setDayNumber] = React.useState(1);
 
 	// const [layers, setLayers] = React.useState(MAYFIELD);
 	// const [legendState, setLegendState] = React.useState({
@@ -144,9 +128,7 @@ export const ConvectiveOutlookMap = () => {
 	// let [activeDate, setActiveDate] = React.useState();
 	// let [expirationDate, setExpirationDate] = React.useState();
 
-	const handleOutlookDaySelect = (key) => {
-		console.log("Day: ", key);
-
+	const handleOutlookDaySelect = (dayNumber) => {
 		const clearedDaySelectBtns = {
 			1: false,
 			2: false,
@@ -158,31 +140,20 @@ export const ConvectiveOutlookMap = () => {
 			8: false,
 		};
 
-		setBtnStatusMap({ ...clearedDaySelectBtns, [key]: true });
-		setOutlookDay(key - 1);
+		setDayBtnStatuses({ ...clearedDaySelectBtns, [dayNumber]: true });
+		setDayNumber(dayNumber);
+		// setOutlookLayers(outlooks[dayNumber]);
 	};
 
-	// React.useEffect(() => {
-	// 	const parsedOutlookFeatures = outlooks ? {
-	// 		1: {outlooks.DAY_1},
-	// 	} : null;
-
-	// 	const parsedOutlookMeta = outlooks ? {
-	// 		1:
-	// 	} : null;
-
-	// },[outlooks])
-
-	// React.useEffect(() => {
-	// 	console.clear();
-	// 	console.log("> FORMATTED OUTLOOKS FROM SERVICE\n", outlooks);
-	// 	console.log("DAY SELECT BTNS\n", btnStatusMap);
-	// }, [btnStatusMap, outlooks]);
+	React.useState(() => {
+		console.clear();
+		console.log("OUTLOOKS\n", outlooks);
+	}, []);
 
 	return (
 		<>
 			<DaySelectBtns
-				btnStatuses={btnStatusMap}
+				btnStatuses={dayBtnStatuses}
 				onClickHandler={handleOutlookDaySelect}
 			/>
 
@@ -190,17 +161,17 @@ export const ConvectiveOutlookMap = () => {
 				<div className='flex justify-center mt-5'>
 					<div className='flex flex-col'>
 						<span className='text-2xl bold text-left my-3'>
-							OUTLOOK DAY: {outlookDay + 1}
+							OUTLOOK DAY: {day + 1}
 						</span>
 						<span className='text-2xl bold text-left my-3'>
 							ACTIVE:{" "}
-							{dayjs(outlooks[outlookDay].features[0].properties.valid).format(
+							{dayjs(outlooks[day].features[0].properties.valid).format(
 								"dddd - MMM DD, YYYY - h:mm A"
 							)}
 						</span>
 						<span className='text-2xl bold text-left my-3'>
 							EXPIRES:{" "}
-							{dayjs(outlooks[outlookDay].features[0].properties.expire).format(
+							{dayjs(outlooks[day].features[0].properties.expire).format(
 								"dddd - MMM DD, YYYY - h:mm A"
 							)}
 						</span>
@@ -211,13 +182,11 @@ export const ConvectiveOutlookMap = () => {
 			{/* <Basemap>
 				{outlooks ? (
 					<GeoJsonSVGPathGroup
-						featureCollectionOBJ={outlooks[outlookDay]}
+						featureCollectionOBJ={outlooks[day]}
 						setState={setLegendState}
 					/>
 				) : null}
 			</Basemap> */}
-
-			{/* <FeatureLayerSwitches layers={}/> */}
 		</>
 	);
 };
@@ -225,13 +194,13 @@ export const ConvectiveOutlookMap = () => {
 const DaySelectBtns = ({ btnStatuses, onClickHandler }) => {
 	return (
 		<ButtonGroup className='w-full justify-center'>
-			{[1, 2, 3, 4, 5, 6, 7, 8].map((day) => (
+			{[1, 2, 3, 4, 5, 6, 7, 8].map((dayNumber) => (
 				<Button
-					key={`day-${day}`}
-					active={btnStatuses[day]}
-					onClick={() => onClickHandler(day)}
+					key={`day-${dayNumber}`}
+					active={btnStatuses[dayNumber]}
+					onClick={() => onClickHandler(dayNumber)}
 				>
-					{day}
+					{dayNumber}
 				</Button>
 			))}
 		</ButtonGroup>
@@ -278,7 +247,9 @@ const GeoJsonSVGPathGroup = ({ featureCollectionOBJ, setState }) => {
 	);
 };
 
-const FeatureLayerSwitches = () => {};
+// const FeatureLayerCheckboxes = ({ layersJSON }) => {
+// 	return layersJSON;
+// };
 
 // -- LATER
 // consolidate radio select groups into single "valueSet" component

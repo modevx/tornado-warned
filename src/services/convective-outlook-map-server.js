@@ -8,6 +8,7 @@ const MAP_SERVER_CLIENT = axios.create({
 	timeout: DEFAULT_TIMEOUT,
 });
 
+const OUTLOOK_DAYS = [1, 2, 3, 4, 5, 6, 7, 8];
 const OUTLOOK_DAY_FEATURE_LAYER_IDS = Object.freeze({
 	1: [1, 2, 3, 4, 5, 6, 7],
 	2: [9, 10, 11, 12, 13, 14, 15],
@@ -67,27 +68,37 @@ export const getOutlookDayFeatureLayersGeoJSON = async (featureLayerIds) => {
 	]);
 };
 
-const fetchSPCConvectiveOutlooks = async () => {
-	for (const day of outlookDayKeys) {
-		const outlookDay = OUTLOOK_MAP_SERVER_LAYER_IDS[day];
-		const groupLayerId = outlookDay.slice(0, 1);
-		const featureLayerIds = outlookDay.slice(1);
+export const getSPCConvectiveOutlooks = async () => {
+	const outlooks = {};
 
-		const convective_outlook = await getMapServerLayerJSON(groupLayerId);
-		const features_json = await getOutlookDayFeatureLayersJSON(featureLayerIds);
-		const features_geojson = await getOutlookDayFeatureLayersGeoJSON(
-			featureLayerIds
+	for (const day of OUTLOOK_DAYS) {
+		const JSON = await getOutlookDayFeatureLayersJSON(
+			OUTLOOK_DAY_FEATURE_LAYER_IDS[day]
+		);
+		const GeoJSON = await getOutlookDayFeatureLayersGeoJSON(
+			OUTLOOK_DAY_FEATURE_LAYER_IDS[day]
 		);
 
-		const outlookData = {
-			meta: convective_outlook.data,
-			features: {
-				JSON: features_json,
-				geoJSON: features_geojson,
-			},
-		};
+		outlooks[day] = await { JSON, GeoJSON };
+		// const outlookDay = OUTLOOK_MAP_SERVER_LAYER_IDS[day];
+		// const groupLayerId = outlookDay.slice(0, 1);
+		// const featureLayerIds = outlookDay.slice(1);
 
-		outlooks[day] = await { ...outlookData };
+		// const convective_outlook = await getMapServerLayerJSON(groupLayerId);
+		// const features_json = await getOutlookDayFeatureLayersJSON(featureLayerIds);
+		// const features_geojson = await getOutlookDayFeatureLayersGeoJSON(
+		// 	featureLayerIds
+		// );
+
+		// const outlookData = {
+		// 	meta: convective_outlook.data,
+		// 	features: {
+		// 		JSON: features_json,
+		// 		geoJSON: features_geojson,
+		// 	},
+		// };
+
+		// outlooks[day] = await { ...outlookData };
 	}
 
 	return await outlooks;
@@ -96,20 +107,8 @@ const fetchSPCConvectiveOutlooks = async () => {
 export const useSPCConvectiveOutlooks = () => {
 	return useQuery(
 		["outlook-map-server-service", "outlooks"],
-		async () => await fetchSPCConvectiveOutlooks()
+		async () => await getSPCConvectiveOutlooks()
 	);
-};
-
-// -- Original Outlook Query
-
-export const useConvectiveOutlooksQuery = () => {
-	return useQuery(["convective-outlooks", "categorical"], async () => {
-		return await Promise.all([
-			getMapServerFeatureLayerGeoJSON(1),
-			getMapServerFeatureLayerGeoJSON(9),
-			getMapServerFeatureLayerGeoJSON(17),
-		]);
-	});
 };
 
 const fetchConvectiveOutlookLegend = async () => {
