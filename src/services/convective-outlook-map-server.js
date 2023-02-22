@@ -8,8 +8,7 @@ const MAP_SERVER_CLIENT = axios.create({
 	timeout: DEFAULT_TIMEOUT,
 });
 
-const OUTLOOK_GROUP_LAYER_IDS = [0, 8, 16, 20];
-const OUTLOOK_FEATURE_LAYER_IDS = Object.freeze({
+const OUTLOOK_DAY_FEATURE_LAYER_IDS = Object.freeze({
 	1: [1, 2, 3, 4, 5, 6, 7],
 	2: [9, 10, 11, 12, 13, 14, 15],
 	3: [17, 18, 19],
@@ -20,59 +19,65 @@ const OUTLOOK_FEATURE_LAYER_IDS = Object.freeze({
 	8: [25],
 });
 
-const fetchMapServerLayerJSON = async (layerId) => {
-	return await MAP_SERVER_CLIENT.get(`/${layerId}?f=json`);
+export const getMapServerLayerJSON = async (layerId) => {
+	const response = await MAP_SERVER_CLIENT.get(`/${layerId}?f=json`);
+	const {
+		data: {
+			currentVersion,
+			id,
+			name,
+			type,
+			geometryType,
+			drawingInfo: {
+				renderer: { uniqueValueInfos },
+			},
+		},
+	} = await response;
+
+	return {
+		currentVersion,
+		id,
+		name,
+		type,
+		geometryType,
+		uniqueValueInfos,
+	};
 };
 
-const fetchMapServerLayerGeoJSON = async (featureLayerId) => {
-	return await MAP_SERVER_CLIENT.get(
+export const getMapServerFeatureLayerGeoJSON = async (featureLayerId) => {
+	const response = await MAP_SERVER_CLIENT.get(
 		`/${featureLayerId}/query?&outFields=*&geometry=true&f=geojson`
 	);
+	return response.data;
 };
 
-const getOutlookFeaturesAsJSON = async (featureLayerIdArray) => {
+export const getOutlookDayFeatureLayersJSON = async (featureLayerIds) => {
 	return await Promise.all([
-		...featureLayerIdArray.map(async (featureLayerId) => {
-			const response = await fetchMapServerLayerJSON(featureLayerId);
-			return await response.data;
-		}),
+		...featureLayerIds.map((featureLayerId) =>
+			getMapServerLayerJSON(featureLayerId)
+		),
 	]);
 };
 
-const getOutlookFeaturesAsGeoJSON = async (featureLayerIdArray) => {
-	return await Promise.all(
-		featureLayerIdArray.map(async (featureLayerId) => {
-			const response = await fetchMapServerLayerGeoJSON(featureLayerId);
-			return await response.data;
-		})
-	);
+export const getOutlookDayFeatureLayersGeoJSON = async (featureLayerIds) => {
+	return await Promise.all([
+		...featureLayerIds.map((featureLayerId) =>
+			getMapServerFeatureLayerGeoJSON(featureLayerId)
+		),
+	]);
 };
 
 const fetchSPCConvectiveOutlooks = async () => {
-	// 1st index of each day is Convective Outlook Group Layer
-	const OUTLOOK_MAP_SERVER_LAYER_IDS = Object.freeze({
-		DAY_1: [0, 1, 2, 3, 4, 5, 6, 7],
-		DAY_2: [8, 9, 10, 11, 12, 13, 14, 15],
-		DAY_3: [16, 17, 18, 19],
-		DAY_4_THRU_8: [20, 21, 22, 23, 24, 25],
-	});
-
-	const outlookDayKeys = Object.keys(OUTLOOK_MAP_SERVER_LAYER_IDS);
-	let outlooks = {
-		DAY_1: null,
-		DAY_2: null,
-		DAY_3: null,
-		DAY_4_THRU_8: null,
-	};
-
 	for (const day of outlookDayKeys) {
 		const outlookDay = OUTLOOK_MAP_SERVER_LAYER_IDS[day];
 		const groupLayerId = outlookDay.slice(0, 1);
 		const featureLayerIds = outlookDay.slice(1);
 
-		const convective_outlook = await fetchMapServerLayerJSON(groupLayerId);
-		const features_json = await getOutlookFeaturesAsJSON(featureLayerIds);
-		const features_geojson = await getOutlookFeaturesAsGeoJSON(featureLayerIds);
+		const convective_outlook = await getMapServerLayerJSON(groupLayerId);
+		const features_json = await getOutlookDayFeatureLayersJSON(featureLayerIds);
+		const features_geojson = await getOutlookDayFeatureLayersGeoJSON(
+			featureLayerIds
+		);
 
 		const outlookData = {
 			meta: convective_outlook.data,
@@ -100,9 +105,9 @@ export const useSPCConvectiveOutlooks = () => {
 export const useConvectiveOutlooksQuery = () => {
 	return useQuery(["convective-outlooks", "categorical"], async () => {
 		return await Promise.all([
-			fetchMapServerLayerGeoJSON(1),
-			fetchMapServerLayerGeoJSON(9),
-			fetchMapServerLayerGeoJSON(17),
+			getMapServerFeatureLayerGeoJSON(1),
+			getMapServerFeatureLayerGeoJSON(9),
+			getMapServerFeatureLayerGeoJSON(17),
 		]);
 	});
 };

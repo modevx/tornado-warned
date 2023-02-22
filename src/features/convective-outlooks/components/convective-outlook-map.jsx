@@ -14,6 +14,10 @@ import { BsTornado } from "react-icons/bs";
 import { GiDamagedHouse } from "react-icons/gi";
 import { MAYFIELD } from "../Mayfield";
 import {
+	getMapServerLayerJSON,
+	getMapServerFeatureLayerGeoJSON,
+	getOutlookDayFeatureLayersJSON,
+	getOutlookDayFeatureLayersGeoJSON,
 	useConvectiveOutlookQuery,
 	useSPCConvectiveOutlooks,
 } from "services/convective-outlook-map-server";
@@ -94,7 +98,27 @@ const projection = geoAlbers();
 const pathGen = geoPath(projection);
 
 export const ConvectiveOutlookMap = () => {
-	const { data: outlooks, error: errorOutlooks } = useSPCConvectiveOutlooks();
+	React.useEffect(() => {
+		const testServiceFunction = async () => {
+			const layerJSON = await getMapServerLayerJSON(17);
+			const layerGeoJSON = await getMapServerFeatureLayerGeoJSON(17);
+			const layersJSON = await getOutlookDayFeatureLayersJSON([17, 18, 19]);
+			const layersGeoJSON = await getOutlookDayFeatureLayersGeoJSON([
+				17, 18, 19,
+			]);
+
+			console.clear();
+
+			console.log("LAYER JSON >>\n", layerJSON);
+			console.log("FEATURE LAYER GEOJSON >>\n", layerGeoJSON);
+			console.log("LAYERS JSON >>\n", layersJSON);
+			console.log("FEATURE LAYERS GEOJSON >>\n", layersGeoJSON);
+		};
+
+		testServiceFunction();
+	}, []);
+
+	// const { data: outlooks, error: errorOutlooks } = useSPCConvectiveOutlooks();
 	const [btnStatusMap, setBtnStatusMap] = React.useState({
 		1: true,
 		2: false,
@@ -107,7 +131,7 @@ export const ConvectiveOutlookMap = () => {
 	});
 	const [outlookDay, setOutlookDay] = React.useState(0);
 
-	const [layers, setLayers] = React.useState(MAYFIELD);
+	// const [layers, setLayers] = React.useState(MAYFIELD);
 	// const [legendState, setLegendState] = React.useState({
 	// 	storm: false,
 	// 	marginal: false,
@@ -116,9 +140,9 @@ export const ConvectiveOutlookMap = () => {
 	// 	moderate: false,
 	// 	high: false,
 	// });
-	let [currentOutlook, setCurrentOutlook] = React.useState([]);
-	let [activeDate, setActiveDate] = React.useState();
-	let [expirationDate, setExpirationDate] = React.useState();
+	// let [currentOutlook, setCurrentOutlook] = React.useState([]);
+	// let [activeDate, setActiveDate] = React.useState();
+	// let [expirationDate, setExpirationDate] = React.useState();
 
 	const handleOutlookDaySelect = (key) => {
 		console.log("Day: ", key);
@@ -138,11 +162,22 @@ export const ConvectiveOutlookMap = () => {
 		setOutlookDay(key - 1);
 	};
 
-	React.useEffect(() => {
-		console.clear();
-		outlooks && console.log("> FORMATTED OUTLOOKS FROM SERVICE\n", outlooks);
-		console.log("DAY SELECT BTNS\n", btnStatusMap);
-	}, [btnStatusMap, outlooks]);
+	// React.useEffect(() => {
+	// 	const parsedOutlookFeatures = outlooks ? {
+	// 		1: {outlooks.DAY_1},
+	// 	} : null;
+
+	// 	const parsedOutlookMeta = outlooks ? {
+	// 		1:
+	// 	} : null;
+
+	// },[outlooks])
+
+	// React.useEffect(() => {
+	// 	console.clear();
+	// 	console.log("> FORMATTED OUTLOOKS FROM SERVICE\n", outlooks);
+	// 	console.log("DAY SELECT BTNS\n", btnStatusMap);
+	// }, [btnStatusMap, outlooks]);
 
 	return (
 		<>
