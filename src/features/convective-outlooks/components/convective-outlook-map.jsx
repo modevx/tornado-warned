@@ -112,18 +112,18 @@ export const ConvectiveOutlookMap = () => {
 		7: false,
 		8: false,
 	});
-	const [outlookLayers, setOutlookLayers] = React.useState();
 	const [dayNumber, setDayNumber] = React.useState(1);
+	const [outlookLayers, setOutlookLayers] = React.useState();
 
 	// const [layers, setLayers] = React.useState(MAYFIELD);
-	// const [legendState, setLegendState] = React.useState({
-	// 	storm: false,
-	// 	marginal: false,
-	// 	slight: false,
-	// 	enhanced: false,
-	// 	moderate: false,
-	// 	high: false,
-	// });
+	const [legendState, setLegendState] = React.useState({
+		storm: false,
+		marginal: false,
+		slight: false,
+		enhanced: false,
+		moderate: false,
+		high: false,
+	});
 	// let [currentOutlook, setCurrentOutlook] = React.useState([]);
 	// let [activeDate, setActiveDate] = React.useState();
 	// let [expirationDate, setExpirationDate] = React.useState();
@@ -142,13 +142,20 @@ export const ConvectiveOutlookMap = () => {
 
 		setDayBtnStatuses({ ...clearedDaySelectBtns, [dayNumber]: true });
 		setDayNumber(dayNumber);
-		// setOutlookLayers(outlooks[dayNumber]);
+		setOutlookLayers(outlooks[dayNumber].GeoJSON);
 	};
 
 	React.useState(() => {
-		console.clear();
-		console.log("OUTLOOKS\n", outlooks);
-	}, []);
+		setOutlookLayers(outlooks[dayNumber].GeoJSON);
+	}, [dayNumber]);
+
+	React.useEffect(() => {
+		console.log(`OUTLOOK DAY ${dayNumber} FEATURES\n`, outlookLayers);
+	}, [outlookLayers]);
+
+	React.useEffect(() => {
+		console.log(`OUTLOOK DAY ${dayNumber} JSON\n`, outlooks);
+	}, [outlooks]);
 
 	return (
 		<>
@@ -179,14 +186,18 @@ export const ConvectiveOutlookMap = () => {
 				</div>
 			) : null} */}
 
-			{/* <Basemap>
-				{outlooks ? (
-					<GeoJsonSVGPathGroup
-						featureCollectionOBJ={outlooks[day]}
-						setState={setLegendState}
-					/>
-				) : null}
-			</Basemap> */}
+			<Basemap>
+				{outlookLayers &&
+					outlookLayers.map((featureCollection) => {
+						return (
+							<GeoJsonSVGPathGroup
+								featureCollectionOBJ={featureCollection}
+								setState={setLegendState}
+							/>
+						);
+					})}
+			</Basemap>
+			{outlooks && <FeatureLayerCheckboxes JSON={outlooks[dayNumber].JSON} />}
 		</>
 	);
 };
@@ -247,9 +258,9 @@ const GeoJsonSVGPathGroup = ({ featureCollectionOBJ, setState }) => {
 	);
 };
 
-// const FeatureLayerCheckboxes = ({ layersJSON }) => {
-// 	return layersJSON;
-// };
+const FeatureLayerCheckboxes = ({ JSON }) => {
+	return JSON.map(({ features }) => <Checkbox />);
+};
 
 // -- LATER
 // consolidate radio select groups into single "valueSet" component
