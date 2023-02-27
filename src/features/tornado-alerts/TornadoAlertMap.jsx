@@ -5,7 +5,15 @@ import { Basemap } from "_shared/components/maps";
 import rewind from "@turf/rewind";
 import { geoAlbers, geoPath } from "d3-geo";
 
-import { useActiveTornadoWarnings, useActiveTornadoWatches } from "./service";
+import {
+  useActiveAlerts,
+  useActiveTornadoWarnings,
+  useActiveTornadoWatches,
+  usePrev2WeeksAlerts,
+} from "./service";
+import { logTornadoAlertError } from "./utils/log-tornado-alert-error";
+
+import { ALERT_NAME } from "./constants";
 
 import dayjs from "dayjs";
 import LF from "dayjs/plugin/localizedFormat";
@@ -76,44 +84,27 @@ const projection = geoAlbers();
 const pathGen = geoPath(projection);
 
 export const TornadoAlertMap = () => {
-  const { data: warnings, error } = useActiveTornadoWarnings();
+  const { data: warnings, error } = usePrev2WeeksAlerts(
+    ALERT_NAME.tornadoWarning
+  );
 
-  const svgW = 425;
-  const svgH = svgW / 1.6;
-
-  if (warnings) {
-    console.log("warnings\n", warnings);
-    return (
-      <div className="grid gap-4">
-        <Basemap>
-          {warnings.map((featureCollection, index) => (
-            <AlertSVGPathGroup
-              key={`alert-${index}`}
-              featureCollection={featureCollection}
-            />
-          ))}
-        </Basemap>
-      </div>
-    );
-  }
-
-  if (error) console.log(">> ALERTS ERROR\n", error.message);
+  console.log("PREV WARNINGS\n", warnings);
 
   return (
-    <Basemap>
-      <text x={svgW} y={svgH} className="text-3xl fill-white">
-        Loading Alerts...
-      </text>
-    </Basemap>
+    <div className="grid gap-4">
+      <Basemap>
+        {warnings && <AlertPolygons featureCollection={warnings} />}
+      </Basemap>
+    </div>
   );
 };
 
 // -- COMPONENTS
-const AlertSVGPathGroup = ({ featureCollection }) => {
+const AlertPolygons = ({ featureCollection }) => {
   const colorMap = {
     ["Tornado Warning"]: "#f0f",
     // ["Tornado Watch"]: "#f90",  // NWS Web API returns empty []
-    ["Severe Thunderstorm Warning"]: "#ffF",
+    ["Severe Thunderstorm Warning"]: "#fff",
     // ["Severe Thunderstorm Watch"]: "#fff",  // NWS Web API returns empty []
   };
 
@@ -138,3 +129,7 @@ const AlertSVGPathGroup = ({ featureCollection }) => {
     </g>
   );
 };
+
+const NoActiveAlertsText = () => (
+  <text className="text-3xl fill-white">No Active Alerts</text>
+);

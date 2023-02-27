@@ -12,13 +12,6 @@ export const EVENT_NAME = Object.freeze({
   severeStormWarning: "Severe Thunderstorm Watch",
   severeStormWatch: "Severe Thunderstorm Warning",
 });
-export const QUERY_KEY = {
-  alerts: ["alerts"],
-  tornadoWarning: ["alerts", EVENT_NAME.tornadoWarning],
-  tornadoWatch: ["alerts", EVENT_NAME.tornadoWatch],
-  severeStormWarning: ["alerts", EVENT_NAME.severeStormWarning],
-  severeStormWatch: ["alerts", EVENT_NAME.severeStormWatch],
-};
 
 const fetchActiveAlerts = async (eventName) => {
   const res = await HTTP_CLIENT.get(
@@ -34,26 +27,10 @@ const fetchPrev2WeeksAlerts = async (eventName) => {
   return res.data;
 };
 
-export const useActiveTornadoWarnings = () => {
-  return useQuery(QUERY_KEY.tornadoWarning, () =>
-    fetchActiveAlerts(EVENT_NAME.tornadoWarning)
-  );
+export const useActiveAlerts = async (alertName) => {
+  return useQuery(["alerts", alertName], () => fetchActiveAlerts(alertName));
 };
-export const useActiveTornadoWatches = () => {
-  return useQuery(QUERY_KEY.tornadoWatch, () =>
-    fetchActiveAlerts(EVENT_NAME.tornadoWatch)
-  );
-};
-export const useActiveStormWarnings = () => {
-  return useQuery(QUERY_KEY.severeStormWarning, () =>
-    fetchActiveAlerts(EVENT_NAME.severeStormWarning)
-  );
-};
-export const useActiveStormWatches = () => {
-  return useQuery(QUERY_KEY.severeStormWatch, () =>
-    fetchActiveAlerts(EVENT_NAME.severeStormWatch)
-  );
-};
+
 export const usePrev2WeeksAlerts = (eventName) => {
   return useQuery(["alerts", eventName], () =>
     fetchPrev2WeeksAlerts(eventName)
@@ -72,22 +49,6 @@ const gen2WeekISODateRange = () => {
 
   return { start, end };
 };
-
-// const ACTIVE_ALERT_PARAMS = {
-// 	area: "",
-// 	certainty: "",
-// 	code: "",
-// 	event: "",
-// 	limit: "",
-// 	message_type: "",
-// 	point: "",
-// 	region: "",
-// 	region_type: "",
-// 	severity: "",
-// 	status: "",
-// 	urgency: "",
-// 	zone: "",
-// };
 
 export const getPublicInfoStatements = async () => {
   const end_date = new Date();
