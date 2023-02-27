@@ -17,7 +17,7 @@ const OutlooksPage = () => {
   return (
     <PageLayout>
       <TornadoAlertMap />
-      <ConvectiveOutlookMap />
+      {/* <ConvectiveOutlookMap /> */}
       {/* TornadoNews/> */}
       {/* <OutlookPreviewCardList outlooks={featureLayers} /> */}
     </PageLayout>

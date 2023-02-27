@@ -5,7 +5,7 @@ import { Basemap } from "_shared/components/maps";
 import rewind from "@turf/rewind";
 import { geoAlbers, geoPath } from "d3-geo";
 
-import { NWS_EVENT_NAME, useAllOldAlertsQuery } from "./service";
+import { useActiveTornadoWarnings, useActiveTornadoWatches } from "./service";
 
 import dayjs from "dayjs";
 import LF from "dayjs/plugin/localizedFormat";
@@ -76,16 +76,21 @@ const projection = geoAlbers();
 const pathGen = geoPath(projection);
 
 export const TornadoAlertMap = () => {
-  const { data: alerts, error } = useAllOldAlertsQuery();
+  const { data: warnings, error } = useActiveTornadoWarnings();
+
   const svgW = 425;
   const svgH = svgW / 1.6;
 
-  if (alerts) {
+  if (warnings) {
+    console.log("warnings\n", warnings);
     return (
       <div className="grid gap-4">
         <Basemap>
-          {alerts.map((featureCollection) => (
-            <AlertSVGPathGroup featureCollection={featureCollection} />
+          {warnings.map((featureCollection, index) => (
+            <AlertSVGPathGroup
+              key={`alert-${index}`}
+              featureCollection={featureCollection}
+            />
           ))}
         </Basemap>
       </div>

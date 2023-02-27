@@ -2,7 +2,7 @@ import React from "react";
 import { LocaleDate } from "_shared/components";
 import { getAreaDescMAP } from "utils";
 
-export const NwsAlertListItem = ({ activeAlert }) => {
+export const TornadoAlertListItem = ({ activeAlert }) => {
   const {
     event,
     messageType,
