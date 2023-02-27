@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Menu, Navbar } from "react-daisyui";
-import { MAIN_NAV_ITEMS } from "constants/main-nav-items";
+import { MAIN_NAV_ITEMS } from "_shared/constants/main-nav-items";
 
 export const MainNav = () => {
   return (
