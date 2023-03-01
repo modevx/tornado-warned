@@ -4,122 +4,141 @@ import { DEFAULT_TIMEOUT } from "_shared/constants/services";
 import { useQuery } from "@tanstack/react-query";
 
 const MAP_SERVER_CLIENT = axios.create({
-  baseURL: URLS.SPC.OTLK_MAP_SERV,
-  timeout: DEFAULT_TIMEOUT,
+	baseURL: URLS.SPC.OTLK_MAP_SERV,
+	timeout: DEFAULT_TIMEOUT,
 });
 
 const OUTLOOK_DAYS = [1, 2, 3, 4, 5, 6, 7, 8];
 const OUTLOOK_DAY_FEATURE_LAYER_IDS = Object.freeze({
-  1: [1, 2, 3, 4, 5, 6, 7],
-  2: [9, 10, 11, 12, 13, 14, 15],
-  3: [17, 18, 19],
-  4: [21],
-  5: [22],
-  6: [23],
-  7: [24],
-  8: [25],
+	1: [1, 2, 3, 4, 5, 6, 7],
+	2: [9, 10, 11, 12, 13, 14, 15],
+	3: [17, 18, 19],
+	4: [21],
+	5: [22],
+	6: [23],
+	7: [24],
+	8: [25],
 });
 
-export const getMapServerLayerJSON = async (layerId) => {
-  const response = await MAP_SERVER_CLIENT.get(`/${layerId}?f=json`);
-  const {
-    data: {
-      currentVersion,
-      id,
-      name,
-      type,
-      geometryType,
-      drawingInfo: {
-        renderer: { uniqueValueInfos },
-      },
-    },
-  } = await response;
+const getMapServerLayerJSON = async (layerId) => {
+	const response = await MAP_SERVER_CLIENT.get(`/${layerId}?f=json`);
+	const {
+		data: {
+			currentVersion,
+			id,
+			name,
+			type,
+			geometryType,
+			drawingInfo: {
+				renderer: { uniqueValueInfos },
+			},
+		},
+	} = await response;
 
-  return {
-    currentVersion,
-    id,
-    name,
-    type,
-    geometryType,
-    uniqueValueInfos,
-  };
+	return {
+		currentVersion,
+		id,
+		name,
+		type,
+		geometryType,
+		uniqueValueInfos,
+	};
 };
 
-export const getMapServerFeatureLayerGeoJSON = async (featureLayerId) => {
-  const response = await MAP_SERVER_CLIENT.get(
-    `/${featureLayerId}/query?&outFields=*&geometry=true&f=geojson`
-  );
-  return response.data;
+const getMapServerLayerGeoJSON = async (featureLayerId) => {
+	const response = await MAP_SERVER_CLIENT.get(
+		`/${featureLayerId}/query?&outFields=*&geometry=true&f=geojson`
+	);
+	return response.data;
 };
 
-export const getOutlookDayFeatureLayersJSON = async (featureLayerIds) => {
-  return await Promise.all([
-    ...featureLayerIds.map((featureLayerId) =>
-      getMapServerLayerJSON(featureLayerId)
-    ),
-  ]);
+export const useCategoricalOutlooksJSON = () => {
+	return useQuery(
+		["Outlooks", "Categorical", "JSON"],
+		async () =>
+			await Promise.all([
+				[1, 9, 17].map((layerId) => getMapServerLayerJSON(layerId)),
+			])
+	);
 };
 
-export const getOutlookDayFeatureLayersGeoJSON = async (featureLayerIds) => {
-  return await Promise.all([
-    ...featureLayerIds.map((featureLayerId) =>
-      getMapServerFeatureLayerGeoJSON(featureLayerId)
-    ),
-  ]);
+export const useCategoricalOutlooksGeoJSON = () => {
+	return useQuery(["Outlooks", "Categorical", "GeoJSON"], async () => {
+		return await Promise.all([
+			[1, 9, 17].map((layerId) => getMapServerLayerGeoJSON(layerId)),
+		]);
+	});
+};
+// ************* SAVE FOR LATER ***************
+
+const getOutlookDayFeatureLayersJSON = async (featureLayerIds) => {
+	return await Promise.all([
+		...featureLayerIds.map((featureLayerId) =>
+			getMapServerLayerJSON(featureLayerId)
+		),
+	]);
 };
 
-export const getSPCConvectiveOutlooks = async () => {
-  const outlooks = {};
+const getOutlookDayFeatureLayersGeoJSON = async (featureLayerIds) => {
+	return await Promise.all([
+		...featureLayerIds.map((featureLayerId) =>
+			getMapServerLayerGeoJSON(featureLayerId)
+		),
+	]);
+};
 
-  for (const day of OUTLOOK_DAYS) {
-    const JSON = await getOutlookDayFeatureLayersJSON(
-      OUTLOOK_DAY_FEATURE_LAYER_IDS[day]
-    );
-    const GeoJSON = await getOutlookDayFeatureLayersGeoJSON(
-      OUTLOOK_DAY_FEATURE_LAYER_IDS[day]
-    );
+const getSPCConvectiveOutlooks = async () => {
+	const outlooks = {};
 
-    outlooks[day] = await { JSON, GeoJSON };
-    // const outlookDay = OUTLOOK_MAP_SERVER_LAYER_IDS[day];
-    // const groupLayerId = outlookDay.slice(0, 1);
-    // const featureLayerIds = outlookDay.slice(1);
+	for (const day of OUTLOOK_DAYS) {
+		const JSON = await getOutlookDayFeatureLayersJSON(
+			OUTLOOK_DAY_FEATURE_LAYER_IDS[day]
+		);
+		const GeoJSON = await getOutlookDayFeatureLayersGeoJSON(
+			OUTLOOK_DAY_FEATURE_LAYER_IDS[day]
+		);
 
-    // const convective_outlook = await getMapServerLayerJSON(groupLayerId);
-    // const features_json = await getOutlookDayFeatureLayersJSON(featureLayerIds);
-    // const features_geojson = await getOutlookDayFeatureLayersGeoJSON(
-    // 	featureLayerIds
-    // );
+		outlooks[day] = await { JSON, GeoJSON };
+		// const outlookDay = OUTLOOK_MAP_SERVER_LAYER_IDS[day];
+		// const groupLayerId = outlookDay.slice(0, 1);
+		// const featureLayerIds = outlookDay.slice(1);
 
-    // const outlookData = {
-    // 	meta: convective_outlook.data,
-    // 	features: {
-    // 		JSON: features_json,
-    // 		geoJSON: features_geojson,
-    // 	},
-    // };
+		// const convective_outlook = await getMapServerLayerJSON(groupLayerId);
+		// const features_json = await getOutlookDayFeatureLayersJSON(featureLayerIds);
+		// const features_geojson = await getOutlookDayFeatureLayersGeoJSON(
+		// 	featureLayerIds
+		// );
 
-    // outlooks[day] = await { ...outlookData };
-  }
+		// const outlookData = {
+		// 	meta: convective_outlook.data,
+		// 	features: {
+		// 		JSON: features_json,
+		// 		geoJSON: features_geojson,
+		// 	},
+		// };
 
-  return await outlooks;
+		// outlooks[day] = await { ...outlookData };
+	}
+
+	return await outlooks;
 };
 
 export const useSPCConvectiveOutlooks = () => {
-  return useQuery(
-    ["outlook-map-server-service", "outlooks"],
-    async () => await getSPCConvectiveOutlooks()
-  );
+	return useQuery(
+		["Outlooks", "outlooks"],
+		async () => await getSPCConvectiveOutlooks()
+	);
 };
 
-const fetchConvectiveOutlookLegend = async () => {
-  const response = await MAP_SERVER_CLIENT.get(URLS.SPC.OTLK_MAP_SERV_LGND);
-  const legendLayers = await response?.data.layers;
+const fetchOutlookLegend = async () => {
+	const response = await MAP_SERVER_CLIENT.get(URLS.SPC.OTLK_MAP_SERV_LGND);
+	const legendLayers = await response?.data.layers;
 
-  return await legendLayers;
+	return await legendLayers;
 };
 
-export const useConvectiveOutlookLegendQuery = () => {
-  return useQuery(["outlook-map-server-service", "legend"], async () => {
-    return await fetchConvectiveOutlookLegend();
-  });
+export const useOutlookLegendQuery = () => {
+	return useQuery(["Outlooks", "legend"], async () => {
+		return await fetchOutlookLegend();
+	});
 };

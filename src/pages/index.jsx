@@ -7,7 +7,7 @@ import {
 	OutlookPreviewCardList,
 } from "features/outlooks/components";
 import {
-	useConvectiveOutlookLegendQuery,
+	useOutlookLegendQuery,
 	useSPCConvectiveOutlooks,
 } from "services/convective-outlooks";
 import { OUTLOOK_LAYERS } from "features/outlooks/constants";
@@ -17,7 +17,7 @@ const OutlooksPage = () => {
 	return (
 		<PageLayout>
 			<TornadoAlertMap />
-			{/* <ConvectiveOutlookMap /> */}
+			<ConvectiveOutlookMap />
 			{/* TornadoNews/> */}
 			{/* <OutlookPreviewCardList outlooks={featureLayers} /> */}
 		</PageLayout>

@@ -102,9 +102,9 @@ export const TornadoAlertMap = () => {
 	return (
 		<div className='grid gap-4'>
 			<Basemap>
-				{/* {testAlerts && <AlertPolygons alertsObj={testAlerts} />} */}
-				{warnings && <AlertPolygons alertsObj={warnings} />}
-				{watches && <AlertPolygons alertsObj={watches} />}
+				{testAlerts && <AlertPolygons alertsObj={testAlerts} />}
+				{/* {warnings && <AlertPolygons alertsObj={warnings} />} */}
+				{/* {watches && <AlertPolygons alertsObj={watches} />} */}
 				{/* {warnings.features.length < 1 && watches.features.length < 1 && (
 					<NoActiveAlertsText />
 				)} */}
