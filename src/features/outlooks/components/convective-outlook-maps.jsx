@@ -102,7 +102,7 @@ const dnMap = {
 const projection = geoAlbers();
 const pathGen = geoPath(projection);
 
-export const ConvectiveOutlookMap = () => {
+export const ConvectiveOutlookMaps = () => {
 	const { data: outlookJSON, error: outlookJSONError } =
 		useCategoricalOutlooksJSON();
 	const { data: outlookGeoJSON, error: outlookGeoJSONError } =
@@ -131,6 +131,7 @@ export const ConvectiveOutlookMap = () => {
 				</div>
 			) : null} */
 		<>
+			<h1 className='text-gray-900 text-2xl font-bold'>Convective Outlooks</h1>
 			{outlookGeoJSON &&
 				outlookGeoJSON.map((featureCollection) => {
 					return (

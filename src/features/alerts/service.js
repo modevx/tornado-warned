@@ -32,7 +32,7 @@ export const useActiveAlerts = (alertName) => {
 };
 
 export const usePrev2WeeksAlerts = (eventName) => {
-	return useQuery(["alerts", eventName], () =>
+	return useQuery(["alerts", eventName, "past 2 weeks"], () =>
 		fetchPrev2WeeksAlerts(eventName)
 	);
 };

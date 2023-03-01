@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 import { STATE_NAMES_ABBR } from "constants";
-import { TornadoAlertList, useActiveAlerts } from "features/alerts";
+import { TextProductList, useActiveAlerts } from "features/alerts";
 // import { getAreaDescMAP, formatSenderNameSTR } from "utils";
 
 // [alertType] --> use "Watch" or "Warning"

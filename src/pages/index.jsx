@@ -1,6 +1,6 @@
 import React from "react";
 import { PageLayout } from "_shared/components";
-import { TornadoAlertMap } from "features/alerts";
+import { PolygonMap } from "features/alerts";
 import {
 	ConvectiveOutlookMap,
 	OutlookPreviewCard,
@@ -13,15 +13,19 @@ import {
 import { OUTLOOK_LAYERS } from "features/outlooks/constants";
 import { feature } from "topojson-client";
 
-const OutlooksPage = () => {
+const HomePage = () => {
 	return (
 		<PageLayout>
-			<TornadoAlertMap />
-			<ConvectiveOutlookMap />
+			<div className='bg-gray-100 p-4'>
+				<PolygonMap />
+			</div>
+			<div className='bg-blue-600 p-4'>
+				<ConvectiveOutlookMap />
+			</div>
 			{/* TornadoNews/> */}
 			{/* <OutlookPreviewCardList outlooks={featureLayers} /> */}
 		</PageLayout>
 	);
 };
 
-export default OutlooksPage;
+export default HomePage;

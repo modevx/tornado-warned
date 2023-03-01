@@ -84,7 +84,7 @@ const alertColorMap = {
 const projection = geoAlbers();
 const pathGen = geoPath(projection);
 
-export const TornadoAlertMap = () => {
+export const PolygonMap = () => {
 	const { data: testAlerts, error: testAlertsError } = usePrev2WeeksAlerts(
 		EVENT_NAME.tornadoWarning
 	);
@@ -101,6 +101,9 @@ export const TornadoAlertMap = () => {
 
 	return (
 		<div className='grid gap-4'>
+			<h1 className='text-gray-900 text-2xl font-bold'>
+				Active Tornado Alerts
+			</h1>
 			<Basemap>
 				{testAlerts && <AlertPolygons alertsObj={testAlerts} />}
 				{/* {warnings && <AlertPolygons alertsObj={warnings} />} */}

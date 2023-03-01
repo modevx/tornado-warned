@@ -2,33 +2,33 @@ import React from "react";
 import { LocaleDate } from "_shared/components";
 import { getAreaDescMAP } from "utils";
 
-export const TornadoAlertListItem = ({ activeAlert }) => {
-  const {
-    event,
-    messageType,
-    effective,
-    expires,
-    areaDesc,
-    headline,
-    description,
-    instruction,
-    senderName,
-  } = activeAlert.properties;
-  const [visible, setVisible] = React.useState(false);
+export const TextProductItem = ({ activeAlert }) => {
+	const {
+		event,
+		messageType,
+		effective,
+		expires,
+		areaDesc,
+		headline,
+		description,
+		instruction,
+		senderName,
+	} = activeAlert.properties;
+	const [visible, setVisible] = React.useState(false);
 
-  const fromColorMap = {
-    ["Tornado Warning"]: "from-red-600",
-    ["Tornado Watch"]: "from-yellow-600",
-  };
-  const fromColor = fromColorMap[event];
-  const areaDescMAP = getAreaDescMAP(areaDesc);
-  const areaDescMapARR = Array.from(areaDescMAP.entries());
+	const fromColorMap = {
+		["Tornado Warning"]: "from-red-600",
+		["Tornado Watch"]: "from-yellow-600",
+	};
+	const fromColor = fromColorMap[event];
+	const areaDescMAP = getAreaDescMAP(areaDesc);
+	const areaDescMapARR = Array.from(areaDescMAP.entries());
 
-  const toggleVisible = () => setVisible((prev) => !prev);
+	const toggleVisible = () => setVisible((prev) => !prev);
 
-  return (
-    <div className="font-sans">
-      {/* <button
+	return (
+		<div className='font-sans'>
+			{/* <button
 				onClick={toggleVisible}
 				className={`w-full flex justify-between align-center bg-gradient-to-r ${fromColor} to-steel-900 my-2 hover:opacity-80`}
 			>
@@ -90,6 +90,6 @@ export const TornadoAlertListItem = ({ activeAlert }) => {
 					)}
 				</Modal.Body>
 			</Modal> */}
-    </div>
-  );
+		</div>
+	);
 };
