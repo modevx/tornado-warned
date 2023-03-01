@@ -13,10 +13,11 @@ import {
 } from "./service";
 import { logTornadoAlertError } from "./utils/log-tornado-alert-error";
 
-import { ALERT_NAME } from "./constants";
+import { EVENT_NAME } from "./constants";
 
 import dayjs from "dayjs";
 import LF from "dayjs/plugin/localizedFormat";
+
 dayjs.extend(LF);
 
 const alertColorMap = {
@@ -84,16 +85,20 @@ const projection = geoAlbers();
 const pathGen = geoPath(projection);
 
 export const TornadoAlertMap = () => {
-  const { data: warnings, error } = usePrev2WeeksAlerts(
-    ALERT_NAME.tornadoWarning
+  const { data: testAlerts, error: testAlertsError } = usePrev2WeeksAlerts(
+    EVENT_NAME.tornadoWarning
   );
-
-  console.log("PREV WARNINGS\n", warnings);
+  const { data: warnings, error: warningsError } = useActiveAlerts(
+    EVENT_NAME.tornadoWarning
+  );
+  const { data: watches, error: watchesError } = useActiveAlerts(
+    EVENT_NAME.tornadoWatch
+  );
 
   return (
     <div className="grid gap-4">
       <Basemap>
-        {warnings && <AlertPolygons featureCollection={warnings} />}
+        {testAlerts && <AlertPolygons featureCollection={testAlerts} />}
       </Basemap>
     </div>
   );

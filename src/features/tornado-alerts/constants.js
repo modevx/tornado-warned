@@ -14,7 +14,7 @@ export const ACTIVE_ALERT_PARAMS = Object.freeze({
   zone: "",
 });
 
-export const ALERT_NAME = Object.freeze({
+export const EVENT_NAME = Object.freeze({
   tornadoWarning: "Tornado Warning",
   tornadoWatch: "Tornado Watch",
   severeStormWarning: "Severe Thunderstorm Watch",
