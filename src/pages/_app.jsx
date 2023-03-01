@@ -12,7 +12,7 @@ export default function MyApp({ Component, pageProps }) {
 		<QueryClientProvider client={queryClient}>
 			<Theme dataTheme={theme}>
 				<Component {...pageProps} />
-				{/* <ReactQueryDevtools initialIsOpen={false} /> */}
+				<ReactQueryDevtools initialIsOpen={false} />
 			</Theme>
 		</QueryClientProvider>
 	);
