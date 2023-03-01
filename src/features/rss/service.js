@@ -2,7 +2,6 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { APP, SPC } from "_shared/constants/urls";
 import { DEFAULT_TIMEOUT } from "constants";
-import RSSParser from "rss-parser";
 
 const APP_API_CLIENT = axios.create({
   baseURL: APP.spc_rss_feeds,
@@ -17,7 +16,7 @@ export const RSS_FEED_TYPES = Object.freeze({
   sxw: "swx",
 });
 
-export const fetchRssFeed = async (rssType) => {
+const fetchRssFeed = async (rssType) => {
   const feedMap = {
     outlooks: SPC.rss_convective_outlooks,
     media: SPC.rss_severe_wx_outlook_multimedia_briefings,
@@ -34,7 +33,8 @@ export const fetchRssFeed = async (rssType) => {
 };
 
 export const useRssFeedQuery = (rssType) => {
-  return useQuery(["spc-rss-feeds", rssType], async () => {
-    return await fetchRssFeed(rssType);
-  });
+  return useQuery(
+    ["spc-rss-feeds", rssType],
+    async () => await fetchRssFeed(rssType)
+  );
 };

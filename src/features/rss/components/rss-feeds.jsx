@@ -1,7 +1,7 @@
 import { RSS_FEED_TYPES } from "features/rss/constants";
 import { useRssFeedQuery } from "../service";
 
-const RssFeeds = () => {
+export const RssFeeds = () => {
   const { data: outlooks } = useRssFeedQuery(RSS_FEED_TYPES.outlooks);
 
   if (outlooks) {

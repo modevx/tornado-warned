@@ -1,17 +1,8 @@
 import React from "react";
 import { PageLayout } from "_shared/components";
 import { PolygonMap } from "features/alerts";
-import {
-  ConvectiveOutlookMap,
-  OutlookPreviewCard,
-  OutlookPreviewCardList,
-} from "features/outlooks/components";
-import {
-  useOutlookLegendQuery,
-  useSPCConvectiveOutlooks,
-} from "services/convective-outlooks";
-import { OUTLOOK_LAYERS } from "features/outlooks/constants";
-import { feature } from "topojson-client";
+import { ConvectiveOutlookMap } from "features/outlooks/components";
+import { RssFeeds } from "features/rss/components/rss-feeds";
 
 const HomePage = () => {
   return (
@@ -21,6 +12,9 @@ const HomePage = () => {
       </div>
       <div className="bg-blue-600 p-4">
         <ConvectiveOutlookMap />
+      </div>
+      <div className="bg-orange-600 p-4">
+        <RssFeeds />
       </div>
       {/* TornadoNews/> */}
       {/* <OutlookPreviewCardList outlooks={featureLayers} /> */}
