@@ -1,7 +1,7 @@
 import React from "react";
 import { PageLayout } from "_shared/components";
 import { PolygonMap } from "features/alerts";
-import { ConvectiveOutlookMap } from "features/outlooks/components";
+import { ConvectiveOutlookMaps } from "features/outlooks/components";
 import { RssFeeds } from "features/rss/components/rss-feeds";
 
 const HomePage = () => {
@@ -11,7 +11,7 @@ const HomePage = () => {
         <PolygonMap />
       </div>
       <div className="bg-blue-600 p-4">
-        <ConvectiveOutlookMap />
+        <ConvectiveOutlookMaps />
       </div>
       <div className="bg-orange-600 p-4">
         <RssFeeds />
