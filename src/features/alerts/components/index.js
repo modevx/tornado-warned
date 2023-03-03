@@ -1,2 +1,2 @@
-export { TextProductList as TornadoAlertList } from "./TextProductList";
-export { TextProductItem as TornadoAlertListItem } from "./TextProductItem";
+export { TextProductList as TornadoAlertList } from "./AlertList";
+export { TextProductItem as TornadoAlertListItem } from "./AlertItem";
