@@ -1,11 +1,11 @@
-import { TextProductItem } from "./AlertItem";
+import { AlertItem } from "./AlertItem";
 
-export const TextProductList = ({ activeAlerts }) => {
+export const AlertList = ({ activeAlerts }) => {
   return (
     <>
       {activeAlerts ? (
         activeAlerts.map((alert) => (
-          <TextProductItem key={alert.properties.id} activeAlert={alert} />
+          <AlertItem key={alert.properties.id} activeAlert={alert} />
         ))
       ) : (
         <p> {"Something went wrong..."}</p>

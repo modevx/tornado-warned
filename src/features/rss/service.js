@@ -1,31 +1,18 @@
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { APP, SPC } from "_shared/constants/urls";
-import { DEFAULT_TIMEOUT } from "constants";
-
-const APP_API_CLIENT = axios.create({
-  baseURL: APP.spc_rss_feeds,
-  timeout: DEFAULT_TIMEOUT,
-});
-
-export const RSS_FEED_TYPES = Object.freeze({
-  outlooks: "outlooks",
-  media: "media",
-  meso: "meso",
-  pds: "pds",
-  sxw: "swx",
-});
+import { URLS } from "./constants";
+import { HTTP_CLIENT } from "./service.config";
 
 const fetchRssFeed = async (rssType) => {
   const feedMap = {
-    outlooks: SPC.rss_convective_outlooks,
-    media: SPC.rss_severe_wx_outlook_multimedia_briefings,
-    meso: SPC.rss_mesoscale_discussions,
-    pds: SPC.rss_particularly_dangerous_situations,
-    swx: SPC.rss_tornado_severe_wx_watches,
+    all: "http://www.spc.noaa.gov/products/spcrss.xml",
+    outlooks: "http://www.spc.noaa.gov//products/spcacrss.xml",
+    media: "http://www.spc.noaa.gov/products/spcmbrss.xml",
+    meso: "http://www.spc.noaa.gov/products/spcmdrss.xml",
+    pds: "http://www.spc.noaa.gov/products/spcpdswwrss.xml",
+    swx: "http://www.spc.noaa.gov/products/spcwwrss.xml",
   };
 
-  const { data } = await APP_API_CLIENT.post(APP.spc_rss_feeds, {
+  const { data } = await HTTP_CLIENT.post(APP.spc_rss_feeds, {
     feedURL: feedMap[rssType],
   });
 
@@ -34,7 +21,7 @@ const fetchRssFeed = async (rssType) => {
 
 export const useRssFeedQuery = (rssType) => {
   return useQuery(
-    ["spc-rss-feeds", rssType],
+    ["SPC RSS FEEDS", rssType],
     async () => await fetchRssFeed(rssType)
   );
 };
