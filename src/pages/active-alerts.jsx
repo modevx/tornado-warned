@@ -1,12 +1,12 @@
 import React from "react";
 import { Basemap, LinearGradient } from "_shared/components/maps";
 import { PageLayout } from "_shared/components";
-import { Alerts, usePrev2WeeksAlerts, EVENT_NAME } from "features/alerts";
+import { Alerts, useAlertPolygons, EVENT_NAME } from "features/alerts";
 import { geoAlbers, geoPath } from "d3-geo";
 import rewind from "@turf/rewind";
 
 const ActiveAlertsPage = () => {
-  const { data, error, isLoading } = usePrev2WeeksAlerts(
+  const { data, error, isLoading } = useAlertPolygons(
     EVENT_NAME.tornadoWarning
   );
   const colors = ["limegreen", "green", "yellow", "orange", "red", "purple"];

@@ -2,7 +2,7 @@ import React from "react";
 import { LocaleDate } from "_shared/components";
 import { getAreaDescMAP } from "utils";
 
-export const AlertItem = ({ activeAlert }) => {
+export const AlertTextProductItem = ({ activeAlert }) => {
   const {
     event,
     messageType,

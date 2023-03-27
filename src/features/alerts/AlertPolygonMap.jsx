@@ -9,7 +9,7 @@ import {
   useActiveAlerts,
   useActiveTornadoWarnings,
   useActiveTornadoWatches,
-  usePrev2WeeksAlerts,
+  useAlertPolygons,
 } from "./service";
 import { logTornadoAlertError } from "./utils/log-tornado-alert-error";
 
@@ -84,8 +84,8 @@ const alertColorMap = {
 const projection = geoAlbers();
 const pathGen = geoPath(projection);
 
-export const ActiveAlertsMap = () => {
-  const { data: testAlerts, error: testAlertsError } = usePrev2WeeksAlerts(
+export const AlertPolygonMap = () => {
+  const { data: testAlerts, error: testAlertsError } = useAlertPolygons(
     EVENT_NAME.tornadoWarning
   );
   const { data: warnings, error: warningsError } = useActiveAlerts(
