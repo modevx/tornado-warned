@@ -131,7 +131,6 @@ export const ConvectiveOutlookMaps = () => {
 				</div>
 			) : null} */
     <>
-      <h1 className="text-gray-900 text-2xl font-bold">Convective Outlooks</h1>
       {outlookGeoJSON &&
         outlookGeoJSON.map((featureCollection, index) => {
           return (

@@ -2,7 +2,6 @@ import React from "react";
 import { geoAlbers, geoPath } from "d3-geo";
 import * as topojson from "topojson-client";
 import AlbersBasemap from "_shared/constants/albers-topojson-map";
-import { LinearGradient } from "./LinearGradient";
 
 const projection = geoAlbers();
 const pathGen = geoPath(projection);
