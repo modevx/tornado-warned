@@ -1,44 +1,3 @@
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
-
-const HTTP_CLIENT = axios.create({
-	baseURL: "https://api.weather.gov",
-	timeout: 5000,
-});
-
-export const EVENT_NAME = Object.freeze({
-	tornadoWarning: "Tornado Warning",
-	tornadoWatch: "Tornado Watch",
-	severeStormWarning: "Severe Thunderstorm Watch",
-	severeStormWatch: "Severe Thunderstorm Warning",
-});
-
-const fetchActiveAlertTextProducts = async (event) => {
-	const res = await HTTP_CLIENT.get(
-		`/alerts/active?event=${encodeURIComponent(event)}&message_type=alert`
-	);
-	return res.data;
-};
-
-export const useActiveAlertTextProducts = (event) => {
-	return useQuery(["alerts", event], () => fetchActiveAlertTextProducts(event));
-};
-
-const fetchAlertPolygons = async (event) => {
-	const { start, end } = gen2WeekISODateRange();
-	const res = await HTTP_CLIENT.get(
-		`/alerts?start=${start}&end=${end}&message_type=alert&event=${event}`
-	);
-	return res.data;
-};
-
-export const useAlertPolygons = (event) => {
-	return useQuery(["alerts", event, "past 2 weeks"], () =>
-		fetchAlertPolygons(event)
-	);
-};
-
-// -- UTILS
 const gen2WeekISODateRange = () => {
 	const today = new Date();
 	const end = new Date(today).toISOString();
@@ -132,7 +91,7 @@ export const getPublicInfoStatements = async () => {
 		return regex.test(productText);
 	});
 };
-// -- UTILS
+
 export const parseLocation = (WMOidentifier) => {
 	const splitWmoId = WMOidentifier.split(" ");
 	const station = splitWmoId.slice(1, 2)[0];

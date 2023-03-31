@@ -1,22 +1,11 @@
 import React from "react";
-import { Form, Radio } from "react-daisyui";
-import { Basemap, LinearGradient } from "_shared/components/maps";
-
 import rewind from "@turf/rewind";
 import { geoAlbers, geoPath } from "d3-geo";
-
-import {
-	useActiveAlertTextProducts,
-	useActiveTornadoWarnings,
-	useActiveTornadoWatches,
-	useAlertPolygons,
-} from "./service";
-import { logTornadoAlertError } from "./utils/log-tornado-alert-error";
-
-import { EVENT_NAME } from "./constants";
-
 import dayjs from "dayjs";
 import LF from "dayjs/plugin/localizedFormat";
+
+import { Basemap } from "_shared/components/maps";
+import { ALERT_EVENT, useAlertPolygons } from "services/nws-api-web-service";
 
 dayjs.extend(LF);
 
@@ -85,15 +74,15 @@ const projection = geoAlbers();
 const pathGen = geoPath(projection);
 
 export const AlertPolygonMap = () => {
-	const { data: testAlerts, error: testAlertsError } = useAlertPolygons(
-		EVENT_NAME.tornadoWarning
-	);
-	const { data: warnings, error: warningsError } = useActiveAlertTextProducts(
-		EVENT_NAME.tornadoWarning
-	);
-	const { data: watches, error: watchesError } = useActiveAlertTextProducts(
-		EVENT_NAME.tornadoWatch
-	);
+	// const { data: testAlerts, error: testAlertsError } = useAlertPolygons(
+	// 	EVENT_NAME.tornadoWarning
+	// );
+	// const { data: warnings, error: warningsError } = useActiveAlertTextProducts(
+	// 	EVENT_NAME.tornadoWarning
+	// );
+	// const { data: watches, error: watchesError } = useActiveAlertTextProducts(
+	// 	EVENT_NAME.tornadoWatch
+	// );
 
 	if (testAlerts) {
 		console.log("ALERTS\n", testAlerts?.features.length);
@@ -101,7 +90,7 @@ export const AlertPolygonMap = () => {
 
 	return (
 		<Basemap>
-			{testAlerts && <AlertPolygons alertsObj={testAlerts} />}
+			{/* {testAlerts && <AlertPolygons alertsObj={testAlerts} />} */}
 			{/* {warnings && <AlertPolygons alertsObj={warnings} />} */}
 			{/* {watches && <AlertPolygons alertsObj={watches} />} */}
 			{/* {warnings.features.length < 1 && watches.features.length < 1 && (
@@ -111,36 +100,7 @@ export const AlertPolygonMap = () => {
 	);
 };
 
-// -- COMPONENTS
-const AlertPolygons = ({ alertsObj }) => {
-	const colorMap = {
-		["Tornado Warning"]: "#f0f",
-		["Tornado Watch"]: "#f90", // NWS Web API returns empty []
-		["Severe Thunderstorm Warning"]: "#fff",
-		// ["Severe Thunderstorm Watch"]: "#fff",  // NWS Web API returns empty []
-	};
-
-	return (
-		<g>
-			{alertsObj.features.map((feature, index) => {
-				const properties = feature.properties;
-				const event = properties.event;
-
-				return (
-					<g id={properties.id} key={properties.id}>
-						<path
-							d={pathGen(rewind(feature, { reverse: true }))}
-							fillOpacity={0.8}
-							fill={colorMap[`${event}`]}
-							stroke='limegreen'
-							strokeWidth={0.5}
-						/>
-					</g>
-				);
-			})}
-		</g>
-	);
-};
+// -- SUB-COMPONENTS
 
 const NoActiveAlertsText = () => (
 	<text className='text-3xl fill-white'>No Active Alerts</text>

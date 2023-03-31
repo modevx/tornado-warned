@@ -1,42 +1,36 @@
 import React from "react";
 import { PageLayout } from "_shared/components";
 import { AlertPolygonMap } from "features/alerts";
-import { ConvectiveOutlookMaps } from "features/outlooks/components";
-import { RssFeeds } from "features/rss/rss-feeds";
+import {
+	useActiveTornadoWarningTextProducts,
+	useActiveTornadoWarningPolygons,
+} from "services/nws-api-web-service";
 
 const HomePage = () => {
-  return (
-    <PageLayout>
-      <div className="bg-red-600 p-4">
-        <H1>Tornado Warnings</H1>
-        <div className="h-[200px]"></div>
-      </div>
+	const { data: warningTextProducts } = useActiveTornadoWarningTextProducts();
+	const { data: warningPolygons } = useActiveTornadoWarningPolygons();
 
-      <div className="bg-yellow-400 p-4">
-        <H1>Tornado Watches</H1>
-        <div className="h-[200px]"></div>
-      </div>
+	if (warningTextProducts)
+		console.log("Warning Text Products:\n", warningTextProducts);
+	if (warningPolygons) console.log("Warning Polygons:\n", warningPolygons);
 
-      <div className="bg-gray-100 p-4 grid gap-4">
-        <H1>Active Tornado Alerts</H1>
-        <AlertPolygonMap />
-      </div>
+	return (
+		<PageLayout>
+			<div className='bg-red-500 p-4'>
+				<H1>Tornado Warnings</H1>
+				<div className='h-[200px]'></div>
+			</div>
 
-      <div className="bg-orange-600 p-4">
-        <H1>RSS Feeds</H1>
-        {/* <RssFeeds /> */}
-      </div>
-
-      <div className="bg-blue-600 p-4">
-        <H1>Convective Outlooks</H1>
-        <ConvectiveOutlookMaps />
-      </div>
-    </PageLayout>
-  );
+			<div className='p-4'>
+				<H1>Tornado Watches</H1>
+				<div className='h-[200px]'></div>
+			</div>
+		</PageLayout>
+	);
 };
 
 export default HomePage;
 
 const H1 = ({ children }) => {
-  return <h1 className="text-gray-900 text-2xl font-bold">{children}</h1>;
+	return <h1 className='text-2xl font-bold'>{children}</h1>;
 };
