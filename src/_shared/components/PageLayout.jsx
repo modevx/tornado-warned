@@ -7,7 +7,7 @@ export const PageLayout = ({ children }) => {
 		<div className='bg-[#000] text-white'>
 			<Meta />
 			<div className='flex flex-col min-h-screen'>
-				<MainNav />
+				{/* <MainNav /> */}
 				<main className='grow flex flex-col h-full'>{children}</main>
 				<Footer />
 			</div>
