@@ -40,15 +40,34 @@ const HomePage = () => {
 
       <div className="bg-red-500 p-4">
         <H1>Tornado Warnings</H1>
-        <div className="h-[200px]">
+        <div className="grid grid-cols-1">
           {warningTextProducts &&
-            warningTextProducts.map(({ id, properties }) => (
-              <Card key={id}>
-                <Card.Body>
-                  <span>{properties.areaDesc}</span>
-                </Card.Body>
-              </Card>
-            ))}
+            warningTextProducts.map(({ id, properties }) => {
+              const {
+                areaDesc,
+                description,
+                effective,
+                expires,
+                headline,
+                instruction,
+                parameters: { maxHailSize, tornadoDetection },
+              } = properties;
+
+              return (
+                <Card key={id}>
+                  <Card.Body>
+                    <p>{effective}</p>
+                    <p>{expires}</p>
+                    <p>{areaDesc}</p>
+                    <p>{maxHailSize}</p>
+                    <p>{tornadoDetection[0]}</p>
+                    <p>{headline}</p>
+                    <p>{description}</p>
+                    <p>{instruction}</p>
+                  </Card.Body>
+                </Card>
+              );
+            })}
         </div>
       </div>
 
