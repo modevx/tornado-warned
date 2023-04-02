@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const createAxiosClient = ({ baseURL, timeout }) => {
-	return axios.create({
-		baseURL,
-		timeout,
-	});
+export const createHTTPClient = ({ baseURL, timeout }) => {
+  return axios.create({
+    baseURL,
+    timeout,
+  });
 };
