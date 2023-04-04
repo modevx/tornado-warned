@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { APP, SPC } from "_shared/constants/urls";
+import { APP, STORM_PREDICTION_CENTER } from "_shared/constants/urls";
 import { DEFAULT_TIMEOUT } from "constants";
 import RSSParser from "rss-parser";
 
@@ -19,11 +19,11 @@ export const RSS_FEED_TYPES = Object.freeze({
 
 export const fetchRssFeed = async (rssType) => {
   const feedMap = {
-    outlooks: SPC.rss_convective_outlooks,
-    media: SPC.rss_severe_wx_outlook_multimedia_briefings,
-    meso: SPC.rss_mesoscale_discussions,
-    pds: SPC.rss_particularly_dangerous_situations,
-    swx: SPC.rss_tornado_severe_wx_watches,
+    outlooks: STORM_PREDICTION_CENTER.rss_convective_outlooks,
+    media: STORM_PREDICTION_CENTER.rss_severe_wx_outlook_multimedia_briefings,
+    meso: STORM_PREDICTION_CENTER.rss_mesoscale_discussions,
+    pds: STORM_PREDICTION_CENTER.rss_particularly_dangerous_situations,
+    swx: STORM_PREDICTION_CENTER.rss_tornado_severe_wx_watches,
   };
 
   const { data } = await APP_API_CLIENT.post(APP.spc_rss_feeds, {
