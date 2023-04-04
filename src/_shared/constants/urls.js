@@ -27,6 +27,7 @@ export const NATIONAL_WEATHER_SERVICE = Object.freeze({
   Radar_ImageServer: `${NOAA_ARCGIS}/radar/radar_base_reflectivity_time/ImageServer`,
   Radar_MapServer: `${NOAA_ARCGIS}/NWS_Observations/radar_base_reflectivity/MapServer`,
   Reference_Map_MapServer: `${NOAA_ARCGIS}/NWS/nws_reference_map/MapServer`,
+  Skywarn_Storm_Spotter_Program: `${NWS}/skywarn`,
 });
 
 export const STORM_PREDICTION_CENTER = Object.freeze({
