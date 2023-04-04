@@ -5,7 +5,15 @@ import {
 } from "_shared/constants/urls";
 
 export const FOOTER_NAV_ITEMS = [
-  { title: "BE PREPARED", links: [{ label: "", href: "" }] },
+  {
+    title: "BE PREPARED",
+    links: [
+      {
+        label: "Tornado Safety",
+        href: NATIONAL_WEATHER_SERVICE.Tornado_Safety,
+      },
+    ],
+  },
   {
     title: "STORM CHASING",
     links: [
