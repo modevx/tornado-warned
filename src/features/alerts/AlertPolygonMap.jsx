@@ -8,7 +8,7 @@ import { Basemap } from "_shared/components/maps";
 import {
   ALERT_EVENT,
   useLast2WeeksAlertData,
-} from "services/nws-api-web-service";
+} from "services/nws-alert-text-products";
 
 dayjs.extend(LF);
 

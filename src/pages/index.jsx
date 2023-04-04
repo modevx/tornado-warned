@@ -8,7 +8,7 @@ import {
   useActiveTornadoWarningTextProducts,
   useActiveTornadoWarningPolygons,
   useActiveTornadoWatchTextProducts,
-} from "services/nws-api-web-service";
+} from "services/nws-alert-text-products";
 
 const HomePage = () => {
   const { data: warningTextProducts } = useActiveTornadoWarningTextProducts();
