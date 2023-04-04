@@ -1,42 +1,36 @@
 import React from "react";
-import { Card, Stats } from "react-daisyui";
+import { Drawer, Card } from "react-daisyui";
 
+import { AlertStats, AlertTextProduct } from "features/alerts";
 import { PageLayout } from "_shared/components";
-import { AlertTextProduct } from "features/alerts";
-import { ICONS } from "_shared/constants";
 
 import {
   useActiveTornadoWarningTextProducts,
   useActiveTornadoWarningPolygons,
+  useActiveTornadoWatchTextProducts,
 } from "services/nws-api-web-service";
-import { BsTornado } from "react-icons/bs";
 
 const HomePage = () => {
   const { data: warningTextProducts } = useActiveTornadoWarningTextProducts();
   const { data: warningPolygons } = useActiveTornadoWarningPolygons();
-  let warningCount = 0;
-  // const { BsTornado } = ICONS;
-
-  // [?] DAISYUI: why do I need to desctructure for Stats.Stat to work?
-  const { Stat } = Stats;
+  const { data: watchTextProducts } = useActiveTornadoWatchTextProducts();
+  const alertStats = { warningCount: 0, watchCount: 0 };
 
   if (warningTextProducts) {
-    warningCount = warningTextProducts.length;
+    alertStats.warningCount = warningTextProducts.length;
     console.log("Warning Text Products:\n", warningTextProducts);
   }
+
+  if (watchTextProducts) {
+    alertStats.watchCount = watchTextProducts.length;
+    console.log("Watch Text Products:\n", watchTextProducts);
+  }
+
   if (warningPolygons) console.log("Warning Polygons:\n", warningPolygons);
 
   return (
     <PageLayout>
-      <Stats className="shadow font-sans">
-        <Stats.Stat className="place-items-center">
-          <Stat.Item variant="title">Active Warnings</Stat.Item>
-          <Stat.Item variant="value">{warningCount}</Stat.Item>
-          <Stat.Item variant="figure">
-            <BsTornado size={30} color="red" title="tornado" />
-          </Stat.Item>
-        </Stats.Stat>
-      </Stats>
+      <AlertStats stats={alertStats} />
 
       <div className="bg-red-500 p-4">
         <H1>Tornado Warnings</H1>
