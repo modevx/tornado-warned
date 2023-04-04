@@ -5,8 +5,6 @@ const SPC = "http://www.spc.noaa.gov";
 const NOAA_ARCGIS = "https://idpgis.ncep.noaa.gov/arcgis/rest/services";
 const NWS_ARCGIS = "https://mapservices.weather.noaa.gov/vector/rest/services";
 
-// https://idpgis.ncep.noaa.gov/arcgis/rest/services/radar/radar_base_reflectivity_time/ImageServer
-
 export const ENDPOINT = Object.freeze({
   SPC: {
     OTLK_GEOMETRY: "query?&outFields=*&geometry=true&f=geojson",
@@ -16,6 +14,7 @@ export const ENDPOINT = Object.freeze({
 export const NOAA = Object.freeze({
   Data_Access: `${NOAA_NCDC}/access`,
   Radar_Products: `${NOAA_NCEI}/products/radar`,
+  Storm_Events_Database: `${NOAA_NCDC}/stormevents`,
 });
 
 export const NATIONAL_WEATHER_SERVICE = Object.freeze({
@@ -28,6 +27,7 @@ export const NATIONAL_WEATHER_SERVICE = Object.freeze({
   Radar_MapServer: `${NOAA_ARCGIS}/NWS_Observations/radar_base_reflectivity/MapServer`,
   Reference_Map_MapServer: `${NOAA_ARCGIS}/NWS/nws_reference_map/MapServer`,
   Skywarn_Storm_Spotter_Program: `${NWS}/skywarn`,
+  Tornado_Safety: `${NWS}/safety/tornado`,
 });
 
 export const STORM_PREDICTION_CENTER = Object.freeze({
@@ -41,4 +41,5 @@ export const STORM_PREDICTION_CENTER = Object.freeze({
   Rss_Particularly_Dangerous_Situation: `${SPC}/products/spcpdswwrss.xml`,
   Rss_Severe_WX_Media_Brief: `${SPC}/products/spcmbrss.xml`,
   Rss_Tornado_Severe_WX: `${SPC}/products/spcwwrss.xml`,
+  Severe_WX_Event_Summaries: `${SPC}/climo/online`,
 });
