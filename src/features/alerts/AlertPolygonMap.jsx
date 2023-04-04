@@ -5,7 +5,10 @@ import dayjs from "dayjs";
 import LF from "dayjs/plugin/localizedFormat";
 
 import { Basemap } from "_shared/components/maps";
-import { ALERT_EVENT, useOldAlertData } from "services/nws-api-web-service";
+import {
+  ALERT_EVENT,
+  useLast2WeeksAlertData,
+} from "services/nws-api-web-service";
 
 dayjs.extend(LF);
 

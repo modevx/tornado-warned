@@ -29,7 +29,7 @@ const fetchActiveAlertsByEvent = async (event) => {
   }
 };
 
-const fetchOldAlertData = async (event) => {
+const fetchOldAlertDataByEvent = async (event) => {
   try {
     const { start, end } = gen2WeekISODateRange();
     const response = await NWS_API_WEB_SERVICE.get(
@@ -38,10 +38,10 @@ const fetchOldAlertData = async (event) => {
     return response.data;
   } catch (error) {
     console.log(
-      `>> SERVICE ERROR > NWS API Web Service: fetchOldAlerts() \n ${error}`
+      `>> SERVICE ERROR > NWS API Web Service: fetchOldAlertDataByEvent() \n ${error}`
     );
     throw new Error(
-      `>> SERVICE ERROR > NWS API Web Service: fetchOldAlerts() \n ${error}`
+      `>> SERVICE ERROR > NWS API Web Service: fetchOldAlertDataByEvent() \n ${error}`
     );
   }
 };
@@ -71,6 +71,19 @@ export const useActiveTornadoWarningTextProducts = () => {
   );
 };
 
+export const useActiveTornadoWatchTextProducts = () => {
+  return useQuery(["alerts", "active", "Tornado Watch", "text product"], () =>
+    fetchActiveAlertTextProducts(ALERT_EVENT.Tornado_Watch)
+  );
+};
+
+export const useActiveSevereStormWarningTextProducts = () => {
+  return useQuery(
+    ["alerts", "active", "Severe Storm Warning", "text product"],
+    () => fetchActiveAlertTextProducts(ALERT_EVENT.Severe_Thunderstorm_Warning)
+  );
+};
+
 // --------------------
 // ----- ALERT POLYGONS
 // --------------------
@@ -97,8 +110,8 @@ export const useActiveTornadoWarningPolygons = () => {
   );
 };
 
-export const useOldAlertData = (event) => {
+export const useLast2WeeksAlertData = (event) => {
   return useQuery(["alerts", event, "last 2 weeks"], () =>
-    fetchOldAlertData(event)
+    fetchOldAlertDataByEvent(event)
   );
 };
