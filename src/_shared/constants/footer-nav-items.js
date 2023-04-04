@@ -6,7 +6,15 @@ import {
 
 export const FOOTER_NAV_ITEMS = [
   { title: "BE PREPARED", links: [{ label: "", href: "" }] },
-  { title: "STORM CHASING", links: [{ label: "", href: "" }] },
+  {
+    title: "STORM CHASING",
+    links: [
+      {
+        label: "SKYWARN Storm Spotter Program",
+        href: NATIONAL_WEATHER_SERVICE.Skywarn_Storm_Spotter_Program,
+      },
+    ],
+  },
   {
     title: "DEVELOPERS",
     links: [
