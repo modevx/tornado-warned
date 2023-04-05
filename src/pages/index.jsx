@@ -1,8 +1,12 @@
-import React from "react";
-import { Drawer, Card } from "react-daisyui";
+// import React from "react";
 
-import { AlertStats, AlertTextProduct } from "features/alerts";
-import { PageLayout } from "_shared/components";
+import {
+  AlertStats,
+  AlertTextProducts,
+  TornadoWarningTextProduct,
+  TornadoWatchTextProduct,
+} from "features/alerts";
+import { Heading, PageLayout } from "_shared/components";
 
 import {
   useActiveTornadoWarningTextProducts,
@@ -32,43 +36,16 @@ const HomePage = () => {
     <PageLayout>
       <AlertStats stats={alertStats} />
 
-      <div className="bg-red-500 p-4">
-        <H1>Tornado Warnings</H1>
-        <div className="grid grid-cols-1">
-          {warningTextProducts &&
-            warningTextProducts.map(({ id, properties }) => {
-              const {
-                areaDesc,
-                description,
-                effective,
-                expires,
-                headline,
-                instruction,
-                parameters: { maxHailSize, tornadoDetection },
-              } = properties;
+      <h2 className="text-4xl font-bold uppercase">Tornado Warnings</h2>
 
-              return (
-                <Card key={id}>
-                  <Card.Body>
-                    <p>{effective}</p>
-                    <p>{expires}</p>
-                    <p>{areaDesc}</p>
-                    <p>{maxHailSize}</p>
-                    <p>{tornadoDetection[0]}</p>
-                    <p>{headline}</p>
-                    <p>{description}</p>
-                    <p>{instruction}</p>
-                  </Card.Body>
-                </Card>
-              );
-            })}
-        </div>
-      </div>
+      <AlertTextProducts
+        type="tornadoWarning"
+        textProducts={warningTextProducts}
+      />
 
-      <div className="p-4">
-        <H1>Tornado Watches</H1>
-        <div className="h-[200px]"></div>
-      </div>
+      <h2 className="text-4xl font-bold uppercase">Tornado Watches</h2>
+
+      <AlertTextProducts type="tornadoWatch" textProducts={watchTextProducts} />
     </PageLayout>
   );
 };

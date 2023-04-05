@@ -1,2 +1,2 @@
 export * from "./formatNwsOfficeToCityState";
-export * from "./getAreaDescByState";
+export * from "./getAreaDescMap";
