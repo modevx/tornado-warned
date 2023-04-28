@@ -5,14 +5,14 @@ import {
   AlertTextProducts,
   TornadoWarningTextProduct,
   TornadoWatchTextProduct,
-} from "features/alerts";
+} from "features/nws-alerts";
 import { Heading, PageLayout } from "_shared/components";
 
 import {
   useActiveTornadoWarningTextProducts,
   useActiveTornadoWarningPolygons,
   useActiveTornadoWatchTextProducts,
-} from "services/nws-alert-text-products";
+} from "services/nws-alerts";
 
 const HomePage = () => {
   const { data: warningTextProducts } = useActiveTornadoWarningTextProducts();

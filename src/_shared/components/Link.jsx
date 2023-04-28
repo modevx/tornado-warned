@@ -1,8 +1,8 @@
 import NextLink from "next/link";
 
-export const Link = ({ children, ...props }) => {
+export const Link = ({ href, children, ...props }) => {
   return (
-    <NextLink className="link link-hover" {...props}>
+    <NextLink href={href} className="link link-hover" {...props}>
       {children}
     </NextLink>
   );

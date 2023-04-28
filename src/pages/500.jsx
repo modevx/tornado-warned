@@ -1,4 +1,4 @@
-import Link from "next/link";
+import NextLink from "next/link";
 import { PageLayout } from "_shared/components";
 
 export default function Custom500() {
@@ -14,11 +14,12 @@ export default function Custom500() {
         </p>
         <p className="mb-10">
           in the meantime, you can check for active alerts over at{" "}
-          <Link href="https://www.weather.gov/alerts">
-            <a target="_blank" className="text-blue-500 hover:opacity-90">
-              The National Weather Service.
-            </a>
-          </Link>
+          <NextLink
+            href="https://www.weather.gov/alerts"
+            className="text-blue-500 hover:opacity-90"
+          >
+            The National Weather Service.
+          </NextLink>
         </p>
         <p className="text-md text-neutral-400">
           (can&apos;t have nice things)

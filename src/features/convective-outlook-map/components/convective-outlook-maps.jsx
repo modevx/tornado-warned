@@ -9,7 +9,7 @@ import {
   ButtonGroup,
 } from "react-daisyui";
 import { geoAlbers, geoPath } from "d3-geo";
-import { Basemap } from "_shared/components/maps";
+import { Basemap } from "_shared/components";
 import * as ICONS from "_shared/constants/icons";
 import {
   IoRainy,

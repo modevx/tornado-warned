@@ -5,7 +5,7 @@ const SPC = "http://www.spc.noaa.gov";
 const NOAA_ARCGIS = "https://idpgis.ncep.noaa.gov/arcgis/rest/services";
 const NWS_ARCGIS = "https://mapservices.weather.noaa.gov/vector/rest/services";
 
-export const ENDPOINT = Object.freeze({
+export const ENDPOINTS = Object.freeze({
   SPC: {
     OTLK_GEOMETRY: "query?&outFields=*&geometry=true&f=geojson",
   },
@@ -18,7 +18,8 @@ export const NOAA = Object.freeze({
 });
 
 export const NATIONAL_WEATHER_SERVICE = Object.freeze({
-  Api_Web_Service: `${NWS}/documentation/services-web-api`,
+  api_web_service: "https://api.weather.gov",
+  Api_Web_Service_Docs: `${NWS}/documentation/services-web-api`,
   Awips_Basemaps: `${NWS}/gis/AWIPSShapefiles`,
   Gis_Cloud_Web_Services: `${NWS}/gis/cloudgiswebservices`,
   Idpgis_Rest_Meta: `${NWS}/gis/IDP-GISRestMetadata`,

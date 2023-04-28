@@ -1,7 +1,7 @@
 import React from "react";
-import { Basemap, LinearGradient } from "_shared/components/maps";
+import { Basemap, LinearGradient } from "_shared/components";
 import { PageLayout } from "_shared/components";
-import { Alerts, useAlertPolygons, EVENT_NAME } from "features/alerts";
+import { Alerts, useAlertPolygons, EVENT_NAME } from "features/nws-alerts";
 import { geoAlbers, geoPath } from "d3-geo";
 import rewind from "@turf/rewind";
 

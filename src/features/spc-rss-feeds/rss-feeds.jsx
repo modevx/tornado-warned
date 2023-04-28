@@ -1,4 +1,4 @@
-import { FEED_TYPES } from "features/rss/constants";
+import { FEED_TYPES } from "features/spc-rss-feeds/constants";
 import { useRssFeedQuery } from "./service";
 
 export const RssFeeds = () => {

@@ -1,3 +1,4 @@
+import NextLink from "next/link";
 import { Footer as DaisyFooter } from "react-daisyui";
 import { Link } from "./Link";
 import { FOOTER_NAV_ITEMS } from "_shared/constants/footer-nav-items";
@@ -27,11 +28,15 @@ const FooterComponent = ({ children }) => (
 const Title = ({ title }) => <DaisyFooter.Title>{title}</DaisyFooter.Title>;
 
 const Links = ({ links }) => {
-  return links.map(({ label, href }) => (
-    <Link key={label} href={href}>
-      {label}
-    </Link>
-  ));
+  return links.map(({ label, href }) => {
+    console.log("href\n", href);
+
+    return (
+      <NextLink key={label} href={`${href}`}>
+        {label}
+      </NextLink>
+    );
+  });
 };
 
 const Copyright = ({ year }) => (

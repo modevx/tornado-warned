@@ -4,11 +4,8 @@ import { geoAlbers, geoPath } from "d3-geo";
 import dayjs from "dayjs";
 import LF from "dayjs/plugin/localizedFormat";
 
-import { Basemap } from "_shared/components/maps";
-import {
-  ALERT_EVENT,
-  useLast2WeeksAlertData,
-} from "services/nws-alert-text-products";
+import { Basemap } from "_shared/components";
+import { ALERT_EVENT, useLast2WeeksAlertData } from "services/nws-alerts";
 
 dayjs.extend(LF);
 

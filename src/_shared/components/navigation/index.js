@@ -1,1 +1,0 @@
-export { MainNav } from "./MainNav";

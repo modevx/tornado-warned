@@ -1,7 +1,7 @@
 import {
   TornadoWarningTextProduct,
   TornadoWatchTextProduct,
-} from "features/alerts";
+} from "features/nws-alerts";
 
 export const AlertTextProducts = ({ type, textProducts }) => {
   const ComponentMap = {

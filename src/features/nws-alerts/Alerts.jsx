@@ -2,7 +2,10 @@ import React from "react";
 import Image from "next/image";
 
 import { STATE_NAMES_ABBR } from "constants";
-import { AlertTextProducts, useActiveAlertTextProducts } from "features/alerts";
+import {
+  AlertTextProducts,
+  useActiveAlertTextProducts,
+} from "features/nws-alerts";
 // import { getAreaDescMAP, formatSenderNameSTR } from "utils";
 
 // [alertType] --> use "Watch" or "Warning"

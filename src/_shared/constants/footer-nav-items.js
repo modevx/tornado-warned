@@ -1,8 +1,4 @@
-import {
-  NOAA,
-  NATIONAL_WEATHER_SERVICE,
-  STORM_PREDICTION_CENTER,
-} from "_shared/constants/urls";
+import { URLS } from "_shared/constants";
 
 export const FOOTER_NAV_ITEMS = [
   {
@@ -10,7 +6,7 @@ export const FOOTER_NAV_ITEMS = [
     links: [
       {
         label: "Tornado Safety",
-        href: NATIONAL_WEATHER_SERVICE.Tornado_Safety,
+        href: URLS.NATIONAL_WEATHER_SERVICE.Tornado_Safety,
       },
     ],
   },
@@ -19,7 +15,7 @@ export const FOOTER_NAV_ITEMS = [
     links: [
       {
         label: "SKYWARN Storm Spotter Program",
-        href: NATIONAL_WEATHER_SERVICE.Skywarn_Storm_Spotter_Program,
+        href: URLS.NATIONAL_WEATHER_SERVICE.Skywarn_Storm_Spotter_Program,
       },
     ],
   },
@@ -28,19 +24,19 @@ export const FOOTER_NAV_ITEMS = [
     links: [
       {
         label: "National Weather Service API",
-        href: NATIONAL_WEATHER_SERVICE.Api_Web_Service,
+        href: URLS.NATIONAL_WEATHER_SERVICE.Api_Web_Service_Docs,
       },
       {
         label: "National Weather Service Cloud Services",
-        href: NATIONAL_WEATHER_SERVICE.Gis_Cloud_Web_Services,
+        href: URLS.NATIONAL_WEATHER_SERVICE.Gis_Cloud_Web_Services,
       },
       {
         label: "NOAA Data Access",
-        href: NOAA.Data_Access,
+        href: URLS.NOAA.Data_Access,
       },
       {
         label: "Storm Prediction Center Forecast Products",
-        href: STORM_PREDICTION_CENTER.Forecast_Products,
+        href: URLS.STORM_PREDICTION_CENTER.Forecast_Products,
       },
     ],
   },

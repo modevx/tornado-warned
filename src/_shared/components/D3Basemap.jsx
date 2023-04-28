@@ -6,7 +6,7 @@ import AlbersBasemap from "_shared/constants/albers-topojson-map";
 const projection = geoAlbers();
 const pathGen = geoPath(projection);
 
-export const Basemap = ({ children }) => {
+export const D3Basemap = ({ children }) => {
   const [basemap, setBasemap] = React.useState();
   const aspectRatio = 1.6;
   const svgW = 975;

@@ -1,4 +1,4 @@
-import { Basemap } from "_shared/components/maps";
+import { Basemap } from "_shared/components";
 import { OutlookSVGPathGroup } from "./outlook-svg-path-group";
 import { Card } from "react-daisyui";
 import dayjs from "dayjs";
