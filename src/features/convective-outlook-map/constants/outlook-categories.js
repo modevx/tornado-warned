@@ -1,4 +1,4 @@
-import * as ICONS from "_shared/constants/icons";
+import * as ICONS from "constants/icons";
 
 export const CONVECTIVE_OUTLOOK_CATEGORIES = {
   2: {
