@@ -69,7 +69,7 @@ const alertColorMap = {
   },
 };
 
-export const TornadoAlertPolygonList = () => {
+export const AlertPolygonMap = () => {
   // const { data: testAlerts, error: testAlertsError } = useAlertPolygons(
   // 	EVENT_NAME.tornadoWarning
   // );

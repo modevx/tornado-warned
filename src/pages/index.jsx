@@ -1,6 +1,10 @@
-import { AlertStats, AlertTextProducts } from "features/nws-alerts";
+import {
+  AlertPolygonMap,
+  AlertStats,
+  AlertTextProductSection,
+} from "features/nws-alerts";
+import { ConvectiveOutlookMaps } from "features/convective-outlook-map/components";
 import { PageLayout } from "components";
-
 import { ALERT_EVENTS } from "services/nws-alerts";
 import {
   useActiveAlertsByEvent,
@@ -25,13 +29,20 @@ const HomePage = () => {
       <AlertStats stats={alertStats} />
 
       <H2>Tornado Warnings</H2>
-      <AlertTextProducts
+      <AlertTextProductSection
         type="tornadoWarning"
         textProducts={warningTextProducts}
       />
 
       <H2>Tornado Watches</H2>
-      <AlertTextProducts type="tornadoWatch" textProducts={watchTextProducts} />
+      <AlertTextProductSection
+        type="tornadoWatch"
+        textProducts={watchTextProducts}
+      />
+
+      <AlertPolygonMap />
+
+      <ConvectiveOutlookMaps />
     </PageLayout>
   );
 };

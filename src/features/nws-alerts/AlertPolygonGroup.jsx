@@ -1,6 +1,6 @@
 import { TornadoWarningPolygon } from "./TornadoAlertPolygon";
 
-export const TornadoWarningPolygons = ({ alertsObj, colorHex }) => {
+export const AlertPolygonGroup = ({ alertsObj, colorHex }) => {
   return (
     <g>
       {alertsObj.features.map((feature, index) => (

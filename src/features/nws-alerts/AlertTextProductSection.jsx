@@ -3,7 +3,7 @@ import {
   TornadoWatchTextProduct,
 } from "features/nws-alerts";
 
-export const AlertTextProducts = ({ type, textProducts }) => {
+export const AlertTextProductSection = ({ type, textProducts }) => {
   const ComponentMap = {
     tornadoWarning: TornadoWarningTextProduct,
     tornadoWatch: TornadoWatchTextProduct,

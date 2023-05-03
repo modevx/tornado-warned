@@ -1,16 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { ALERT_EVENT } from "./constants";
 import { NWS_API_WEB_SERVICE } from "./config";
-import { gen2WeekISODateRange } from "./utils";
+import { FAKE_TORNADO_WARNINGS, FAKE_TORNADO_WATCHES } from "./fake-alert-data";
 
-/** ----- /alerts:
- * [event]: ALERT_EVENT.{event name string}
- * [message_type]: alert, update, cancel
- * [status]: actual, exercise, system, test, draft
- * [urgency]: immediate, expected, future, past, unknown
- * [severity]: extreme, severe, moderate, minor, unknown
- * [certainty]: observed, likely, possible, unlikely, unknown
- */
 const fetchActiveAlertsByEvent = async (event) => {
   try {
     const response = await NWS_API_WEB_SERVICE.get(
@@ -18,7 +9,12 @@ const fetchActiveAlertsByEvent = async (event) => {
         event
       )}`
     );
-    return response.data;
+    const { id, geometry, properties } = await response?.data.features;
+    const objAlert = { id, properties };
+
+    if (geometry !== null) objAlert.geometry = geometry;
+
+    return objAlert;
   } catch (error) {
     console.log(
       `>> SERVICE ERROR > NWS API Web Service: fetchActiveAlertsByEvent() \n ${error}`
@@ -29,89 +25,47 @@ const fetchActiveAlertsByEvent = async (event) => {
   }
 };
 
-const fetchOldAlertDataByEvent = async (event) => {
+export const useActiveAlertsByEvent = async (event) => {
+  return useQuery(["alerts", "active", event], () =>
+    fetchActiveAlertsByEvent(event)
+  );
+};
+
+// ----------------------
+// -- TEST ALERTS
+// ----------------------
+export const fetchFakeTornadoWarnings = () => {
   try {
-    const { start, end } = gen2WeekISODateRange();
-    const response = await NWS_API_WEB_SERVICE.get(
-      `/alerts?start=${start}&end=${end}&message_type=alert&event=${event}`
+    const { features } = FAKE_TORNADO_WARNINGS;
+    const tornadoWarningAlerts = features.map(
+      ({ id, geometry, properties }) => {
+        return { id, geometry, properties };
+      }
     );
-    return response.data;
+    return tornadoWarningAlerts;
   } catch (error) {
     console.log(
-      `>> SERVICE ERROR > NWS API Web Service: fetchOldAlertDataByEvent() \n ${error}`
+      `>> SERVICE ERROR > NWS API Web Service: fetchFakeTornadoWarnings() \n ${error}`
     );
     throw new Error(
-      `>> SERVICE ERROR > NWS API Web Service: fetchOldAlertDataByEvent() \n ${error}`
+      `>> SERVICE ERROR > NWS API Web Service: fetchFakeTornadoWarnings() \n ${error}`
     );
   }
 };
-// -------------------------
-// ----- ALERT TEXT PRODUCTS
-// -------------------------
-const fetchActiveAlertTextProducts = async (event) => {
+
+export const fetchFakeTornadoWatches = () => {
   try {
-    const data = await fetchActiveAlertsByEvent(event);
-    const textProducts = data?.features.map(({ id, properties }) => {
+    const { features } = FAKE_TORNADO_WATCHES;
+    const tornadoWatchAlerts = features.map(({ id, properties }) => {
       return { id, properties };
     });
-    return textProducts;
+    return tornadoWatchAlerts;
   } catch (error) {
     console.log(
-      `>> SERVICE ERROR > NWS API Web Service: fetchActiveAlertTextProducts() \n ${error}`
+      `>> SERVICE ERROR > NWS API Web Service: fetchFakeTornadoWatches() \n ${error}`
     );
     throw new Error(
-      `>> SERVICE ERROR > NWS API Web Service: fetchActiveAlertTextProducts() \n ${error}`
+      `>> SERVICE ERROR > NWS API Web Service: fetchFakeTornadoWatches() \n ${error}`
     );
   }
-};
-
-export const useActiveTornadoWarningTextProducts = () => {
-  return useQuery(["alerts", "active", "Tornado Warning", "text product"], () =>
-    fetchActiveAlertTextProducts(ALERT_EVENT.Tornado_Warning)
-  );
-};
-
-export const useActiveTornadoWatchTextProducts = () => {
-  return useQuery(["alerts", "active", "Tornado Watch", "text product"], () =>
-    fetchActiveAlertTextProducts(ALERT_EVENT.Tornado_Watch)
-  );
-};
-
-export const useActiveSevereStormWarningTextProducts = () => {
-  return useQuery(
-    ["alerts", "active", "Severe Storm Warning", "text product"],
-    () => fetchActiveAlertTextProducts(ALERT_EVENT.Severe_Thunderstorm_Warning)
-  );
-};
-
-// --------------------
-// ----- ALERT POLYGONS
-// --------------------
-const fetchActiveAlertPolygons = async (event) => {
-  try {
-    const data = await fetchActiveAlertsByEvent(event);
-    const polygons = data?.features.map(({ id, geometry }) => {
-      return { id, geometry };
-    });
-    return polygons;
-  } catch (error) {
-    console.log(
-      `>> SERVICE ERROR > NWS API Web Service: fetchActiveAlertPolygons() \n ${error}`
-    );
-    throw new Error(
-      `>> SERVICE ERROR > NWS API Web Service: fetchActiveAlertPolygons() \n ${error}`
-    );
-  }
-};
-
-export const useActiveTornadoWarningPolygons = () => {
-  return useQuery(["alerts", "active", "Tornado Warning", "polygon"], () =>
-    fetchActiveAlertPolygons(ALERT_EVENT.Tornado_Warning)
-  );
-};
-
-export const useLast2WeeksAlertData = (event) => {
-  return useQuery(["alerts", event, "last 2 weeks"], () =>
-    fetchOldAlertDataByEvent(event)
-  );
 };
