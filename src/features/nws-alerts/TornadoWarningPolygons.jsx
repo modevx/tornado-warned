@@ -1,4 +1,4 @@
-import { TornadoWarningPolygon } from "./TornadoWarningPolygon";
+import { TornadoWarningPolygon } from "./TornadoAlertPolygon";
 
 export const TornadoWarningPolygons = ({ alertsObj, colorHex }) => {
   return (

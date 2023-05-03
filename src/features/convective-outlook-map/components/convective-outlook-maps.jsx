@@ -9,8 +9,8 @@ import {
   ButtonGroup,
 } from "react-daisyui";
 import { geoAlbers, geoPath } from "d3-geo";
-import { Basemap } from "_shared/components";
-import * as ICONS from "_shared/constants/icons";
+import { Basemap } from "components";
+import * as ICONS from "constants/icons";
 import {
   IoRainy,
   IoSkull,

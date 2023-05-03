@@ -1,9 +1,9 @@
 import React from "react";
 import { Card, Modal } from "react-daisyui";
 
-import { LocaleDate } from "_shared/components";
+import { LocaleDate } from "components";
 import { getAreaDescMAP } from "utils";
-import { STATE_ABBREVIATIONS } from "_shared/constants";
+import { STATE_ABBREVIATIONS } from "constants";
 
 export const TornadoWarningTextProduct = ({ textProduct }) => {
   {

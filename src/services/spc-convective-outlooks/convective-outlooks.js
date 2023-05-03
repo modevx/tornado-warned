@@ -1,6 +1,6 @@
-import * as URLS from "_shared/constants/urls";
+import * as URLS from "constants/urls";
 import axios from "axios";
-import { DEFAULT_TIMEOUT } from "_shared/constants/services";
+import { DEFAULT_TIMEOUT } from "constants/services";
 import { useQuery } from "@tanstack/react-query";
 
 const MAP_SERVER_CLIENT = axios.create({

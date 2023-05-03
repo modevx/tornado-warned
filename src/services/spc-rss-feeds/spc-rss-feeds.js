@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { APP, STORM_PREDICTION_CENTER } from "_shared/constants/urls";
+import { APP, STORM_PREDICTION_CENTER } from "constants/urls";
 import { DEFAULT_TIMEOUT } from "constants";
 import RSSParser from "rss-parser";
 

@@ -1,5 +1,5 @@
 import NextLink from "next/link";
-import { PageLayout } from "_shared/components";
+import { PageLayout } from "components";
 
 export default function Custom500() {
   return (
