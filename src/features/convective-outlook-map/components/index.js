@@ -1,5 +1,2 @@
-export { ConvectiveOutlookMaps } from "./convective-outlook-maps";
-export { GeoJsonSVGPathGroup } from "./geojson-svg-path-group";
-export { OutlookPreviewCard } from "./outlook-preview-card";
-export { OutlookPreviewCardList } from "./outlook-preview-card-list";
+export { ConvectiveOutlookMap as ConvectiveOutlookMaps } from "./ConvectiveOutlookMap";
 export { OutlookSVGPathGroup } from "./outlook-svg-path-group";
