@@ -4,7 +4,7 @@ import rewind from "@turf/rewind";
 const projection = geoAlbers();
 const pathGen = geoPath(projection);
 
-export const TornadoAlertPolygon = ({ feature, colorHex }) => {
+export const TornadoAlertPolygon = ({ feature, fillColor }) => {
   const { id, event } = feature.properties;
 
   return (
@@ -12,9 +12,9 @@ export const TornadoAlertPolygon = ({ feature, colorHex }) => {
       <path
         d={pathGen(rewind(feature, { reverse: true }))}
         fillOpacity={0.8}
-        fill={colorHex}
-        stroke="limegreen"
-        strokeWidth={0.5}
+        fill={fillColor}
+        stroke={fillColor}
+        strokeWidth={0.25}
       />
     </g>
   );

@@ -1,13 +1,15 @@
-import { TornadoWarningPolygon } from "./TornadoAlertPolygon";
+import { TornadoAlertPolygon } from "./TornadoAlertPolygon";
 
-export const AlertPolygonGroup = ({ alertsObj, colorHex }) => {
+export const AlertPolygonGroup = ({ alertsObj, fillColor }) => {
+  console.log("alertsObj >>\n", alertsObj);
+
   return (
     <g>
       {alertsObj.features.map((feature, index) => (
-        <TornadoWarningPolygon
+        <TornadoAlertPolygon
           key={index}
           feature={feature}
-          colorHex={colorHex}
+          fillColor={fillColor}
         />
       ))}
     </g>

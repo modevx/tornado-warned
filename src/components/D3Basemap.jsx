@@ -7,6 +7,8 @@ import AlbersBasemap from "constants/albers-topojson-map";
 const projection = geoAlbers();
 const pathGen = geoPath(projection);
 
+// TODO: add toggle for "counties"
+
 export const D3Basemap = ({ children }) => {
   const [basemap, setBasemap] = React.useState();
   const aspectRatio = 1.6;

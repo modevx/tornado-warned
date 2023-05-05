@@ -34,7 +34,7 @@ const FooterCopyright = ({ year }) => (
 
 const FooterSectionLinks = ({ links }) => {
   return links.map(({ label, href }) => (
-    <Link key={label} href={href}>
+    <Link key={label} href={`${href}`}>
       {label}
     </Link>
   ));
