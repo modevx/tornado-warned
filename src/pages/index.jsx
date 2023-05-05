@@ -1,6 +1,6 @@
 import { PageLayout } from "components";
 import { AlertPolygonMap, AlertStats } from "features/nws-alerts";
-import { ConvectiveOutlookMaps } from "features/convective-outlook-map/components";
+import { ConvectiveOutlookMaps } from "features/spc-convective-outlooks/components";
 
 const HomePage = () => {
   const alertStats = { warningCount: 0, watchCount: 0 };
