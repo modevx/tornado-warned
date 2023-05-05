@@ -76,7 +76,7 @@ const alertColorMap = {
   },
 };
 
-// TODO: figure out where to get Tornado Watch polygon geometry
+// TODO: figure out where to get Tornado Watch geometry data
 
 export const AlertPolygonMap = () => {
   const fakeTornadoWarnings = useFakeTornadoWarnings();

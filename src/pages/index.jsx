@@ -9,7 +9,7 @@ const HomePage = () => {
     <PageLayout>
       {/* <AlertStats stats={alertStats} /> */}
       <AlertPolygonMap />
-      {/* <ConvectiveOutlookMaps /> */}
+      <ConvectiveOutlookMaps />
     </PageLayout>
   );
 };

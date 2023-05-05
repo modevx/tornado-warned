@@ -1,25 +1,26 @@
 // component copied from ConvectiveOutlookMap
+// TODO: turn this into a shared component
 export const GeoJsonSVGPathGroup = ({ geometry }) => {
-	return geometry ? (
-		<g>
-			{geometry.features.map((feature, index) => {
-				const {
-					properties: { dn, valid, expire, idp_source },
-				} = feature;
+  return geometry ? (
+    <g>
+      {geometry.features.map((feature, index) => {
+        const {
+          properties: { dn, valid, expire, idp_source },
+        } = feature;
 
-				const fLabel = dnMap[dn].label;
+        const fLabel = dnMap[dn].label;
 
-				return (
-					<path
-						d={pathGen(rewind(feature, { reverse: true }))}
-						key={`${idp_source}-${dn}`}
-						fill={dnMap[dn].fill}
-						stroke={dnMap[dn].stroke}
-						fillOpacity={0.5}
-						strokeWidth={2} // `${dnMap[dn].label}`
-					/>
-				);
-			})}
-		</g>
-	) : null;
+        return (
+          <path
+            d={pathGen(rewind(feature, { reverse: true }))}
+            key={`${idp_source}-${dn}`}
+            fill={dnMap[dn].fill}
+            stroke={dnMap[dn].stroke}
+            fillOpacity={0.5}
+            strokeWidth={2} // `${dnMap[dn].label}`
+          />
+        );
+      })}
+    </g>
+  ) : null;
 };

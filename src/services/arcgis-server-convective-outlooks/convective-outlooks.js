@@ -33,7 +33,7 @@ const getMapServerLayerJSON = async (layerId) => {
         renderer: { uniqueValueInfos },
       },
     },
-  } = await response;
+  } = response;
 
   return {
     currentVersion,
