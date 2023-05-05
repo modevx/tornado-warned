@@ -16,7 +16,7 @@ import {
 import { RiNumbersLine, RiTornadoLine } from "react-icons/ri";
 import { TiWeatherStormy } from "react-icons/ti";
 
-export const ICONS = {
+export default {
 	BiMapAlt,
 	BiTargetLock,
 	BsTornado,
