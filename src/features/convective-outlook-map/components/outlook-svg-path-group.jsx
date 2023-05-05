@@ -1,4 +1,4 @@
-import { CONVECTIVE_OUTLOOK_CATEGORIES } from "../constants/outlook-categories";
+import { CONVECTIVE_OUTLOOK_CATEGORIES } from "../constants";
 import { geoAlbers, geoPath } from "d3-geo";
 import rewind from "@turf/rewind";
 
