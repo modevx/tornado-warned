@@ -28,26 +28,3 @@ export const ConvectiveOutlookMap = () => {
     </AlbersStateMap>
   );
 };
-
-const GeoJsonSVGPathGroup = ({ featureCollectionOBJ, setState }) => {
-  return (
-    <g>
-      {featureCollectionOBJ.features.map((feature, index) => {
-        const {
-          properties: { dn, valid, expire, idp_source },
-        } = feature;
-
-        return (
-          <path
-            d={albersGeoPath(rewind(feature, { reverse: true }))}
-            key={`${idp_source}-${dn}`}
-            fill={CATEGORY_STYLES[dn]?.fill}
-            stroke={CATEGORY_STYLES[dn]?.stroke}
-            fillOpacity={0.5}
-            strokeWidth={1}
-          />
-        );
-      })}
-    </g>
-  );
-};
