@@ -1,54 +1,54 @@
 import {
-  AlertPolygonMap,
-  AlertStats,
-  AlertTextProductSection,
+	AlertPolygonMap,
+	AlertStats,
+	AlertTextProductSection,
 } from "features/nws-alerts";
 import { ConvectiveOutlookMaps } from "features/convective-outlook-map/components";
 import { PageLayout } from "components";
-import { ALERT_EVENTS } from "services/nws-alerts";
+import { ALERT_EVENTS } from "services/nws-api-web-service";
 import {
-  useActiveAlertsByEvent,
-  fetchFakeTornadoWarnings,
-  fetchFakeTornadoWatches,
-} from "services/nws-alerts";
+	useActiveAlertsByEvent,
+	fetchFakeTornadoWarnings,
+	fetchFakeTornadoWatches,
+} from "services/nws-api-web-service";
 
 const HomePage = () => {
-  const alertStats = { warningCount: 0, watchCount: 0 };
+	const alertStats = { warningCount: 0, watchCount: 0 };
 
-  const { data: arrWarnings } = useActiveAlertsByEvent(
-    ALERT_EVENTS.Tornado_Warning
-  );
-  const { data: arrWatches } = useActiveAlertsByEvent(
-    ALERT_EVENTS.Tornado_Watch
-  );
-  const arrFakeWarnings = fetchFakeTornadoWarnings();
-  const arrFakeWatches = fetchFakeTornadoWatches();
+	const { data: arrWarnings } = useActiveAlertsByEvent(
+		ALERT_EVENTS.Tornado_Warning
+	);
+	const { data: arrWatches } = useActiveAlertsByEvent(
+		ALERT_EVENTS.Tornado_Watch
+	);
+	const arrFakeWarnings = fetchFakeTornadoWarnings();
+	const arrFakeWatches = fetchFakeTornadoWatches();
 
-  return (
-    <PageLayout>
-      <AlertStats stats={alertStats} />
+	return (
+		<PageLayout>
+			<AlertStats stats={alertStats} />
 
-      <H2>Tornado Warnings</H2>
-      <AlertTextProductSection
-        type="tornadoWarning"
-        textProducts={warningTextProducts}
-      />
+			<H2>Tornado Warnings</H2>
+			<AlertTextProductSection
+				type='tornadoWarning'
+				textProducts={warningTextProducts}
+			/>
 
-      <H2>Tornado Watches</H2>
-      <AlertTextProductSection
-        type="tornadoWatch"
-        textProducts={watchTextProducts}
-      />
+			<H2>Tornado Watches</H2>
+			<AlertTextProductSection
+				type='tornadoWatch'
+				textProducts={watchTextProducts}
+			/>
 
-      <AlertPolygonMap />
+			<AlertPolygonMap />
 
-      <ConvectiveOutlookMaps />
-    </PageLayout>
-  );
+			<ConvectiveOutlookMaps />
+		</PageLayout>
+	);
 };
 
 export default HomePage;
 
 const H2 = ({ children }) => {
-  return <h2 className="text-4xl font-bold uppercase">{children}</h2>;
+	return <h2 className='text-4xl font-bold uppercase'>{children}</h2>;
 };

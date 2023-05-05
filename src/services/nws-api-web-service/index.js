@@ -1,5 +1,5 @@
-export * from "./config";
+export * from "./http-client";
 export * from "./constants";
 export * from "./service";
-export * from "./fake-alert-data";
+export * from "./fake-data";
 export * from "./utils";
