@@ -16,14 +16,12 @@ export const ConvectiveOutlookMap = () => {
   const { data: arrOutlooksGeoJSON, error: outlookGeoJSONError } =
     useCategoricalOutlooksGeoJSON();
 
-  if (arrOutlooksGeoJSON) {
-    features = arrOutlooksGeoJSON[0].features;
-  }
-
   return (
     <AlbersStateMap>
       {arrOutlooksGeoJSON && (
-        <ConvectiveOutlookFeatures arrFeatures={features} />
+        <ConvectiveOutlookFeatures
+          arrFeatures={arrOutlooksGeoJSON[0].features}
+        />
       )}
     </AlbersStateMap>
   );
