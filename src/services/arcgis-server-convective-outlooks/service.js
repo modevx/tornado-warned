@@ -2,65 +2,64 @@ import * as URLS from "constants/urls";
 import { useQuery } from "@tanstack/react-query";
 import { convectiveOutlookHTTPClient } from "./http-client";
 
-const fetchMapServerLayerJSON = async (layerId) => {
-  const response = await MAP_SERVER_CLIENT.get(`/${layerId}?f=json`);
-  const {
-    data: {
-      currentVersion,
-      id,
-      name,
-      type,
-      geometryType,
-      drawingInfo: {
-        renderer: { uniqueValueInfos },
-      },
-    },
-  } = await response;
-
-  return {
-    currentVersion,
-    id,
-    name,
-    type,
-    geometryType,
-    uniqueValueInfos,
-  };
+const fetchAllLayersAndTables = async () => {
+	try {
+		const response = await convectiveOutlookHTTPClient.get("/layers?f=json");
+		return response.data.layers;
+	} catch (error) {
+		console.log(">> fetchAllConvectiveOutlookLayersAndTables:\n", error);
+	}
 };
 
-const fetchMapServerLayerGeoJSON = async (featureLayerId) => {
-  const response = await convectiveOutlookHTTPClient.get(
-    `/${featureLayerId}/query?&outFields=*&geometry=true&f=geojson`
-  );
-  return response.data;
+const fetchLayerJSON = async (strLayerId) => {
+	try {
+		const response = await convectiveOutlookHTTPClient.get(
+			`/${strLayerId}?f=json`
+		);
+		return response.data;
+	} catch (error) {
+		console.log(">> fetchConvectiveOutlookLayerJSON:\n", error);
+	}
 };
 
-const fetchOutlookLegend = async () => {
-  const response = await convectiveOutlookHTTPClient.get(
-    URLS.STORM_PREDICTION_CENTER.Outlook_MapServer_Legend
-  );
-  const legendLayers = await response?.data.layers;
-
-  return await legendLayers;
+const fetchLayerGeoJSON = async (strLayerId) => {
+	try {
+		const response = await convectiveOutlookHTTPClient.get(
+			`/${strLayerId}/query?f=geojson&geometry=true&outFields=*`
+		);
+		return response.data;
+	} catch (error) {
+		console.log(">> fetchConvectiveOutlookLayerGeoJSON:\n", error);
+	}
 };
 
-export const useCategoricalOutlooksJSON = () => {
-  return useQuery(["Outlooks", "Categorical", "JSON"], async () => {
-    return await Promise.all([
-      [1, 9, 17].map((layerId) => fetchMapServerLayerJSON(layerId)),
-    ]);
-  });
+const fetchLegendLayers = async () => {
+	try {
+		const response = await convectiveOutlookHTTPClient.get("/legend?f=json");
+		return response.data.layers;
+	} catch (error) {
+		console.log(">> fetchConvectiveOutlookLegendLayers:\n", error);
+	}
 };
 
-export const useCategoricalOutlooksGeoJSON = () => {
-  return useQuery(["Outlooks", "Categorical", "GeoJSON"], async () => {
-    return await Promise.all([
-      ...[1, 9, 17].map((layerId) => fetchMapServerLayerGeoJSON(layerId)),
-    ]);
-  });
+export const useLayerJSONQuery = () => {
+	return useQuery(["Outlooks", "Categorical", "JSON"], async () => {
+		return await Promise.all([
+			[1, 9, 17].map((layerId) => fetchLayerJSON(layerId)),
+		]);
+	});
 };
 
-export const useOutlookLegendQuery = () => {
-  return useQuery(["Outlooks", "legend"], async () => {
-    return await fetchOutlookLegend();
-  });
+export const useLayerGeoJSONQuery = () => {
+	return useQuery(["Outlooks", "Categorical", "GeoJSON"], async () => {
+		return await Promise.all([
+			...[1, 9, 17].map((layerId) => fetchLayerGeoJSON(layerId)),
+		]);
+	});
+};
+
+export const useLegendLayersQuery = () => {
+	return useQuery(["convective outlooks", "legend"], async () => {
+		return await fetchLegendLayers();
+	});
 };
