@@ -5,6 +5,7 @@ import { convectiveOutlookHTTPClient } from "./http-client";
 const fetchAllLayersAndTables = async () => {
 	try {
 		const response = await convectiveOutlookHTTPClient.get("/layers?f=json");
+		// TODO: only return what I use
 		return response.data.layers;
 	} catch (error) {
 		console.log(">> fetchAllLayersAndTables:\n", error);
@@ -22,10 +23,10 @@ const fetchLayerJSON = async (layerId) => {
 	}
 };
 
-const fetchLayerGeoJSON = async () => {
+export const fetchOutlookLayerFeatures = async (layerId) => {
 	try {
 		const response = await convectiveOutlookHTTPClient.get(
-			`/5/query?f=geojson&geometry=true&outFields=*`
+			`/${layerId}/query?f=geojson&geometry=true&outfields=*`
 		);
 		return response.data.features;
 	} catch (error) {
@@ -54,11 +55,11 @@ export const useLayerJSONQuery = (layerId) => {
 	);
 };
 
-export const useLayerGeoJSONQuery = () => {
+export const useLayerGeoJSONQuery = (layerId) => {
 	// console.log(">> layerId: ", layerId);
 
-	return useQuery(["convective outlooks", "geojson"], () =>
-		fetchLayerGeoJSON()
+	return useQuery(["convective outlooks", "geojson"], (layerId) =>
+		fetchOutlookLayerFeatures(layerId)
 	);
 };
 

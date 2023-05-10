@@ -1,68 +1,68 @@
 import ICONS from "constants/icons";
 export const OUTLOOK_DAYS = [1, 2, 3, 4, 5, 6, 7, 8];
 
-export const CATEGORICAL_STYLES = Object.freeze({
-	2: {
-		label: "Thunderstorm",
-		color: "rgba(189,255,189,255)",
+export const POLYGON_STYLES = Object.freeze({
+	categorical: {
+		2: {
+			label: "Thunderstorm",
+			color: "rgba(189,255,189,255)",
+		},
+		3: {
+			label: "Marginal",
+			color: "rgba(115, 178, 115, 255)",
+		},
+		4: {
+			label: "Slight",
+			color: "rgba(247, 247, 143, 255)",
+		},
+		5: {
+			label: "Enhanced",
+			color: "rgba(230, 152, 0, 255)",
+		},
+		6: {
+			label: "Moderate",
+			color: "rgba(255, 0, 0, 255)",
+		},
+		8: {
+			label: "High",
+			color: "rgba(255, 0, 197, 255)",
+		},
 	},
-	3: {
-		label: "Marginal",
-		color: "rgba(115, 178, 115, 255)",
+	probabilistic: {
+		2: {
+			label: "2%",
+			color: "rgba(56, 168, 0, 255)",
+		},
+		5: {
+			label: "5%",
+			color: "rgba(111, 25, 3, 255)",
+		},
+		10: {
+			label: "10%",
+			color: "rgba(255, 198, 0, 255)",
+		},
+		15: {
+			label: "15%",
+			color: "rgba(230, 0, 0, 255)",
+		},
+		30: {
+			label: "30%",
+			color: "rgba(250, 0, 255, 255)",
+		},
+		45: {
+			label: "45%",
+			color: "rgba(119, 6, 244, 255)",
+		},
+		60: {
+			label: "60%",
+			color: "rgba(0, 77, 168, 255)",
+		},
 	},
-	4: {
-		label: "Slight",
-		color: "rgba(247, 247, 143, 255)",
-	},
-	5: {
-		label: "Enhanced",
-		color: "rgba(230, 152, 0, 255)",
-	},
-	6: {
-		label: "Moderate",
-		color: "rgba(255, 0, 0, 255)",
-	},
-	8: {
-		label: "High",
-		color: "rgba(255, 0, 197, 255)",
-	},
-});
-
-export const PROBABILISTIC_STYLES = Object.freeze({
-	2: {
-		label: "2%",
-		color: "rgba(56, 168, 0, 255)",
-	},
-	5: {
-		label: "5%",
-		color: "rgba(111, 25, 3, 255)",
-	},
-	10: {
-		label: "10%",
-		color: "rgba(255, 198, 0, 255)",
-	},
-	15: {
-		label: "15%",
-		color: "rgba(230, 0, 0, 255)",
-	},
-	30: {
-		label: "30%",
-		color: "rgba(250, 0, 255, 255)",
-	},
-	45: {
-		label: "45%",
-		color: "rgba(119, 6, 244, 255)",
-	},
-	60: {
-		label: "60%",
-		color: "rgba(0, 77, 168, 255)",
-	},
-});
-
-export const SIGNIFICANT_STYLES = Object.freeze({
-	10: {
-		label: "Significant",
-		color: "rgba(212, 208, 200, 0)",
+	significant: {
+		10: {
+			label: "Significant",
+			color: "rgba(212, 208, 200, 0)",
+		},
 	},
 });
 

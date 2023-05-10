@@ -5,37 +5,30 @@ import { PageLayout } from "components";
 import { AlertPolygonMap, AlertStats } from "features/nws-alerts";
 import { ConvectiveOutlookMap } from "features/spc-convective-outlooks/components";
 import {
+	fetchOutlookLayerFeatures,
 	useAllLayersAndTables,
 	useLegendLayersQuery,
 } from "services/arcgis-server-convective-outlooks/service";
 
 const HomePage = () => {
 	const alertStats = { warningCount: 0, watchCount: 0 };
-
 	// ----------------------------
-
-	const { data: allLayersAndTables, error: allLayersAndTablesError } =
-		useAllLayersAndTables();
-	if (allLayersAndTables)
-		console.log(">> allLayersAndTables\n", allLayersAndTables);
+	const { data: allLayers, error: allLayersError } = useAllLayersAndTables();
+	// if (allLayers) console.log(">> allLayers\n", allLayers);
 
 	const { data: legendLayers, error: legendLayersError } =
 		useLegendLayersQuery();
-	if (legendLayers) console.log(">> legendLayers\n", legendLayers);
-
+	// if (legendLayers) console.log(">> legendLayers\n", legendLayers);
+	// ----------------------------
+	// const [selectedLayerId, setSelectedLayerId] = React.useState(1);
+	const [outlookFeatures, setOutlookFeatures] = React.useState([]);
 	// ----------------------------
 
-	const [selectedDay, setSelectedDay] = React.useState(0);
-	const [selectedLayerId, setSelectedLayerId] = React.useState(1);
-
-	// ----------------------------
-
-	const handleSelectedDay = (e) => {
-		setSelectedDay(e.target.value);
-		setSelectedLayerId(e.target.value);
-	};
-	const handleSubLayerOnClick = (layerId) => {
-		setSelectedLayerId(layerId);
+	const handleOutlookSelection = async (e) => {
+		// console.log(">> handleOutlookSelection: ", e.target.value);
+		const layerId = e.target.value;
+		const features = await fetchOutlookLayerFeatures(layerId);
+		setOutlookFeatures(features);
 	};
 
 	return (
@@ -43,21 +36,15 @@ const HomePage = () => {
 			{/* <AlertStats stats={alertStats} /> */}
 			{/* <AlertPolygonMap /> */}
 			<div>
-				<OutlookDaySelector onChangeHandler={handleSelectedDay} />
+				{/* <OutlookDaySelector onChangeHandler={handleSelectedDay} /> */}
+				<Form className='grid grid-cols-3' onChange={handleOutlookSelection}>
+					{allLayers &&
+						allLayers.map(({ id, name }) => (
+							<OptionRadio title={`(${id}) ${name}`} value={id} key={name} />
+						))}
+				</Form>
 
-				<h1 className='text-center'>Selected Layer: {selectedLayerId}</h1>
-
-				<div className='flex'>
-					<ConvectiveOutlookMap />
-
-					{allLayersAndTables && (
-						<SubLayerSelector
-							allLayers={allLayersAndTables}
-							selectedDay={selectedDay}
-							onClickHandler={handleSubLayerOnClick}
-						/>
-					)}
-				</div>
+				<ConvectiveOutlookMap arrFeatures={outlookFeatures} />
 			</div>
 		</PageLayout>
 	);
@@ -84,7 +71,7 @@ const OptionRadio = ({ title, value, ...rest }) => {
 			<Radio
 				name='outlookDays'
 				value={value}
-				className='ml-3'
+				// className='ml-3'
 				size='xs'
 				{...rest}
 			/>
