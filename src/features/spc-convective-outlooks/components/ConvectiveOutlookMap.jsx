@@ -8,21 +8,21 @@ import { CATEGORY_STYLES } from "../constants";
 import { AlbersStateMap } from "components/AlbersStateMap";
 import { ConvectiveOutlookFeatures } from "./ConvectiveOutlookFeatures";
 import {
-  useAllLayersAndTables,
-  useLayerGeoJSONQuery,
-  useLegendLayersQuery,
+	useLayerGeoJSONQuery,
+	useLayerJSONQuery,
 } from "services/arcgis-server-convective-outlooks/service";
 
 dayjs.extend(dayJSlocFormat);
 
 export const ConvectiveOutlookMap = () => {
-  return (
-    <AlbersStateMap>
-      {/* {arrOutlooksGeoJSON && (
-        <ConvectiveOutlookFeatures
-          arrFeatures={arrOutlooksGeoJSON[0].features}
-        />
-      )} */}
-    </AlbersStateMap>
-  );
+	const { data, error } = useLayerGeoJSONQuery();
+	// const { data } = useLayerJSONQuery(layerId);
+
+	if (data) console.log(">> react-query data\n", data);
+
+	return (
+		<AlbersStateMap>
+			{data && <ConvectiveOutlookFeatures arrFeatures={data} />}
+		</AlbersStateMap>
+	);
 };
