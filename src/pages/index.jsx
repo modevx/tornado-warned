@@ -9,19 +9,12 @@ import {
   useAllLayersAndTables,
   useLegendLayersQuery,
 } from "services/arcgis-server-convective-outlooks/service";
+import { Dashboard } from "components/Dashboard";
 
 const HomePage = () => {
   return (
     <PageLayout>
-      <div className="grid gap-4 grid-cols-4 grid-rows-3 bg-neutral-400 min-h-screen">
-        <div className="row-span-2 bg-purple-300">Tornado Warnings</div>
-        <div className="col-span-2 row-span-2 bg-red-400">
-          NEXRAD/Alert Polygons
-        </div>
-        <div className="row-span-3 bg-green-300">Convective Outlooks</div>
-        <div className="bg-yellow-200">Tornado Watches</div>
-        <div className="bg-blue-300">Twitter Feed</div>
-      </div>
+      <Dashboard />
     </PageLayout>
   );
 };
