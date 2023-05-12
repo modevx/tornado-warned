@@ -1,80 +1,86 @@
 import ICONS from "constants/icons";
-export const OUTLOOK_DAYS = [1, 2, 3, 4, 5, 6, 7, 8];
 
-export const POLYGON_STYLES = Object.freeze({
-	categorical: {
-		2: {
-			label: "Thunderstorm",
-			color: "rgba(189,255,189,255)",
-		},
-		3: {
-			label: "Marginal",
-			color: "rgba(115, 178, 115, 255)",
-		},
-		4: {
-			label: "Slight",
-			color: "rgba(247, 247, 143, 255)",
-		},
-		5: {
-			label: "Enhanced",
-			color: "rgba(230, 152, 0, 255)",
-		},
-		6: {
-			label: "Moderate",
-			color: "rgba(255, 0, 0, 255)",
-		},
-		8: {
-			label: "High",
-			color: "rgba(255, 0, 197, 255)",
-		},
+export const CATEGORICAL_OUTLOOK_FEATURE_STYLES = Object.freeze({
+	2: {
+		color: "#007600",
+		icon: ICONS.IoRainy,
+		label: "Thunderstorm",
+		stroke: "#003b00",
+		summary: "",
 	},
-	probabilistic: {
-		2: {
-			label: "2%",
-			color: "rgba(56, 168, 0, 255)",
-		},
-		5: {
-			label: "5%",
-			color: "rgba(111, 25, 3, 255)",
-		},
-		10: {
-			label: "10%",
-			color: "rgba(255, 198, 0, 255)",
-		},
-		15: {
-			label: "15%",
-			color: "rgba(230, 0, 0, 255)",
-		},
-		30: {
-			label: "30%",
-			color: "rgba(250, 0, 255, 255)",
-		},
-		45: {
-			label: "45%",
-			color: "rgba(119, 6, 244, 255)",
-		},
-		60: {
-			label: "60%",
-			color: "rgba(0, 77, 168, 255)",
-		},
+	3: {
+		color: "#00ff00",
+		icon: ICONS.IoThunderstorm,
+		label: "Marginal",
+		stroke: "#00b100",
+		summary: "",
 	},
-	significant: {
-		10: {
-			label: "Significant",
-			color: "rgba(212, 208, 200, 0)",
-		},
+	4: {
+		color: "#ffff00",
+		icon: ICONS.IoWarningOutline,
+		label: "Slight",
+		stroke: "#c4c400",
+		summary: "",
+	},
+	5: {
+		color: "#ffa500",
+		icon: ICONS.GiDamagedHouse,
+		label: "Enhanced",
+		stroke: "#c47f00",
+		summary: "",
+	},
+	6: {
+		color: "#9d0000",
+		icon: ICONS.BsTornado,
+		label: "Moderate",
+		stroke: "#620000",
+		summary: "",
+	},
+	8: {
+		color: "#ff00ff",
+		icon: ICONS.IoSkull,
+		label: "High",
+		stroke: "#b300b3",
+		summary: "",
 	},
 });
 
-export const OUTLOOK_DAY_FEATURE_LAYER_IDS = Object.freeze({
-	1: [1, 2, 3, 4, 5, 6, 7],
-	2: [9, 10, 11, 12, 13, 14, 15],
-	3: [17, 18, 19],
-	4: [21],
-	5: [22],
-	6: [23],
-	7: [24],
-	8: [25],
+export const PROBABILISTIC_OUTLOOK_FEATURE_STYLES = Object.freeze({
+	2: {
+		label: "2%",
+		color: "rgba(56, 168, 0, 255)",
+	},
+	5: {
+		label: "5%",
+		color: "rgba(111, 25, 3, 255)",
+	},
+	10: {
+		label: "10%",
+		color: "rgba(255, 198, 0, 255)",
+	},
+	15: {
+		label: "15%",
+		color: "rgba(230, 0, 0, 255)",
+	},
+	30: {
+		label: "30%",
+		color: "rgba(250, 0, 255, 255)",
+	},
+	45: {
+		label: "45%",
+		color: "rgba(119, 6, 244, 255)",
+	},
+	60: {
+		label: "60%",
+		color: "rgba(0, 77, 168, 255)",
+	},
+});
+
+export const SIGNIFICANT_OUTLOOK_FEATURE_STYLES = Object.freeze({
+	10: {
+		label: "Significant",
+		color: "rgba(212, 208, 200, 0)",
+	},
 });
 
 export const LAYER_IDS = Object.freeze({
