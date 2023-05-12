@@ -1,0 +1,9 @@
+export const TileTornadoWatchTextProducts = ({ nwsTornadoWatchAlerts }) => {
+  return (
+    <div className="mdx-dashboard-tile">
+      <h2>TORNADO WATCHES</h2>
+    </div>
+  );
+};
+
+export default TileTornadoWatchTextProducts;
