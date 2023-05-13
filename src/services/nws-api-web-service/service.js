@@ -3,19 +3,16 @@ import { nwsApiWebServiceHTTPClient } from "./http-client";
 import { ALERT_EVENTS } from "./constants";
 import { FAKE_TORNADO_WARNINGS, FAKE_TORNADO_WATCHES } from "./fake-data";
 
-const fetchActiveAlertsByEvent = async (event) => {
+const fetchActiveAlertFeaturesByEvent = async (event) => {
   try {
     const response = await nwsApiWebServiceHTTPClient.get(
       `/alerts/active?status=actual&message_type=alert&event=${encodeURIComponent(
         event
       )}`
     );
-    const { id, geometry, properties } = await response?.data.features;
-    const objAlert = { id, properties };
+    const { features } = response?.data;
 
-    if (geometry !== null) objAlert.geometry = geometry;
-
-    return objAlert;
+    return features;
   } catch (error) {
     console.log(
       `>> SERVICE ERROR > NWS API Web Service: fetchActiveAlertsByEvent() \n ${error}`
@@ -28,27 +25,28 @@ const fetchActiveAlertsByEvent = async (event) => {
 
 export const useActiveTornadoWarnings = () => {
   return useQuery(["alerts", "active", ALERT_EVENTS.tornadoWarning], () =>
-    fetchActiveAlertsByEvent(ALERT_EVENTS.tornadoWarning)
+    fetchActiveAlertFeaturesByEvent(ALERT_EVENTS.tornadoWarning)
   );
 };
 
 export const useActiveTornadoWatches = () => {
   return useQuery(["alerts", "active", ALERT_EVENTS.tornadoWatch], () =>
-    fetchActiveAlertsByEvent(ALERT_EVENTS.tornadoWatch)
+    fetchActiveAlertFeaturesByEvent(ALERT_EVENTS.tornadoWatch)
   );
 };
 
 export const useActiveSevereStormWarnings = () => {
   return useQuery(
     ["alerts", "active", ALERT_EVENTS.severeThunderstormWarning],
-    () => fetchActiveAlertsByEvent(ALERT_EVENTS.severeThunderstormWarning)
+    () =>
+      fetchActiveAlertFeaturesByEvent(ALERT_EVENTS.severeThunderstormWarning)
   );
 };
 
 export const useActiveSevereStormWatches = () => {
   return useQuery(
     ["alerts", "active", ALERT_EVENTS.severeThunderstormWatch],
-    () => fetchActiveAlertsByEvent(ALERT_EVENTS.severeThunderstormWatch)
+    () => fetchActiveAlertFeaturesByEvent(ALERT_EVENTS.severeThunderstormWatch)
   );
 };
 

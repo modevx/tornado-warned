@@ -1,46 +1,18 @@
 import React from "react";
-import { Card, Modal } from "react-daisyui";
+import { Card, Collapse, Modal } from "react-daisyui";
 
-import { LocaleDate } from "components";
-import { getAreaDescMAP } from "utils";
+import { LocaleTime } from "components";
+import { createAlertAreaDescriptionMap } from "utils";
 import { STATE_ABBREVIATIONS } from "constants";
 
-export const TornadoWarningTextProduct = ({ textProduct }) => {
-  {
-    /* {warningTextProducts &&
-            warningTextProducts.map(({ id, properties }) => {
-              const {
-                areaDesc,
-                description,
-                effective,
-                expires,
-                headline,
-                instruction,
-                parameters: { maxHailSize, tornadoDetection },
-              } = properties;
-
-              return (
-                <Card key={id}>
-                  <Card.Body>
-                    <p>{effective}</p>
-                    <p>{expires}</p>
-                    <p>{areaDesc}</p>
-                    <p>{maxHailSize}</p>
-                    <p>{tornadoDetection[0]}</p>
-                    <p>{headline}</p>
-                    <p>{description}</p>
-                    <p>{instruction}</p>
-                  </Card.Body>
-                </Card>
-              );
-            })} */
-  }
-  const { id, properties } = textProduct;
+export const TornadoWarningTextProduct = ({ alert }) => {
+  const { id, properties } = alert;
   const {
-    expires,
     areaDesc,
-    headline,
     description,
+    effective,
+    expires,
+    headline,
     instruction,
     senderName,
     parameters: { maxHailSize, tornadoDetection },
@@ -48,46 +20,55 @@ export const TornadoWarningTextProduct = ({ textProduct }) => {
 
   const [visible, setVisible] = React.useState(false);
 
-  const areaDescMAP = getAreaDescMAP(areaDesc);
+  const areaDescMAP = createAlertAreaDescriptionMap(areaDesc);
   const areaDescMapARR = Array.from(areaDescMAP.entries());
 
   const toggleVisible = () => setVisible((prev) => !prev);
 
   return (
-    <Card className="bg-red-600 m-3 p-2">
-      <Card.Body className="p-2">
-        <CardSection>
-          <p className="text-right text-2xl font-bold">
-            {senderName.replace("NWS ", "")}
-          </p>
-          <p className="text-right text-sm">
-            Expires <LocaleDate date={expires} format="LLL" />
-          </p>
-        </CardSection>
+    <Collapse className="bg-black m-2 rounded-md" checkbox>
+      <Collapse.Title className="flex justify-between px-2">
+        <span className="text-xs">{senderName.replace("NWS ", "")}</span>
+        <span className="text-xs">
+          <LocaleTime date={expires} />
+        </span>
+      </Collapse.Title>
+      <Collapse.Content className="text-xs">{description}</Collapse.Content>
+    </Collapse>
+    // <Card className="bg-red-600 m-3 p-2">
+    //   <Card.Body className="p-2">
+    //     <CardSection>
+    //       <p className="text-right text-2xl font-bold">
+    //         {senderName.replace("NWS ", "")}
+    //       </p>
+    //       <p className="text-right text-sm">
+    //         Expires <LocaleDate date={expires} format="LLL" />
+    //       </p>
+    //     </CardSection>
 
-        <div className="flex justify-between">
-          <CardSection>
-            <p>{tornadoDetection}</p>
-          </CardSection>
-          <CardSection>
-            <p>{`Max Hail: ${maxHailSize[0].replace("Up to ", "")}`}</p>
-          </CardSection>
-        </div>
+    //     <div className="flex justify-between">
+    //       <CardSection>
+    //         <p>{tornadoDetection}</p>
+    //       </CardSection>
+    //       <CardSection>
+    //         <p>{`Max Hail: ${maxHailSize[0].replace("Up to ", "")}`}</p>
+    //       </CardSection>
+    //     </div>
 
-        <CardSection>
-          <AffectedAreas
-            areaDescription={areaDescMapARR}
-            stateMap={STATE_ABBREVIATIONS}
-          />
-        </CardSection>
+    //     <CardSection>
+    //       <AffectedAreas
+    //         areaDescription={areaDescMapARR}
+    //         stateMap={STATE_ABBREVIATIONS}
+    //       />
+    //     </CardSection>
 
-        <CardSection>{description}</CardSection>
+    //     <CardSection>{description}</CardSection>
 
-        <CardSection>{instruction}</CardSection>
-      </Card.Body>
-      {/* <Card.Actions></Card.Actions> */}
-      {/* <Card.Image /> */}
-    </Card>
+    //     <CardSection>{instruction}</CardSection>
+    //   </Card.Body>
+    //   {/* <Card.Actions></Card.Actions> */}
+    //   {/* <Card.Image /> */}
+    // </Card>
     // <div className="font-sans">
     //   <button
     //     onClick={toggleVisible}
