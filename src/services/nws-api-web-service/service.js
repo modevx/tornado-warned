@@ -1,7 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { nwsApiWebServiceHTTPClient } from "./http-client";
+
 import { ALERT_EVENTS } from "./constants";
 import { FAKE_TORNADO_WARNINGS, FAKE_TORNADO_WATCHES } from "./fake-data";
+import { createHTTPClient } from "services/create-http-client";
+import { urls } from "./constants";
+
+const nwsApiWebServiceHTTPClient = createHTTPClient({
+  baseURL: urls.apiWebServiceBaseURL,
+});
 
 const fetchActiveAlertFeaturesByEvent = async (event) => {
   try {
