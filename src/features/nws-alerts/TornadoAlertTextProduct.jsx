@@ -2,10 +2,13 @@ import React from "react";
 import { Card, Collapse, Modal } from "react-daisyui";
 
 import { LocaleTime } from "components";
-import { createAlertAreaDescriptionMap } from "utils";
 import { STATE_ABBREVIATIONS } from "constants";
+import ICONS from "constants/icons";
+import { createAlertAreaDescriptionMap } from "utils";
 
-export const TornadoWarningTextProduct = ({ alert }) => {
+// TODO: delete TornadoWatchTextProduct & turn TornadoWarningTextProduct into single TornadoAlertTextProduct
+
+export const TornadoAlertTextProduct = ({ alert }) => {
   const { id, properties } = alert;
   const {
     areaDesc,
@@ -17,6 +20,7 @@ export const TornadoWarningTextProduct = ({ alert }) => {
     senderName,
     parameters: { maxHailSize, tornadoDetection },
   } = properties;
+  const DownArrow = ICONS.FaChevronDown;
 
   const [visible, setVisible] = React.useState(false);
 
@@ -27,10 +31,11 @@ export const TornadoWarningTextProduct = ({ alert }) => {
 
   return (
     <Collapse className="bg-black m-2 rounded-md" checkbox>
-      <Collapse.Title className="flex justify-between px-2">
+      <Collapse.Title className="flex justify-between items-center px-2">
         <span className="text-xs">{senderName.replace("NWS ", "")}</span>
-        <span className="text-xs">
+        <span className="text-xs flex items-center">
           <LocaleTime date={expires} />
+          <DownArrow className="ml-2" />
         </span>
       </Collapse.Title>
       <Collapse.Content className="text-xs">{description}</Collapse.Content>

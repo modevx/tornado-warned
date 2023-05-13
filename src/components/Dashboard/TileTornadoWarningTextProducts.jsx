@@ -2,7 +2,7 @@ import {
   useActiveTornadoWarnings,
   useFakeTornadoWarnings,
 } from "services/nws-api-web-service";
-import { TornadoWarningTextProduct } from "features/nws-alerts";
+import { TornadoAlertTextProduct } from "features/nws-alerts";
 
 export const TileTornadoWarningTextProducts = () => {
   // const { data: alerts, error } = useActiveTornadoWarnings();
@@ -18,7 +18,7 @@ export const TileTornadoWarningTextProducts = () => {
         alerts.map((alert) => {
           const { id } = alert;
 
-          return <TornadoWarningTextProduct key={id} alert={alert} />;
+          return <TornadoAlertTextProduct key={id} alert={alert} />;
         })}
     </div>
   );

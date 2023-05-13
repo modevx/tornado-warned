@@ -19,7 +19,7 @@ export const TileConvectiveOutlooks = () => {
   const MAYFIELD_FEATURES = MAYFIELD.catOtlk.features;
 
   return (
-    <div className="row-span-3 mdx-dashboard-tile">
+    <div className="row-span-3 mdx-dashboard-tile overflow-auto">
       <h2>CONVECTIVE OUTLOOKS</h2>
       <h3>Day 1</h3>
       {data && <CategoricalOutlookMap features={day1features} />}
