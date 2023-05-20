@@ -11,7 +11,7 @@ export const TileTornadoWatchTextProducts = () => {
   if (alerts) console.log(">> TORNADO WATCHES\n", alerts);
 
   return (
-    <div className="bg-gradient-to-b from-yellow-600 to-yellow-300 overflow-auto">
+    <div className="mdx-dashboard-tile bg-gradient-to-br from-yellow-600 to-yellow-300 row-span-2 overflow-auto">
       <h2>TORNADO WATCHES</h2>
 
       {alerts &&

@@ -6,12 +6,16 @@ import { TileTornadoWatchTextProducts } from "./TileTornadoWatchTextProducts";
 import { TileMesoscaleDiscussions } from "./TileMesoscaleDiscussions";
 
 export const Dashboard = () => {
+  const dashboardStyles = "grid gap-4 grid-cols-4 grid-rows-3 h-screen";
+  const mdGridLayout = "md:grid-cols-2 md:grid-rows-2";
+  const lgGridLayout = "lg:grid-cols-4 lg:grid-rows-3";
+
   return (
-    <div className="grid gap-4 grid-cols-4 grid-rows-3 bg-neutral-400 h-screen">
+    <div className={`${dashboardStyles}`}>
       <TileTornadoWarningTextProducts />
       <TileNEXRAD />
-      <TileConvectiveOutlooks />
       <TileTornadoWatchTextProducts />
+      <TileConvectiveOutlooks />
       <TileMesoscaleDiscussions />
       <TileStormReports />
     </div>
