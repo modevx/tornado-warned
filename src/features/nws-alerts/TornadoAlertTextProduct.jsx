@@ -17,25 +17,22 @@ export const TornadoAlertTextProduct = ({ alert }) => {
     parameters: { maxHailSize, tornadoDetection },
   } = properties;
 
-  const doesStringContainPhrase = (string, phrase) => {
+  const checkStringForPhrase = (string, phrase) => {
     const loweredString = string.toLowerCase();
     const loweredPhrase = phrase.toLowerCase();
-
-    console.log("typeof loweredString\n", typeof loweredString);
-    console.log("loweredPhrase\n", loweredPhrase);
 
     return loweredString.includes(loweredPhrase);
   };
 
   const isAlertParticularlyDangerousSituation = (alertDescription) => {
-    return doesStringContainPhrase(
+    return checkStringForPhrase(
       alertDescription,
       "particularly dangerous situation"
     );
   };
 
   const isAlertornadoEmergency = (alertDescription) => {
-    return doesStringContainPhrase(alertDescription, "tornado emergency");
+    return checkStringForPhrase(alertDescription, "tornado emergency");
   };
 
   const isPDS = isAlertParticularlyDangerousSituation(description);

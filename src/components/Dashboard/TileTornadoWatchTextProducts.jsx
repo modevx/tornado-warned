@@ -8,8 +8,6 @@ export const TileTornadoWatchTextProducts = () => {
   // const { data: alerts, error } = useActiveTornadoWatches();
   const { features: alerts } = useFakeTornadoWatches();
 
-  if (alerts) console.log(">> TORNADO WATCHES\n", alerts);
-
   return (
     <div className="mdx-dashboard-tile bg-gradient-to-br from-yellow-600 to-yellow-300 row-span-2 overflow-auto">
       <h2>TORNADO WATCHES</h2>
