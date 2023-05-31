@@ -1,8 +1,5 @@
 import { useAll3CategoricalOutlooks } from "services/arcgis-server-convective-outlooks/service";
-import { AlbersStateMap } from "components/AlbersStateMap";
 import { CategoricalOutlookMap } from "features/spc-convective-outlooks/components";
-import { CategoricalOutlookFeaturePath } from "features/spc-convective-outlooks/components/CategoricalOutlookFeaturePath";
-import { MAYFIELD } from "features/spc-convective-outlooks/Mayfield";
 
 export const TileConvectiveOutlooks = () => {
   const { data, error } = useAll3CategoricalOutlooks();
@@ -16,8 +13,6 @@ export const TileConvectiveOutlooks = () => {
     day3features = data[2];
   }
 
-  const MAYFIELD_FEATURES = MAYFIELD.catOtlk.features;
-
   return (
     <div className="bg-gradient-to-br from-blue-700 to-blue-200 row-span-3 mdx-dashboard-tile overflow-auto">
       <h2>CONVECTIVE OUTLOOKS</h2>
@@ -29,9 +24,6 @@ export const TileConvectiveOutlooks = () => {
 
       <h3>Day 3</h3>
       {data && <CategoricalOutlookMap features={day3features} />}
-
-      <h3>December 10, 2021</h3>
-      <CategoricalOutlookMap features={MAYFIELD_FEATURES} />
     </div>
   );
 };
