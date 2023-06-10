@@ -1,2 +1,3 @@
-export * from "./Footer/Footer";
-export * from "./LocaleDate/LocaleDate";
+export { Footer } from "./Footer";
+export { Header } from "./Header";
+export { PageLayout } from "./PageLayout";
