@@ -14,6 +14,8 @@ const NAV_ITEMS = [
 ];
 
 export const Header = () => {
+  const { Item } = Menu;
+
   return (
     <header
       data-testid="header"
@@ -25,12 +27,10 @@ export const Header = () => {
         </Navbar.Start>
         <Navbar.End>
           <Menu horizontal>
-            <Menu.Item key="alerts">
+            {/* TODO: fix react-icons not working */}
+            <Item key="alerts">
               <GoAlert />
-            </Menu.Item>
-            {/* <Menu.Item key="convective-outlooks">
-              <BiSolidBinoculars color="white" size={20} />
-            </Menu.Item> */}
+            </Item>
           </Menu>
         </Navbar.End>
       </Navbar>
