@@ -13,7 +13,7 @@ const ALERTS_EVENTS = {
 	severe_storm_watch: "Severe Thunderstorm Watch",
 };
 
-const ERROR_TITLE = "ERROR: National Weather Service API Web Service";
+const ERROR_TITLE = "/// ERROR: National Weather Service API Web Service ///";
 
 const getActiveAlertsByEvent = async (event) => {
 	const uriEncodedEvent = encodeURIComponent(event);
@@ -31,8 +31,27 @@ const getActiveAlertsByEvent = async (event) => {
 	}
 };
 
+export const useTornadoWarningAlertQuery = () => {
+	return useQuery(["alerts", "active", ALERTS_EVENTS.tornado_warning], () =>
+		getActiveAlertsByEvent(ALERTS_EVENTS.tornado_warning)
+	);
+};
+
 export const useTornadoWatchAlertQuery = () => {
 	return useQuery(["alerts", "active", ALERTS_EVENTS.tornado_watch], () =>
 		getActiveAlertsByEvent(ALERTS_EVENTS.tornado_watch)
+	);
+};
+
+export const useSevereStormWarningAlertQuery = () => {
+	return useQuery(
+		["alerts", "active", ALERTS_EVENTS.severe_storm_warning],
+		() => getActiveAlertsByEvent(ALERTS_EVENTS.severe_storm_warning)
+	);
+};
+
+export const useSevereStormWatchAlertQuery = () => {
+	return useQuery(["alerts", "active", ALERTS_EVENTS.severe_storm_watch], () =>
+		getActiveAlertsByEvent(ALERTS_EVENTS.severe_storm_watch)
 	);
 };
