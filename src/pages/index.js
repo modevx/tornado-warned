@@ -1,5 +1,11 @@
 import { PageLayout } from "components/PageLayout";
 import {
+	TornadoWarningAlert,
+	TornadoWatchAlert,
+	SevereStormWarningAlert,
+	SevereStormWatchAlert,
+} from "features/active-alerts";
+import {
 	useTornadoWarningAlertQuery,
 	useTornadoWatchAlertQuery,
 	useSevereStormWarningAlertQuery,
@@ -17,7 +23,15 @@ const HomeScreen = () => {
 	if (stormWarnings) console.log(stormWarnings);
 	if (stormWatches) console.log(stormWatches);
 
-	return <PageLayout></PageLayout>;
+	return (
+		<PageLayout>
+			{tornadoWarnings
+				? tornadoWarnings.map((alert) => (
+						<TornadoWarningAlert key={alert.id} alert={alert} />
+				  ))
+				: null}
+		</PageLayout>
+	);
 };
 
 export default HomeScreen;
