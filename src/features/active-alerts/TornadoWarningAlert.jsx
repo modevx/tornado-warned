@@ -14,9 +14,9 @@ export const TornadoWarningAlert = ({ alert }) => {
     description,
     instruction,
     // *
-    // * all [parameter] values are contained in []
+    // * all [parameter] values = []
     // *
-    parameters: { NWSheadline, maxHailSize, tornadoDetection },
+    parameters: { maxHailSize, tornadoDetection },
   } = properties;
   const impactedAreas = sortAffectedAreasByState(areaDesc);
   const impactedAreasARR = Array.from(impactedAreas.entries());
