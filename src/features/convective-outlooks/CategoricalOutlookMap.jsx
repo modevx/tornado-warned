@@ -14,16 +14,16 @@ export const CategoricalOutlookMap = ({ features }) => {
 				features.map((feature) => {
 					const {
 						id,
-						properties: { dn, idp_source },
+						properties: { dn: categoryKey, idp_source },
 					} = feature;
 
 					return (
 						<path
 							key={`${idp_source}-${id}`}
 							d={albersGeoPath(rewind(feature, { reverse: true }))}
-							fill={styles[dn].color}
+							fill={styles[categoryKey].color}
 							opacity={0.7}
-							stroke={styles[dn].stroke}
+							stroke={styles[categoryKey].stroke}
 							strokeWidth={4}
 						/>
 					);
