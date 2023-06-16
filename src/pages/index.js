@@ -30,14 +30,19 @@ const HomeScreen = () => {
   return (
     <PageLayout>
       <Stats className="mb-6">
-        <Stats.Stat>
-          <Stat.Item variant="title"> ACTIVE WARNINGS</Stat.Item>
+        <Stats.Stat className="bg-red-500 text-black">
+          <Stat.Item variant="title" className="text-black">
+            {" "}
+            ACTIVE WARNINGS
+          </Stat.Item>
           <Stat.Item variant="value">
             {tornadoWarnings ? tornadoWarnings.length : 0}
           </Stat.Item>
         </Stats.Stat>
-        <Stats.Stat>
-          <Stat.Item variant="title">ACTIVE WATCHES</Stat.Item>
+        <Stats.Stat className="bg-yellow-300 text-black">
+          <Stat.Item variant="title" className="text-black">
+            ACTIVE WATCHES
+          </Stat.Item>
           <Stat.Item variant="value">
             {tornadoWatches ? tornadoWatches.length : 0}
           </Stat.Item>
