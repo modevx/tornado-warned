@@ -1,6 +1,5 @@
 import Head from "next/head";
-import { Footer } from "components/Footer";
-import { Header } from "components/Header";
+import { Footer, Header } from "components";
 
 export const PageLayout = ({ children }) => {
   return (
