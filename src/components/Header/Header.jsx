@@ -12,18 +12,17 @@ const NAV_ITEMS = [
 	},
 ];
 
+// sm:flex sm:justify-between sm:items-center flex flex-col text-center
+
 export const Header = () => {
 	return (
-		<header
-			data-testid='header'
-			className='text-center p-4 sm:flex sm:justify-between sm:items-center'
-		>
-			<Navbar>
-				<Navbar.Start>
+		<header data-testid='header' className='p-4'>
+			<Navbar className='grid grid-cols-1'>
+				<Navbar.Start className='w-full justify-center'>
 					<Branding />
 				</Navbar.Start>
-				<Navbar.End>
-					<Menu horizontal>
+				<Navbar.End className='w-full justify-center'>
+					<Menu>
 						<MainNav />
 					</Menu>
 				</Navbar.End>
@@ -35,9 +34,9 @@ export const Header = () => {
 const Branding = () => {
 	return (
 		<NextLink href='/'>
-			<a className='text-3xl text-neutral-200 font-display uppercase'>
+			<a className='text-xl text-center text-neutral-200 font-display uppercase'>
 				Tornado{" "}
-				<span className='italic bg-clip-text text-transparent bg-gradient-to-br from-red-500 to-neutral-400 pr-2'>
+				<span className='text-xl italic bg-clip-text text-transparent bg-gradient-to-br from-red-500 to-neutral-400 pr-2'>
 					Warned
 				</span>
 			</a>
@@ -50,7 +49,7 @@ const MainNav = () => {
 		<Menu horizontal>
 			{NAV_ITEMS.map(({ icon, label, href }) => {
 				return (
-					<Menu.Item key={label}>
+					<Menu.Item key={label} className='text-sm'>
 						<NextLink href={href}>{label}</NextLink>
 					</Menu.Item>
 				);
