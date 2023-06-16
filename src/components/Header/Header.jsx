@@ -3,6 +3,10 @@ import { Menu, Navbar } from "react-daisyui";
 
 const NAV_ITEMS = [
 	{
+		label: "active alerts",
+		href: "/",
+	},
+	{
 		label: "convective outlooks",
 		href: "/convective-outlooks",
 	},
