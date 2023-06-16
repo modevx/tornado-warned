@@ -20,11 +20,6 @@ const HomeScreen = () => {
   const { data: stormWarnings } = useSevereStormWarningAlertQuery();
   const { data: stormWatches } = useSevereStormWatchAlertQuery();
 
-  if (tornadoWarnings) console.log(tornadoWarnings);
-  if (tornadoWatches) console.log(tornadoWatches);
-  if (stormWarnings) console.log(stormWarnings);
-  if (stormWatches) console.log(stormWatches);
-
   const { Stat } = Stats;
 
   return (
@@ -49,7 +44,7 @@ const HomeScreen = () => {
         </Stats.Stat>
       </Stats>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
         {tornadoWarnings
           ? tornadoWarnings.map((featureObj) => (
               <TornadoWarningAlert key={featureObj.id} alert={featureObj} />
@@ -57,7 +52,7 @@ const HomeScreen = () => {
           : null}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
         {tornadoWatches
           ? tornadoWatches.map((featureObj) => (
               <TornadoWatchAlert key={featureObj.id} alert={featureObj} />
