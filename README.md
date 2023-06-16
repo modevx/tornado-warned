@@ -1,38 +1,15 @@
-# BUILD NOTES
+![Tornado Warned README Title Image](public/images/readme-title.png)
 
-## FEATURES
+### **VISION**
 
-### Real-Time Alerts
+![Tornado Warned README Description Image](public/images/readme-what-is-it.png)
 
-## TOOLING
+### **CURRENT FUNCTIONALITY**
 
-### Deploy to GitHub Pages with Custom Domain
+![Tornado Warned README How-To-Use Image](public/images/readme-how-to-use.png)
 
-- [`gh-pages`](https://www.npmjs.com/package/gh-pages)
+### **ACTIVE ALERTS**
 
-`"deploy": "gh-pages -d src"`
+### **CONVECTIVE OUTLOOKS**
 
-create `build/CNAME` file with `tornadowarned.com` text in it
-
-run `"gh-pages": "gh-pages -d build"`
-
-## DESIGN SYSTEM
-
-### Minimal Customization
-
-**CONSTRAINTS**
-
-- 2 breakpoint max
-- standardized semantic colors
-
-### TailwindCSS
-
-- `@layer (base, components, utililities)` directives for reusable styles
-- `@apply` lets you access TW classes in style definitions
-
-- `base` defaults, resets applied to HTML elements
-- `components` TW-overrideable class-based styles
-- `utilities` highest-priority, single-purpose classes
-
-- [TW default theme](https://unpkg.com/browse/tailwindcss@3.0.23/stubs/defaultConfig.stub.js)
-  - [ITCSS](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/#what-is-itcss)
+### **STORM PREDICTION CENTER RSS FEEDS**
