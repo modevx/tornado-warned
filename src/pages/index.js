@@ -1,12 +1,7 @@
 import { Stats } from "react-daisyui";
 
 import { PageLayout } from "components";
-import {
-  TornadoWarningAlert,
-  TornadoWatchAlert,
-  SevereStormWarningAlert,
-  SevereStormWatchAlert,
-} from "features/active-alerts";
+import { TornadoWarningAlert, TornadoWatchAlert } from "features/active-alerts";
 import {
   useTornadoWarningAlertQuery,
   useTornadoWatchAlertQuery,
@@ -17,8 +12,6 @@ import {
 const HomeScreen = () => {
   const { data: tornadoWarnings } = useTornadoWarningAlertQuery();
   const { data: tornadoWatches } = useTornadoWatchAlertQuery();
-  const { data: stormWarnings } = useSevereStormWarningAlertQuery();
-  const { data: stormWatches } = useSevereStormWatchAlertQuery();
 
   const { Stat } = Stats;
 
