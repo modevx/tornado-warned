@@ -3,18 +3,12 @@ import { Menu, Navbar } from "react-daisyui";
 
 const NAV_ITEMS = [
 	{
-		label: "alerts",
-		href: "/alerts",
-	},
-	{
 		label: "outlooks",
 		href: "/convective-outlooks",
 	},
 ];
 
 export const Header = () => {
-	const { Item } = Menu;
-
 	return (
 		<header
 			data-testid='header'
