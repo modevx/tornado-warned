@@ -52,7 +52,14 @@ const FooterCopyright = ({ year }) => (
 
 const FooterSectionLinks = ({ links }) => {
   return links.map(({ label, href }) => (
-    <NextLink key={label} href={`${href}`} className="link link-hover">
+    <NextLink
+      key={label}
+      href={`${href}`}
+      target="_blank"
+      rel="noreferrer noopener"
+      referrerPolicy="no-referrer"
+      className="link link-hover"
+    >
       {label}
     </NextLink>
   ));
