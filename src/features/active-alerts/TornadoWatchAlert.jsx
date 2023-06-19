@@ -2,7 +2,7 @@ import { Card } from "react-daisyui";
 
 import { STATES_MAP } from "constants";
 import { sortAffectedAreasByState } from "utils";
-import { LocaleTime } from "components";
+import { DayJSDateTime } from "components";
 
 export const TornadoWatchAlert = ({ alert }) => {
   const { properties } = alert;
@@ -20,7 +20,7 @@ export const TornadoWatchAlert = ({ alert }) => {
         </div>
         <div className="text-xs flex flex-col">
           <span>Expires:</span>
-          <LocaleTime date={expires} />
+          <DayJSDateTime utcDate={expires} format="ddd LT" />
         </div>
       </Card.Title>
 
