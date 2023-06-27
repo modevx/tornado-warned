@@ -1,2 +1,2 @@
 export * from "./formatNwsOfficeToCityState";
-export * from "./sortAffectedAreasByState";
+export * from "./createImpactedAreasMap";
