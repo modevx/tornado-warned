@@ -4,5 +4,7 @@ import LocalizedFormat from "dayjs/plugin/localizedFormat";
 dayjs.extend(LocalizedFormat);
 
 export const DayJSDateTime = ({ utcDate, format }) => {
-  return <span>{dayjs(utcDate).format(format)}</span>;
+	return (
+		<>{utcDate ? <span>{dayjs(utcDate).format(format)}</span> : "Unknown"}</>
+	);
 };
