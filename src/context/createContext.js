@@ -1,4 +1,4 @@
-export const createContext = (reducer, dispatchReducerFuncs, initState) => {
+export const createContext = ({ reducer, dispatchReducerFuncs, initState }) => {
 	const Context = React.createContext();
 	const Dispatch = React.createContext();
 

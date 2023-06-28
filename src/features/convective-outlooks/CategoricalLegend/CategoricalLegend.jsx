@@ -1,4 +1,4 @@
-import { CategoricalLegendKey } from "./CategoricalLegendKey";
+import { CategoricalLegendKey } from "../CategoricalLegendKey/CategoricalLegendKey";
 
 export const CategoricalLegend = ({ stylesObj }) => {
 	const stylesArr = Object.values(stylesObj);
