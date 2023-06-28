@@ -1,4 +1,4 @@
-export const AlertCardDetection = ({ tornadoDetection }) => {
+export const AlertCardTornadoDetection = ({ tornadoDetection }) => {
 	const detectionType = tornadoDetection?.length
 		? tornadoDetection[0].split(" ")[0]
 		: "N/A";

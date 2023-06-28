@@ -3,7 +3,7 @@ import {
 	CategoricalLegend,
 	OutlookSection,
 } from "features/convective-outlooks";
-import { CATEGORICAL_OUTLOOK_FEATURE_STYLES } from "features/convective-outlooks/constants";
+import { CATEGORICAL_OUTLOOK_FEATURE_STYLES } from "features/convective-outlooks/_constants";
 
 const ConvectiveOutlookScreen = () => {
 	return (

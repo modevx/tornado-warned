@@ -2,7 +2,7 @@ import rewind from "@turf/rewind";
 import { geoAlbers, geoPath } from "d3-geo";
 
 import { USMap } from "components";
-import { CATEGORICAL_OUTLOOK_FEATURE_STYLES as styles } from "./constants";
+import { CATEGORICAL_OUTLOOK_FEATURE_STYLES as styles } from "../_constants";
 
 export const CategoricalMap = ({ features }) => {
 	const projection = geoAlbers();
