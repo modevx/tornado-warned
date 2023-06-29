@@ -6,6 +6,8 @@ dayjs.extend(LocalizedFormat);
 
 export const DayJSDateTime = ({ utcDate, format = "LT" }) => {
 	return (
-		<>{utcDate ? <span>{dayjs(utcDate).format(format)}</span> : "Unknown"}</>
+		<span data-testid='DayJSDateTime'>
+			{utcDate ? dayjs(utcDate).format(format) : "Unknown"}
+		</span>
 	);
 };
