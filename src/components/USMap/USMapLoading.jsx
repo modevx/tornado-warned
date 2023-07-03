@@ -1,4 +1,4 @@
-import { USMap } from "../USMap/USMap";
+import { USMap } from "./USMap";
 
 export const USMapLoading = ({ loadingMessage }) => {
 	return (
