@@ -22,7 +22,7 @@ import {
 } from "services/nws-api-web-service";
 
 const HomeScreen = () => {
-  const [filteredAlerts, setFilteredAlerts] = useState({
+  const [appliedAlertFilters, setAlertFilters] = useState({
     isTornadoWarningsSelected: false,
     isTornadoWatchesSelected: false,
     isStormWarningsSelected: false,
@@ -32,14 +32,14 @@ const HomeScreen = () => {
   const handleToggleChange = (e) => {
     const { name: toggleName } = e.target;
 
-    setFilteredAlerts((prev) =>
+    setAlertFilters((prev) =>
       Object.assign({ ...prev }, { [toggleName]: !prev[toggleName] })
     );
   };
 
   useEffect(() => {
-    console.log(filteredAlerts);
-  }, [filteredAlerts]);
+    console.log(appliedAlertFilters);
+  }, [appliedAlertFilters]);
 
   const { data: tornadoWarnings } = useTornadoWarningQuery();
   const { data: tornadoWatches } = useTornadoWatchQuery();
@@ -86,37 +86,37 @@ const HomeScreen = () => {
 
           <AlertFilters
             handler={handleToggleChange}
-            filters={filteredAlerts ?? {}}
+            filters={appliedAlertFilters ?? {}}
           />
         </div>
 
-        {filteredAlerts["isTornadoWarningsSelected"] && (
+        {appliedAlertFilters["isTornadoWarningsSelected"] ? (
           <NWSAlertSection
             alertFeatureArr={fakeTornadoWarnings}
             alertComponent={TornadoWarningAlert}
           />
-        )}
+        ) : null}
 
-        {filteredAlerts["isTornadoWatchesSelected"] && (
+        {appliedAlertFilters["isTornadoWatchesSelected"] ? (
           <NWSAlertSection
             alertFeatureArr={fakeTornadoWatches}
             alertComponent={TornadoWatchAlert}
           />
-        )}
+        ) : null}
 
-        {filteredAlerts["isStormWarningsSelected"] && (
+        {appliedAlertFilters["isStormWarningsSelected"] ? (
           <NWSAlertSection
             alertFeatureArr={fakeStormWarnings}
             alertComponent={SevereStormWarningAlert}
           />
-        )}
+        ) : null}
 
-        {filteredAlerts["isStormWatchesSelected"] && (
+        {appliedAlertFilters["isStormWatchesSelected"] ? (
           <NWSAlertSection
             alertFeatureArr={fakeStormWatches}
             alertComponent={SevereStormWatchAlert}
           />
-        )}
+        ) : null}
       </div>
     </PageLayout>
   );
@@ -136,6 +136,7 @@ const AlertFilters = ({ handler, filters }) => {
     <div className="my-6">
       <div className="flex my-2 mx-4">
         <Toggle
+          color="success"
           name="isTornadoWarningsSelected"
           onChange={handler}
           value={isTornadoWarningsSelected}
@@ -144,6 +145,7 @@ const AlertFilters = ({ handler, filters }) => {
       </div>
       <div className="flex my-2 mx-4">
         <Toggle
+          color="success"
           name="isTornadoWatchesSelected"
           onChange={handler}
           value={isTornadoWatchesSelected}
@@ -152,6 +154,7 @@ const AlertFilters = ({ handler, filters }) => {
       </div>
       <div className="flex my-2 mx-4">
         <Toggle
+          color="success"
           name="isStormWarningsSelected"
           onChange={handler}
           value={isStormWarningsSelected}
@@ -160,6 +163,7 @@ const AlertFilters = ({ handler, filters }) => {
       </div>
       <div className="flex my-2 mx-4">
         <Toggle
+          color="success"
           name="isStormWatchesSelected"
           onChange={handler}
           value={isStormWatchesSelected}
