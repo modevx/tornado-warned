@@ -1,60 +1,55 @@
-import { useEffect, useState } from "react";
-import { Toggle } from "react-daisyui";
+import { useState } from "react";
 
 import { PageLayout } from "components";
 import {
-  ActiveAlertCounts,
-  NWSAlertSection,
-  TornadoWarningAlert,
-  TornadoWatchAlert,
-  SevereStormWarningAlert,
-  SevereStormWatchAlert,
+	AlertFilters,
+	NWSAlertSection,
+	TornadoWarningAlert,
+	TornadoWatchAlert,
+	SevereStormWarningAlert,
+	SevereStormWatchAlert,
 } from "features/active-alerts";
 import {
-  useTornadoWarningQuery,
-  useTornadoWatchQuery,
-  useSevereStormWarningQuery,
-  useSevereStormWatchQuery,
-  useFakeTornadoWarnings,
-  useFakeTornadoWatches,
-  useFakeSevereStormWarnings,
-  useFakeSevereStormWatches,
+	useTornadoWarningQuery,
+	useTornadoWatchQuery,
+	useSevereStormWarningQuery,
+	useSevereStormWatchQuery,
+	useFakeTornadoWarnings,
+	useFakeTornadoWatches,
+	useFakeSevereStormWarnings,
+	useFakeSevereStormWatches,
 } from "services/nws-api-web-service";
 
 const HomeScreen = () => {
-  const [appliedAlertFilters, setAlertFilters] = useState({
-    isTornadoWarningsSelected: false,
-    isTornadoWatchesSelected: false,
-    isStormWarningsSelected: false,
-    isStormWatchesSelected: false,
-  });
+	const [appliedAlertFilters, setAlertFilters] = useState({
+		showTornadoWarnings: true,
+		showTornadoWatches: true,
+		showStormWarnings: true,
+		showStormWatches: true,
+	});
 
-  const handleToggleChange = (e) => {
-    const { name: toggleName } = e.target;
+	const handleToggleChange = (e) => {
+		const { name: toggleName } = e.target;
 
-    setAlertFilters((prev) =>
-      Object.assign({ ...prev }, { [toggleName]: !prev[toggleName] })
-    );
-  };
+		setAlertFilters((prev) =>
+			Object.assign({ ...prev }, { [toggleName]: !prev[toggleName] })
+		);
+	};
 
-  useEffect(() => {
-    console.log(appliedAlertFilters);
-  }, [appliedAlertFilters]);
+	const { data: tornadoWarnings } = useTornadoWarningQuery();
+	const { data: tornadoWatches } = useTornadoWatchQuery();
+	const { data: stormWarnings } = useSevereStormWarningQuery();
+	const { data: stormWatches } = useSevereStormWatchQuery();
 
-  const { data: tornadoWarnings } = useTornadoWarningQuery();
-  const { data: tornadoWatches } = useTornadoWatchQuery();
-  const { data: stormWarnings } = useSevereStormWarningQuery();
-  const { data: stormWatches } = useSevereStormWatchQuery();
+	const fakeTornadoWarnings = useFakeTornadoWarnings();
+	const fakeTornadoWatches = useFakeTornadoWatches();
+	const fakeStormWarnings = useFakeSevereStormWarnings();
+	const fakeStormWatches = useFakeSevereStormWatches();
 
-  const fakeTornadoWarnings = useFakeTornadoWarnings();
-  const fakeTornadoWatches = useFakeTornadoWatches();
-  const fakeStormWarnings = useFakeSevereStormWarnings();
-  const fakeStormWatches = useFakeSevereStormWatches();
-
-  return (
-    <PageLayout>
-      <div className="p-4">
-        {/* <ActiveAlertCounts
+	return (
+		<PageLayout>
+			<div className='p-4'>
+				{/* <ActiveAlertCounts
           tornadoWarnings={tornadoWarnings}
           tornadoWatches={tornadoWatches}
         />
@@ -77,99 +72,43 @@ const HomeScreen = () => {
           alertFeatureArr={stormWatches}
           alertComponent={SevereStormWatchAlert}
         /> */}
-        {/* -- TESTING -- */}
-        <div className="flex justify-between items-center">
-          <ActiveAlertCounts
-            tornadoWarnings={fakeTornadoWarnings}
-            tornadoWatches={fakeTornadoWatches}
-          />
+				{/* -- TESTING -- */}
 
-          <AlertFilters
-            handler={handleToggleChange}
-            filters={appliedAlertFilters ?? {}}
-          />
-        </div>
+				<AlertFilters
+					handler={handleToggleChange}
+					filterState={appliedAlertFilters ?? {}}
+				/>
 
-        {appliedAlertFilters["isTornadoWarningsSelected"] ? (
-          <NWSAlertSection
-            alertFeatureArr={fakeTornadoWarnings}
-            alertComponent={TornadoWarningAlert}
-          />
-        ) : null}
+				{appliedAlertFilters["showTornadoWarnings"] ? (
+					<NWSAlertSection
+						alertFeatureArr={fakeTornadoWarnings}
+						alertComponent={TornadoWarningAlert}
+					/>
+				) : null}
 
-        {appliedAlertFilters["isTornadoWatchesSelected"] ? (
-          <NWSAlertSection
-            alertFeatureArr={fakeTornadoWatches}
-            alertComponent={TornadoWatchAlert}
-          />
-        ) : null}
+				{appliedAlertFilters["showTornadoWatches"] ? (
+					<NWSAlertSection
+						alertFeatureArr={fakeTornadoWatches}
+						alertComponent={TornadoWatchAlert}
+					/>
+				) : null}
 
-        {appliedAlertFilters["isStormWarningsSelected"] ? (
-          <NWSAlertSection
-            alertFeatureArr={fakeStormWarnings}
-            alertComponent={SevereStormWarningAlert}
-          />
-        ) : null}
+				{appliedAlertFilters["showStormWarnings"] ? (
+					<NWSAlertSection
+						alertFeatureArr={fakeStormWarnings}
+						alertComponent={SevereStormWarningAlert}
+					/>
+				) : null}
 
-        {appliedAlertFilters["isStormWatchesSelected"] ? (
-          <NWSAlertSection
-            alertFeatureArr={fakeStormWatches}
-            alertComponent={SevereStormWatchAlert}
-          />
-        ) : null}
-      </div>
-    </PageLayout>
-  );
+				{appliedAlertFilters["showStormWatches"] ? (
+					<NWSAlertSection
+						alertFeatureArr={fakeStormWatches}
+						alertComponent={SevereStormWatchAlert}
+					/>
+				) : null}
+			</div>
+		</PageLayout>
+	);
 };
 
 export default HomeScreen;
-
-const AlertFilters = ({ handler, filters }) => {
-  const {
-    isTornadoWarningsSelected,
-    isTornadoWatchesSelected,
-    isStormWarningsSelected,
-    isStormWatchesSelected,
-  } = filters;
-
-  return (
-    <div className="my-6">
-      <div className="flex my-2 mx-4">
-        <Toggle
-          color="success"
-          name="isTornadoWarningsSelected"
-          onChange={handler}
-          value={isTornadoWarningsSelected}
-        />
-        <span className="ml-2">Tornado Warnings</span>
-      </div>
-      <div className="flex my-2 mx-4">
-        <Toggle
-          color="success"
-          name="isTornadoWatchesSelected"
-          onChange={handler}
-          value={isTornadoWatchesSelected}
-        />
-        <span className="ml-2">Tornado Watches</span>
-      </div>
-      <div className="flex my-2 mx-4">
-        <Toggle
-          color="success"
-          name="isStormWarningsSelected"
-          onChange={handler}
-          value={isStormWarningsSelected}
-        />
-        <span className="ml-2">Severe Storm Warnings</span>
-      </div>
-      <div className="flex my-2 mx-4">
-        <Toggle
-          color="success"
-          name="isStormWatchesSelected"
-          onChange={handler}
-          value={isStormWatchesSelected}
-        />
-        <span className="ml-2">Severe Storm Watches</span>
-      </div>
-    </div>
-  );
-};
