@@ -134,7 +134,7 @@ export const FAKE_ALERTS = {
 					eventMotionDescription: [
 						"2023-04-30T19:28:00-00:00...storm...200DEG...9KT...36.27,-77.5",
 					],
-					maxHailSize: ["Up to .75"],
+					maxHailSize: ["Up to 1.8"],
 					tornadoDetection: ["RADAR INDICATED"],
 					BLOCKCHANNEL: ["EAS", "NWEM"],
 					"EAS-ORG": ["WXR"],
@@ -205,7 +205,7 @@ export const FAKE_ALERTS = {
 					eventMotionDescription: [
 						"2023-04-30T13:31:00-00:00...storm...241DEG...31KT...26.65,-80.33",
 					],
-					maxHailSize: ["Up to .75"],
+					maxHailSize: ["Up to 2.9"],
 					tornadoDetection: [],
 					BLOCKCHANNEL: ["EAS", "NWEM"],
 					"EAS-ORG": ["WXR"],
@@ -276,7 +276,7 @@ export const FAKE_ALERTS = {
 					eventMotionDescription: [
 						"2023-04-30T13:31:00-00:00...storm...241DEG...31KT...26.65,-80.33",
 					],
-					maxHailSize: [],
+					maxHailSize: ["Up to 3.4"],
 					tornadoDetection: ["OBSERVED"],
 					BLOCKCHANNEL: ["EAS", "NWEM"],
 					"EAS-ORG": ["WXR"],
@@ -346,7 +346,7 @@ export const FAKE_ALERTS = {
 					eventMotionDescription: [
 						"2023-04-30T13:18:00-00:00...storm...240DEG...38KT...26.58,-80.58",
 					],
-					maxHailSize: ["Up to .75"],
+					maxHailSize: ["Up to 3.75"],
 					tornadoDetection: ["RADAR INDICATED"],
 					BLOCKCHANNEL: ["EAS", "NWEM"],
 					"EAS-ORG": ["WXR"],
@@ -428,7 +428,7 @@ export const FAKE_ALERTS = {
 					eventMotionDescription: [
 						"2023-04-30T13:13:00-00:00...storm...245DEG...40KT...27.19,-80.27",
 					],
-					maxHailSize: ["Up to .75"],
+					maxHailSize: ["Up to 4.75"],
 					tornadoDetection: ["RADAR INDICATED"],
 					BLOCKCHANNEL: ["EAS", "NWEM"],
 					"EAS-ORG": ["WXR"],
