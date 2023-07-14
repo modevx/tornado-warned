@@ -1,4 +1,4 @@
-export const NWSAlertSection = ({ alertFeatureArr, alertComponent }) => {
+export const AlertSection = ({ alertFeatureArr, alertComponent }) => {
 	const AlertComponent = alertComponent;
 
 	return (

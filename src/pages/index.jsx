@@ -1,14 +1,14 @@
 import { useState } from "react";
 
 import { PageLayout } from "components";
+import { AlertFilters } from "features/active-alerts/AlertFilters";
+import { AlertSection } from "features/active-alerts/AlertSection";
 import {
-	AlertFilters,
-	NWSAlertSection,
 	TornadoWarningAlert,
 	TornadoWatchAlert,
 	SevereStormWarningAlert,
 	SevereStormWatchAlert,
-} from "features/active-alerts";
+} from "features/active-alerts/AlertCards";
 import {
 	useTornadoWarningQuery,
 	useTornadoWatchQuery,
@@ -56,19 +56,19 @@ const HomeScreen = () => {
 
 				<AlertFilters />
 
-        <NWSAlertSection
+        <AlertSection
           alertFeatureArr={tornadoWarnings}
           alertComponent={TornadoWarningAlert}
         />
-        <NWSAlertSection
+        <AlertSection
           alertFeatureArr={tornadoWatches}
           alertComponent={TornadoWatchAlert}
         />
-        <NWSAlertSection
+        <AlertSection
           alertFeatureArr={stormWarnings}
           alertComponent={SevereStormWarningAlert}
         />
-        <NWSAlertSection
+        <AlertSection
           alertFeatureArr={stormWatches}
           alertComponent={SevereStormWatchAlert}
         /> */}
@@ -80,28 +80,28 @@ const HomeScreen = () => {
 				/>
 
 				{appliedAlertFilters["showTornadoWarnings"] ? (
-					<NWSAlertSection
+					<AlertSection
 						alertFeatureArr={fakeTornadoWarnings}
 						alertComponent={TornadoWarningAlert}
 					/>
 				) : null}
 
 				{appliedAlertFilters["showTornadoWatches"] ? (
-					<NWSAlertSection
+					<AlertSection
 						alertFeatureArr={fakeTornadoWatches}
 						alertComponent={TornadoWatchAlert}
 					/>
 				) : null}
 
 				{appliedAlertFilters["showStormWarnings"] ? (
-					<NWSAlertSection
+					<AlertSection
 						alertFeatureArr={fakeStormWarnings}
 						alertComponent={SevereStormWarningAlert}
 					/>
 				) : null}
 
 				{appliedAlertFilters["showStormWatches"] ? (
-					<NWSAlertSection
+					<AlertSection
 						alertFeatureArr={fakeStormWatches}
 						alertComponent={SevereStormWatchAlert}
 					/>

@@ -41,7 +41,7 @@ export const SenderName = ({ senderName }) => {
 	);
 };
 
-export const Expiration = ({ expiresTime }) => {
+export const ExpirationTime = ({ expiresTime }) => {
 	return (
 		<div className='text-xs flex flex-col'>
 			<span>Expires:</span>

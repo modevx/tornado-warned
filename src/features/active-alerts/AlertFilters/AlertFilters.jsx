@@ -1,4 +1,4 @@
-import { AlertFilterToggle } from "features/active-alerts";
+import { Toggle } from "react-daisyui";
 
 export const AlertFilters = ({ handler, filterState }) => {
 	// * [toggleName] matches filterState props
@@ -37,6 +37,26 @@ export const AlertFilters = ({ handler, filterState }) => {
 					);
 				})}
 			</div>
+		</div>
+	);
+};
+
+export const AlertFilterToggle = ({
+	name,
+	onChangeHandler,
+	isToggled,
+	label,
+}) => {
+	return (
+		<div className='flex my-2 mx-4'>
+			<Toggle
+				color='success'
+				name={name}
+				onChange={onChangeHandler}
+				checked={isToggled}
+				size='sm'
+			/>
+			<span className='ml-2 text-sm'>{label}</span>
 		</div>
 	);
 };
