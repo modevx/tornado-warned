@@ -19,7 +19,7 @@ import {
 
 export const AlertMessageButtons = ({ description, instruction }) => {
   return (
-    <div className="flex justify-between">
+    <div>
       <AlertMessageModal messageType="Description" message={description} />
       <AlertMessageModal messageType="Instruction" message={instruction} />
     </div>
@@ -34,8 +34,8 @@ export const AlertMessageModal = ({ messageType, message }) => {
   };
 
   return (
-    <div className="font-sans">
-      <Button onClick={toggleModalOpen}>
+    <div className="font-sans my-2">
+      <Button onClick={toggleModalOpen} className="w-full">
         {messageType}{" "}
         <AiOutlineExpandAlt color="white" size={25} className="ml-4" />
       </Button>
