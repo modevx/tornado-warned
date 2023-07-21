@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AiOutlineExpandAlt } from "react-icons/ai";
+import { AiFillCloseCircle, AiOutlineExpandAlt } from "react-icons/ai";
 import { Button, Card, Modal } from "react-daisyui";
 import { geoAlbers, geoPath } from "d3-geo";
 
@@ -44,9 +44,13 @@ export const AlertMessageModal = ({ messageType, message }) => {
         <Modal.Actions>
           <Button
             onClick={toggleModalOpen}
-            className="bg-red-500 text-black hover:text-white"
+            className="bg-transparent hover:bg-transparent border-none"
           >
-            CLOSE
+            <AiFillCloseCircle
+              size={25}
+              color="red"
+              className="hover:fill-white"
+            />
           </Button>
         </Modal.Actions>
       </Modal>
