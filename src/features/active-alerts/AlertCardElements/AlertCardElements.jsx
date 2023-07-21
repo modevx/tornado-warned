@@ -1,4 +1,6 @@
-import { Card } from "react-daisyui";
+import { useState } from "react";
+import { AiOutlineExpandAlt } from "react-icons/ai";
+import { Button, Card, Modal } from "react-daisyui";
 import { geoAlbers, geoPath } from "d3-geo";
 
 import { DayJSDateTime } from "components";
@@ -15,32 +17,79 @@ import {
   GiMarbles,
 } from "react-icons/gi";
 
+export const AlertMessageButtons = ({ description, instruction }) => {
+  return (
+    <div className="flex justify-between">
+      <AlertMessageModal messageType="Description" message={description} />
+      <AlertMessageModal messageType="Instruction" message={instruction} />
+    </div>
+  );
+};
+
+export const AlertMessageModal = ({ messageType, message }) => {
+  const [isOpen, setOpen] = useState(false);
+
+  const toggleModalOpen = () => {
+    setOpen((isOpen) => !isOpen);
+  };
+
+  return (
+    <div className="font-sans">
+      <Button onClick={toggleModalOpen}>
+        {messageType}{" "}
+        <AiOutlineExpandAlt color="white" size={25} className="ml-4" />
+      </Button>
+      <Modal open={isOpen}>
+        <Modal.Body>{message}</Modal.Body>
+        <Modal.Actions>
+          <Button
+            onClick={toggleModalOpen}
+            className="bg-red-500 text-black hover:text-white"
+          >
+            CLOSE
+          </Button>
+        </Modal.Actions>
+      </Modal>
+    </div>
+  );
+};
+
+//TODO: create AlertPolygonMap using OpenLayers
+
+export const AlertPolygonMap = ({ geometry, fillColor }) => {
+  const albersProjection = geoAlbers();
+  const albersGeoPath = geoPath(albersProjection);
+  const [[x0, y0], [x1, y1]] = albersGeoPath.bounds(geometry);
+  const boundGeometry = albersProjection.fitExtent(
+    [
+      [x0, y0],
+      [x1, y1],
+    ],
+    geometry
+  );
+  const path = albersGeoPath(boundGeometry);
+
+  const xDiff = x1 - x0;
+  const yDiff = y1 - y0;
+  const x = x0 + x1 / 2;
+  const y = y0 + y1 / 2;
+  const width = 975;
+  const height = 610;
+
+  return (
+    <div className="bg-black rounded-md p-2">
+      <USMap>
+        {/* {<path d={albersGeoPath(geometry)} stroke="white" fill={fillColor} />} */}
+        {<path d={albersGeoPath(geometry)} stroke="white" fill={fillColor} />}
+      </USMap>
+    </div>
+  );
+};
+
 export const Body = ({ children }) => {
   const { Body } = Card;
 
   return <Body className="p-0">{children}</Body>;
-};
-
-export const Title = ({ children }) => {
-  const { Title } = Card;
-
-  return (
-    <Title className="bg-black rounded-md p-2 mb-2 flex justify-between">
-      {children}
-    </Title>
-  );
-};
-
-export const SenderName = ({ senderName }) => {
-  const wfoOffice =
-    senderName?.replace("NWS ", "") ?? "National Weather Service";
-
-  return (
-    <div className="flex flex-col">
-      <span className="text-sm">NWS Office:</span>
-      <span>{wfoOffice}</span>
-    </div>
-  );
 };
 
 export const ExpirationTime = ({ expiresTime }) => {
@@ -119,6 +168,28 @@ export const MaxHailSize = ({ maxHailSize }) => {
   );
 };
 
+export const SenderName = ({ senderName }) => {
+  const wfoOffice =
+    senderName?.replace("NWS ", "") ?? "National Weather Service";
+
+  return (
+    <div className="flex flex-col">
+      <span className="text-sm">NWS Office:</span>
+      <span>{wfoOffice}</span>
+    </div>
+  );
+};
+
+export const Title = ({ children }) => {
+  const { Title } = Card;
+
+  return (
+    <Title className="bg-black rounded-md p-2 mb-2 flex justify-between">
+      {children}
+    </Title>
+  );
+};
+
 export const TornadoDetection = ({ tornadoDetection }) => {
   let DetectionIcon =
     tornadoDetection[0] === "OBSERVED" ? GiBinoculars : GiRadarSweep;
@@ -129,38 +200,6 @@ export const TornadoDetection = ({ tornadoDetection }) => {
       <div className="flex justify-center mt-2">
         <DetectionIcon size={40} />
       </div>
-    </div>
-  );
-};
-
-//TODO: create AlertPolygonMap
-
-export const AlertPolygonMap = ({ geometry, fillColor }) => {
-  const albersProjection = geoAlbers();
-  const albersGeoPath = geoPath(albersProjection);
-  const [[x0, y0], [x1, y1]] = albersGeoPath.bounds(geometry);
-  const boundGeometry = albersProjection.fitExtent(
-    [
-      [x0, y0],
-      [x1, y1],
-    ],
-    geometry
-  );
-  const path = albersGeoPath(boundGeometry);
-
-  const xDiff = x1 - x0;
-  const yDiff = y1 - y0;
-  const x = x0 + x1 / 2;
-  const y = y0 + y1 / 2;
-  const width = 975;
-  const height = 610;
-
-  return (
-    <div className="bg-black rounded-md p-2">
-      <USMap>
-        {/* {<path d={albersGeoPath(geometry)} stroke="white" fill={fillColor} />} */}
-        {<path d={albersGeoPath(geometry)} stroke="white" fill={fillColor} />}
-      </USMap>
     </div>
   );
 };

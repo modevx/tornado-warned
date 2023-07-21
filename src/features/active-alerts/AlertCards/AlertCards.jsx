@@ -1,6 +1,7 @@
 import { Card } from "react-daisyui";
 
 import {
+  AlertMessageButtons,
   AlertPolygonMap,
   Body,
   ExpirationTime,
@@ -42,6 +43,10 @@ export const TornadoWarningAlert = ({ alert }) => {
         <ImpactedAreas areaDesc={areaDesc} />
         <AlertPolygonMap geometry={geometry} fillColor="limegreen" />
         {/* <p>{instruction}</p> */}
+        <AlertMessageButtons
+          description={description}
+          instruction={instruction}
+        />
       </Body>
     </Card>
   );
