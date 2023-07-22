@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { AiFillCloseCircle, AiOutlineExpandAlt } from "react-icons/ai";
 import { Button, Card, Modal } from "react-daisyui";
 import { geoAlbers, geoPath } from "d3-geo";
+import OSM from "ol/source/OSM";
+import VectorLayer from "ol/layer/Vector";
+import { Map, View } from "ol";
 
 import { DayJSDateTime } from "components";
 import { STATES_MAP } from "constants";
@@ -63,29 +66,66 @@ export const AlertMessageModal = ({ messageType, message }) => {
 export const AlertPolygonMap = ({ geometry, fillColor }) => {
   const albersProjection = geoAlbers();
   const albersGeoPath = geoPath(albersProjection);
-  const [[x0, y0], [x1, y1]] = albersGeoPath.bounds(geometry);
-  const boundGeometry = albersProjection.fitExtent(
-    [
-      [x0, y0],
-      [x1, y1],
-    ],
+  // const [[x0, y0], [x1, y1]] = albersGeoPath.bounds(geometry);
+  const [minBounds, maxBounds] = albersGeoPath.bounds(geometry);
+  const fitExtentProjection = albersProjection.fitExtent(
+    [minBounds, maxBounds],
     geometry
   );
-  const path = albersGeoPath(boundGeometry);
+  const fitExtentGeoPath = geoPath(fitExtentProjection);
+  const centroid = albersGeoPath.centroid(geometry);
+  const alertMapRef = useRef();
+  // const boundGeometry = albersProjection.fitExtent(
+  //   [
+  //     [x0, y0],
+  //     [x1, y1],
+  //   ],
+  //   geometry
+  // );
+  // const path = albersGeoPath(boundGeometry);
 
-  const xDiff = x1 - x0;
-  const yDiff = y1 - y0;
-  const x = x0 + x1 / 2;
-  const y = y0 + y1 / 2;
-  const width = 975;
-  const height = 610;
+  // console.log("[minBounds, maxBounds]\n", [minBounds, maxBounds]);
+  // console.log("centroid\n", centroid);
+
+  // const xDiff = x1 - x0;
+  // const yDiff = y1 - y0;
+  // const x = x0 + x1 / 2;
+  // const y = y0 + y1 / 2;
+  // const width = 975;
+  // const height = 610;
+
+  useEffect(() => {
+    const view = new View({
+      center: centroid,
+      zoom: 8,
+      extent: [...minBounds, ...maxBounds],
+    });
+
+    new Map({
+      layers: [
+        new VectorLayer({
+          source: new OSM(),
+        }),
+      ],
+      target: "alert-map",
+      view: view,
+    });
+  });
 
   return (
     <div className="bg-black rounded-md p-2">
       <USMap>
         {/* {<path d={albersGeoPath(geometry)} stroke="white" fill={fillColor} />} */}
-        {<path d={albersGeoPath(geometry)} stroke="white" fill={fillColor} />}
+        {
+          <path
+            d={fitExtentProjection(geometry)}
+            stroke="white"
+            fill={fillColor}
+          />
+        }
+        {/* {<path d={albersGeoPath(geometry)} stroke="white" fill={fillColor} />} */}
       </USMap>
+      {/* <div id="alert-map" ref={alertMapRef}></div> */}
     </div>
   );
 };
