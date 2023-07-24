@@ -1,18 +1,25 @@
-import { useRef, useEffect, useState } from "react";
-import { AiFillCloseCircle, AiOutlineExpandAlt } from "react-icons/ai";
-import { Button, Card, Modal } from "react-daisyui";
 import { geoAlbers, geoPath } from "d3-geo";
-import OSM from "ol/source/OSM";
-import VectorLayer from "ol/layer/Vector";
-import { Map, View } from "ol";
+import { Button, Card, Modal } from "react-daisyui";
+import { useEffect, useRef, useState } from "react";
+import { AiFillCloseCircle, AiOutlineExpandAlt } from "react-icons/ai";
 
-import { DayJSDateTime } from "components";
-import { STATES_MAP } from "constants";
+import ImageLayer from "ol/layer/Image";
+import ImageWMSSource from "ol/source/ImageWMS";
+import GraticuleLayer from "ol/layer/Graticule";
+import { Map, View } from "ol";
+import XYZ from "ol/source/XYZ";
+import BaseImageLayer from "ol/layer/BaseImage";
+import TileLayer from "ol/layer/Tile";
+import VectorLayer from "ol/layer/Vector";
+import VectorSource from "ol/source/Vector";
+
 import { USMap } from "components";
-import { createImpactedAreasMap } from "utils";
+import { STATES_MAP } from "constants";
+import { DayJSDateTime } from "components";
 import { BiCreditCard } from "react-icons/bi";
-import { IoBaseballOutline } from "react-icons/io5";
 import { TbToiletPaper } from "react-icons/tb";
+import { createImpactedAreasMap } from "utils";
+import { IoBaseballOutline } from "react-icons/io5";
 import {
   GiBinoculars,
   GiRadarSweep,
@@ -63,70 +70,49 @@ export const AlertMessageModal = ({ messageType, message }) => {
 
 //TODO: create AlertPolygonMap using OpenLayers
 
-export const AlertPolygonMap = ({ geometry, fillColor }) => {
-  const albersProjection = geoAlbers();
-  const albersGeoPath = geoPath(albersProjection);
-  // const [[x0, y0], [x1, y1]] = albersGeoPath.bounds(geometry);
-  const [minBounds, maxBounds] = albersGeoPath.bounds(geometry);
-  const fitExtentProjection = albersProjection.fitExtent(
-    [minBounds, maxBounds],
-    geometry
-  );
-  const fitExtentGeoPath = geoPath(fitExtentProjection);
-  const centroid = albersGeoPath.centroid(geometry);
+export const AlertPolygon = ({ alertFeature }) => {
+  const [alertMap, setAlertMap] = useState();
+  const [alertPolygonLayer, setAlertPolygonLayer] = useState({});
+
   const alertMapRef = useRef();
-  // const boundGeometry = albersProjection.fitExtent(
-  //   [
-  //     [x0, y0],
-  //     [x1, y1],
-  //   ],
-  //   geometry
-  // );
-  // const path = albersGeoPath(boundGeometry);
-
-  // console.log("[minBounds, maxBounds]\n", [minBounds, maxBounds]);
-  // console.log("centroid\n", centroid);
-
-  // const xDiff = x1 - x0;
-  // const yDiff = y1 - y0;
-  // const x = x0 + x1 / 2;
-  // const y = y0 + y1 / 2;
-  // const width = 975;
-  // const height = 610;
 
   useEffect(() => {
-    const view = new View({
-      center: centroid,
-      zoom: 8,
-      extent: [...minBounds, ...maxBounds],
+    const initAlertPolygonLayer = new VectorLayer({
+      source: new VectorSource(),
     });
 
-    new Map({
+    const initAlertMap = new Map({
+      // -- target element (map div)
+      target: alertMapRef.current,
       layers: [
-        new VectorLayer({
-          source: new OSM(),
+        // -- basemap
+        new ImageLayer({
+          source: new ImageWMSSource({
+            url: "https://mapservices.weather.noaa.gov/static/rest/services/nws_reference_maps/nws_reference_map/MapServer/3",
+            serverType: "mapserver",
+          }),
         }),
+        initAlertPolygonLayer,
       ],
-      target: "alert-map",
-      view: view,
+      // -- projection
+      view: new View({
+        projection: "EPSG:3857",
+        center: [0, 0],
+        zoom: 2,
+      }),
     });
-  });
+
+    setAlertMap(initAlertMap);
+    setAlertPolygonLayer(initAlertPolygonLayer);
+  }, []);
+
+  if (alertMap) console.log("ALERT MAP >>\n", alertMap);
 
   return (
-    <div className="bg-black rounded-md p-2">
-      <USMap>
-        {/* {<path d={albersGeoPath(geometry)} stroke="white" fill={fillColor} />} */}
-        {
-          <path
-            d={fitExtentProjection(geometry)}
-            stroke="white"
-            fill={fillColor}
-          />
-        }
-        {/* {<path d={albersGeoPath(geometry)} stroke="white" fill={fillColor} />} */}
-      </USMap>
-      {/* <div id="alert-map" ref={alertMapRef}></div> */}
-    </div>
+    <div
+      ref={alertMapRef}
+      className="bg-black rounded-md p-2 w-full h-96 overflow-hidden"
+    ></div>
   );
 };
 
@@ -187,7 +173,7 @@ export const MaxHailSize = ({ maxHailSize }) => {
   let SizeIcon;
   const maxSizeFloat = parseFloat(maxHailSize[0].split(" ")[2]);
 
-  console.log("maxSizeFloat\n", maxSizeFloat);
+  // console.log("maxSizeFloat\n", maxSizeFloat);
 
   if (maxSizeFloat >= 4) {
     SizeIcon = TbToiletPaper;

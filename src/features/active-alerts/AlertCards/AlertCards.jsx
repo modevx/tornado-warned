@@ -2,7 +2,7 @@ import { Card } from "react-daisyui";
 
 import {
   AlertMessageButtons,
-  AlertPolygonMap,
+  AlertPolygon,
   Body,
   ExpirationTime,
   ImpactedAreas,
@@ -13,7 +13,7 @@ import {
 } from "features/active-alerts/AlertCardElements";
 
 export const TornadoWarningAlert = ({ alert }) => {
-  const { geometry, properties } = alert;
+  const { id, type, geometry, properties } = alert;
   const {
     areaDesc,
     effective,
@@ -26,6 +26,7 @@ export const TornadoWarningAlert = ({ alert }) => {
     // *
     parameters: { maxHailSize, tornadoDetection },
   } = properties;
+  const alertFeature = { id, type, geometry };
 
   return (
     <Card className="bg-red-500 p-2">
@@ -41,7 +42,7 @@ export const TornadoWarningAlert = ({ alert }) => {
         </div>
 
         <ImpactedAreas areaDesc={areaDesc} />
-        <AlertPolygonMap geometry={geometry} fillColor="limegreen" />
+        <AlertPolygon alertFeature={alertFeature} />
         {/* <p>{instruction}</p> */}
         <AlertMessageButtons
           description={description}
