@@ -1,4 +1,9 @@
-import { geoAlbers, geoPath } from "d3-geo";
+import * as d3 from "d3";
+import TurfRewind from "@turf/rewind";
+import * as topojson from "topojson-client";
+import { geoBounds, geoAlbers, geoPath as d3geoPath } from "d3-geo";
+import AlbersTopoJSONMap from "components/USMap/_constants/albers-topojson-map.json";
+
 import { Button, Card, Modal } from "react-daisyui";
 import { useEffect, useRef, useState } from "react";
 import { AiFillCloseCircle, AiOutlineExpandAlt } from "react-icons/ai";
@@ -26,6 +31,7 @@ import {
   GiGolfTee,
   GiMarbles,
 } from "react-icons/gi";
+import rewind from "@turf/rewind";
 
 export const AlertMessageButtons = ({ description, instruction }) => {
   return (
@@ -71,48 +77,115 @@ export const AlertMessageModal = ({ messageType, message }) => {
 //TODO: create AlertPolygonMap using OpenLayers
 
 export const AlertPolygon = ({ alertFeature }) => {
-  const [alertMap, setAlertMap] = useState();
-  const [alertPolygonLayer, setAlertPolygonLayer] = useState({});
+  const { id, type, geometry: alertGeoJSON } = alertFeature;
+  // const [alertMap, setAlertMap] = useState();
+  // const [alertPolygonLayer, setAlertPolygonLayer] = useState({});
 
-  const alertMapRef = useRef();
+  // const alertMapRef = useRef();
 
-  useEffect(() => {
-    const initAlertPolygonLayer = new VectorLayer({
-      source: new VectorSource(),
-    });
+  // useEffect(() => {
+  //   const initAlertPolygonLayer = new VectorLayer({
+  //     source: new VectorSource(),
+  //   });
 
-    const initAlertMap = new Map({
-      // -- target element (map div)
-      target: alertMapRef.current,
-      layers: [
-        // -- basemap
-        new ImageLayer({
-          source: new ImageWMSSource({
-            url: "https://mapservices.weather.noaa.gov/static/rest/services/nws_reference_maps/nws_reference_map/MapServer/3",
-            serverType: "mapserver",
-          }),
-        }),
-        initAlertPolygonLayer,
-      ],
-      // -- projection
-      view: new View({
-        projection: "EPSG:3857",
-        center: [0, 0],
-        zoom: 2,
-      }),
-    });
+  //   const initAlertMap = new Map({
+  //     // -- target element (map div)
+  //     target: alertMapRef.current,
+  //     layers: [
+  //       // -- basemap
+  //       new ImageLayer({
+  //         source: new ImageWMSSource({
+  //           url: "https://mapservices.weather.noaa.gov/static/rest/services/nws_reference_maps/nws_reference_map/MapServer/3",
+  //           serverType: "mapserver",
+  //         }),
+  //       }),
+  //       initAlertPolygonLayer,
+  //     ],
+  //     // -- projection
+  //     view: new View({
+  //       projection: "EPSG:3857",
+  //       center: [0, 0],
+  //       zoom: 2,
+  //     }),
+  //   });
 
-    setAlertMap(initAlertMap);
-    setAlertPolygonLayer(initAlertPolygonLayer);
-  }, []);
+  //   setAlertMap(initAlertMap);
+  //   setAlertPolygonLayer(initAlertPolygonLayer);
+  // }, []);
 
-  if (alertMap) console.log("ALERT MAP >>\n", alertMap);
+  // if (alertMap) console.log("ALERT MAP >>\n", alertMap);
+
+  // return (
+  //   <div
+  //     ref={alertMapRef}
+  //     className="bg-black rounded-md p-2 w-full h-96 overflow-hidden"
+  //   ></div>
+  // );
+
+  const { features: stateFeatures } = topojson.feature(
+    AlbersTopoJSONMap,
+    "states"
+  );
+
+  function convertBoundsToExtent(bounds) {
+    const [x0, y0] = bounds[0]; // min corner
+    const [x1, y1] = bounds[1]; // max corner
+
+    // returns flipped min-y & max-y VALUES
+    return [
+      [x0, y1],
+      [x1, y0],
+    ];
+  }
+
+  // -- ALBERS GEO-PATH EXTENT-CONSTRAINED by  PLANAR BOUNDS
+  const projection = geoAlbers();
+  const projectionPath = d3geoPath(projection);
+  const projectedBB = projectionPath.bounds(alertFeature);
+  const planarExtent = convertBoundsToExtent(projectedBB);
+  const planarPath = d3geoPath(geoAlbers().fitExtent(planarExtent));
+  console.log("PLANAR BOUNDS >>\n", projectedBB);
+  console.log("PLANAR EXTENT >>\n", planarExtent);
+
+  // -- ALBERS GEO-PATH EXTENT-CONSTRAINED by GEO BOUNDS
+  const geoBB = d3.geoBounds(alertFeature);
+  const geoExtent = convertBoundsToExtent(geoBB);
+  const geoPath = d3geoPath(geoAlbers().fitExtent(geoExtent));
+  console.log("GEO BOUNDS >>\n", geoBB);
+  console.log("GEO EXTENT >>\n", geoExtent);
+
+  // -- MANUALLY-SET EXTENT-CONSTRAINED ALBERS GEO-PATH
+  const albersProjection = geoAlbers().fitExtent(
+    [
+      [0, 0],
+      [975, 610],
+    ],
+    alertFeature
+  );
+  const albersPath = d3geoPath(albersProjection);
 
   return (
-    <div
-      ref={alertMapRef}
-      className="bg-black rounded-md p-2 w-full h-96 overflow-hidden"
-    ></div>
+    <div className="bg-black rounded-md p-2">
+      <svg viewBox="0 -60 975 610" xmlns="http://www.w3.org/2000/svg">
+        <g>
+          {/* <path d={d3.zoom().extent([,])} /> */}
+          {stateFeatures.map((feature) => (
+            <path
+              key={feature.properties.name}
+              d={albersPath(feature)}
+              stroke="black"
+              fill="white"
+            />
+          ))}
+        </g>
+        <g>
+          <path
+            d={albersPath(TurfRewind(alertFeature, { reverse: true }))}
+            fill="limegreen"
+          />
+        </g>
+      </svg>
+    </div>
   );
 };
 

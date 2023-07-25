@@ -14,6 +14,7 @@ import {
 
 export const TornadoWarningAlert = ({ alert }) => {
   const { id, type, geometry, properties } = alert;
+  const alertFeature = { id, type, geometry };
   const {
     areaDesc,
     effective,
@@ -26,7 +27,6 @@ export const TornadoWarningAlert = ({ alert }) => {
     // *
     parameters: { maxHailSize, tornadoDetection },
   } = properties;
-  const alertFeature = { id, type, geometry };
 
   return (
     <Card className="bg-red-500 p-2">
