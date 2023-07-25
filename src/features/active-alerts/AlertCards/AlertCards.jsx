@@ -74,7 +74,9 @@ export const TornadoWatchAlert = ({ alert }) => {
 };
 
 export const SevereStormWarningAlert = ({ alert }) => {
-  const { properties } = alert;
+  const { id, type, geometry, properties } = alert;
+  const alertFeature = { id, type, geometry };
+
   const { areaDesc, effective, expires, senderName, description, instruction } =
     properties;
 
@@ -87,6 +89,7 @@ export const SevereStormWarningAlert = ({ alert }) => {
 
       <Body>
         <ImpactedAreas areaDesc={areaDesc} />
+        <AlertPolygon alertFeature={alertFeature} />
         {/* <p>{instruction}</p> */}
       </Body>
     </Card>

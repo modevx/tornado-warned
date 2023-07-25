@@ -1,25 +1,12 @@
 import * as d3 from "d3";
 import TurfRewind from "@turf/rewind";
 import * as topojson from "topojson-client";
-import { geoBounds, geoAlbers, geoPath as d3geoPath } from "d3-geo";
 import AlbersTopoJSONMap from "components/USMap/_constants/albers-topojson-map.json";
 
+import { useState } from "react";
 import { Button, Card, Modal } from "react-daisyui";
-import { useEffect, useRef, useState } from "react";
 import { AiFillCloseCircle, AiOutlineExpandAlt } from "react-icons/ai";
 
-import ImageLayer from "ol/layer/Image";
-import ImageWMSSource from "ol/source/ImageWMS";
-import GraticuleLayer from "ol/layer/Graticule";
-import { Map, View } from "ol";
-import XYZ from "ol/source/XYZ";
-import BaseImageLayer from "ol/layer/BaseImage";
-import TileLayer from "ol/layer/Tile";
-import VectorLayer from "ol/layer/Vector";
-import VectorSource from "ol/source/Vector";
-
-import { USMap } from "components";
-import { STATES_MAP } from "constants";
 import { DayJSDateTime } from "components";
 import { BiCreditCard } from "react-icons/bi";
 import { TbToiletPaper } from "react-icons/tb";
@@ -31,7 +18,6 @@ import {
   GiGolfTee,
   GiMarbles,
 } from "react-icons/gi";
-import rewind from "@turf/rewind";
 
 export const AlertMessageButtons = ({ description, instruction }) => {
   return (
@@ -77,6 +63,8 @@ export const AlertMessageModal = ({ messageType, message }) => {
 //TODO: create AlertPolygonMap using OpenLayers
 
 export const AlertPolygon = ({ alertFeature }) => {
+  // TODO: map alert type to alert polygon color
+  // TODO: add conus city geojson points to basemap for user geo reference
   const { id, type, geometry: alertGeoJSON } = alertFeature;
   // const [alertMap, setAlertMap] = useState();
   // const [alertPolygonLayer, setAlertPolygonLayer] = useState({});
@@ -127,6 +115,9 @@ export const AlertPolygon = ({ alertFeature }) => {
     "states"
   );
 
+  if (stateFeatures) console.log("STATE FEATURES >>\n", stateFeatures);
+
+  // * // extent = [[left, top],[right, bottom]]
   function convertBoundsToExtent(bounds) {
     const [x0, y0] = bounds[0]; // min corner
     const [x1, y1] = bounds[1]; // max corner
@@ -138,41 +129,53 @@ export const AlertPolygon = ({ alertFeature }) => {
     ];
   }
 
-  // -- ALBERS GEO-PATH EXTENT-CONSTRAINED by  PLANAR BOUNDS
-  const projection = geoAlbers();
-  const projectionPath = d3geoPath(projection);
-  const projectedBB = projectionPath.bounds(alertFeature);
+  // -- EXTENT CONSTRAINT using PLANAR BOUNDS
+  const projection = d3.geoAlbers();
+  const projectionPath = d3.geoPath(projection);
+  // const projectedBB = projectionPath.bounds(alertFeature);
+  const projectedBB = d3.geoPath().bounds(alertFeature);
   const planarExtent = convertBoundsToExtent(projectedBB);
-  const planarPath = d3geoPath(geoAlbers().fitExtent(planarExtent));
+  const planarPath = d3.geoPath(
+    d3.geoAlbers().fitExtent(projectedBB, alertFeature)
+  );
   console.log("PLANAR BOUNDS >>\n", projectedBB);
   console.log("PLANAR EXTENT >>\n", planarExtent);
 
-  // -- ALBERS GEO-PATH EXTENT-CONSTRAINED by GEO BOUNDS
+  // -- EXTENT CONSTRAINT using GEO BOUNDS
   const geoBB = d3.geoBounds(alertFeature);
   const geoExtent = convertBoundsToExtent(geoBB);
-  const geoPath = d3geoPath(geoAlbers().fitExtent(geoExtent));
+  const geoPath = d3.geoPath(d3.geoAlbers().fitExtent(geoExtent, alertFeature));
   console.log("GEO BOUNDS >>\n", geoBB);
   console.log("GEO EXTENT >>\n", geoExtent);
 
   // -- MANUALLY-SET EXTENT-CONSTRAINED ALBERS GEO-PATH
-  const albersProjection = geoAlbers().fitExtent(
+  // TODO /////////////////////////////////////
+  // TODO: dynamically set .fitExtent values
+  // TODO /////////////////////////////////////
+  const albersProjection = d3.geoAlbers().fitExtent(
     [
-      [0, 0],
-      [975, 610],
+      [300, 250],
+      [675, 360],
     ],
     alertFeature
   );
-  const albersPath = d3geoPath(albersProjection);
+  const manualPath = d3.geoPath(albersProjection);
 
   return (
-    <div className="bg-black rounded-md p-2">
-      <svg viewBox="0 -60 975 610" xmlns="http://www.w3.org/2000/svg">
+    <div className="bg-blue-400 rounded-lg">
+      <svg
+        viewBox="0 0 975 610"
+        xmlns="http://www.w3.org/2000/svg"
+        className="rounded-lg"
+      >
         <g>
-          {/* <path d={d3.zoom().extent([,])} /> */}
           {stateFeatures.map((feature) => (
             <path
               key={feature.properties.name}
-              d={albersPath(feature)}
+              id={feature.properties.name}
+              // d={planarPath(feature)}
+              // d={geoPath(feature)}
+              d={manualPath(feature)}
               stroke="black"
               fill="white"
             />
@@ -180,8 +183,11 @@ export const AlertPolygon = ({ alertFeature }) => {
         </g>
         <g>
           <path
-            d={albersPath(TurfRewind(alertFeature, { reverse: true }))}
+            // d={planarPath(TurfRewind(alertFeature, { reverse: true }))}
+            // d={geoPath(TurfRewind(alertFeature, { reverse: true }))}
+            d={manualPath(TurfRewind(alertFeature, { reverse: true }))}
             fill="limegreen"
+            opacity={0.7}
           />
         </g>
       </svg>
