@@ -1,6 +1,8 @@
 import * as d3 from "d3";
 import TurfRewind from "@turf/rewind";
 import * as topojson from "topojson-client";
+import US_CITY_POINTS from "components/USMap/_constants/us-city-points.geo.json";
+import MAJOR_US_CITIES from "components/USMap/_constants/major-us-cities.geo.json";
 import AlbersTopoJSONMap from "components/USMap/_constants/albers-topojson-map.json";
 
 import { useState } from "react";
@@ -115,7 +117,7 @@ export const AlertPolygon = ({ alertFeature }) => {
     "states"
   );
 
-  if (stateFeatures) console.log("STATE FEATURES >>\n", stateFeatures);
+  // if (stateFeatures) console.log("STATE FEATURES >>\n", stateFeatures);
 
   // * // extent = [[left, top],[right, bottom]]
   function convertBoundsToExtent(bounds) {
@@ -138,15 +140,15 @@ export const AlertPolygon = ({ alertFeature }) => {
   const planarPath = d3.geoPath(
     d3.geoAlbers().fitExtent(projectedBB, alertFeature)
   );
-  console.log("PLANAR BOUNDS >>\n", projectedBB);
-  console.log("PLANAR EXTENT >>\n", planarExtent);
+  // console.log("PLANAR BOUNDS >>\n", projectedBB);
+  // console.log("PLANAR EXTENT >>\n", planarExtent);
 
   // -- EXTENT CONSTRAINT using GEO BOUNDS
   const geoBB = d3.geoBounds(alertFeature);
   const geoExtent = convertBoundsToExtent(geoBB);
   const geoPath = d3.geoPath(d3.geoAlbers().fitExtent(geoExtent, alertFeature));
-  console.log("GEO BOUNDS >>\n", geoBB);
-  console.log("GEO EXTENT >>\n", geoExtent);
+  // console.log("GEO BOUNDS >>\n", geoBB);
+  // console.log("GEO EXTENT >>\n", geoExtent);
 
   // -- MANUALLY-SET EXTENT-CONSTRAINED ALBERS GEO-PATH
   // TODO /////////////////////////////////////
@@ -154,12 +156,20 @@ export const AlertPolygon = ({ alertFeature }) => {
   // TODO /////////////////////////////////////
   const albersProjection = d3.geoAlbers().fitExtent(
     [
-      [300, 250],
-      [675, 360],
+      [150, 100],
+      [825, 510],
     ],
     alertFeature
   );
   const manualPath = d3.geoPath(albersProjection);
+
+  const filteredCities = US_CITY_POINTS.features.filter((feature) => {
+    const {
+      properties: { population },
+    } = feature;
+
+    return population > 125000;
+  });
 
   return (
     <div className="bg-blue-400 rounded-lg">
@@ -168,6 +178,7 @@ export const AlertPolygon = ({ alertFeature }) => {
         xmlns="http://www.w3.org/2000/svg"
         className="rounded-lg"
       >
+        {/* -- STATES */}
         <g>
           {stateFeatures.map((feature) => (
             <path
@@ -181,6 +192,34 @@ export const AlertPolygon = ({ alertFeature }) => {
             />
           ))}
         </g>
+        {/* -- CITIES */}
+        <g>
+          {filteredCities.map((feature) => {
+            const centroid = manualPath.centroid(feature);
+            const { city, state } = feature.properties;
+
+            return (
+              <g key={`${city}-${state}`}>
+                <path
+                  d={manualPath(feature)}
+                  stroke="black"
+                  fill="red"
+                  r="10px"
+                />
+                <text
+                  x={centroid[0]}
+                  y={centroid[1]}
+                  fontSize="45"
+                  fill="black"
+                  textAnchor="start"
+                >
+                  {city}
+                </text>
+              </g>
+            );
+          })}
+        </g>
+        {/* -- ALERT POLYGON */}
         <g>
           <path
             // d={planarPath(TurfRewind(alertFeature, { reverse: true }))}
