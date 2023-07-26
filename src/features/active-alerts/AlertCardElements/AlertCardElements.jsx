@@ -7,7 +7,7 @@ import AlbersTopoJSONMap from "components/USMap/_constants/albers-topojson-map.j
 
 import { useState } from "react";
 import { Button, Card, Modal } from "react-daisyui";
-import { AiFillCloseCircle, AiOutlineExpandAlt } from "react-icons/ai";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 import { DayJSDateTime } from "components";
 import { BiCreditCard } from "react-icons/bi";
@@ -23,8 +23,9 @@ import {
 
 export const AlertMessageButtons = ({ description, instruction }) => {
   return (
-    <div>
+    <div className="flex">
       <AlertMessageModal messageType="Description" message={description} />
+      <div className="mx-2"></div>
       <AlertMessageModal messageType="Instruction" message={instruction} />
     </div>
   );
@@ -38,10 +39,9 @@ export const AlertMessageModal = ({ messageType, message }) => {
   };
 
   return (
-    <div className="font-sans my-2">
+    <div className="font-sans flex-1">
       <Button onClick={toggleModalOpen} className="w-full">
         {messageType}{" "}
-        <AiOutlineExpandAlt color="white" size={25} className="ml-4" />
       </Button>
       <Modal open={isOpen}>
         <Modal.Body>{message}</Modal.Body>
@@ -50,10 +50,11 @@ export const AlertMessageModal = ({ messageType, message }) => {
             onClick={toggleModalOpen}
             className="bg-transparent hover:bg-transparent border-none"
           >
+            <span className="mr-2">close</span>
             <AiFillCloseCircle
               size={25}
-              color="red"
-              className="hover:fill-white"
+              color="white"
+              className="hover:fill-red-500"
             />
           </Button>
         </Modal.Actions>
@@ -137,7 +138,7 @@ export const AlertPolygon = ({ alertFeature }) => {
       properties: { population },
     } = feature;
 
-    return population > 125000;
+    return population > 90000;
   });
 
   return (
@@ -222,7 +223,7 @@ export const ExpirationTime = ({ expiresTime }) => {
     <div className="text-xs flex flex-col">
       <span>Expires:</span>
       {expiresTime ? (
-        <DayJSDateTime utcDate={expiresTime} format="dd LT" />
+        <DayJSDateTime utcDate={expiresTime} format="LT" />
       ) : (
         "Unknown"
       )}
@@ -299,7 +300,7 @@ export const SenderName = ({ senderName }) => {
 
   return (
     <div className="flex flex-col">
-      <span className="text-sm">NWS Office:</span>
+      {/* <span className="text-sm">NWS Office:</span> */}
       <span>{wfoOffice}</span>
     </div>
   );

@@ -12,6 +12,8 @@ import {
   TornadoDetection,
 } from "features/active-alerts/AlertCardElements";
 
+// TODO: add special messging for TORNADO EMERGENCY & PARTICULARLY DANGEROUS SITUATION alerts
+
 export const TornadoWarningAlert = ({ alert }) => {
   const { id, type, geometry, properties } = alert;
   const alertFeature = { id, type, geometry };
@@ -36,14 +38,12 @@ export const TornadoWarningAlert = ({ alert }) => {
       </Title>
 
       <Body>
-        <div className="flex justify-between mb-2">
+        <div className="flex justify-between">
           <TornadoDetection tornadoDetection={tornadoDetection} />
           <MaxHailSize maxHailSize={maxHailSize} />
         </div>
-
-        <ImpactedAreas areaDesc={areaDesc} />
         <AlertPolygon alertFeature={alert} />
-        {/* <p>{instruction}</p> */}
+        <ImpactedAreas areaDesc={areaDesc} />
         <AlertMessageButtons
           description={description}
           instruction={instruction}
