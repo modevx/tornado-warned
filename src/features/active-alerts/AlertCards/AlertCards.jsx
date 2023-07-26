@@ -42,7 +42,7 @@ export const TornadoWarningAlert = ({ alert }) => {
         </div>
 
         <ImpactedAreas areaDesc={areaDesc} />
-        <AlertPolygon alertFeature={alertFeature} />
+        <AlertPolygon alertFeature={alert} />
         {/* <p>{instruction}</p> */}
         <AlertMessageButtons
           description={description}
@@ -78,7 +78,7 @@ export const SevereStormWarningAlert = ({ alert }) => {
   const alertFeature = { id, type, geometry };
 
   const { areaDesc, effective, expires, senderName, description, instruction } =
-    properties;
+    alert?.properties;
 
   return (
     <Card className="bg-orange-500 p-2">
@@ -89,7 +89,7 @@ export const SevereStormWarningAlert = ({ alert }) => {
 
       <Body>
         <ImpactedAreas areaDesc={areaDesc} />
-        <AlertPolygon alertFeature={alertFeature} />
+        <AlertPolygon alertFeature={alert} />
         {/* <p>{instruction}</p> */}
       </Body>
     </Card>

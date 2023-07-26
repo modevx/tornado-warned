@@ -65,59 +65,28 @@ export const AlertMessageModal = ({ messageType, message }) => {
 //TODO: create AlertPolygonMap using OpenLayers
 
 export const AlertPolygon = ({ alertFeature }) => {
-  // TODO: map alert type to alert polygon color
-  // TODO: add conus city geojson points to basemap for user geo reference
-  const { id, type, geometry: alertGeoJSON } = alertFeature;
-  // const [alertMap, setAlertMap] = useState();
-  // const [alertPolygonLayer, setAlertPolygonLayer] = useState({});
+  const {
+    id,
+    type,
+    geometry: alertGeoJSON,
+    properties: { event },
+  } = alertFeature;
 
-  // const alertMapRef = useRef();
+  let alertPolygonFill =
+    event === "Tornado Warning"
+      ? "red"
+      : event === "Tornado Watch"
+      ? "yellow"
+      : event === "Severe Thunderstorm Warning"
+      ? "orange"
+      : "green";
 
-  // useEffect(() => {
-  //   const initAlertPolygonLayer = new VectorLayer({
-  //     source: new VectorSource(),
-  //   });
-
-  //   const initAlertMap = new Map({
-  //     // -- target element (map div)
-  //     target: alertMapRef.current,
-  //     layers: [
-  //       // -- basemap
-  //       new ImageLayer({
-  //         source: new ImageWMSSource({
-  //           url: "https://mapservices.weather.noaa.gov/static/rest/services/nws_reference_maps/nws_reference_map/MapServer/3",
-  //           serverType: "mapserver",
-  //         }),
-  //       }),
-  //       initAlertPolygonLayer,
-  //     ],
-  //     // -- projection
-  //     view: new View({
-  //       projection: "EPSG:3857",
-  //       center: [0, 0],
-  //       zoom: 2,
-  //     }),
-  //   });
-
-  //   setAlertMap(initAlertMap);
-  //   setAlertPolygonLayer(initAlertPolygonLayer);
-  // }, []);
-
-  // if (alertMap) console.log("ALERT MAP >>\n", alertMap);
-
-  // return (
-  //   <div
-  //     ref={alertMapRef}
-  //     className="bg-black rounded-md p-2 w-full h-96 overflow-hidden"
-  //   ></div>
-  // );
-
-  const { features: stateFeatures } = topojson.feature(
+  const { features: countyFeatures } = topojson.feature(
     AlbersTopoJSONMap,
-    "states"
+    "counties"
   );
 
-  // if (stateFeatures) console.log("STATE FEATURES >>\n", stateFeatures);
+  // if (countyFeatures) console.log("STATE FEATURES >>\n", countyFeatures);
 
   // * // extent = [[left, top],[right, bottom]]
   function convertBoundsToExtent(bounds) {
@@ -172,7 +141,7 @@ export const AlertPolygon = ({ alertFeature }) => {
   });
 
   return (
-    <div className="bg-blue-400 rounded-lg">
+    <div className="bg-black rounded-lg p-2">
       <svg
         viewBox="0 0 975 610"
         xmlns="http://www.w3.org/2000/svg"
@@ -180,21 +149,38 @@ export const AlertPolygon = ({ alertFeature }) => {
       >
         {/* -- STATES */}
         <g>
-          {stateFeatures.map((feature) => (
+          {countyFeatures.map((feature) => (
             <path
               key={feature.properties.name}
               id={feature.properties.name}
               // d={planarPath(feature)}
               // d={geoPath(feature)}
               d={manualPath(feature)}
-              stroke="black"
-              fill="white"
+              stroke="white"
+              fill="grey"
             />
           ))}
         </g>
+
+        {/* -- ALERT POLYGON */}
+        <g>
+          <path
+            // d={planarPath(TurfRewind(alertFeature, { reverse: true }))}
+            // d={geoPath(TurfRewind(alertFeature, { reverse: true }))}
+            d={manualPath(TurfRewind(alertFeature, { reverse: true }))}
+            fill={alertPolygonFill}
+            stroke={`dark${alertPolygonFill}`}
+            strokeWidth={10}
+            opacity={0.7}
+          />
+        </g>
+
         {/* -- CITIES */}
         <g>
           {filteredCities.map((feature) => {
+            {
+              /* TODO: add space between & center city label points & names */
+            }
             const centroid = manualPath.centroid(feature);
             const { city, state } = feature.properties;
 
@@ -202,15 +188,16 @@ export const AlertPolygon = ({ alertFeature }) => {
               <g key={`${city}-${state}`}>
                 <path
                   d={manualPath(feature)}
-                  stroke="black"
-                  fill="red"
-                  r="10px"
+                  stroke={`dark${alertPolygonFill}`}
+                  fill="white"
+                  strokeWidth={20}
+                  spacing={10}
                 />
                 <text
                   x={centroid[0]}
                   y={centroid[1]}
                   fontSize="45"
-                  fill="black"
+                  fill="white"
                   textAnchor="start"
                 >
                   {city}
@@ -218,16 +205,6 @@ export const AlertPolygon = ({ alertFeature }) => {
               </g>
             );
           })}
-        </g>
-        {/* -- ALERT POLYGON */}
-        <g>
-          <path
-            // d={planarPath(TurfRewind(alertFeature, { reverse: true }))}
-            // d={geoPath(TurfRewind(alertFeature, { reverse: true }))}
-            d={manualPath(TurfRewind(alertFeature, { reverse: true }))}
-            fill="limegreen"
-            opacity={0.7}
-          />
         </g>
       </svg>
     </div>
