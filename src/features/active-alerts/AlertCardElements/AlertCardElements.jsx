@@ -148,19 +148,23 @@ export const AlertPolygon = ({ alertFeature }) => {
         xmlns="http://www.w3.org/2000/svg"
         className="rounded-lg"
       >
-        {/* -- STATES */}
+        {/* -- COUNTIES */}
         <g>
-          {countyFeatures.map((feature) => (
-            <path
-              key={feature.properties.name}
-              id={feature.properties.name}
-              // d={planarPath(feature)}
-              // d={geoPath(feature)}
-              d={manualPath(feature)}
-              stroke="white"
-              fill="grey"
-            />
-          ))}
+          {countyFeatures.map((feature) => {
+            const { id } = feature;
+
+            return (
+              <g key={`${id}`}>
+                <path
+                  // d={planarPath(feature)}
+                  // d={geoPath(feature)}
+                  d={manualPath(feature)}
+                  stroke="white"
+                  fill="grey"
+                />
+              </g>
+            );
+          })}
         </g>
 
         {/* -- ALERT POLYGON */}
@@ -176,12 +180,34 @@ export const AlertPolygon = ({ alertFeature }) => {
           />
         </g>
 
-        {/* -- CITIES */}
+        {/* -- COUNTY LABELS */}
         <g>
+          {countyFeatures.map((feature) => {
+            const centroid = manualPath.centroid(feature);
+            const {
+              id,
+              properties: { name },
+            } = feature;
+
+            return (
+              <g key={`${id}`}>
+                <text
+                  x={centroid[0]}
+                  y={centroid[1]}
+                  fontSize="45"
+                  fill="white"
+                  textAnchor="middle"
+                >
+                  {name}
+                </text>
+              </g>
+            );
+          })}
+        </g>
+
+        {/* -- CITIES */}
+        {/* <g>
           {filteredCities.map((feature) => {
-            {
-              /* TODO: add space between & center city label points & names */
-            }
             const centroid = manualPath.centroid(feature);
             const { city, state } = feature.properties;
 
@@ -206,7 +232,7 @@ export const AlertPolygon = ({ alertFeature }) => {
               </g>
             );
           })}
-        </g>
+        </g> */}
       </svg>
     </div>
   );

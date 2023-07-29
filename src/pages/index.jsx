@@ -52,34 +52,48 @@ const HomeScreen = () => {
         {/* <ActiveAlertCounts
           tornadoWarnings={tornadoWarnings}
           tornadoWatches={tornadoWatches}
-        />
-
-				<AlertFilters />
-
-        <AlertSection
-          alertFeatureArr={tornadoWarnings}
-          alertComponent={TornadoWarningAlert}
-					title="Tornado Warnings"
-        />
-        <AlertSection
-          alertFeatureArr={tornadoWatches}
-          alertComponent={TornadoWatchAlert}
-					title="Tornado Watches"
-        />
-        <AlertSection
-          alertFeatureArr={stormWarnings}
-          alertComponent={SevereStormWarningAlert}
-					title="Severe Thunderstorm Warnings"
-        />
-        <AlertSection
-          alertFeatureArr={stormWatches}
-          alertComponent={SevereStormWatchAlert}
-					title="Severe Thunderstorm Watches"
         /> */}
+
+        <AlertFilters
+          handler={handleToggleChange}
+          filterState={appliedAlertFilters ?? {}}
+        />
+
+        {appliedAlertFilters.showTornadoWarnings ? (
+          <AlertSection
+            alertFeatureArr={tornadoWarnings}
+            alertComponent={TornadoWarningAlert}
+            title="Tornado Warnings"
+          />
+        ) : null}
+
+        {appliedAlertFilters["showTornadoWatches"] ? (
+          <AlertSection
+            alertFeatureArr={tornadoWatches}
+            alertComponent={TornadoWatchAlert}
+            title="Tornado Watches"
+          />
+        ) : null}
+
+        {appliedAlertFilters["showStormWarnings"] ? (
+          <AlertSection
+            alertFeatureArr={stormWarnings}
+            alertComponent={SevereStormWarningAlert}
+            title="Severe Thunderstorm Warnings"
+          />
+        ) : null}
+
+        {appliedAlertFilters["showStormWatches"] ? (
+          <AlertSection
+            alertFeatureArr={stormWatches}
+            alertComponent={SevereStormWatchAlert}
+            title="Severe Thunderstorm Watches"
+          />
+        ) : null}
 
         {/* -- TESTING -- */}
 
-        <AlertFilters
+        {/* <AlertFilters
           handler={handleToggleChange}
           filterState={appliedAlertFilters ?? {}}
         />
@@ -114,7 +128,7 @@ const HomeScreen = () => {
             alertComponent={SevereStormWatchAlert}
             title="Severe Thunderstorm Watches"
           />
-        ) : null}
+        ) : null} */}
       </div>
     </PageLayout>
   );
