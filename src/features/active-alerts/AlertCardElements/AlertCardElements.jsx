@@ -1,11 +1,10 @@
 import * as d3 from "d3";
 import TurfRewind from "@turf/rewind";
 import * as topojson from "topojson-client";
-import US_CITY_POINTS from "components/USMap/_constants/us-city-points.geo.json";
-import MAJOR_US_CITIES from "components/USMap/_constants/major-us-cities.geo.json";
 import AlbersTopoJSONMap from "components/USMap/_constants/albers-topojson-map.json";
 
 import { useState } from "react";
+import { STATES_MAP } from "constants";
 import { Button, Card, Modal } from "react-daisyui";
 import { AiFillCloseCircle } from "react-icons/ai";
 
@@ -63,17 +62,27 @@ export const AlertMessageModal = ({ messageType, message }) => {
   );
 };
 
-//TODO: create AlertPolygonMap using OpenLayers
-
-export const AlertPolygon = ({ alertFeature }) => {
+// TODO /////////////////////////////////////
+// TODO: optimize polygon rendering (~260ms per alert)
+// TODO /////////////////////////////////////
+export const AlertPolygonMap = ({ alertFeature }) => {
   const {
-    id,
-    type,
-    geometry: alertGeoJSON,
     properties: { event },
   } = alertFeature;
+  const { features: countyFeatures } = topojson.feature(
+    AlbersTopoJSONMap,
+    "counties"
+  );
+  const albersFitExtent = d3.geoAlbers().fitExtent(
+    [
+      [150, 100],
+      [825, 510],
+    ],
+    alertFeature
+  );
+  const albersGeoPath = d3.geoPath(albersFitExtent);
 
-  let alertPolygonFill =
+  let polygonColor =
     event === "Tornado Warning"
       ? "red"
       : event === "Tornado Watch"
@@ -82,65 +91,6 @@ export const AlertPolygon = ({ alertFeature }) => {
       ? "orange"
       : "green";
 
-  const { features: countyFeatures } = topojson.feature(
-    AlbersTopoJSONMap,
-    "counties"
-  );
-
-  // if (countyFeatures) console.log("STATE FEATURES >>\n", countyFeatures);
-
-  // * // extent = [[left, top],[right, bottom]]
-  function convertBoundsToExtent(bounds) {
-    const [x0, y0] = bounds[0]; // min corner
-    const [x1, y1] = bounds[1]; // max corner
-
-    // returns flipped min-y & max-y VALUES
-    return [
-      [x0, y1],
-      [x1, y0],
-    ];
-  }
-
-  // -- EXTENT CONSTRAINT using PLANAR BOUNDS
-  const projection = d3.geoAlbers();
-  const projectionPath = d3.geoPath(projection);
-  // const projectedBB = projectionPath.bounds(alertFeature);
-  const projectedBB = d3.geoPath().bounds(alertFeature);
-  const planarExtent = convertBoundsToExtent(projectedBB);
-  const planarPath = d3.geoPath(
-    d3.geoAlbers().fitExtent(projectedBB, alertFeature)
-  );
-  // console.log("PLANAR BOUNDS >>\n", projectedBB);
-  // console.log("PLANAR EXTENT >>\n", planarExtent);
-
-  // -- EXTENT CONSTRAINT using GEO BOUNDS
-  const geoBB = d3.geoBounds(alertFeature);
-  const geoExtent = convertBoundsToExtent(geoBB);
-  const geoPath = d3.geoPath(d3.geoAlbers().fitExtent(geoExtent, alertFeature));
-  // console.log("GEO BOUNDS >>\n", geoBB);
-  // console.log("GEO EXTENT >>\n", geoExtent);
-
-  // -- MANUALLY-SET EXTENT-CONSTRAINED ALBERS GEO-PATH
-  // TODO /////////////////////////////////////
-  // TODO: dynamically set .fitExtent values
-  // TODO /////////////////////////////////////
-  const albersProjection = d3.geoAlbers().fitExtent(
-    [
-      [150, 100],
-      [825, 510],
-    ],
-    alertFeature
-  );
-  const manualPath = d3.geoPath(albersProjection);
-
-  const filteredCities = US_CITY_POINTS.features.filter((feature) => {
-    const {
-      properties: { population },
-    } = feature;
-
-    return population > 90000;
-  });
-
   return (
     <div className="bg-black rounded-lg p-2">
       <svg
@@ -148,93 +98,77 @@ export const AlertPolygon = ({ alertFeature }) => {
         xmlns="http://www.w3.org/2000/svg"
         className="rounded-lg"
       >
-        {/* -- COUNTIES */}
-        <g>
-          {countyFeatures.map((feature) => {
-            const { id } = feature;
-
-            return (
-              <g key={`${id}`}>
-                <path
-                  // d={planarPath(feature)}
-                  // d={geoPath(feature)}
-                  d={manualPath(feature)}
-                  stroke="white"
-                  fill="grey"
-                />
-              </g>
-            );
-          })}
-        </g>
-
-        {/* -- ALERT POLYGON */}
-        <g>
-          <path
-            // d={planarPath(TurfRewind(alertFeature, { reverse: true }))}
-            // d={geoPath(TurfRewind(alertFeature, { reverse: true }))}
-            d={manualPath(TurfRewind(alertFeature, { reverse: true }))}
-            fill={alertPolygonFill}
-            stroke={`dark${alertPolygonFill}`}
-            strokeWidth={10}
-            opacity={0.7}
-          />
-        </g>
-
-        {/* -- COUNTY LABELS */}
-        <g>
-          {countyFeatures.map((feature) => {
-            const centroid = manualPath.centroid(feature);
-            const {
-              id,
-              properties: { name },
-            } = feature;
-
-            return (
-              <g key={`${id}`}>
-                <text
-                  x={centroid[0]}
-                  y={centroid[1]}
-                  fontSize="45"
-                  fill="white"
-                  textAnchor="middle"
-                >
-                  {name}
-                </text>
-              </g>
-            );
-          })}
-        </g>
-
-        {/* -- CITIES */}
-        {/* <g>
-          {filteredCities.map((feature) => {
-            const centroid = manualPath.centroid(feature);
-            const { city, state } = feature.properties;
-
-            return (
-              <g key={`${city}-${state}`}>
-                <path
-                  d={manualPath(feature)}
-                  stroke={`dark${alertPolygonFill}`}
-                  fill="white"
-                  strokeWidth={20}
-                  spacing={10}
-                />
-                <text
-                  x={centroid[0]}
-                  y={centroid[1]}
-                  fontSize="45"
-                  fill="white"
-                  textAnchor="start"
-                >
-                  {city}
-                </text>
-              </g>
-            );
-          })}
-        </g> */}
+        <AlertCountyFeatures
+          features={countyFeatures}
+          geoPath={albersGeoPath}
+        />
+        <AlertPolygon
+          feature={alertFeature}
+          color={polygonColor}
+          geoPath={albersGeoPath}
+          winding={TurfRewind}
+        />
+        <AlertCountyLabels features={countyFeatures} geoPath={albersGeoPath} />
       </svg>
     </div>
+  );
+};
+
+const AlertCountyFeatures = ({ features, geoPath }) => {
+  return (
+    <g>
+      {features.map((feature) => {
+        const { id } = feature;
+
+        return (
+          <g key={`${id}`}>
+            <path d={geoPath(feature)} stroke="white" fill="grey" />
+          </g>
+        );
+      })}
+    </g>
+  );
+};
+
+const AlertCountyLabels = ({ features, geoPath }) => {
+  return (
+    <g>
+      {features.map((feature) => {
+        const centroid = geoPath.centroid(feature);
+        const {
+          id,
+          properties: { name },
+        } = feature;
+
+        return (
+          <g key={`${id}`}>
+            <text
+              x={centroid[0]}
+              y={centroid[1]}
+              fontSize="45"
+              fill="white"
+              textAnchor="middle"
+            >
+              {name}
+            </text>
+          </g>
+        );
+      })}
+    </g>
+  );
+};
+
+const AlertPolygon = ({ feature, color, geoPath, winding }) => {
+  return (
+    <g>
+      <path
+        d={geoPath(winding(feature, { reverse: true }))}
+        fill={color}
+        stroke={`dark${color}`}
+        strokeWidth={10}
+        opacity={0.7}
+      />
+    </g>
   );
 };
 
@@ -272,14 +206,12 @@ export const ImpactedAreas = ({ areaDesc }) => {
         ? impactedAreasMapEntries.map(([state, areas]) => {
             const joinedAreaDescStr = areas.join(", ");
 
-            {
-              /* const stateName = STATES_MAP[state]; */
-            }
+            const stateName = STATES_MAP[state];
 
             return (
               <div key={state}>
                 <h4 className="text-md font-bold mb-2 uppercase">
-                  {/* {stateName} */}
+                  {stateName}
                 </h4>
                 <p className="text-sm mb-2">{joinedAreaDescStr}</p>
               </div>

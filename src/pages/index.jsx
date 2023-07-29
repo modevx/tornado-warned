@@ -67,7 +67,7 @@ const HomeScreen = () => {
           />
         ) : null}
 
-        {/* {appliedAlertFilters["showTornadoWatches"] ? (
+        {appliedAlertFilters.showTornadoWatches && tornadoWatches?.length ? (
           <AlertSection
             alertFeatureArr={tornadoWatches}
             alertComponent={TornadoWatchAlert}
@@ -75,7 +75,7 @@ const HomeScreen = () => {
           />
         ) : null}
 
-        {appliedAlertFilters["showStormWarnings"] ? (
+        {appliedAlertFilters.showStormWarnings && stormWarnings?.length ? (
           <AlertSection
             alertFeatureArr={stormWarnings}
             alertComponent={SevereStormWarningAlert}
@@ -83,15 +83,17 @@ const HomeScreen = () => {
           />
         ) : null}
 
-        {appliedAlertFilters["showStormWatches"] ? (
+        {appliedAlertFilters.showStormWatches && stormWatches?.length ? (
           <AlertSection
             alertFeatureArr={stormWatches}
             alertComponent={SevereStormWatchAlert}
             title="Severe Thunderstorm Watches"
           />
-        ) : null} */}
+        ) : null}
 
         {/* -- TESTING -- */}
+
+        {/* TODO: conditionally render test alerts */}
 
         {/* <AlertFilters
           handler={handleToggleChange}

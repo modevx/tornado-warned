@@ -2,7 +2,7 @@ import { Card } from "react-daisyui";
 
 import {
   AlertMessageButtons,
-  AlertPolygon,
+  AlertPolygonMap,
   Body,
   ExpirationTime,
   ImpactedAreas,
@@ -42,7 +42,7 @@ export const TornadoWarningAlert = ({ alert }) => {
           <TornadoDetection tornadoDetection={tornadoDetection} />
           <MaxHailSize maxHailSize={maxHailSize} />
         </div>
-        <AlertPolygon alertFeature={alert} />
+        <AlertPolygonMap alertFeature={alert} />
         <ImpactedAreas areaDesc={areaDesc} />
         <AlertMessageButtons
           description={description}
@@ -89,7 +89,7 @@ export const SevereStormWarningAlert = ({ alert }) => {
 
       <Body>
         <ImpactedAreas areaDesc={areaDesc} />
-        <AlertPolygon alertFeature={alert} />
+        <AlertPolygonMap alertFeature={alert} />
         {/* <p>{instruction}</p> */}
       </Body>
     </Card>
