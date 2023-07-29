@@ -59,7 +59,7 @@ const HomeScreen = () => {
           filterState={appliedAlertFilters ?? {}}
         />
 
-        {appliedAlertFilters.showTornadoWarnings ? (
+        {appliedAlertFilters.showTornadoWarnings && tornadoWarnings?.length ? (
           <AlertSection
             alertFeatureArr={tornadoWarnings}
             alertComponent={TornadoWarningAlert}
@@ -67,7 +67,7 @@ const HomeScreen = () => {
           />
         ) : null}
 
-        {appliedAlertFilters["showTornadoWatches"] ? (
+        {/* {appliedAlertFilters["showTornadoWatches"] ? (
           <AlertSection
             alertFeatureArr={tornadoWatches}
             alertComponent={TornadoWatchAlert}
@@ -89,7 +89,7 @@ const HomeScreen = () => {
             alertComponent={SevereStormWatchAlert}
             title="Severe Thunderstorm Watches"
           />
-        ) : null}
+        ) : null} */}
 
         {/* -- TESTING -- */}
 
