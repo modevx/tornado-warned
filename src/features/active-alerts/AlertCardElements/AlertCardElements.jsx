@@ -124,11 +124,7 @@ const AlertCountyFeatures = ({ features, geoPath }) => {
 
         return (
           <g key={`${id}`}>
-            <path
-              d={geoPath(feature)}
-              stroke="white"
-              // fill="grey"
-            />
+            <path d={geoPath(feature)} stroke="white" fill="grey" />
           </g>
         );
       })}
