@@ -49,16 +49,11 @@ const HomeScreen = () => {
   return (
     <PageLayout>
       <div className="p-4">
-        {/* <ActiveAlertCounts
-          tornadoWarnings={tornadoWarnings}
-          tornadoWatches={tornadoWatches}
-        /> */}
-
         <AlertFilters
           handler={handleToggleChange}
           filterState={appliedAlertFilters ?? {}}
         />
-
+        {/* 
         {appliedAlertFilters.showTornadoWarnings && tornadoWarnings?.length ? (
           <AlertSection
             alertFeatureArr={tornadoWarnings}
@@ -89,18 +84,14 @@ const HomeScreen = () => {
             alertComponent={SevereStormWatchAlert}
             title="Severe Thunderstorm Watches"
           />
-        ) : null}
+        ) : null} */}
 
         {/* -- TESTING -- */}
 
         {/* TODO: conditionally render test alerts */}
 
-        {/* <AlertFilters
-          handler={handleToggleChange}
-          filterState={appliedAlertFilters ?? {}}
-        />
-
-        {appliedAlertFilters["showTornadoWarnings"] ? (
+        {/* {appliedAlertFilters.showTornadoWarnings &&
+        fakeTornadoWarnings?.length ? (
           <AlertSection
             alertFeatureArr={fakeTornadoWarnings}
             alertComponent={TornadoWarningAlert}
@@ -108,15 +99,16 @@ const HomeScreen = () => {
           />
         ) : null}
 
-        {appliedAlertFilters["showTornadoWatches"] ? (
+        {appliedAlertFilters.showTornadoWatches &&
+        fakeTornadoWatches?.length ? (
           <AlertSection
             alertFeatureArr={fakeTornadoWatches}
             alertComponent={TornadoWatchAlert}
             title="Tornado Watches"
           />
-        ) : null}
+        ) : null} */}
 
-        {appliedAlertFilters["showStormWarnings"] ? (
+        {appliedAlertFilters.showStormWarnings && fakeStormWarnings?.length ? (
           <AlertSection
             alertFeatureArr={fakeStormWarnings}
             alertComponent={SevereStormWarningAlert}
@@ -124,7 +116,7 @@ const HomeScreen = () => {
           />
         ) : null}
 
-        {appliedAlertFilters["showStormWatches"] ? (
+        {/* {appliedAlertFilters.showStormWatches && fakeStormWatches?.length ? (
           <AlertSection
             alertFeatureArr={fakeStormWatches}
             alertComponent={SevereStormWatchAlert}

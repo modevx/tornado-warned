@@ -3,7 +3,7 @@ import TurfRewind from "@turf/rewind";
 import * as topojson from "topojson-client";
 import AlbersTopoJSONMap from "components/USMap/_constants/albers-topojson-map.json";
 
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { STATES_MAP } from "constants";
 import { Button, Card, Modal } from "react-daisyui";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -69,10 +69,26 @@ export const AlertPolygonMap = ({ alertFeature }) => {
   const {
     properties: { event },
   } = alertFeature;
+
+  // TODO: "mesh" county features to optimize renderinmg
   const { features: countyFeatures } = topojson.feature(
     AlbersTopoJSONMap,
     "counties"
   );
+  const { features: meshedCounties } = topojson.feature(
+    AlbersTopoJSONMap,
+    AlbersTopoJSONMap.objects.counties,
+    function (a, b) {
+      return a !== b;
+    }
+  );
+
+  // TODO: optimize
+  if (meshedCounties) {
+    // console.clear();
+    // console.log(">> MESHED COUNTY FEATURES >>\n", meshedCounties);
+  }
+
   const albersFitExtent = d3.geoAlbers().fitExtent(
     [
       [150, 100],
@@ -100,6 +116,7 @@ export const AlertPolygonMap = ({ alertFeature }) => {
       >
         <AlertCountyFeatures
           features={countyFeatures}
+          // features={meshedCounties}
           geoPath={albersGeoPath}
         />
         <AlertPolygon
@@ -145,7 +162,7 @@ const AlertCountyLabels = ({ features, geoPath }) => {
             <text
               x={centroid[0]}
               y={centroid[1]}
-              fontSize="45"
+              fontSize="35"
               fill="white"
               textAnchor="middle"
             >
@@ -206,12 +223,14 @@ export const ImpactedAreas = ({ areaDesc }) => {
         ? impactedAreasMapEntries.map(([state, areas]) => {
             const joinedAreaDescStr = areas.join(", ");
 
-            const stateName = STATES_MAP[state];
+            {
+              /* const stateName = STATES_MAP[state]; */
+            }
 
             return (
               <div key={state}>
                 <h4 className="text-md font-bold mb-2 uppercase">
-                  {stateName}
+                  {/* {stateName} */}
                 </h4>
                 <p className="text-sm mb-2">{joinedAreaDescStr}</p>
               </div>

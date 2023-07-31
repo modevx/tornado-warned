@@ -4,7 +4,7 @@ export const AlertSection = ({ alertFeatureArr, alertComponent, title }) => {
   return (
     <section>
       <SectionTitle title={title} />
-      <div className="grid gap-4 mb-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {alertFeatureArr
           ? alertFeatureArr.map((feature) => (
               <AlertComponent key={feature.id} alert={feature} />

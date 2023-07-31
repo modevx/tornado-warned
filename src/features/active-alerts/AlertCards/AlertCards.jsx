@@ -1,4 +1,5 @@
 import { Card } from "react-daisyui";
+import { useEffect, useRef } from "react";
 
 import {
   AlertMessageButtons,
@@ -74,11 +75,18 @@ export const TornadoWatchAlert = ({ alert }) => {
 };
 
 export const SevereStormWarningAlert = ({ alert }) => {
+  const renderCount = useRef(0);
+
   const { id, type, geometry, properties } = alert;
-  const alertFeature = { id, type, geometry };
 
   const { areaDesc, effective, expires, senderName, description, instruction } =
     alert?.properties;
+
+  renderCount.current += renderCount.current + 1;
+
+  useEffect(() => {
+    console.log("RENDER COUNT\n", renderCount.current);
+  }, [renderCount]);
 
   return (
     <Card className="bg-orange-500 p-2">
