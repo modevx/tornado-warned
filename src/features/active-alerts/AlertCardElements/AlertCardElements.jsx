@@ -1,13 +1,14 @@
 import * as d3 from "d3";
+import NextImage from "next/image";
 import TurfRewind from "@turf/rewind";
 import * as topojson from "topojson-client";
 import AlbersTopoJSONMap from "components/USMap/_constants/albers-topojson-map.json";
 
-import { useCallback, useMemo, useState } from "react";
-import { STATES_MAP } from "constants";
+import { useState } from "react";
 import { Button, Card, Modal } from "react-daisyui";
 import { AiFillCloseCircle } from "react-icons/ai";
 
+import { STATES_MAP } from "constants";
 import { DayJSDateTime } from "components";
 import { BiCreditCard } from "react-icons/bi";
 import { TbToiletPaper } from "react-icons/tb";
@@ -63,41 +64,12 @@ export const AlertMessageModal = ({ messageType, message }) => {
 };
 
 // TODO /////////////////////////////////////
-// TODO: optimize polygon rendering (~260ms per alert)
+// TODO: optimize polygon rendering
 // TODO /////////////////////////////////////
 export const AlertPolygonMap = ({ alertFeature }) => {
   const {
     properties: { event },
   } = alertFeature;
-
-  // TODO: "mesh" county features to optimize renderinmg
-  const { features: countyFeatures } = topojson.feature(
-    AlbersTopoJSONMap,
-    "counties"
-  );
-  const { features: meshedCounties } = topojson.feature(
-    AlbersTopoJSONMap,
-    AlbersTopoJSONMap.objects.counties,
-    function (a, b) {
-      return a !== b;
-    }
-  );
-
-  // TODO: optimize
-  if (meshedCounties) {
-    // console.clear();
-    // console.log(">> MESHED COUNTY FEATURES >>\n", meshedCounties);
-  }
-
-  const albersFitExtent = d3.geoAlbers().fitExtent(
-    [
-      [150, 100],
-      [825, 510],
-    ],
-    alertFeature
-  );
-  const albersGeoPath = d3.geoPath(albersFitExtent);
-
   let polygonColor =
     event === "Tornado Warning"
       ? "red"
@@ -106,6 +78,20 @@ export const AlertPolygonMap = ({ alertFeature }) => {
       : event === "Severe Thunderstorm Warning"
       ? "orange"
       : "green";
+  const albersFitExtent = d3.geoAlbers().fitExtent(
+    [
+      [150, 100],
+      [825, 510],
+    ],
+    alertFeature
+  );
+  const albersGeoPath = d3.geoPath(albersFitExtent);
+  const { features: countyFeatures } = topojson.feature(
+    AlbersTopoJSONMap,
+    "counties"
+  );
+
+  console.log("ALERT FEATURE BOUNDS\n", albersFitExtent);
 
   return (
     <div className="bg-black rounded-lg p-2">
@@ -116,7 +102,6 @@ export const AlertPolygonMap = ({ alertFeature }) => {
       >
         <AlertCountyFeatures
           features={countyFeatures}
-          // features={meshedCounties}
           geoPath={albersGeoPath}
         />
         <AlertPolygon
@@ -139,7 +124,11 @@ const AlertCountyFeatures = ({ features, geoPath }) => {
 
         return (
           <g key={`${id}`}>
-            <path d={geoPath(feature)} stroke="white" fill="grey" />
+            <path
+              d={geoPath(feature)}
+              stroke="white"
+              // fill="grey"
+            />
           </g>
         );
       })}
@@ -197,8 +186,8 @@ export const Body = ({ children }) => {
 
 export const ExpirationTime = ({ expiresTime }) => {
   return (
-    <div className="text-xs flex flex-col">
-      <span>Expires:</span>
+    <div className="text-sm flex justify-between bg-black rounded-md p-2 ">
+      <span className="mr-3">Expires:</span>
       {expiresTime ? (
         <DayJSDateTime utcDate={expiresTime} format="LT" />
       ) : (
@@ -243,42 +232,25 @@ export const ImpactedAreas = ({ areaDesc }) => {
 
 export const MaxHailSize = ({ maxHailSize }) => {
   //TODO: check for empty maxHailSize [] or null values
-  let SizeIcon;
-  const maxSizeFloat = parseFloat(maxHailSize[0].split(" ")[2]);
-
-  // console.log("maxSizeFloat\n", maxSizeFloat);
-
-  if (maxSizeFloat >= 4) {
-    SizeIcon = TbToiletPaper;
-  } else if (maxSizeFloat >= 3) {
-    SizeIcon = BiCreditCard;
-  } else if (maxSizeFloat >= 2.75) {
-    SizeIcon = IoBaseballOutline;
-  } else if (maxSizeFloat >= 1.75) {
-    SizeIcon = GiGolfTee;
-  } else {
-    // .5
-    SizeIcon = GiMarbles;
-  }
+  const maxSizeFloat = maxHailSize[0].split(" ")[2];
 
   return (
-    <span className="bg-black rounded-md p-2">
-      <span className="text-sm ">MAX HAIL SIZE</span>
-      <div className="flex justify-center mt-2">
-        {<SizeIcon size={40} /> ?? "NA"}
-      </div>
+    <span className="flex justify-between items-center bg-black rounded-md p-2 text-sm">
+      <span className="text-sm ">Max Hail Size:</span>
+      <span className="ml-3">{`${maxSizeFloat}"`}</span>
     </span>
   );
 };
 
+// ! -- where are the standard card styles coming from for SenderName sub-component??
 export const SenderName = ({ senderName }) => {
   const wfoOffice =
     senderName?.replace("NWS ", "") ?? "National Weather Service";
 
   return (
-    <div className="flex flex-col">
-      {/* <span className="text-sm">NWS Office:</span> */}
-      <span>{wfoOffice}</span>
+    <div className="flex items-center">
+      <NextImage src="/images/nws-logo.png" height={30} width={30} />
+      <span className="ml-3">{wfoOffice}</span>
     </div>
   );
 };
@@ -294,15 +266,10 @@ export const Title = ({ children }) => {
 };
 
 export const TornadoDetection = ({ tornadoDetection }) => {
-  let DetectionIcon =
-    tornadoDetection[0] === "OBSERVED" ? GiBinoculars : GiRadarSweep;
-
   return (
-    <div className="bg-black rounded-md p-2">
-      <span className="text-sm ">DETECTION</span>
-      <div className="flex justify-center mt-2">
-        <DetectionIcon size={40} />
-      </div>
+    <div className="flex justify-between items-center bg-black rounded-md p-2">
+      <span className="text-sm">Tornado Detection:</span>
+      <span className="text-sm">{tornadoDetection?.[0] || "N/A"}</span>
     </div>
   );
 };

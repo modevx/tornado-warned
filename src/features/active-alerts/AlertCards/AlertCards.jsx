@@ -1,5 +1,4 @@
 import { Card } from "react-daisyui";
-import { useEffect, useRef } from "react";
 
 import {
   AlertMessageButtons,
@@ -13,7 +12,7 @@ import {
   TornadoDetection,
 } from "features/active-alerts/AlertCardElements";
 
-// TODO: add special messging for TORNADO EMERGENCY & PARTICULARLY DANGEROUS SITUATION alerts
+// TODO: add special messaging for TORNADO EMERGENCY & PARTICULARLY DANGEROUS SITUATION alerts
 
 export const TornadoWarningAlert = ({ alert }) => {
   const { id, type, geometry, properties } = alert;
@@ -35,13 +34,13 @@ export const TornadoWarningAlert = ({ alert }) => {
     <Card className="bg-red-500 p-2">
       <Title>
         <SenderName senderName={senderName} />
-        <ExpirationTime expiresTime={expires} />
       </Title>
 
       <Body>
+        <TornadoDetection tornadoDetection={tornadoDetection} />
         <div className="flex justify-between">
-          <TornadoDetection tornadoDetection={tornadoDetection} />
           <MaxHailSize maxHailSize={maxHailSize} />
+          <ExpirationTime expiresTime={expires} />
         </div>
         <AlertPolygonMap alertFeature={alert} />
         <ImpactedAreas areaDesc={areaDesc} />
@@ -75,18 +74,10 @@ export const TornadoWatchAlert = ({ alert }) => {
 };
 
 export const SevereStormWarningAlert = ({ alert }) => {
-  const renderCount = useRef(0);
-
   const { id, type, geometry, properties } = alert;
 
   const { areaDesc, effective, expires, senderName, description, instruction } =
     alert?.properties;
-
-  renderCount.current += renderCount.current + 1;
-
-  useEffect(() => {
-    console.log("RENDER COUNT\n", renderCount.current);
-  }, [renderCount]);
 
   return (
     <Card className="bg-orange-500 p-2">
@@ -98,7 +89,6 @@ export const SevereStormWarningAlert = ({ alert }) => {
       <Body>
         <ImpactedAreas areaDesc={areaDesc} />
         <AlertPolygonMap alertFeature={alert} />
-        {/* <p>{instruction}</p> */}
       </Body>
     </Card>
   );

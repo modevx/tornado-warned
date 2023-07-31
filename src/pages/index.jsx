@@ -9,19 +9,9 @@ import {
   SevereStormWarningAlert,
   SevereStormWatchAlert,
 } from "features/active-alerts/AlertCards";
-import {
-  useTornadoWarningQuery,
-  useTornadoWatchQuery,
-  useSevereStormWarningQuery,
-  useSevereStormWatchQuery,
-  useFakeTornadoWarnings,
-  useFakeTornadoWatches,
-  useFakeSevereStormWarnings,
-  useFakeSevereStormWatches,
-} from "services/nws-api-web-service";
 
 const HomeScreen = () => {
-  const [appliedAlertFilters, setAlertFilters] = useState({
+  const [alertFilters, setAlertFilters] = useState({
     showTornadoWarnings: true,
     showTornadoWatches: true,
     showStormWarnings: true,
@@ -36,93 +26,41 @@ const HomeScreen = () => {
     );
   };
 
-  const { data: tornadoWarnings } = useTornadoWarningQuery();
-  const { data: tornadoWatches } = useTornadoWatchQuery();
-  const { data: stormWarnings } = useSevereStormWarningQuery();
-  const { data: stormWatches } = useSevereStormWatchQuery();
-
-  const fakeTornadoWarnings = useFakeTornadoWarnings();
-  const fakeTornadoWatches = useFakeTornadoWatches();
-  const fakeStormWarnings = useFakeSevereStormWarnings();
-  const fakeStormWatches = useFakeSevereStormWatches();
-
   return (
     <PageLayout>
       <div className="p-4">
         <AlertFilters
           handler={handleToggleChange}
-          filterState={appliedAlertFilters ?? {}}
+          filterState={alertFilters ?? {}}
         />
-        {/* 
-        {appliedAlertFilters.showTornadoWarnings && tornadoWarnings?.length ? (
+
+        {alertFilters.showTornadoWarnings && (
           <AlertSection
-            alertFeatureArr={tornadoWarnings}
             alertComponent={TornadoWarningAlert}
-            title="Tornado Warnings"
+            event="Tornado Warning"
           />
-        ) : null}
+        )}
 
-        {appliedAlertFilters.showTornadoWatches && tornadoWatches?.length ? (
+        {alertFilters.showTornadoWatches && (
           <AlertSection
-            alertFeatureArr={tornadoWatches}
             alertComponent={TornadoWatchAlert}
-            title="Tornado Watches"
+            event="Tornado Watch"
           />
-        ) : null}
+        )}
 
-        {appliedAlertFilters.showStormWarnings && stormWarnings?.length ? (
+        {alertFilters.showStormWarnings && (
           <AlertSection
-            alertFeatureArr={stormWarnings}
             alertComponent={SevereStormWarningAlert}
-            title="Severe Thunderstorm Warnings"
+            event="Severe Thunderstorm Warning"
           />
-        ) : null}
+        )}
 
-        {appliedAlertFilters.showStormWatches && stormWatches?.length ? (
+        {alertFilters.showStormWatches && (
           <AlertSection
-            alertFeatureArr={stormWatches}
             alertComponent={SevereStormWatchAlert}
-            title="Severe Thunderstorm Watches"
+            event="Severe Thunderstorm Watch"
           />
-        ) : null} */}
-
-        {/* -- TESTING -- */}
-
-        {/* TODO: conditionally render test alerts */}
-
-        {/* {appliedAlertFilters.showTornadoWarnings &&
-        fakeTornadoWarnings?.length ? (
-          <AlertSection
-            alertFeatureArr={fakeTornadoWarnings}
-            alertComponent={TornadoWarningAlert}
-            title="Tornado Warnings"
-          />
-        ) : null}
-
-        {appliedAlertFilters.showTornadoWatches &&
-        fakeTornadoWatches?.length ? (
-          <AlertSection
-            alertFeatureArr={fakeTornadoWatches}
-            alertComponent={TornadoWatchAlert}
-            title="Tornado Watches"
-          />
-        ) : null} */}
-
-        {appliedAlertFilters.showStormWarnings && fakeStormWarnings?.length ? (
-          <AlertSection
-            alertFeatureArr={fakeStormWarnings}
-            alertComponent={SevereStormWarningAlert}
-            title="Severe Thunderstorm Warnings"
-          />
-        ) : null}
-
-        {/* {appliedAlertFilters.showStormWatches && fakeStormWatches?.length ? (
-          <AlertSection
-            alertFeatureArr={fakeStormWatches}
-            alertComponent={SevereStormWatchAlert}
-            title="Severe Thunderstorm Watches"
-          />
-        ) : null} */}
+        )}
       </div>
     </PageLayout>
   );

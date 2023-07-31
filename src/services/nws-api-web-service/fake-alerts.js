@@ -1,5 +1,5 @@
 export const FAKE_ALERTS = {
-  tornado_warnings: [
+  tornado_warning: [
     {
       id: "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.17bffb81a18f5467035bb3a1e2a99372943252ed.001.1",
       type: "Feature",
@@ -445,7 +445,7 @@ export const FAKE_ALERTS = {
       },
     },
   ],
-  tornado_watches: [
+  tornado_watch: [
     {
       id: "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.4c30bfc65ae057567e08a8cb886a62d1a12cbc1c.001.1",
       type: "Feature",
@@ -849,7 +849,7 @@ export const FAKE_ALERTS = {
       },
     },
   ],
-  severe_storm_warnings: [
+  severe_thunderstorm_warning: [
     {
       id: "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.3d8d99c4d698bc0294328ed24907671ee2779391.001.1",
       type: "Feature",
@@ -1391,7 +1391,7 @@ export const FAKE_ALERTS = {
       },
     },
   ],
-  severe_storm_watches: [
+  severe_thunderstorm_watch: [
     {
       id: "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.fd8e96ae0e80a2bb8332738653bcd83e3e1ccb64.001.2",
       type: "Feature",

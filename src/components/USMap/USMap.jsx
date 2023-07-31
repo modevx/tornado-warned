@@ -5,6 +5,10 @@ import AlbersTopoJSONMap from "./_constants/albers-topojson-map.json";
 
 export const USMap = ({ children }) => {
   const { features } = topojson.feature(AlbersTopoJSONMap, "states");
+  // const { features: counties } = topojson.feature(
+  //   AlbersTopoJSONMap,
+  //   "counties"
+  // );
   const albersProjection = geoAlbers();
   const albersGeoPath = geoPath(albersProjection);
 
