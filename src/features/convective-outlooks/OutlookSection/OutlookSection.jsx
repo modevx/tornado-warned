@@ -1,12 +1,7 @@
-import { USMapLoading } from "components";
+import { DayJSDateTime, USMapLoading } from "components";
+import { CategoricalMap } from "features/convective-outlooks";
 
-import {
-	CategoricalMap,
-	OutlookSectionTitle,
-	OutlookSectionValidDates,
-} from "features/convective-outlooks";
-
-import { useCategoricalOutlookGeoJsonQuery } from "services/spc-convective-outlook-mapserver";
+import { useCategoricalOutlookGeoJsonQuery } from "services/convective-outlook-mapserver";
 
 export const OutlookSection = ({ day, layerId }) => {
 	const { data: outlook } = useCategoricalOutlookGeoJsonQuery(layerId);
@@ -19,13 +14,31 @@ export const OutlookSection = ({ day, layerId }) => {
 
 	return (
 		<section id={`day-${day}-categorical-outlook-map`} className='lg:flex-1'>
-			<OutlookSectionTitle>{`Day ${day}`}</OutlookSectionTitle>
-			<OutlookSectionValidDates valid={valid} expire={expire} />
+			<SectionTitle>{`Day ${day}`}</SectionTitle>
+			<ValidDates valid={valid} expire={expire} />
 			{outlook ? (
 				<CategoricalMap features={outlook} />
 			) : (
 				<USMapLoading loadingMessage='Outlook Loading...' />
 			)}
 		</section>
+	);
+};
+
+const SectionTitle = ({ children }) => {
+	return (
+		<h2 className='text-center sm:text-lg md:text-xl lg:text-2xl xl:text-3xl'>
+			{children}
+		</h2>
+	);
+};
+
+const ValidDates = ({ valid, expire }) => {
+	return (
+		<p className='text-center text-xs'>
+			<DayJSDateTime utcDate={valid ? valid : "N/A"} format='ddd LT' />
+			&nbsp;&#45;&nbsp;
+			<DayJSDateTime utcDate={expire ? expire : "N/A"} format='ddd LT' />
+		</p>
 	);
 };
