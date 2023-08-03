@@ -15,15 +15,17 @@ const DAY_ENDPOINTS = Object.freeze({
 const ERROR_TITLE =
 	"/// ERROR: Storm Prediction Center Convective Outlook Text Products Service ///";
 
-const getOutlookTextProductByDay = async (dayNum) => {
-	const endpoint = DAY_ENDPOINTS[dayNum];
+// https://tgftp.nws.noaa.gov/data/raw/ac/acus01.kwns.swo.dy1.txt
+
+const getOutlookTextProductByDay = async (day) => {
+	const path = DAY_ENDPOINTS[day];
+	const endpoint = `https://tgftp.nws.noaa.gov/data/raw/ac${path}`;
 
 	try {
 		const { data } = await appApiClient.post(
 			"/convective-outlook-text-products",
-			// -- AXIOS REQUEST BODY
 			{
-				textProductUrl: `https://tgftp.nws.noaa.gov/data/raw/ac${endpoint}`,
+				textProductUrl: endpoint,
 			}
 		);
 
@@ -33,8 +35,8 @@ const getOutlookTextProductByDay = async (dayNum) => {
 	}
 };
 
-export const useOutlookTextProductByDayQuery = (dayNum) => {
-	return useQuery(["SPC", "Convective Outlooks", "Text Product", dayNum], () =>
-		getOutlookTextProductByDay(dayNum)
+export const useOutlookTextProductByDayQuery = (day) => {
+	return useQuery(["SPC", "Convective Outlooks", "Text Product", day], () =>
+		getOutlookTextProductByDay(day)
 	);
 };

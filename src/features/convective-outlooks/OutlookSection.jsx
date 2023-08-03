@@ -4,20 +4,20 @@ import { CategoricalMap } from "features/convective-outlooks";
 import { useCategoricalOutlookGeoJsonQuery } from "services/outlook-mapserver";
 
 export const OutlookSection = ({ day, layerId }) => {
-	const { data: outlook } = useCategoricalOutlookGeoJsonQuery(layerId);
+	const { data } = useCategoricalOutlookGeoJsonQuery(layerId);
 	let valid, expire;
 
-	if (outlook) {
-		valid = outlook[0]?.properties.valid;
-		expire = outlook[0]?.properties.expire;
+	if (data) {
+		valid = data[0]?.properties.valid;
+		expire = data[0]?.properties.expire;
 	}
 
 	return (
 		<section id={`day-${day}-categorical-outlook-map`} className='lg:flex-1'>
 			<SectionTitle>{`Day ${day}`}</SectionTitle>
 			<ValidDates valid={valid} expire={expire} />
-			{outlook ? (
-				<CategoricalMap features={outlook} />
+			{data ? (
+				<CategoricalMap features={data} />
 			) : (
 				<USMapLoading loadingMessage='Outlook Loading...' />
 			)}

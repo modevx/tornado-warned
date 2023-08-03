@@ -2,32 +2,42 @@ import React from "react";
 
 import { PageLayout } from "components";
 import {
-	CategoricalLegend,
+	CategoricalMap,
 	OutlookSection,
+	TextProduct,
 } from "features/convective-outlooks";
-import { useOutlookTextProductByDayQuery } from "services/outlook-text-products";
-import { CATEGORICAL_OUTLOOK_FEATURE_STYLES } from "features/convective-outlooks/_constants";
+
+import { CATEGORICAL_OUTLOOK_FEATURE_STYLES as styles } from "features/convective-outlooks/_constants";
 
 const ConvectiveOutlookScreen = () => {
 	const [outlookDay, setOutlookDay] = React.useState("1");
 
-	const { data } = useOutlookTextProductByDayQuery(1);
-
-	if (data) console.log("OUTLOOK TEXT DAY 1 >>\n", data);
+	React.useEffect(() => {
+		// 1. generate meta data to pass to <DayInfo/>
+		// 2. generate feature data to pass to <OutlookMap/>
+		// 3. parse text to pass to <TextProduct/>
+	}, [outlookDay]);
 
 	return (
 		<PageLayout>
-			<CategoricalLegend stylesObj={CATEGORICAL_OUTLOOK_FEATURE_STYLES} />
-
-			<div className='lg:flex lg:justify-evenly lg:items-center'>
-				<OutlookSection day={1} layerId={1} />
-				<OutlookSection day={2} layerId={9} />
-				<OutlookSection day={3} layerId={17} />
+			<div>
+				<DayInfo day={1} />
+				<CategoricalMap layerId={1} styles={styles} />
+				<TextProduct day={1} />
+				{/* META SECTION: day title, date, timeframe */}
+				{/* MAP SECTION: with legend @ bottom left */}
+				{/* TEXT PRODUCT SECTION: formatted text */}
 			</div>
-
-			<pre className='mx-auto'>{data ? data : null}</pre>
 		</PageLayout>
 	);
 };
 
 export default ConvectiveOutlookScreen;
+
+const DayInfo = ({ day }) => {
+	return (
+		<div>
+			<h1>{`Day ${day} Convective Outlook`}</h1>
+		</div>
+	);
+};
