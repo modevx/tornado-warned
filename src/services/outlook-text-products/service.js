@@ -15,8 +15,6 @@ const DAY_ENDPOINTS = Object.freeze({
 const ERROR_TITLE =
 	"/// ERROR: Storm Prediction Center Convective Outlook Text Products Service ///";
 
-// https://tgftp.nws.noaa.gov/data/raw/ac/acus01.kwns.swo.dy1.txt
-
 const getOutlookTextProductByDay = async (day) => {
 	const path = DAY_ENDPOINTS[day];
 	const endpoint = `https://tgftp.nws.noaa.gov/data/raw/ac${path}`;

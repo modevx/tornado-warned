@@ -1,8 +1,9 @@
 import React from "react";
 
-import { PageLayout } from "components";
+import { DayJSDateTime, PageLayout } from "components";
 import {
 	CategoricalMap,
+	DayInfo,
 	OutlookSection,
 	TextProduct,
 } from "features/convective-outlooks";
@@ -20,10 +21,10 @@ const ConvectiveOutlookScreen = () => {
 
 	return (
 		<PageLayout>
-			<div>
+			<div className='px-4'>
 				<DayInfo day={1} />
 				<CategoricalMap layerId={1} styles={styles} />
-				<TextProduct day={1} />
+				<TextProduct day={3} />
 				{/* META SECTION: day title, date, timeframe */}
 				{/* MAP SECTION: with legend @ bottom left */}
 				{/* TEXT PRODUCT SECTION: formatted text */}
@@ -33,11 +34,3 @@ const ConvectiveOutlookScreen = () => {
 };
 
 export default ConvectiveOutlookScreen;
-
-const DayInfo = ({ day }) => {
-	return (
-		<div>
-			<h1>{`Day ${day} Convective Outlook`}</h1>
-		</div>
-	);
-};
