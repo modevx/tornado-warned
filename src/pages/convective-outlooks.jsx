@@ -1,13 +1,20 @@
-import { useEffect } from "react";
+import React from "react";
 
 import { PageLayout } from "components";
 import {
 	CategoricalLegend,
 	OutlookSection,
 } from "features/convective-outlooks";
+import { useOutlookTextProductByDayQuery } from "services/outlook-text-products";
 import { CATEGORICAL_OUTLOOK_FEATURE_STYLES } from "features/convective-outlooks/_constants";
 
 const ConvectiveOutlookScreen = () => {
+	const [outlookDay, setOutlookDay] = React.useState("1");
+
+	const { data } = useOutlookTextProductByDayQuery(1);
+
+	if (data) console.log("OUTLOOK TEXT DAY 1 >>\n", data);
+
 	return (
 		<PageLayout>
 			<CategoricalLegend stylesObj={CATEGORICAL_OUTLOOK_FEATURE_STYLES} />
@@ -17,6 +24,8 @@ const ConvectiveOutlookScreen = () => {
 				<OutlookSection day={2} layerId={9} />
 				<OutlookSection day={3} layerId={17} />
 			</div>
+
+			<pre className='mx-auto'>{data ? data : null}</pre>
 		</PageLayout>
 	);
 };

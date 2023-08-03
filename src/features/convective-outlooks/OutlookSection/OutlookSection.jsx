@@ -1,7 +1,7 @@
 import { DayJSDateTime, USMapLoading } from "components";
 import { CategoricalMap } from "features/convective-outlooks";
 
-import { useCategoricalOutlookGeoJsonQuery } from "services/convective-outlook-mapserver";
+import { useCategoricalOutlookGeoJsonQuery } from "services/outlook-mapserver";
 
 export const OutlookSection = ({ day, layerId }) => {
 	const { data: outlook } = useCategoricalOutlookGeoJsonQuery(layerId);
