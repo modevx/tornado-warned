@@ -1,57 +1,69 @@
+import { useState } from "react";
+
 import { PageLayout } from "components";
+import { AlertFilters } from "features/active-alerts/AlertFilters";
+import { AlertSection } from "features/active-alerts/AlertSection";
 import {
-	ActiveAlertCounts,
-	NWSAlertSection,
-	TornadoWarningAlert,
-	TornadoWatchAlert,
-} from "features/active-alerts";
-import {
-	useTornadoWarningQuery,
-	useTornadoWatchQuery,
-	useFakeTornadoWarnings,
-	useFakeTornadoWatches,
-} from "services/nws-api-web-service";
+  TornadoWarningAlert,
+  TornadoWatchAlert,
+  SevereStormWarningAlert,
+  SevereStormWatchAlert,
+} from "features/active-alerts/AlertCards";
 
 const HomeScreen = () => {
-	const { data: tornadoWarnings } = useTornadoWarningQuery();
-	const { data: tornadoWatches } = useTornadoWatchQuery();
+  const [alertFilters, setAlertFilters] = useState({
+    showTornadoWarnings: true,
+    showTornadoWatches: true,
+    showStormWarnings: true,
+    showStormWatches: true,
+  });
 
-	const fakeTornadoWarnings = useFakeTornadoWarnings();
-	const fakeTornadoWatches = useFakeTornadoWatches();
+  const handleToggleChange = (e) => {
+    const { name: toggleName } = e.target;
 
-	return (
-		<PageLayout>
-			<div className='p-4'>
-				<ActiveAlertCounts
-					tornadoWarnings={tornadoWarnings}
-					tornadoWatches={tornadoWatches}
-				/>
+    setAlertFilters((prev) =>
+      Object.assign({ ...prev }, { [toggleName]: !prev[toggleName] })
+    );
+  };
 
-				<NWSAlertSection
-					alertFeatureArr={tornadoWarnings}
-					alertComponent={TornadoWarningAlert}
-				/>
-				<NWSAlertSection
-					alertFeatureArr={tornadoWatches}
-					alertComponent={TornadoWatchAlert}
-				/>
-				{/* -- TESTING -- */}
-				{/* <ActiveAlertCounts
-					tornadoWarnings={fakeTornadoWarnings}
-					tornadoWatches={fakeTornadoWatches}
-				/>
+  return (
+    <PageLayout>
+      <div className="p-4">
+        <AlertFilters
+          handler={handleToggleChange}
+          filterState={alertFilters ?? {}}
+        />
 
-				<NWSAlertSection
-					alertFeatureArr={fakeTornadoWarnings}
-					alertComponent={TornadoWarningAlert}
-				/>
-				<NWSAlertSection
-					alertFeatureArr={fakeTornadoWatches}
-					alertComponent={TornadoWatchAlert}
-				/> */}
-			</div>
-		</PageLayout>
-	);
+        {alertFilters.showTornadoWarnings && (
+          <AlertSection
+            alertComponent={TornadoWarningAlert}
+            event="Tornado Warning"
+          />
+        )}
+
+        {alertFilters.showTornadoWatches && (
+          <AlertSection
+            alertComponent={TornadoWatchAlert}
+            event="Tornado Watch"
+          />
+        )}
+
+        {alertFilters.showStormWarnings && (
+          <AlertSection
+            alertComponent={SevereStormWarningAlert}
+            event="Severe Thunderstorm Warning"
+          />
+        )}
+
+        {alertFilters.showStormWatches && (
+          <AlertSection
+            alertComponent={SevereStormWatchAlert}
+            event="Severe Thunderstorm Watch"
+          />
+        )}
+      </div>
+    </PageLayout>
+  );
 };
 
 export default HomeScreen;

@@ -1,3 +1,4 @@
-export * from "./CategoricalLegend/CategoricalLegend";
-export * from "./CategoricalMap/CategoricalMap";
-export * from "./OutlookSection/OutlookSection";
+export * from "./CategoricalMap";
+export * from "./DayInfo";
+export * from "./DayPicker";
+export * from "./TextProduct";
