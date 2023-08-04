@@ -7,7 +7,7 @@ const convectiveOutlookHTTPClient = createHTTPClient({
 		"https://mapservices.weather.noaa.gov/vector/rest/services/outlooks/SPC_wx_outlks/MapServer",
 });
 
-const fetchMapServerGeoJsonByLayerId = async (layerId) => {
+const fetchCategoricalOutlookByLayerId = async (layerId) => {
 	try {
 		const response = await convectiveOutlookHTTPClient.get(
 			`/${layerId}/query?f=geojson&geometry=true&outfields=*`
@@ -18,19 +18,9 @@ const fetchMapServerGeoJsonByLayerId = async (layerId) => {
 	}
 };
 
-export const useCatOutlookGeoJSONQuery = (layerId) => {
+export const useCategoricalOutlookByLayerId = (layerId) => {
 	return useQuery(
 		["convective outlooks", "categorical", `layer ${layerId}`],
-		() => fetchMapServerGeoJsonByLayerId(layerId)
+		() => fetchCategoricalOutlookByLayerId(layerId)
 	);
-};
-
-export const useCategoricalOutlooks = () => {
-	return useQuery(["convective outlooks", "categorical", "geojson"], () => {
-		return Promise.all([
-			fetchMapServerGeoJsonByLayerId(1),
-			fetchMapServerGeoJsonByLayerId(9),
-			fetchMapServerGeoJsonByLayerId(17),
-		]);
-	});
 };
