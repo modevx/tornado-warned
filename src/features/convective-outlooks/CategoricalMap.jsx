@@ -2,7 +2,7 @@ import rewind from "@turf/rewind";
 import { geoAlbers, geoPath } from "d3-geo";
 
 import { USMap, USMapLoading } from "components";
-import { useCatOutlookGeoJSONQuery } from "services/outlook-mapserver";
+import { useCategoricalOutlookByLayerId } from "services/outlook-mapserver";
 
 const projection = geoAlbers();
 const albersGeoPath = geoPath(projection);
@@ -13,7 +13,7 @@ export const CategoricalMap = ({ layerId, styles }) => {
 		2: 9,
 		3: 17,
 	});
-	const { data: outlookFeatures } = useCatOutlookGeoJSONQuery(
+	const { data: outlookFeatures } = useCategoricalOutlookByLayerId(
 		DAY_LAYER_MAP[layerId]
 	);
 
