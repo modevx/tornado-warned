@@ -18,7 +18,7 @@ export const CategoricalMap = ({ layerId, styles }) => {
 	);
 
 	return (
-		<div>
+		<section id='convective-outlook-map'>
 			{outlookFeatures ? (
 				<USMap>
 					{outlookFeatures.map((feature) => {
@@ -43,7 +43,7 @@ export const CategoricalMap = ({ layerId, styles }) => {
 				<USMapLoading loadingMessage='Outlook Loading...' />
 			)}
 			<CategoricalLegend styles={styles} />
-		</div>
+		</section>
 	);
 };
 
@@ -51,10 +51,7 @@ const CategoricalLegend = ({ styles }) => {
 	const stylesArr = Object.values(styles);
 
 	return (
-		<section
-			id='categorical-outlook-legend'
-			className='text-xs flex justify-center mt-10 mb-16 sm:text-sm lg:text-lg'
-		>
+		<div className='text-xs flex justify-center mt-10 mb-16 sm:text-sm lg:text-lg'>
 			<div className='grid gap-4 grid-cols-2 sm:grid-cols-3 lg:flex lg:justify-center pl-10'>
 				{stylesArr.map(({ bgColor, textColor, label }) => {
 					return (
@@ -73,7 +70,7 @@ const CategoricalLegend = ({ styles }) => {
 					);
 				})}
 			</div>
-		</section>
+		</div>
 	);
 };
 
