@@ -1,17 +1,19 @@
 import { DayJSDateTime } from "components";
 
-import { useCatOutlookGeoJSONQuery } from "services/outlook-mapserver";
+import { useCategoricalOutlookByLayerId } from "services/outlook-mapserver";
 
 export const DayInfo = ({ day }) => {
 	let valid, expire;
 
-	const DAY_LAYER_MAP = Object.freeze({
+	const CATEGORICAL_DAY_TO_LAYER = Object.freeze({
 		1: 1,
 		2: 9,
 		3: 17,
 	});
 
-	const { data } = useCatOutlookGeoJSONQuery(DAY_LAYER_MAP[day]);
+	const { data } = useCategoricalOutlookByLayerId(
+		CATEGORICAL_DAY_TO_LAYER[day]
+	);
 
 	if (data) {
 		valid = data[0]?.properties.valid;
@@ -20,21 +22,22 @@ export const DayInfo = ({ day }) => {
 
 	return (
 		<div>
-			<h1 className='text-center text-2xl uppercase'>{`Day ${day} Convective Outlook`}</h1>
+			<DayHeading day={day} />
 			<div className='text-center'>
-				<DayJSDateTime utcDate={Date.now()} format='ddd MMM D' />
-				<ValidDates valid={valid} expire={expire} />
+				<p className='text-xs'>
+					<OutlookDate date={valid} />
+					&nbsp;&#45;&nbsp;
+					<OutlookDate date={expire} />
+				</p>
 			</div>
 		</div>
 	);
 };
 
-const ValidDates = ({ valid, expire }) => {
-	return (
-		<p className='text-xs'>
-			<DayJSDateTime utcDate={valid ? valid : "N/A"} format='LT' />
-			&nbsp;&#45;&nbsp;
-			<DayJSDateTime utcDate={expire ? expire : "N/A"} format='LT' />
-		</p>
-	);
-};
+const DayHeading = ({ day }) => (
+	<h1 className='text-center text-2xl uppercase'>{`Day ${day} Convective Outlook`}</h1>
+);
+
+const OutlookDate = ({ date }) => (
+	<DayJSDateTime utcDate={date ? date : "N/A"} format='ddd MMM D, LT' />
+);
