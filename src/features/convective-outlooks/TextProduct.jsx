@@ -6,9 +6,9 @@ export const TextProduct = ({ day }) => {
 	return (
 		<section
 			id='convective-outlook-text-product'
-			className='bg-neutral-200 text-black px-6 py-8 rounded-lg'
+			className='bg-neutral-200 text-black px-6 py-8 rounded-lg mb-6 mx-auto sm:max-w-min'
 		>
-			<pre className='whitespace-break-spaces sm:whitespace-pre text-sm max-w-prose mx-auto'>
+			<pre className='whitespace-break-spaces sm:whitespace-pre text-sm mx-auto'>
 				{data ? data : null}
 			</pre>
 		</section>

@@ -10,10 +10,10 @@ const NAV_ITEMS = [
 		label: "convective outlooks",
 		href: "/convective-outlooks",
 	},
-	{
-		label: "SPC RSS feeds",
-		href: "/spc-rss-feeds",
-	},
+	// {
+	// 	label: "SPC RSS feeds",
+	// 	href: "/spc-rss-feeds",
+	// },
 ];
 
 export const Header = () => {
