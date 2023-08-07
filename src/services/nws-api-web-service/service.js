@@ -15,10 +15,9 @@ const NWS_ALERTS_EVENTS = {
 };
 
 const ERROR_TITLE = "/// ERROR: National Weather Service API Web Service ///";
-
-const getActiveAlertsByEvent = async (event) => {
+const getNwsAlertsGeoJsonByEvent = async (event) => {
 	const uriEncodedEvent = encodeURIComponent(event);
-	const queryParams = `/alerts/active?status=actual&message_type=alert,update&event=${uriEncodedEvent}`;
+	const queryParams = `/alerts/active?status=actual&message_type=alert&event=${uriEncodedEvent}`;
 
 	try {
 		const response = await nwsWebServiceClient.get(queryParams);
@@ -30,29 +29,42 @@ const getActiveAlertsByEvent = async (event) => {
 	}
 };
 
+export const useActiveAlertsGeoJsonByEventQuery = (event) => {
+	return useQuery(["NWS", "Alerts", event], () =>
+		getNwsAlertsGeoJsonByEvent(event)
+	);
+};
+
+export const useFakeAlerts = (event) => {
+	const eventType = event.toLowerCase().split(" ").join("_");
+	return FAKE_ALERTS[eventType];
+};
+
+// TODO: confirm these aren't used anywhere and delete
+
 export const useTornadoWarningQuery = () => {
 	return useQuery(["alerts", "active", NWS_ALERTS_EVENTS.tornado_warning], () =>
-		getActiveAlertsByEvent(NWS_ALERTS_EVENTS.tornado_warning)
+		getNwsAlertsGeoJsonByEvent(NWS_ALERTS_EVENTS.tornado_warning)
 	);
 };
 
 export const useTornadoWatchQuery = () => {
 	return useQuery(["alerts", "active", NWS_ALERTS_EVENTS.tornado_watch], () =>
-		getActiveAlertsByEvent(NWS_ALERTS_EVENTS.tornado_watch)
+		getNwsAlertsGeoJsonByEvent(NWS_ALERTS_EVENTS.tornado_watch)
 	);
 };
 
 export const useSevereStormWarningQuery = () => {
 	return useQuery(
 		["alerts", "active", NWS_ALERTS_EVENTS.severe_storm_warning],
-		() => getActiveAlertsByEvent(NWS_ALERTS_EVENTS.severe_storm_warning)
+		() => getNwsAlertsGeoJsonByEvent(NWS_ALERTS_EVENTS.severe_storm_warning)
 	);
 };
 
 export const useSevereStormWatchQuery = () => {
 	return useQuery(
 		["alerts", "active", NWS_ALERTS_EVENTS.severe_storm_watch],
-		() => getActiveAlertsByEvent(NWS_ALERTS_EVENTS.severe_storm_watch)
+		() => getNwsAlertsGeoJsonByEvent(NWS_ALERTS_EVENTS.severe_storm_watch)
 	);
 };
 

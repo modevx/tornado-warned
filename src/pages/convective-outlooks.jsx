@@ -1,19 +1,28 @@
-import { PageLayout } from "components";
+import React from "react";
+
+import { DayJSDateTime, PageLayout } from "components";
 import {
-	CategoricalLegend,
+	CategoricalMap,
+	DayInfo,
+	DayPicker,
 	OutlookSection,
+	TextProduct,
 } from "features/convective-outlooks";
-import { CATEGORICAL_OUTLOOK_FEATURE_STYLES } from "features/convective-outlooks/_constants";
+
+import { CATEGORICAL as styles } from "features/convective-outlooks/_constants/outlook-feature-styles";
 
 const ConvectiveOutlookScreen = () => {
+	const [outlookDay, setOutlookDay] = React.useState(1);
+
+	const handleDayChange = (e) => setOutlookDay(e.target.value);
+
 	return (
 		<PageLayout>
-			<CategoricalLegend stylesObj={CATEGORICAL_OUTLOOK_FEATURE_STYLES} />
-
-			<div className='lg:flex lg:justify-evenly lg:items-center'>
-				<OutlookSection day={1} layerId={1} />
-				<OutlookSection day={2} layerId={9} />
-				<OutlookSection day={3} layerId={17} />
+			<div className='px-4'>
+				<DayPicker onChangeHandler={handleDayChange} />
+				<DayInfo day={outlookDay} />
+				<CategoricalMap layerId={outlookDay} styles={styles} />
+				<TextProduct day={outlookDay} />
 			</div>
 		</PageLayout>
 	);
