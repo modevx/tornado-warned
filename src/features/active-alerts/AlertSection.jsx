@@ -1,15 +1,22 @@
+import { twMerge } from "tailwind-merge";
 import {
   useActiveAlertsGeoJsonByEventQuery,
   useFakeAlerts,
 } from "services/nws-api-web-service";
 
-export const AlertSection = ({ alertComponent, event }) => {
+export const AlertSection = ({
+  alertComponent,
+  event,
+  className,
+  ...props
+}) => {
+  const classes = twMerge("p-2", className);
   const AlertComponent = alertComponent;
   const { data: alerts } = useActiveAlertsGeoJsonByEventQuery(event);
   const fakeAlerts = useFakeAlerts(event);
 
   return (
-    <section>
+    <section {...props} className={classes}>
       <SectionTitle title={event} />
       <GridLayout>
         {alerts
@@ -40,7 +47,7 @@ const SectionTitle = ({ title }) => {
 
 const GridLayout = ({ children }) => {
   return (
-    <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {children}
     </div>
   );

@@ -28,7 +28,7 @@ const HomeScreen = () => {
 
   return (
     <PageLayout>
-      <div className="p-4">
+      <>
         <AlertFilters
           handler={handleToggleChange}
           filterState={alertFilters ?? {}}
@@ -61,7 +61,7 @@ const HomeScreen = () => {
             event="Severe Thunderstorm Watch"
           />
         )}
-      </div>
+      </>
     </PageLayout>
   );
 };

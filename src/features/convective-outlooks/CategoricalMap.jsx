@@ -1,7 +1,7 @@
 import rewind from "@turf/rewind";
 import { geoAlbers, geoPath } from "d3-geo";
 
-import { USMap, USMapLoading } from "components";
+import { USStateMap, USMapLoading } from "components";
 import { useCategoricalOutlookByLayerId } from "services/outlook-mapserver";
 
 const projection = geoAlbers();
@@ -21,7 +21,7 @@ export const CategoricalMap = ({ layerId, styles }) => {
     <section id="convective-outlook-map">
       <CategoricalLegend styles={styles} />
       {outlookFeatures ? (
-        <USMap>
+        <USStateMap>
           {outlookFeatures.map((feature) => {
             const {
               id,
@@ -39,7 +39,7 @@ export const CategoricalMap = ({ layerId, styles }) => {
               />
             );
           })}
-        </USMap>
+        </USStateMap>
       ) : (
         <USMapLoading loadingMessage="Outlook Loading..." />
       )}

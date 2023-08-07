@@ -2,15 +2,18 @@ import { Card } from "react-daisyui";
 
 import {
   AlertMessageButtons,
+  AlertMessageModal,
   AlertPolygonMap,
   Body,
+  Description,
+  Instruction,
   ExpirationTime,
   ImpactedAreas,
   MaxHailSize,
   SenderName,
-  Title,
+  CardTitle,
   TornadoDetection,
-} from "features/active-alerts/AlertCardElements";
+} from "./AlertCardElements";
 
 // TODO: add special messaging for TORNADO EMERGENCY & PARTICULARLY DANGEROUS SITUATION alerts
 
@@ -19,29 +22,29 @@ export const TornadoWarningAlert = ({ alert }) => {
   const alertFeature = { id, type, geometry };
   const {
     areaDesc,
+    description,
     effective,
     expires,
-    senderName,
-    description,
     instruction,
-    // *
-    // * all [parameter] values return values inside an []
-    // *
+    senderName,
+
+    // ! all parameter values in []
     parameters: { maxHailSize, tornadoDetection },
   } = properties;
 
   return (
-    <Card className="bg-red-500 p-2">
-      <Title>
+    <Card className="bg-gradient-to-br from-red-500 to-red-800 p-2">
+      <CardTitle>
         <SenderName senderName={senderName} />
-      </Title>
+      </CardTitle>
 
       <Body>
-        <TornadoDetection tornadoDetection={tornadoDetection} />
         <div className="flex justify-between">
-          <MaxHailSize maxHailSize={maxHailSize} />
+          <TornadoDetection tornadoDetection={tornadoDetection} />
+          <div className="mx-2" />
           <ExpirationTime expiresTime={expires} />
         </div>
+        {/* <MaxHailSize maxHailSize={maxHailSize} /> */}
         {/* <AlertPolygonMap alertFeature={alert} /> */}
         <ImpactedAreas areaDesc={areaDesc} />
         <AlertMessageButtons
@@ -59,14 +62,18 @@ export const TornadoWatchAlert = ({ alert }) => {
     properties;
 
   return (
-    <Card className="bg-yellow-300 p-2">
-      <Title>
+    <Card className="bg-gradient-to-br from-yellow-300 to-yellow-600 p-2">
+      <CardTitle>
         <SenderName senderName={senderName} />
-        <ExpirationTime expiresTime={expires} />
-      </Title>
+      </CardTitle>
 
       <Body>
+        <ExpirationTime expiresTime={expires} />
         <ImpactedAreas areaDesc={areaDesc} />
+        <AlertMessageButtons
+          description={description}
+          instruction={instruction}
+        />
       </Body>
     </Card>
   );
@@ -79,15 +86,19 @@ export const SevereStormWarningAlert = ({ alert }) => {
     alert?.properties;
 
   return (
-    <Card className="bg-orange-500 p-2">
-      <Title>
+    <Card className="bg-gradient-to-br from-orange-400 to-orange-600 p-2">
+      <CardTitle>
         <SenderName senderName={senderName} />
-        <ExpirationTime expiresTime={expires} />
-      </Title>
+      </CardTitle>
 
       <Body>
+        <ExpirationTime expiresTime={expires} />
         <ImpactedAreas areaDesc={areaDesc} />
-        <AlertPolygonMap alertFeature={alert} />
+        {/* <AlertPolygonMap alertFeature={alert} /> */}
+        <AlertMessageButtons
+          description={description}
+          instruction={instruction}
+        />
       </Body>
     </Card>
   );
@@ -99,15 +110,19 @@ export const SevereStormWatchAlert = ({ alert }) => {
     properties;
 
   return (
-    <Card className="bg-green-300 p-2">
-      <Title>
+    <Card className="bg-gradient-to-br from-green-400 to-green-700 p-2">
+      <CardTitle>
         <SenderName senderName={senderName} />
-        <ExpirationTime expiresTime={expires} />
-      </Title>
+      </CardTitle>
 
       <Body>
+        <ExpirationTime expiresTime={expires} />
         <ImpactedAreas areaDesc={areaDesc} />
         {/* <p>{instruction}</p> */}
+        <AlertMessageButtons
+          description={description}
+          instruction={instruction}
+        />
       </Body>
     </Card>
   );
