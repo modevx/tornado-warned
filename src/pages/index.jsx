@@ -1,65 +1,76 @@
 import { useState } from "react";
 
-import { PageLayout } from "components";
+import { PageLayout, USCountyMap } from "components";
 import { AlertFilters } from "features/active-alerts/AlertFilters";
 import { AlertSection } from "features/active-alerts/AlertSection";
 import {
-	TornadoWarningAlert,
-	TornadoWatchAlert,
-	SevereStormWarningAlert,
-	SevereStormWatchAlert,
+  TornadoWarningAlert,
+  TornadoWatchAlert,
+  SevereStormWarningAlert,
+  SevereStormWatchAlert,
 } from "features/active-alerts/AlertCards";
 
+import * as D3 from "d3";
+const albers = D3.geoAlbers();
+const d3pathGen = D3.geoPath(albers);
+import { useAlertGeoJsonByEvent } from "services/nws-api-web-service";
+
 const HomeScreen = () => {
-	const [alertFilters, setAlertFilters] = useState({
-		showTornadoWarnings: true,
-		showTornadoWatches: true,
-		showStormWarnings: true,
-		showStormWatches: true,
-	});
+  const [alertFilters, setAlertFilters] = useState({
+    showTornadoWarnings: true,
+    showTornadoWatches: true,
+    showStormWarnings: true,
+    showStormWatches: true,
+  });
 
-	const handleToggleChange = (e) => {
-		const { name: toggleName } = e.target;
+  const { data: alerts } = useAlertGeoJsonByEvent("Severe Thunderstorm Watch");
 
-		setAlertFilters((prev) =>
-			Object.assign({ ...prev }, { [toggleName]: !prev[toggleName] })
-		);
-	};
+  if (alerts) console.log("ALERTS >>\n", alerts);
 
-	return (
-		<PageLayout>
-			<>
-				<AlertFilters
-					handler={handleToggleChange}
-					filterState={alertFilters ?? {}}
-				/>
+  const handleToggleChange = (e) => {
+    const { name: toggleName } = e.target;
 
-				<AlertSection
-					alertComponent={TornadoWarningAlert}
-					event='Tornado Warning'
-					isDisplayed={alertFilters.showTornadoWarnings}
-				/>
+    setAlertFilters((prev) =>
+      Object.assign({ ...prev }, { [toggleName]: !prev[toggleName] })
+    );
+  };
 
-				<AlertSection
-					alertComponent={TornadoWatchAlert}
-					event='Tornado Watch'
-					isDisplayed={alertFilters.showTornadoWatches}
-				/>
+  return (
+    <PageLayout>
+      <>
+        <AlertFilters
+          handler={handleToggleChange}
+          filterState={alertFilters ?? {}}
+        />
 
-				<AlertSection
-					alertComponent={SevereStormWarningAlert}
-					event='Severe Thunderstorm Warning'
-					isDisplayed={alertFilters.showStormWarnings}
-				/>
+        <USCountyMap pathGen={d3pathGen}></USCountyMap>
 
-				<AlertSection
-					alertComponent={SevereStormWatchAlert}
-					event='Severe Thunderstorm Watch'
-					isDisplayed={alertFilters.showStormWatches}
-				/>
-			</>
-		</PageLayout>
-	);
+        {/* <AlertSection
+          alertComponent={TornadoWarningAlert}
+          event="Tornado Warning"
+          isDisplayed={alertFilters.showTornadoWarnings}
+        />
+
+        <AlertSection
+          alertComponent={TornadoWatchAlert}
+          event="Tornado Watch"
+          isDisplayed={alertFilters.showTornadoWatches}
+        />
+
+        <AlertSection
+          alertComponent={SevereStormWarningAlert}
+          event="Severe Thunderstorm Warning"
+          isDisplayed={alertFilters.showStormWarnings}
+        />
+
+        <AlertSection
+          alertComponent={SevereStormWatchAlert}
+          event="Severe Thunderstorm Watch"
+          isDisplayed={alertFilters.showStormWatches}
+        /> */}
+      </>
+    </PageLayout>
+  );
 };
 
 export default HomeScreen;
