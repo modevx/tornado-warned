@@ -9,6 +9,7 @@ import {
   SevereStormWarningAlert,
   SevereStormWatchAlert,
 } from "features/active-alerts/AlertCards";
+import { ActiveAlertMap } from "features/active-alerts";
 
 const HomeScreen = () => {
   const [alertFilters, setAlertFilters] = useState({
@@ -29,7 +30,8 @@ const HomeScreen = () => {
   return (
     <PageLayout>
       <>
-        <AlertFilters
+        <ActiveAlertMap />
+        {/* <AlertFilters
           handler={handleToggleChange}
           filterState={alertFilters ?? {}}
         />
@@ -60,7 +62,7 @@ const HomeScreen = () => {
             alertComponent={SevereStormWatchAlert}
             event="Severe Thunderstorm Watch"
           />
-        )}
+        )} */}
       </>
     </PageLayout>
   );

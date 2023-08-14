@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 import {
-  useActiveAlertsGeoJsonByEventQuery,
+  useAlertFeaturesByEvent,
   useFakeAlerts,
 } from "services/nws-api-web-service";
 
@@ -12,7 +12,7 @@ export const AlertSection = ({
 }) => {
   const classes = twMerge("p-2", className);
   const AlertComponent = alertComponent;
-  const { data: alerts } = useActiveAlertsGeoJsonByEventQuery(event);
+  const { data: alerts } = useAlertFeaturesByEvent(event);
   const fakeAlerts = useFakeAlerts(event);
 
   return (
