@@ -40,12 +40,6 @@ export const ConusBasemap = ({
 				strokeWidth={0.25}
 				isDisplayed={showCounties}
 			/>
-			{/* <MapFeatures
-				pathGen={pathGen}
-				features={albersCounties}
-				strokeWidth={0.25}
-				isDisplayed={showCounties}
-			/> */}
 			<MapFeatures
 				pathGen={pathGen}
 				features={countyWarningAreasMeshed}
