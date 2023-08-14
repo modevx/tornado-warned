@@ -253,7 +253,7 @@ export const SenderName = ({ senderName }) => {
 
   return (
     <AlertCardSubComponent className="flex items-center text-lg">
-      <NextImage src="/images/nws-logo.png" height={40} width={40} />
+      <NextImage src="/images/logo-nws.png" height={40} width={40} />
       <span className="ml-3">{wfo}</span>
     </AlertCardSubComponent>
   );
