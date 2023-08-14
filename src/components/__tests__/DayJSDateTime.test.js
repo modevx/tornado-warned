@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import { DayJSDateTime } from "./DayJSDateTime";
+import { DayJSDateTime } from "../DayJSDateTime";
 
 describe("DayJSDateTime Component", () => {
 	test("renders component to screen", () => {
