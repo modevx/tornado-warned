@@ -1,6 +1,6 @@
 import * as topojson from "topojson-client";
 
-import AlbersTopoJSONMap from "./_constants/albers-topojson-map.json";
+import AlbersTopoJSONMap from "./_constants/albers-map.topo.json";
 
 const { features: countyFeatures } = topojson.feature(
 	AlbersTopoJSONMap,

@@ -1,7 +1,7 @@
 import * as topojson from "topojson-client";
 import { geoAlbers, geoPath } from "d3-geo";
 
-import AlbersTopoJSONMap from "./_constants/albers-topojson-map.json";
+import AlbersTopoJSONMap from "./_constants/albers-map.topo.json";
 
 const albersProjection = geoAlbers();
 const albersGeoPath = geoPath(albersProjection);

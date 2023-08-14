@@ -4,5 +4,5 @@ export * from "./Header";
 export * from "./PageLayout";
 export * from "./USCountyMap";
 export * from "./USStateMap";
-export * from "./USMap";
+export * from "./ConusBasemap";
 export * from "./USMapLoading";
