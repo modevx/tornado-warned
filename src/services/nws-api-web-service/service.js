@@ -74,6 +74,8 @@ export const useFakeWatchAlerts = (watchEvent) => {
 	console.log("useFakeWatchAlerts: affectedZones >>\n", affectedZones);
 };
 
+// TODO: [Wednesday] create warning alert feature collections to populate empty <geometry> alert property with
+
 const parseAffectedZones = ({ features }) => {
 	const countyZoneCodes = [];
 

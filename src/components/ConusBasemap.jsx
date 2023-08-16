@@ -1,16 +1,16 @@
 import { albersPathGenerator } from "components/_constants/path-generators";
 import {
-	albersNation,
-	albersStates,
-	albersCountiesMeshed,
-	countyWarningAreas,
-	countyWarningAreasMeshed,
+	albersNation as nation,
+	albersStatesMeshed as states,
+	albersCountiesMeshed as counties,
+	countyWarningAreasMeshed as countyWarningAreas,
+	publicForecastZonesMeshed as publicForecastZones,
 } from "./_constants/map-features";
 
 // TODO: add County Warning Area and Zone features
 
-console.log("CONUS States >>\n", albersStates);
-console.log("CONUS CWAs >>\n", albersCountiesMeshed);
+// console.log("CONUS States >>\n", states);
+// console.log("CONUS CWAs >>\n", counties);
 
 export const ConusBasemap = ({
 	children,
@@ -18,54 +18,45 @@ export const ConusBasemap = ({
 	showStates = true,
 	showCounties = false,
 	showCWAs = false,
-	// showZones= false
+	showPFZs = false,
 }) => {
 	return (
 		<svg viewBox='0 -60 975 610' xmlns='http://www.w3.org/2000/svg'>
-			<path
-				d={pathGen(albersNation)}
-				strokeWidth={2}
-				stroke='white'
-				fill='grey'
-			/>
+			<path d={pathGen(nation)} strokeWidth={2} stroke='white' fill='grey' />
 			<MapFeatures
 				pathGen={pathGen}
-				features={albersStates}
+				features={states}
 				strokeWidth={1.25}
-				isDisplayed={showStates}
+				isVisible={showStates}
 			/>
 			<MapFeatures
 				pathGen={pathGen}
-				features={albersCountiesMeshed}
+				features={counties}
 				strokeWidth={0.25}
-				isDisplayed={showCounties}
+				isVisible={showCounties}
 			/>
 			<MapFeatures
 				pathGen={pathGen}
-				features={countyWarningAreasMeshed}
+				features={countyWarningAreas}
 				strokeWidth={0.5}
-				isDisplayed={showCWAs}
+				isVisible={showCWAs}
 			/>
-			{/* <MapFeatures
+			<MapFeatures
+				datatest-id='PFZs'
 				pathGen={pathGen}
-				features={albersCounties}
+				features={publicForecastZones}
 				strokeWidth={0.5}
-				isDisplayed={showZones}
-			/> */}
+				isVisible={showPFZs}
+			/>
 			{children}
 		</svg>
 	);
 };
 
-const MapFeatures = ({
-	pathGen,
-	features,
-	isDisplayed = false,
-	...pathArgs
-}) => {
+const MapFeatures = ({ pathGen, features, isVisible = false, ...pathArgs }) => {
 	return (
 		<>
-			{isDisplayed && (
+			{isVisible && (
 				<path
 					d={pathGen(features)}
 					{...pathArgs}

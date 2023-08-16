@@ -31,6 +31,7 @@ const HomeScreen = () => {
 	const [showStates, setShowStates] = useState(true);
 	const [showCounties, setShowCounties] = useState(false);
 	const [showCWAs, setShowCWAs] = useState(false);
+	const [showPFZs, setShowPFZs] = useState(false);
 
 	const handleToggleChange = (e) => {
 		const { name: toggleName } = e.target;
@@ -52,7 +53,7 @@ const HomeScreen = () => {
 		setIsOpen(false);
 	};
 
-	useFakeWatchAlerts("Severe Thunderstorm Watch");
+	// useFakeWatchAlerts("Severe Thunderstorm Watch");
 
 	return (
 		<PageLayout>
@@ -62,6 +63,7 @@ const HomeScreen = () => {
 						showStates={showStates}
 						showCounties={showCounties}
 						showCWAs={showCWAs}
+						showPFZs={showPFZs}
 					>
 						<WarningFeatures
 							event='Tornado Warning'
@@ -95,6 +97,13 @@ const HomeScreen = () => {
 								className='ml-4'
 								value={showCWAs}
 								onChange={() => setShowCWAs((prev) => !prev)}
+							/>
+						</Form.Label>
+						<Form.Label title='PFZs'>
+							<Checkbox
+								className='ml-4'
+								value={showPFZs}
+								onChange={() => setShowPFZs((prev) => !prev)}
 							/>
 						</Form.Label>
 					</Form>
