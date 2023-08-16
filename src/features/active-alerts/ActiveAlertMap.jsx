@@ -90,24 +90,30 @@ const WatchAlertFeatures = ({ event, fillColor, onClickHandler }) => {
 	// TODO: create custom FeatureCollection containing only affectedZones
 	// const { data: watches } = useWatchAlertsByEvent(event);
 	const { features, affectedZones } = useFakeWatchAlertsByEvent(event);
+	const watchFeatureCollection = { type: "FeatureCollection", features: [] };
 
 	// if (watches) console.log("Watches >>\n", watches);
 	// if (fakeWatches) console.log("Fake Watches >>\n", fakeWatches);
 	console.log("Counties >>\n", albersCounties);
-	console.log("affectedZones >>\n", affectedZones);
+	// console.log("affectedZones >>\n", affectedZones);
+
+	albersCounties.features.forEach((feature) => {
+		const nwsSAMEcode = `0${feature.id}`;
+		const isAffectedCounty = affectedZones.includes(nwsSAMEcode);
+
+		if (isAffectedCounty) {
+			watchFeatureCollection.features.push(feature);
+		}
+	});
+
+	console.log("watchFeatureCollection >>\n", watchFeatureCollection);
 
 	return (
-		<g>
-			{albersCounties.features.map(({ id, geometry, properties }) => {
-				const nwsSAMEcode = `0${id}`;
-				const isAffectedCounty = affectedZones.includes(nwsSAMEcode);
-				const fill = isAffectedCounty ? fillColor : "none";
-
-				return (
-					<path key={id} d={d3GeoPath(geometry)} fill={fill} stroke='none' />
-				);
-			})}
-		</g>
+		<path
+			d={d3GeoPath(watchFeatureCollection)}
+			fill={fillColor}
+			stroke='none'
+		/>
 	);
 };
 
