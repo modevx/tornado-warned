@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import {
 	useWarningAlertsByEvent,
-	useFakeWarningAlerts,
+	useFakeWarningAlertsByEvent,
 } from "services/nws-api-web-service";
 
 export const AlertSection = ({
@@ -13,7 +13,7 @@ export const AlertSection = ({
 	const classes = twMerge("p-2", className);
 	const AlertComponent = alertComponent;
 	const { data: alerts } = useWarningAlertsByEvent(event);
-	const fakeAlerts = useFakeWarningAlerts(event);
+	const fakeAlerts = useFakeWarningAlertsByEvent(event);
 
 	return (
 		<section {...props} className={classes}>

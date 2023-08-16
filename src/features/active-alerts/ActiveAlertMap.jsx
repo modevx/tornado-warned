@@ -1,12 +1,17 @@
 import { useState } from "react";
-import Rewind from "@turf/rewind";
-import { Button, Modal } from "react-daisyui";
+import rewind from "@turf/rewind";
 import { geoAlbers, geoPath } from "d3";
+import { Button, Modal } from "react-daisyui";
 
 import { Basemap, BasemapFeatureSelector } from "components";
+import { albersCounties } from "components/_constants/map-features";
+import { TornadoWarningAlert, SevereStormWarningAlert } from "./AlertCards";
 import {
+	useWatchAlertsByEvent,
 	useWarningAlertsByEvent,
-	useFakeWarningAlerts,
+	useFakeWatchAlertsByEvent,
+	useFakeWarningAlertsByEvent,
+	NWS_EVENTS,
 } from "services/nws-api-web-service";
 
 const projection = geoAlbers();
@@ -15,7 +20,6 @@ const d3GeoPath = geoPath(projection);
 export const ActiveAlertMap = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [alertInfo, setAlertInfo] = useState(null);
-
 	const [features, setFeatures] = useState({
 		states: true,
 		counties: false,
@@ -27,47 +31,51 @@ export const ActiveAlertMap = () => {
 		setAlertInfo(alert);
 		setIsOpen((isOpen) => !isOpen);
 	};
-
 	const handleCloseModal = () => {
 		setIsOpen(false);
 	};
-
 	const handleFeatureSelectorOnChange = (e) => {
 		const { name } = e.target;
 		setFeatures((prev) => Object.assign({ ...prev }, { [name]: !prev[name] }));
 	};
 
+	const testWatchHandler = () => {};
+
 	return (
 		<>
-			<Basemap
-				showStates={features.states}
-				showCounties={features.counties}
-				showCWAs={features.cwas}
-				showPFZs={features.pfzs}
-			>
-				{/* Feature Filter */}
-				{/* <WarningFeatures event='Tornado Warning' color='stroke-red-400' />
-			<WarningFeatures
-				event='Severe Thunderstorm Warning'
-				color='stroke-orange-400'
-			/> */}
-
-				<WarningFeatures
-					event='Tornado Warning'
-					color='stroke-red-400'
-					onClickHandler={handleShowAlertModal}
+			<div className='flex items-center'>
+				<BasemapFeatureSelector
+					showValues={features}
+					onChangeHandler={handleFeatureSelectorOnChange}
 				/>
-				<WarningFeatures
-					event='Severe Thunderstorm Warning'
-					color='stroke-orange-400'
-					onClickHandler={handleShowAlertModal}
-				/>
-			</Basemap>
-
-			<BasemapFeatureSelector
-				showValues={features}
-				onChangeHandler={handleFeatureSelectorOnChange}
-			/>
+				<Basemap
+					showStates={features.states}
+					showCounties={features.counties}
+					showCWAs={features.cwas}
+					showPFZs={features.pfzs}
+				>
+					<WarningAlertFeatures
+						event='Tornado Warning'
+						color='stroke-red-400'
+						onClickHandler={handleShowAlertModal}
+					/>
+					<WarningAlertFeatures
+						event='Severe Thunderstorm Warning'
+						color='stroke-orange-400'
+						onClickHandler={handleShowAlertModal}
+					/>
+					<WatchAlertFeatures
+						event='Tornado Watch'
+						fillColor='yellow'
+						onClickHandler={testWatchHandler}
+					/>
+					<WatchAlertFeatures
+						event='Severe Thunderstorm Watch'
+						fillColor='green'
+						onClickHandler={testWatchHandler}
+					/>
+				</Basemap>
+			</div>
 
 			<AlertModal
 				isOpen={isOpen}
@@ -78,24 +86,47 @@ export const ActiveAlertMap = () => {
 	);
 };
 
-const WarningFeatures = ({ event, color, onClickHandler }) => {
-	const { data } = useWarningAlertsByEvent(event);
-	const fakeAlerts = useFakeWarningAlerts(event);
+const WatchAlertFeatures = ({ event, fillColor, onClickHandler }) => {
+	// TODO: create custom FeatureCollection containing only affectedZones
+	// const { data: watches } = useWatchAlertsByEvent(event);
+	const { features, affectedZones } = useFakeWatchAlertsByEvent(event);
 
-	if (fakeAlerts) console.log(`${event} >>\n`, fakeAlerts);
+	// if (watches) console.log("Watches >>\n", watches);
+	// if (fakeWatches) console.log("Fake Watches >>\n", fakeWatches);
+	console.log("Counties >>\n", albersCounties);
+	console.log("affectedZones >>\n", affectedZones);
+
+	return (
+		<g>
+			{albersCounties.features.map(({ id, geometry, properties }) => {
+				const nwsSAMEcode = `0${id}`;
+				const isAffectedCounty = affectedZones.includes(nwsSAMEcode);
+				const fill = isAffectedCounty ? fillColor : "none";
+
+				return (
+					<path key={id} d={d3GeoPath(geometry)} fill={fill} stroke='none' />
+				);
+			})}
+		</g>
+	);
+};
+
+const WarningAlertFeatures = ({ event, color, onClickHandler }) => {
+	const { data: warnings } = useWarningAlertsByEvent(event);
+	const fakeWarnings = useFakeWarningAlertsByEvent(event);
 
 	return (
 		<>
-			{/* {data.length > 0 ? (
+			{/* {warnings.length > 0 ? (
         <g>
-          {data.map(({ feature }) => (
+          {warnings.map(({ feature }) => (
             <AlertPolygon key={feature.id} feature={feature.geometry} color={color} />
           ))}
         </g>
       ) : null} */}
-			{fakeAlerts.length > 0 ? (
+			{fakeWarnings.length > 0 ? (
 				<g>
-					{fakeAlerts.map((alert) => (
+					{fakeWarnings.map((alert) => (
 						<AlertPolygon
 							key={alert.id}
 							feature={alert}
@@ -112,7 +143,7 @@ const WarningFeatures = ({ event, color, onClickHandler }) => {
 const AlertPolygon = ({ feature, color, onClickHandler }) => {
 	return (
 		<path
-			d={albersPathGenerator(rewind(feature.geometry, { reverse: true }))}
+			d={d3GeoPath(rewind(feature.geometry, { reverse: true }))}
 			strokeWidth={10}
 			opacity={0.7}
 			className={color}

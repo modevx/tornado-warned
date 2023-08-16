@@ -1,18 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { createHTTPClient } from "services/create-http-client";
 import { FAKE_ALERTS } from "./fake-alerts";
+import { createHTTPClient } from "services/create-http-client";
 
-const nwsWebServiceClient = createHTTPClient({
+const nwsApiClient = createHTTPClient({
 	baseURL: "https://api.weather.gov",
 });
-
-const NWS_ALERTS_EVENTS = {
-	tornado_warning: "Tornado Warning",
-	tornado_watch: "Tornado Watch",
-	severe_storm_warning: "Severe Thunderstorm Warning",
-	severe_storm_watch: "Severe Thunderstorm Watch",
-};
 
 const ERROR_TITLE = "/// ERROR: National Weather Service API Web Service ///";
 
@@ -21,7 +14,7 @@ const getWarningAlertsByEvent = async (warningEvent) => {
 	const queryParams = `/alerts/active?status=actual&message_type=alert&event=${uriEncodedEvent}`;
 
 	try {
-		const response = await nwsWebServiceClient.get(queryParams);
+		const response = await nwsApiClient.get(queryParams);
 		const { features } = response?.data;
 		return features;
 	} catch (error) {
@@ -36,52 +29,53 @@ export const useWarningAlertsByEvent = (warningEvent) => {
 	);
 };
 
+export const useFakeWarningAlertsByEvent = (warningEvent) => {
+	return FAKE_ALERTS[warningEvent];
+};
+
 const getWatchAlertsByEvent = async (watchEvent) => {
 	const uriEncodedEvent = encodeURIComponent(watchEvent);
 	const queryParams = `/alerts/active?status=actual&message_type=alert&event=${uriEncodedEvent}`;
-	let affectedZones = null;
+
+	let watchFeatures = [];
 
 	try {
-		const response = await nwsWebServiceClient.get(queryParams);
+		const response = await nwsApiClient.get(queryParams);
 		const { features } = response?.data;
 
 		if (features.length > 0) {
-			affectedZones = parseAffectedZones({ features: features });
-			console.log("Affected Zone Geometry >>\n", affectedZones);
+			watchFeatures = features.map((feature) => {
+				const affectedZones = parseAffectedFIPSCodes(feature);
+
+				return Object.assign({ ...feature }, { zoneIds: affectedZones });
+			});
 		}
 
-		// return features;
+		return watchFeatures;
 	} catch (error) {
 		console.log(`${ERROR_TITLE}\n`, error);
 		throw new Error(`${ERROR_TITLE}\n`, error);
 	}
 };
 
-export const useWatchAlertsByEvent = (watchEVent) => {
-	return useQuery(["NWS", "Alerts", "Watches", watchEVent], () =>
-		getWarningAlertsByEvent(watchEVent)
+export const useWatchAlertsByEvent = (watchEvent) => {
+	return useQuery(["NWS", "Alerts", "Watches", watchEvent], () =>
+		getWatchAlertsByEvent(watchEvent)
 	);
 };
 
-export const useFakeWarningAlerts = (warningEvent) => {
-	return FAKE_ALERTS[warningEvent];
-};
-
-export const useFakeWatchAlerts = (watchEvent) => {
-	const alerts = FAKE_ALERTS[watchEvent];
-	console.log("useFakeWatchAlerts: alerts >>\n", alerts);
-	const affectedZones = parseAffectedZones({ features: alerts });
-	console.log("useFakeWatchAlerts: affectedZones >>\n", affectedZones);
-};
-
-// TODO: [Wednesday] create warning alert feature collections to populate empty <geometry> alert property with
-
-const parseAffectedZones = ({ features }) => {
-	const countyZoneCodes = [];
+export const useFakeWatchAlertsByEvent = (watchEvent) => {
+	const features = FAKE_ALERTS[watchEvent];
+	let affectedZones = [];
 
 	features.forEach((feature) => {
-		countyZoneCodes = [...countyZoneCodes, feature.properties.geocode.UGC];
+		affectedZones = [...affectedZones, ...feature.properties.geocode.SAME];
 	});
 
-	return countyZoneCodes;
+	return { features, affectedZones };
+};
+
+const parseAffectedFIPSCodes = (feature) => {
+	const affectedZones = feature.properties.geocode.UGC;
+	return affectedZones;
 };

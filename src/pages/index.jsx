@@ -11,21 +11,9 @@ const HomeScreen = () => {
 		showStormWatches: true,
 	});
 
-	const handleToggleChange = (e) => {
-		const { name: toggleName } = e.target;
-
-		setAlertFilters((prev) =>
-			Object.assign({ ...prev }, { [toggleName]: !prev[toggleName] })
-		);
-	};
-
 	return (
 		<PageLayout>
-			<>
-				<div className='flex items-center p-10'>
-					<ActiveAlertMap />
-				</div>
-			</>
+			<ActiveAlertMap />
 		</PageLayout>
 	);
 };
