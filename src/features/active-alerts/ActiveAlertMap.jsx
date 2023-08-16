@@ -113,6 +113,7 @@ const WatchAlertFeatures = ({ event, fillColor, onClickHandler }) => {
 			d={d3GeoPath(watchFeatureCollection)}
 			fill={fillColor}
 			stroke='none'
+			opacity={0.7}
 		/>
 	);
 };
