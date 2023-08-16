@@ -3,8 +3,8 @@ import { geoAlbers, geoPath } from "d3";
 
 import { USStateMap } from "components";
 import {
-	useAlertFeaturesByEvent,
-	useFakeAlerts,
+	useWarningAlertsByEvent,
+	useFakeWarningAlerts,
 } from "services/nws-api-web-service";
 
 const projection = geoAlbers();
@@ -24,8 +24,8 @@ export const ActiveAlertMap = () => {
 };
 
 const WarningFeatures = ({ event, color }) => {
-	const { data } = useAlertFeaturesByEvent(event);
-	const fakeAlerts = useFakeAlerts(event);
+	const { data } = useWarningAlertsByEvent(event);
+	const fakeAlerts = useFakeWarningAlerts(event);
 
 	if (fakeAlerts) console.log(`${event} >>\n`, fakeAlerts);
 
