@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Checkbox, Form, Modal } from "react-daisyui";
 
-import { PageLayout, ConusBasemap } from "components";
+import { Basemap, BasemapFeatureSelector, PageLayout } from "components";
 import { AlertFilters } from "features/active-alerts/AlertFilters";
 import { AlertSection } from "features/active-alerts/AlertSection";
 import {
@@ -28,11 +28,6 @@ const HomeScreen = () => {
 		showStormWatches: true,
 	});
 
-	const [showStates, setShowStates] = useState(true);
-	const [showCounties, setShowCounties] = useState(false);
-	const [showCWAs, setShowCWAs] = useState(false);
-	const [showPFZs, setShowPFZs] = useState(false);
-
 	const handleToggleChange = (e) => {
 		const { name: toggleName } = e.target;
 
@@ -53,17 +48,29 @@ const HomeScreen = () => {
 		setIsOpen(false);
 	};
 
+	const [features, setFeatures] = useState({
+		states: true,
+		counties: false,
+		cwas: false,
+		pfzs: false,
+	});
+
+	const handleFeatureSelectorOnChange = (e) => {
+		const { name } = e.target;
+		setFeatures((prev) => Object.assign({ ...prev }, { [name]: !prev[name] }));
+	};
+
 	// useFakeWatchAlerts("Severe Thunderstorm Watch");
 
 	return (
 		<PageLayout>
 			<>
 				<div className='flex items-center p-10'>
-					<ConusBasemap
-						showStates={showStates}
-						showCounties={showCounties}
-						showCWAs={showCWAs}
-						showPFZs={showPFZs}
+					<Basemap
+						showStates={features.states}
+						showCounties={features.counties}
+						showCWAs={features.cwas}
+						showPFZs={features.pfzs}
 					>
 						<WarningFeatures
 							event='Tornado Warning'
@@ -75,77 +82,19 @@ const HomeScreen = () => {
 							color='stroke-orange-400'
 							onClickHandler={handleShowAlertModal}
 						/>
-					</ConusBasemap>
-					<Form className='flex flex-col justify-center bg-blue-900 rounded-md p-4'>
-						<Form.Label title='States'>
-							<Checkbox
-								className='ml-4'
-								defaultChecked
-								value={showStates}
-								onChange={() => setShowStates((prev) => !prev)}
-							/>
-						</Form.Label>
-						<Form.Label title='Counties'>
-							<Checkbox
-								className='ml-4'
-								value={showCounties}
-								onChange={() => setShowCounties((prev) => !prev)}
-							/>
-						</Form.Label>
-						<Form.Label title='CWAs'>
-							<Checkbox
-								className='ml-4'
-								value={showCWAs}
-								onChange={() => setShowCWAs((prev) => !prev)}
-							/>
-						</Form.Label>
-						<Form.Label title='PFZs'>
-							<Checkbox
-								className='ml-4'
-								value={showPFZs}
-								onChange={() => setShowPFZs((prev) => !prev)}
-							/>
-						</Form.Label>
-					</Form>
+					</Basemap>
+
+					<BasemapFeatureSelector
+						showValues={features}
+						onChangeHandler={handleFeatureSelectorOnChange}
+					/>
+
 					<ClickedPolygonModal
 						isOpen={isOpen}
 						alertInfo={alertInfo}
 						closeModalHandler={handleCloseModal}
 					/>
 				</div>
-				{/* <ActiveAlertMap /> */}
-				{/* <AlertFilters
-          handler={handleToggleChange}
-          filterState={alertFilters ?? {}}
-        />
-
-        {alertFilters.showTornadoWarnings && (
-          <AlertSection
-            alertComponent={TornadoWarningAlert}
-            event="Tornado Warning"
-          />
-        )}
-
-        {alertFilters.showTornadoWatches && (
-          <AlertSection
-            alertComponent={TornadoWatchAlert}
-            event="Tornado Watch"
-          />
-        )}
-
-        {alertFilters.showStormWarnings && (
-          <AlertSection
-            alertComponent={SevereStormWarningAlert}
-            event="Severe Thunderstorm Warning"
-          />
-        )}
-
-        {alertFilters.showStormWatches && (
-          <AlertSection
-            alertComponent={SevereStormWatchAlert}
-            event="Severe Thunderstorm Watch"
-          />
-        )} */}
 			</>
 		</PageLayout>
 	);
