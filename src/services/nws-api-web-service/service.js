@@ -16,7 +16,7 @@ const NWS_ALERTS_EVENTS = {
 
 const ERROR_TITLE = "/// ERROR: National Weather Service API Web Service ///";
 
-const getAlertFeaturesByEvent = async (event) => {
+const getWarningAlertsByEvent = async (event) => {
   const uriEncodedEvent = encodeURIComponent(event);
   const queryParams = `/alerts/active?status=actual&message_type=alert&event=${uriEncodedEvent}`;
 
@@ -32,7 +32,7 @@ const getAlertFeaturesByEvent = async (event) => {
 
 export const useAlertFeaturesByEvent = (event) => {
   return useQuery(["NWS", "Alerts", event], () =>
-    getAlertFeaturesByEvent(event)
+    getWarningAlertsByEvent(event)
   );
 };
 
