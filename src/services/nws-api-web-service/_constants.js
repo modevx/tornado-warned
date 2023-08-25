@@ -1,6 +1,11 @@
-export const NWS_EVENTS = Object.freeze({
-	severeStormWarning: "Severe Thunderstorm Warning",
-	severeStormWatch: "Severe Thunderstorm Watch",
-	tornadoWarning: "Tornado Warning",
-	tornadoWatch: "Tornado Watch",
+export const EVENTS = Object.freeze({
+	tor_warn: "Tornado Warning",
+	tor_watch: "Tornado Watch",
+	st_warn: "Severe Thunderstorm Warning",
+	st_watch: "Severe Thunderstorm Watch",
+});
+
+export const SITUATIONS = Object.freeze({
+	te: "tornado emergency",
+	pds: "particularly dangerous situation",
 });

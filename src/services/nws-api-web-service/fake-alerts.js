@@ -1,5 +1,5 @@
 export const FAKE_ALERTS = {
-	"Tornado Warning": [
+	tor_warn: [
 		{
 			id: "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.8dbde7755cdb40ba896e8ed6d7bb860c285b6775.001.1",
 			type: "Feature",
@@ -48,7 +48,7 @@ export const FAKE_ALERTS = {
 				headline:
 					"Tornado Warning issued August 15 at 1:32AM EDT until August 15 at 1:30AM EDT by NWS Blacksburg VA",
 				description:
-					"The storm which prompted the warning has moved out of the area.\nTherefore, the warning has been allowed to expire.\n\nA Severe Thunderstorm Watch remains in effect until 400 AM EDT for\nnorthwestern North Carolina...and southwestern Virginia.",
+					"This is a TORNADO EMERGENCY. The storm which prompted the warning has moved out of the area.\nTherefore, the warning has been allowed to expire.\n\nA Severe Thunderstorm Watch remains in effect until 400 AM EDT for\nnorthwestern North Carolina...and southwestern Virginia.",
 				instruction: null,
 				response: "Shelter",
 				parameters: {
@@ -288,7 +288,7 @@ export const FAKE_ALERTS = {
 			},
 		},
 	],
-	"Tornado Watch": [
+	tor_watch: [
 		{
 			id: "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.2b500a5fc50a8f06bdfad947941fffc50770b067.002.1",
 			type: "Feature",
@@ -1143,7 +1143,7 @@ export const FAKE_ALERTS = {
 			},
 		},
 	],
-	"Severe Thunderstorm Warning": [
+	st_warn: [
 		{
 			id: "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.2c9ce6e197c870f1398a82748596489265f197a4.001.1",
 			type: "Feature",
@@ -1409,7 +1409,7 @@ export const FAKE_ALERTS = {
 				headline:
 					"Severe Thunderstorm Warning issued August 11 at 6:35PM CDT until August 11 at 7:15PM CDT by NWS Norman OK",
 				description:
-					"The National Weather Service in Norman has issued a\n\n* Severe Thunderstorm Warning for...\nNorthwestern Washita County in western Oklahoma...\nSoutheastern Roger Mills County in western Oklahoma...\nWestern Custer County in western Oklahoma...\nNortheastern Beckham County in western Oklahoma...\n\n* Until 715 PM CDT.\n\n* At 634 PM CDT, a severe thunderstorm was located near Elk City,\nmoving northeast at 25 mph.\n\nHAZARD...60 mph wind gusts.\n\nSOURCE...Radar indicated.\n\nIMPACT...Expect damage to roofs, siding, and trees.\n\n* Locations impacted include...\nElk City, Clinton, Cordell, Burns Flat, Hammon, Dill City, Canute,\nButler, Carter, Bessie, Foss, Foss Reservoir, Berlin, and Stafford.",
+					"This is a PARTICULARLY DANGEROUS SITUATION! The National Weather Service in Norman has issued a\n\n* Severe Thunderstorm Warning for...\nNorthwestern Washita County in western Oklahoma...\nSoutheastern Roger Mills County in western Oklahoma...\nWestern Custer County in western Oklahoma...\nNortheastern Beckham County in western Oklahoma...\n\n* Until 715 PM CDT.\n\n* At 634 PM CDT, a severe thunderstorm was located near Elk City,\nmoving northeast at 25 mph.\n\nHAZARD...60 mph wind gusts.\n\nSOURCE...Radar indicated.\n\nIMPACT...Expect damage to roofs, siding, and trees.\n\n* Locations impacted include...\nElk City, Clinton, Cordell, Burns Flat, Hammon, Dill City, Canute,\nButler, Carter, Bessie, Foss, Foss Reservoir, Berlin, and Stafford.",
 				instruction:
 					"For your protection move to an interior room on the lowest floor of a\nbuilding.",
 				response: "Shelter",
@@ -1431,7 +1431,7 @@ export const FAKE_ALERTS = {
 			},
 		},
 	],
-	"Severe Thunderstorm Watch": [
+	st_watch: [
 		{
 			id: "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.a848aef8b32ce950140dc1ac9623d5c5b677b806.001.1",
 			type: "Feature",
