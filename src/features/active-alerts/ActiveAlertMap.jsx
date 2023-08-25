@@ -1,8 +1,10 @@
 import { useState } from "react";
 import rewind from "@turf/rewind";
-import { geoAlbers, geoPath, geoTransform } from "d3";
+import topojson from "topojson-client";
 import { Button, Modal } from "react-daisyui";
+import { geoAlbers, geoPath, geoTransform } from "d3";
 
+import AlbersTopo from "components/_constants/albers-map.topo.json";
 import { Basemap, BasemapFeatureSelector } from "components";
 import { albersCounties } from "components/_constants/map-features";
 import { TornadoWarningAlert, SevereStormWarningAlert } from "./AlertCards";
@@ -57,16 +59,11 @@ export const ActiveAlertMap = () => {
 	return (
 		<>
 			<div className='flex items-center'>
-				<BasemapFeatureSelector
+				{/* <BasemapFeatureSelector
 					showValues={features}
 					onChangeHandler={handleFeatureSelectorOnChange}
-				/>
-				<Basemap
-					showStates={features.states}
-					showCounties={features.counties}
-					showCWAs={features.cwas}
-					showPFZs={features.pfzs}
-				>
+				/> */}
+				<Basemap>
 					<Warnings
 						// features={tor_warn}
 						features={fake_tor_warn}
@@ -101,48 +98,10 @@ export const ActiveAlertMap = () => {
 	);
 };
 
-const Watches = ({ event, fillColor, onClickHandler }) => {
-	// TODO: create custom FeatureCollection containing only affectedZones
-	const { data: watches } = useWatchAlertsByEvent(event);
-	const { features, affectedZones } = useFakeWatchAlertsByEvent(event);
-	const watchFeatureCollection = { type: "FeatureCollection", features: [] };
-
-	if (watches) console.log("Watches >>\n", watches);
-	// if (fakeWatches) console.log("Fake Watches >>\n", fakeWatches);
-	// console.log("Counties >>\n", albersCounties);
-	// console.log("affectedZones >>\n", affectedZones);
-
-	albersCounties.features.forEach((feature) => {
-		const nwsSAMEcode = `0${feature.id}`;
-		const isAffectedCounty = affectedZones.includes(nwsSAMEcode);
-
-		if (isAffectedCounty) {
-			watchFeatureCollection.features.push(feature);
-		}
-	});
-
-	console.log("watchFeatureCollection >>\n", watchFeatureCollection);
-
-	return (
-		<>
-			{watches && (
-				<path
-					// d={d3GeoPath(watchFeatureCollection)}
-					d={d3GeoPath(watches)}
-					fill={fillColor}
-					stroke='black'
-					strokeOpacity={0.7}
-					strokeWidth={0.5}
-					opacity={0.7}
-				/>
-			)}
-		</>
-	);
-};
-
+// ------------
+// --- WARNINGS
+// ------------
 const Warnings = ({ features, color, callback }) => {
-	// ! TODO: add logic to change feature color/behavior for TORNADO EMERGENCY & PDS
-
 	return (
 		<>
 			{features && features.length > 0 ? (
@@ -154,7 +113,7 @@ const Warnings = ({ features, color, callback }) => {
 						const polygonColor = isEmergency ? "#f0f" : isPDS ? "#09f" : color;
 
 						return (
-							<AlertPolygon
+							<WarningPolygon
 								key={feature.id}
 								feature={feature}
 								color={polygonColor}
@@ -169,6 +128,66 @@ const Warnings = ({ features, color, callback }) => {
 };
 
 const WarningPolygon = ({ callback, color, feature }) => {
+	return (
+		<path
+			d={d3GeoPath(rewind(feature.geometry, { reverse: true }))}
+			fill='none'
+			stroke={color}
+			strokeWidth={1}
+			onClick={() => callback(feature)}
+		/>
+	);
+};
+
+// ------------
+// --- WATCHES
+// ------------
+
+const Watches = ({ features, color, callback }) => {
+	const isValidFeatures = features && features.length > 0;
+
+	return (
+		<>
+			{isValidFeatures
+				? features.map((feature) => {
+						const counties = AlbersTopo.objects.counties;
+						const affectedZones = [...feature.properties.geocode.SAME];
+						const watchCounties = {
+							type: "GeometryCollection",
+							geometries: [],
+						};
+
+						counties.geometries.forEach((feature) => {
+							const SAME = `0${feature.id}`;
+							const isAffectedCounty = affectedZones.includes(SAME);
+
+							// TODO: finish creating TopoJSON counties geometry object to pass to topojson.merge(AlbersMap, watchCounties)
+							if (isAffectedCounty) {
+								watchCounties.geometries = [
+									...watchCounties.geometries,
+									feature,
+								];
+							}
+						});
+
+						return null;
+						//   return <path
+						//   key={feature.id}
+						// 	d={d3GeoPath(watchCounties)}
+						// 	d={d3GeoPath(watches)}
+						// 	fill={fillColor}
+						// 	stroke='black'
+						// 	strokeOpacity={0.7}
+						// 	strokeWidth={0.5}
+						// 	opacity={0.7}
+						// />
+				  })
+				: null}
+		</>
+	);
+};
+
+const WatchPolygon = ({ callback, color, feature }) => {
 	return null;
 };
 

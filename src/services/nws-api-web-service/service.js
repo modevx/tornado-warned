@@ -30,20 +30,6 @@ export const useNwsAlertsByEvent = (event) => {
 
 // ------------------------ SIMPLIFY SERVICE -------------------------
 
-const getWarningAlertsByEvent = async (warningEvent) => {
-	const uriEncodedEvent = encodeURIComponent(warningEvent);
-	const queryParams = `/alerts/active?status=actual&message_type=alert&event=${uriEncodedEvent}`;
-
-	try {
-		const response = await nwsApiClient.get(queryParams);
-		const { features } = response?.data;
-		return features;
-	} catch (error) {
-		console.log(`${ERROR_TITLE}\n`, error);
-		throw new Error(`${ERROR_TITLE}\n`, error);
-	}
-};
-
 const getWatchAlertsByEvent = async (watchEvent) => {
 	const uriEncodedEvent = encodeURIComponent(watchEvent);
 	const queryParams = `/alerts/active?status=actual&message_type=alert&event=${uriEncodedEvent}`;
@@ -69,20 +55,10 @@ const getWatchAlertsByEvent = async (watchEvent) => {
 	}
 };
 
-export const useWarningAlertsByEvent = (warningEvent) => {
-	return useQuery(["NWS", "Alerts", "Warnings", warningEvent], () =>
-		getWarningAlertsByEvent(warningEvent)
-	);
-};
-
 export const useWatchAlertsByEvent = (watchEvent) => {
 	return useQuery(["NWS", "Alerts", "Watches", watchEvent], () =>
 		getWatchAlertsByEvent(watchEvent)
 	);
-};
-
-export const useFakeWarningAlertsByEvent = (warningEvent) => {
-	return FAKE_ALERTS[warningEvent];
 };
 
 export const useFakeWatchAlertsByEvent = (watchEvent) => {
