@@ -1,6 +1,6 @@
 import { useState } from "react";
 import rewind from "@turf/rewind";
-import topojson from "topojson-client";
+import * as topojson from "topojson-client";
 import { Button, Modal } from "react-daisyui";
 import { geoAlbers, geoPath, geoTransform } from "d3";
 
@@ -39,6 +39,7 @@ export const ActiveAlertMap = () => {
   });
 
   const handleShowAlertModal = (alert) => {
+    console.log("feature clicked");
     setAlertInfo(alert);
     setIsOpen((isOpen) => !isOpen);
   };
@@ -61,29 +62,29 @@ export const ActiveAlertMap = () => {
 				/> */}
         <Basemap>
           <Warnings
-            // features={tor_warn}
-            features={fake_tor_warn}
-            color="#f00"
+            // alerts={tor_warn}
+            alerts={fake_tor_warn}
+            color="red"
             callback={handleShowAlertModal}
           />
           <Warnings
-            // features={st_warn}
-            features={fake_st_warn}
-            color="#f60"
+            // alerts={st_warn}
+            alerts={fake_st_warn}
+            color="orange"
             callback={handleShowAlertModal}
           />
           <Watches
-            // features={tor_watch}
-            features={fake_tor_watch}
-            fillColor="#ff0"
-            onClickHandler={testWatchHandler}
+            // alerts={tor_watch}
+            alerts={fake_tor_watch}
+            color="yellow"
+            callback={testWatchHandler}
           />
-          {/* <Watches
-            features={st_watch}
-            features={fake_st_watch}
-            fillColor="green"
-            onClickHandler={testWatchHandler}
-          /> */}
+          <Watches
+            // alerts={st_watch}
+            alerts={fake_st_watch}
+            color="limegreen"
+            callback={testWatchHandler}
+          />
         </Basemap>
       </div>
 
@@ -99,23 +100,23 @@ export const ActiveAlertMap = () => {
 // ------------
 // --- WARNINGS
 // ------------
-const Warnings = ({ features, color, callback }) => {
+const Warnings = ({ alerts, color, callback }) => {
   return (
     <>
-      {features && features.length > 0 ? (
+      {alerts && alerts.length > 0 ? (
         <g>
-          {features.map((feature) => {
-            const { description: desc } = feature.properties;
+          {alerts.map((alert) => {
+            const { description: desc } = alert.properties;
             const isEmergency = checkStringForPhrase(desc, SITUATIONS.te);
             const isPDS = checkStringForPhrase(desc, SITUATIONS.pds);
             const polygonColor = isEmergency ? "#f0f" : isPDS ? "#09f" : color;
 
             return (
               <WarningPolygon
-                key={feature.id}
-                feature={feature}
+                key={alert.id}
+                feature={alert}
                 color={polygonColor}
-                callback={callback}
+                onClick={callback}
               />
             );
           })}
@@ -125,14 +126,14 @@ const Warnings = ({ features, color, callback }) => {
   );
 };
 
-const WarningPolygon = ({ callback, color, feature }) => {
+const WarningPolygon = ({ color, feature, onClick }) => {
   return (
     <path
       d={d3GeoPath(rewind(feature.geometry, { reverse: true }))}
       fill="none"
       stroke={color}
       strokeWidth={1}
-      onClick={() => callback(feature)}
+      onClick={() => onClick(feature)}
     />
   );
 };
@@ -141,15 +142,15 @@ const WarningPolygon = ({ callback, color, feature }) => {
 // --- WATCHES
 // ------------
 
-const Watches = ({ features, color, callback }) => {
-  const isValidFeatures = features && features.length > 0;
-  // const topoJson = Object.assign(AlbersTopo, {});
+const Watches = ({ alerts, color, callback }) => {
+  const isValidFeatures = alerts && alerts.length > 0;
 
   return (
     <>
       {isValidFeatures
-        ? features.map((feature) => {
-            const affectedCountyIds = feature.properties.geocode.SAME;
+        ? alerts.map((alert) => {
+            const affectedCountyIds = alert.properties.geocode.SAME;
+            // ! --- FIX TOPOJSON.MERGE ERROR ---
             const watchFeature = topojson.merge(
               AlbersTopo,
               AlbersTopo.objects.counties.geometries.filter((geometry) => {
@@ -158,79 +159,27 @@ const Watches = ({ features, color, callback }) => {
               })
             );
 
-            {
-              /* const watchCounties = {
-              counties: {
-                type: "GeometryCollection",
-                geometries: [],
-              },
-            }; */
-            }
-
-            // iterate counties in AlbersTopoJson
-            // IF TopoJSON county id = SAME code in affectedCounties
-            // THEN add county feature to alert TopoJSON
-            {
-              /* counties.geometries.forEach((county) => {
-              const countySAME = `0${county.id}`;
-              const isAffectedCounty =
-                affectedCountyIds.includes(countySAME);
-
-              if (isAffectedCounty) {
-                watchCounties.counties.geometries = [
-                  ...watchCounties.counties.geometries,
-                  county,
-                ];
-              }
-            }); */
-            }
-
-            // create new topoJSON with counties in watch
-            {
-              /* const watchTopoJSON = Object.assign(
-              { ...AlbersTopo },
-              { objects: watchCounties }
-            ); */
-            }
-
-            {
-              /* console.log("WATCH TOPOJSON >>\n", watchTopoJSON); */
-            }
-
-            // merge affected county features to create single watch polygon
-
-            {
-              /* console.log("WATCH FEATURE >>\n", watchFeature); */
-            }
-
-            {
-              /* return (
-              <path
-                key={feature.id}
-                d={d3GeoPath(watchFeature)}
-                fill={fillColor}
+            return (
+              <WatchPolygon
+                key={alert.id}
+                color={color}
+                feature={watchFeature}
+                onClick={callback}
               />
-            ); */
-            }
-            return null;
+            );
           })
         : null}
     </>
   );
 };
 
-const WatchPolygon = ({ callback, color, feature }) => {
-  return null;
-};
-
-const AlertPolygon = ({ feature, color, callback }) => {
+const WatchPolygon = ({ color, feature, onClick }) => {
   return (
     <path
-      d={d3GeoPath(rewind(feature.geometry, { reverse: true }))}
-      fill="none"
-      stroke={color}
-      strokeWidth={1}
-      onClick={() => callback(feature)}
+      d={d3GeoPath(rewind(feature, { reverse: true }))}
+      fill={color}
+      onClick={() => onClick(feature)}
+      opacity={0.7}
     />
   );
 };
