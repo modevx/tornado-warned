@@ -179,7 +179,9 @@ const WatchPolygon = ({ color, feature, onClick }) => {
       d={d3GeoPath(rewind(feature, { reverse: true }))}
       fill={color}
       onClick={() => onClick(feature)}
-      opacity={0.7}
+      fillOpacity={0.5}
+      stroke="black"
+      strokeWidth={1.5}
     />
   );
 };
