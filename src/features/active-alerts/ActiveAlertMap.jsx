@@ -7,7 +7,12 @@ import { geoAlbers, geoPath, geoTransform } from "d3";
 import AlbersTopo from "components/_constants/albers-map.topo.json";
 import { Basemap, BasemapFeatureSelector } from "components";
 import { albersCounties } from "components/_constants/map-features";
-import { TornadoWarningAlert, SevereStormWarningAlert } from "./AlertCards";
+import {
+  TornadoWarningAlert,
+  SevereStormWarningAlert,
+  TornadoWatchAlert,
+  SevereStormWatchAlert,
+} from "./AlertCards";
 import {
   useNwsAlertsByEvent,
   EVENTS,
@@ -51,8 +56,6 @@ export const ActiveAlertMap = () => {
     setFeatures((prev) => Object.assign({ ...prev }, { [name]: !prev[name] }));
   };
 
-  const testWatchHandler = () => {};
-
   return (
     <>
       <div className="flex items-center">
@@ -77,13 +80,13 @@ export const ActiveAlertMap = () => {
             // alerts={tor_watch}
             alerts={fake_tor_watch}
             color="yellow"
-            callback={testWatchHandler}
+            callback={handleShowAlertModal}
           />
           <Watches
             // alerts={st_watch}
             alerts={fake_st_watch}
             color="limegreen"
-            callback={testWatchHandler}
+            callback={handleShowAlertModal}
           />
         </Basemap>
       </div>
@@ -162,6 +165,7 @@ const Watches = ({ alerts, color, callback }) => {
             return (
               <WatchPolygon
                 key={alert.id}
+                alert={alert}
                 color={color}
                 feature={watchFeature}
                 onClick={callback}
@@ -173,12 +177,12 @@ const Watches = ({ alerts, color, callback }) => {
   );
 };
 
-const WatchPolygon = ({ color, feature, onClick }) => {
+const WatchPolygon = ({ alert, color, feature, onClick }) => {
   return (
     <path
       d={d3GeoPath(rewind(feature, { reverse: true }))}
       fill={color}
-      onClick={() => onClick(feature)}
+      onClick={() => onClick(alert)}
       fillOpacity={0.5}
       stroke="black"
       strokeWidth={1.5}
@@ -190,6 +194,8 @@ const AlertModal = ({ isOpen, closeModalHandler, alertInfo }) => {
   const ALERT_TYPE = {
     "Tornado Warning": TornadoWarningAlert,
     "Severe Thunderstorm Warning": SevereStormWarningAlert,
+    "Tornado Watch": TornadoWatchAlert,
+    "Severe Thunderstorm Watch": SevereStormWatchAlert,
   };
 
   const AlertModal = ALERT_TYPE[alertInfo?.properties?.event];
