@@ -59,11 +59,11 @@ export const ActiveAlertMap = () => {
   return (
     <>
       <div className="flex items-center">
-        {/* <BasemapFeatureSelector
-					showValues={features}
-					onChangeHandler={handleFeatureSelectorOnChange}
-				/> */}
-        <Basemap>
+        <BasemapFeatureSelector
+          showValues={features}
+          onChangeHandler={handleFeatureSelectorOnChange}
+        />
+        <Basemap showCounties={features.counties}>
           <Warnings
             // alerts={tor_warn}
             alerts={fake_tor_warn}
