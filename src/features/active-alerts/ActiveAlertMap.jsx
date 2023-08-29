@@ -21,6 +21,9 @@ import {
 	SITUATIONS,
 } from "services/nws-api-web-service";
 
+import { FaTornado } from "react-icons/fa6";
+import { IoThunderstorm } from "react-icons/io5";
+
 const projection = geoAlbers();
 const d3GeoPath = geoPath(projection);
 
@@ -65,12 +68,14 @@ export const ActiveAlertMap = () => {
 					// alerts={tor_warn}
 					alerts={fake_tor_warn}
 					color='red'
+					icon={FaTornado}
 					callback={handleShowAlertModal}
 				/>
 				<WarningPoints
 					// alerts={st_warn}
 					alerts={fake_st_warn}
-					color='orange'
+					color='#f90'
+					icon={IoThunderstorm}
 					callback={handleShowAlertModal}
 				/>
 				<WatchPolygons
@@ -99,25 +104,56 @@ export const ActiveAlertMap = () => {
 // ------------
 // --- WARNINGS
 // ------------
-const WarningPoints = ({ alerts, color, callback }) => {
+const WarningPoints = ({ alerts, color, icon, callback }) => {
 	return (
 		<>
 			{alerts && alerts.length > 0 ? (
 				<g>
 					{alerts.map((alert) => {
-						const { description: desc } = alert.properties;
-						const isEmergency = checkStringForPhrase(desc, SITUATIONS.te);
-						const isPDS = checkStringForPhrase(desc, SITUATIONS.pds);
-						const polygonColor = isEmergency ? "#f0f" : isPDS ? "#09f" : color;
+						const { description } = alert.properties;
+						const [centX, centY] = d3GeoPath.centroid(alert.geometry);
+						const isTornadoEmergency = checkStringForPhrase(
+							description,
+							SITUATIONS.te
+						);
+						const isPDS = checkStringForPhrase(description, SITUATIONS.pds);
+						const polygonColor = isTornadoEmergency
+							? "#f0f"
+							: isPDS
+							? "#09f"
+							: color;
+
+						const Icon = icon;
 
 						return (
-							<WarningPolygon
+							<Icon
 								key={alert.id}
-								feature={alert}
-								color={polygonColor}
-								onClick={callback}
+								x={centX}
+								y={centY}
+								size={15}
+								fill={polygonColor}
+								onClick={() => callback(alert)}
 							/>
 						);
+
+						// return (
+						// 	<circle
+						// 		cx={centX}
+						// 		cy={centY}
+						// 		key={alert.id}
+						// 		fill={polygonColor}
+						// 		r='5'
+						// 	/>
+						// );
+
+						// return (
+						// 	<WarningPolygon
+						// 		key={alert.id}
+						// 		feature={alert}
+						// 		color={polygonColor}
+						// 		onClick={callback}
+						// 	/>
+						// );
 					})}
 				</g>
 			) : null}
@@ -149,7 +185,10 @@ const WatchPolygons = ({ alerts, color, callback }) => {
 			{isValidFeatures
 				? alerts.map((alert) => {
 						const affectedCountyIds = alert.properties.geocode.SAME;
-						// ! --- FIX TOPOJSON.MERGE ERROR ---
+						const { description } = alert.properties;
+						const isPDS = checkStringForPhrase(description, SITUATIONS.pds);
+						const fillColor = isPDS ? "#09f" : color;
+
 						const watchFeature = topojson.merge(
 							AlbersTopo,
 							AlbersTopo.objects.counties.geometries.filter((geometry) => {
@@ -162,7 +201,7 @@ const WatchPolygons = ({ alerts, color, callback }) => {
 							<WatchPolygon
 								key={alert.id}
 								alert={alert}
-								color={color}
+								color={fillColor}
 								feature={watchFeature}
 								onClick={callback}
 							/>

@@ -322,7 +322,7 @@ export const FAKE_ALERTS = {
 				headline:
 					"Tornado Watch issued August 12 at 6:43PM EDT until August 12 at 9:00PM EDT by NWS Pittsburgh PA",
 				description:
-					"THE NATIONAL WEATHER SERVICE HAS EXTENDED TORNADO WATCH 634 TO\nINCLUDE THE FOLLOWING AREAS UNTIL 9 PM EDT THIS EVENING\n\nIN PENNSYLVANIA THIS WATCH INCLUDES 1 COUNTY\n\nIN SOUTHWEST PENNSYLVANIA\n\nFAYETTE\n\nTHIS INCLUDES THE CITIES OF CONNELLSVILLE, MASONTOWN,\nAND UNIONTOWN.",
+					"This is a PARTICULARLY DANGEROUS SITUATION!!! THE NATIONAL WEATHER SERVICE HAS EXTENDED TORNADO WATCH 634 TO\nINCLUDE THE FOLLOWING AREAS UNTIL 9 PM EDT THIS EVENING\n\nIN PENNSYLVANIA THIS WATCH INCLUDES 1 COUNTY\n\nIN SOUTHWEST PENNSYLVANIA\n\nFAYETTE\n\nTHIS INCLUDES THE CITIES OF CONNELLSVILLE, MASONTOWN,\nAND UNIONTOWN.",
 				instruction: null,
 				response: "Monitor",
 				parameters: {
@@ -1409,7 +1409,7 @@ export const FAKE_ALERTS = {
 				headline:
 					"Severe Thunderstorm Warning issued August 11 at 6:35PM CDT until August 11 at 7:15PM CDT by NWS Norman OK",
 				description:
-					"This is a PARTICULARLY DANGEROUS SITUATION! The National Weather Service in Norman has issued a\n\n* Severe Thunderstorm Warning for...\nNorthwestern Washita County in western Oklahoma...\nSoutheastern Roger Mills County in western Oklahoma...\nWestern Custer County in western Oklahoma...\nNortheastern Beckham County in western Oklahoma...\n\n* Until 715 PM CDT.\n\n* At 634 PM CDT, a severe thunderstorm was located near Elk City,\nmoving northeast at 25 mph.\n\nHAZARD...60 mph wind gusts.\n\nSOURCE...Radar indicated.\n\nIMPACT...Expect damage to roofs, siding, and trees.\n\n* Locations impacted include...\nElk City, Clinton, Cordell, Burns Flat, Hammon, Dill City, Canute,\nButler, Carter, Bessie, Foss, Foss Reservoir, Berlin, and Stafford.",
+					"The National Weather Service in Norman has issued a\n\n* Severe Thunderstorm Warning for...\nNorthwestern Washita County in western Oklahoma...\nSoutheastern Roger Mills County in western Oklahoma...\nWestern Custer County in western Oklahoma...\nNortheastern Beckham County in western Oklahoma...\n\n* Until 715 PM CDT.\n\n* At 634 PM CDT, a severe thunderstorm was located near Elk City,\nmoving northeast at 25 mph.\n\nHAZARD...60 mph wind gusts.\n\nSOURCE...Radar indicated.\n\nIMPACT...Expect damage to roofs, siding, and trees.\n\n* Locations impacted include...\nElk City, Clinton, Cordell, Burns Flat, Hammon, Dill City, Canute,\nButler, Carter, Bessie, Foss, Foss Reservoir, Berlin, and Stafford.",
 				instruction:
 					"For your protection move to an interior room on the lowest floor of a\nbuilding.",
 				response: "Shelter",
@@ -1574,7 +1574,7 @@ export const FAKE_ALERTS = {
 				headline:
 					"Severe Thunderstorm Watch issued August 13 at 4:53PM CDT until August 13 at 8:00PM CDT by NWS Nashville TN",
 				description:
-					"THE NATIONAL WEATHER SERVICE HAS EXTENDED SEVERE THUNDERSTORM\nWATCH 641 TO INCLUDE THE FOLLOWING AREAS UNTIL 8 PM CDT THIS\nEVENING\n\nIN TENNESSEE THIS WATCH INCLUDES 3 COUNTIES\n\nIN MIDDLE TENNESSEE\n\nCUMBERLAND            VAN BUREN             WHITE\n\nTHIS INCLUDES THE CITIES OF CROSSVILLE, SPARTA, AND SPENCER.",
+					"This is a PARTICULARLY DANGEROUS SITUATION!!! THE NATIONAL WEATHER SERVICE HAS EXTENDED SEVERE THUNDERSTORM\nWATCH 641 TO INCLUDE THE FOLLOWING AREAS UNTIL 8 PM CDT THIS\nEVENING\n\nIN TENNESSEE THIS WATCH INCLUDES 3 COUNTIES\n\nIN MIDDLE TENNESSEE\n\nCUMBERLAND            VAN BUREN             WHITE\n\nTHIS INCLUDES THE CITIES OF CROSSVILLE, SPARTA, AND SPENCER.",
 				instruction: null,
 				response: "Monitor",
 				parameters: {

@@ -7,11 +7,6 @@ import {
 	publicForecastZonesMeshed as publicForecastZones,
 } from "./_constants/map-features";
 
-// TODO: add County Warning Area and Zone features
-
-// console.log("CONUS States >>\n", states);
-// console.log("CONUS CWAs >>\n", counties);
-
 export const Basemap = ({
 	pathGen = albersPathGenerator,
 	showStates = true,
@@ -22,12 +17,12 @@ export const Basemap = ({
 }) => {
 	return (
 		<svg viewBox='0 -60 975 610' xmlns='http://www.w3.org/2000/svg'>
-			<path d={pathGen(nation)} strokeWidth={2} stroke='white' fill='grey' />
+			<path d={pathGen(nation)} strokeWidth={0.5} stroke='white' fill='black' />
 			<MapFeatures
 				isVisible={showStates}
 				pathGen={pathGen}
 				features={states}
-				strokeWidth={1.25}
+				strokeWidth={0.25}
 			/>
 			<MapFeatures
 				isVisible={showCounties}
