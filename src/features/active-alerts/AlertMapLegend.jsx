@@ -1,4 +1,7 @@
 import { Card } from "react-daisyui";
+import { FaTornado } from "react-icons/fa";
+import { GoAlertFill } from "react-icons/go";
+import { TbPolygon } from "react-icons/tb";
 
 const events = [
 	{
@@ -39,7 +42,7 @@ const events = [
 	},
 ];
 
-export const AlertDescriptionCards = () => {
+export const AlertMapLegend = () => {
 	return (
 		<div className='px-6 grid gap-4 sm:grid-cols-2 md:grid-cols-3'>
 			{events.map(({ description, from_color, title }) => (

@@ -13,7 +13,7 @@ import {
 	TornadoWatchAlert,
 	SevereStormWatchAlert,
 } from "./AlertModal";
-import { AlertDescriptionCards } from "./AlertDescriptionCards";
+import { AlertMapLegend } from "./AlertMapLegend";
 import {
 	useNwsAlertsByEvent,
 	EVENTS,
@@ -59,6 +59,7 @@ export const ActiveAlertMap = () => {
 
 	return (
 		<>
+			<AlertMapLegend />
 			<Basemap showCounties={features.counties}>
 				<WarningPoints
 					// alerts={tor_warn}
@@ -85,8 +86,6 @@ export const ActiveAlertMap = () => {
 					callback={handleShowAlertModal}
 				/>
 			</Basemap>
-
-			<AlertDescriptionCards />
 
 			<AlertModal
 				isOpen={isOpen}
