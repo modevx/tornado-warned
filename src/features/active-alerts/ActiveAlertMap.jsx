@@ -12,7 +12,8 @@ import {
 	SevereStormWarningAlert,
 	TornadoWatchAlert,
 	SevereStormWatchAlert,
-} from "./AlertCards";
+} from "./AlertModal";
+import { AlertDescriptionCards } from "./AlertDescriptionCards";
 import {
 	useNwsAlertsByEvent,
 	EVENTS,
@@ -58,38 +59,34 @@ export const ActiveAlertMap = () => {
 
 	return (
 		<>
-			<div className='flex items-center'>
-				{/* <BasemapFeatureSelector
-          showValues={features}
-          onChangeHandler={handleFeatureSelectorOnChange}
-        /> */}
-				<Basemap showCounties={features.counties}>
-					<WarningPoints
-						// alerts={tor_warn}
-						alerts={fake_tor_warn}
-						color='red'
-						callback={handleShowAlertModal}
-					/>
-					<WarningPoints
-						// alerts={st_warn}
-						alerts={fake_st_warn}
-						color='orange'
-						callback={handleShowAlertModal}
-					/>
-					<WatchPolygons
-						// alerts={tor_watch}
-						alerts={fake_tor_watch}
-						color='yellow'
-						callback={handleShowAlertModal}
-					/>
-					<WatchPolygons
-						// alerts={st_watch}
-						alerts={fake_st_watch}
-						color='limegreen'
-						callback={handleShowAlertModal}
-					/>
-				</Basemap>
-			</div>
+			<Basemap showCounties={features.counties}>
+				<WarningPoints
+					// alerts={tor_warn}
+					alerts={fake_tor_warn}
+					color='red'
+					callback={handleShowAlertModal}
+				/>
+				<WarningPoints
+					// alerts={st_warn}
+					alerts={fake_st_warn}
+					color='orange'
+					callback={handleShowAlertModal}
+				/>
+				<WatchPolygons
+					// alerts={tor_watch}
+					alerts={fake_tor_watch}
+					color='yellow'
+					callback={handleShowAlertModal}
+				/>
+				<WatchPolygons
+					// alerts={st_watch}
+					alerts={fake_st_watch}
+					color='limegreen'
+					callback={handleShowAlertModal}
+				/>
+			</Basemap>
+
+			<AlertDescriptionCards />
 
 			<AlertModal
 				isOpen={isOpen}
