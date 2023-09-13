@@ -15,17 +15,13 @@ export const PageLayout = ({ children }) => {
 		<>
 			<Meta />
 
-			<div className='flex flex-col min-h-screen'>
-				<Drawer
-					open={isOpen}
-					onClickOverlay={toggleIsOpen}
-					side={<MobileNav />}
-				>
+			<Drawer open={isOpen} onClickOverlay={toggleIsOpen} side={<MobileNav />}>
+				<div className='flex flex-col min-h-screen'>
 					<Header callback={toggleIsOpen} />
-					<main className='grow flex flex-col'>{children}</main>
+					<main className='flex-1 flex flex-col'>{children}</main>
 					<Footer />
-				</Drawer>
-			</div>
+				</div>
+			</Drawer>
 		</>
 	);
 };

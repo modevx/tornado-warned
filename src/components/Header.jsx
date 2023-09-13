@@ -43,11 +43,8 @@ export const Header = ({ callback }) => {
 const Branding = () => {
 	return (
 		<NextLink href='/'>
-			<a className='text-xl text-center text-neutral-200 font-display uppercase'>
-				Tornado{" "}
-				<span className='text-xl italic bg-clip-text text-transparent bg-gradient-to-br from-red-500 to-neutral-400 pr-2'>
-					Warned
-				</span>
+			<a className='text-xl text-center font-display uppercase'>
+				Tornado <span className='italic'>Warned</span>
 			</a>
 		</NextLink>
 	);
