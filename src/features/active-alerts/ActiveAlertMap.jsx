@@ -5,7 +5,7 @@ import { Button, Modal } from "react-daisyui";
 import { geoAlbers, geoPath, geoTransform } from "d3";
 
 import AlbersTopo from "components/_constants/albers-map.topo.json";
-import { Basemap, BasemapFeatureSelector } from "components";
+import { Basemap, BasemapFeatureSelector, USStateMap } from "components";
 import { albersCounties } from "components/_constants/map-features";
 import {
 	TornadoWarningAlert,
@@ -63,7 +63,7 @@ export const ActiveAlertMap = () => {
 	return (
 		<>
 			{/* <AlertMapLegend /> */}
-			<Basemap showCounties={features.counties}>
+			<USStateMap>
 				<WarningPoints
 					// alerts={tor_warn}
 					alerts={fake_tor_warn}
@@ -90,7 +90,7 @@ export const ActiveAlertMap = () => {
 					color='limegreen'
 					callback={handleShowAlertModal}
 				/>
-			</Basemap>
+			</USStateMap>
 
 			<AlertModal
 				isOpen={isOpen}
