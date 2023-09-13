@@ -20,7 +20,10 @@ export const Header = ({ callback }) => {
 	const toggleIsOpen = useCallback(() => setIsOpen((isOpen) => !isOpen), []);
 
 	return (
-		<header data-testid='header' className='bg-zinc-800 px-3'>
+		<header
+			data-testid='header'
+			className='bg-primary text-primary-content px-3'
+		>
 			<Navbar className='w-full'>
 				<Navbar.Start>
 					<Branding />

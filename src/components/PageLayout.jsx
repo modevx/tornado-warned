@@ -12,7 +12,7 @@ export const PageLayout = ({ children }) => {
 	const toggleIsOpen = useCallback(() => setIsOpen((isOpen) => !isOpen), []);
 
 	return (
-		<div className='bg-slate-400'>
+		<>
 			<Meta />
 
 			<div className='flex flex-col min-h-screen'>
@@ -26,7 +26,7 @@ export const PageLayout = ({ children }) => {
 					<Footer />
 				</Drawer>
 			</div>
-		</div>
+		</>
 	);
 };
 

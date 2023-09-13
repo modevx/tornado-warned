@@ -88,7 +88,7 @@ const LINKS = {
 export const Footer = () => {
 	return (
 		<div data-testid='Footer'>
-			<DaisyFooter className='p-10 bg-zinc-800'>
+			<DaisyFooter className='p-10 bg-primary'>
 				<LinkSection title='Resources' links={LINKS.resources} />
 				<LinkSection title='Tornado Warned' links={LINKS.project} />
 				<LinkSection title='Contact' links={LINKS.me} />
@@ -107,7 +107,7 @@ export const Footer = () => {
 const PoweredBySection = ({ logos }) => {
 	return (
 		<div>
-			<p className='uppercase font-bold mb-4 text-sm'>Powered By:</p>
+			<p className='mb-4 text-sm'>Powered By:</p>
 			<div className='flex'>
 				{logos.map(({ fileName, alt, href }) => (
 					<div
@@ -156,7 +156,7 @@ const LinkSection = ({ title, links }) => {
 							target='_blank'
 							rel='noreferrer noopener'
 							referrerPolicy='no-referrer'
-							className='hover:text-red-500'
+							className='text-primary-content hover:text-primary-focus'
 						>
 							{icon ? (
 								<div className='flex'>
