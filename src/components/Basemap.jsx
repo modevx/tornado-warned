@@ -1,4 +1,4 @@
-import { albersPathGenerator } from "components/_constants/path-generators";
+import { pathGenerator } from "components/_constants/path-generators";
 import {
 	albersNation as nation,
 	albersStatesMeshed as states,
@@ -8,7 +8,7 @@ import {
 } from "./_constants/map-features";
 
 export const Basemap = ({
-	pathGen = albersPathGenerator,
+	pathGen = pathGenerator,
 	showStates = true,
 	showCounties = false,
 	showCWAs = false,

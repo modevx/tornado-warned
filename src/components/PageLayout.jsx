@@ -18,7 +18,7 @@ export const PageLayout = ({ children }) => {
 			<Drawer open={isOpen} onClickOverlay={toggleIsOpen} side={<MobileNav />}>
 				<div className='flex flex-col min-h-screen'>
 					<Header callback={toggleIsOpen} />
-					<main className='flex-1 flex flex-col'>{children}</main>
+					<main className='flex-1 flex flex-col p-4'>{children}</main>
 					<Footer />
 				</div>
 			</Drawer>
