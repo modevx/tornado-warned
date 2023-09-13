@@ -1,7 +1,8 @@
-import { rewindPathGenerator } from "components/_constants/path-generators";
+import { Button } from "react-daisyui";
 
 import { USStateMap, USMapLoading } from "components";
 import { useCategoricalOutlookByLayerId } from "services/outlook-mapserver";
+import { rewindPathGenerator } from "components/_constants/path-generators";
 
 export const CategoricalMap = ({ features, styles }) => {
 	return (
@@ -27,6 +28,9 @@ export const CategoricalMap = ({ features, styles }) => {
 							);
 						})}
 					</USStateMap>
+					<Button variant='outline' color='accent' className='w-25' size='xs'>
+						Read Outlook
+					</Button>
 				</div>
 			) : (
 				<USMapLoading loadingMessage='Outlook Loading...' />
