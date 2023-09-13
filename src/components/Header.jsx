@@ -18,7 +18,7 @@ const NAV_ITEMS = [
 
 export const Header = () => {
 	return (
-		<header data-testid='header' className='p-4'>
+		<header data-testid='header' className='p-4 bg-zinc-800'>
 			<Navbar className='grid grid-cols-1'>
 				<Navbar.Start className='w-full justify-center'>
 					<Branding />

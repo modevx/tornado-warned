@@ -3,7 +3,7 @@ import { Footer, Header } from "components";
 
 export const PageLayout = ({ children }) => {
 	return (
-		<div className='bg-[#000] text-white'>
+		<div className='bg-slate-400'>
 			<Meta />
 			<div className='flex flex-col min-h-screen'>
 				<Header />
