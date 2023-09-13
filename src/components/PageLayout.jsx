@@ -1,14 +1,30 @@
-import Head from "next/head";
+import NextHead from "next/head";
+import NextLink from "next/link";
+import { useCallback, useState } from "react";
+import { AiOutlineMenu } from "react-icons/ai";
+import { Drawer, Menu, Navbar } from "react-daisyui";
+
 import { Footer, Header } from "components";
 
 export const PageLayout = ({ children }) => {
+	const [isOpen, setIsOpen] = useState(false);
+
+	const toggleIsOpen = useCallback(() => setIsOpen((isOpen) => !isOpen), []);
+
 	return (
 		<div className='bg-slate-400'>
 			<Meta />
+
 			<div className='flex flex-col min-h-screen'>
-				<Header />
-				<main className='grow flex flex-col h-full'>{children}</main>
-				<Footer />
+				<Drawer
+					open={isOpen}
+					onClickOverlay={toggleIsOpen}
+					side={<MobileNav />}
+				>
+					<Header callback={toggleIsOpen} />
+					<main className='grow flex flex-col'>{children}</main>
+					<Footer />
+				</Drawer>
 			</div>
 		</div>
 	);
@@ -16,7 +32,7 @@ export const PageLayout = ({ children }) => {
 
 const Meta = () => {
 	return (
-		<Head>
+		<NextHead>
 			<title>Tornado Warned</title>
 			<link rel='icon' href='/favicon.ico' />
 			<meta name='viewport' content='initial-scale=1.0, width=device-width' />
@@ -59,6 +75,17 @@ const Meta = () => {
 				href='https://fonts.googleapis.com/css2?family=Archivo:wght@900&display=swap'
 				rel='stylesheet'
 			/>
-		</Head>
+		</NextHead>
 	);
 };
+
+const MobileNav = () => (
+	<Menu className='p-4 w-60 md:w-80 h-full bg-base-200'>
+		<Menu.Item className='text-sm'>
+			<NextLink href='/'>alerts</NextLink>
+		</Menu.Item>
+		<Menu.Item className='text-sm'>
+			<NextLink href='/convective-outlooks'>outlooks</NextLink>
+		</Menu.Item>
+	</Menu>
+);

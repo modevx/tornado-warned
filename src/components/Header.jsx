@@ -1,5 +1,7 @@
+import { useCallback, useState } from "react";
 import NextLink from "next/link";
-import { Menu, Navbar } from "react-daisyui";
+import { Drawer, Menu, Navbar } from "react-daisyui";
+import { AiOutlineMenu } from "react-icons/ai";
 
 const NAV_ITEMS = [
 	{
@@ -10,23 +12,25 @@ const NAV_ITEMS = [
 		label: "convective outlooks",
 		href: "/convective-outlooks",
 	},
-	// {
-	// 	label: "SPC RSS feeds",
-	// 	href: "/spc-rss-feeds",
-	// },
 ];
 
-export const Header = () => {
+export const Header = ({ callback }) => {
+	const [isOpen, setIsOpen] = useState(false);
+
+	const toggleIsOpen = useCallback(() => setIsOpen((isOpen) => !isOpen), []);
+
 	return (
-		<header data-testid='header' className='p-4 bg-zinc-800'>
-			<Navbar className='grid grid-cols-1'>
-				<Navbar.Start className='w-full justify-center'>
+		<header data-testid='header' className='bg-zinc-800 px-3'>
+			<Navbar className='w-full'>
+				<Navbar.Start>
 					<Branding />
 				</Navbar.Start>
-				<Navbar.End className='w-full justify-center'>
-					<Menu>
-						<MainNav />
-					</Menu>
+				<Navbar.End>
+					<AiOutlineMenu
+						onClick={callback}
+						className='sm:hidden cursor-pointer'
+					/>
+					<MainNav />
 				</Navbar.End>
 			</Navbar>
 		</header>
@@ -48,14 +52,13 @@ const Branding = () => {
 
 const MainNav = () => {
 	return (
-		<Menu horizontal>
-			{NAV_ITEMS.map(({ icon, label, href }) => {
-				return (
-					<Menu.Item key={label} className='text-sm'>
-						<NextLink href={href}>{label}</NextLink>
-					</Menu.Item>
-				);
-			})}
+		<Menu className='hidden sm:flex' horizontal>
+			<Menu.Item className='text-sm'>
+				<NextLink href='/'>alerts</NextLink>
+			</Menu.Item>
+			<Menu.Item className='text-sm'>
+				<NextLink href='/convective-outlooks'>outlooks</NextLink>
+			</Menu.Item>
 		</Menu>
 	);
 };
