@@ -28,9 +28,6 @@ const Meta = () => {
 				name='description'
 				content='tornadowarned.com | real-time tornado alerts, news, safety info, stats, and graphics'
 			/>
-			{/* ---------- */}
-			{/* LINKEDIN */}
-			{/* ---------- */}
 			<meta property='og:title' name='title' content='tornadowarned.com' />
 			<meta property='og:type' content='website' />
 			<meta
@@ -44,13 +41,9 @@ const Meta = () => {
 				content='tornadowarned.com | real-time tornado alerts, news, safety info, stats, and graphics.'
 			/>
 			<meta name='author' content='Ephraim Smith' />
-
-			{/* ---------- */}
-			{/* TWITTER */}
-			{/* ---------- */}
 			<meta name='twitter:card' content='summary_large_image' />
-			<meta name='twitter:creator' content='@_ephraimsmith' />
-			<meta name='twitter:site' content='@_ephraimsmith' />
+			<meta name='twitter:creator' content='@ephraimsmithdev' />
+			<meta name='twitter:site' content='@ephraimsmithdev' />
 			<meta name='twitter:title' content='tornadowarned.com' />
 			<meta
 				name='twitter:image:src'
@@ -60,9 +53,6 @@ const Meta = () => {
 				name='twitter:description'
 				content='tornadowarned.com | real-time tornado alerts, news, safety info, stats, and graphics.'
 			/>
-			{/* ---------- */}
-			{/* GOOGLE FONTS */}
-			{/* ---------- */}
 			<link rel='preconnect' href='https://fonts.googleapis.com' />
 			<link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin />
 			<link

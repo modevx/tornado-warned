@@ -62,7 +62,7 @@ export const ActiveAlertMap = () => {
 
 	return (
 		<>
-			<AlertMapLegend />
+			{/* <AlertMapLegend /> */}
 			<Basemap showCounties={features.counties}>
 				<WarningPoints
 					// alerts={tor_warn}
