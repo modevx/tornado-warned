@@ -3,7 +3,7 @@ export const createContext = ({ reducer, dispatchReducerFuncs, initState }) => {
 	const Dispatch = React.createContext();
 
 	const Provider = ({ children }) => {
-		const [state, dispatch] = useReducer(reducer, initState);
+		const [state, dispatch] = React.useReducer(reducer, initState);
 
 		const actions = {};
 

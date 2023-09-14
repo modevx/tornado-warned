@@ -21,7 +21,7 @@ import { Button, Card, Modal } from "react-daisyui";
 import { STATES_MAP } from "constants";
 import { changeWfoToCityState, createImpactedAreasMap } from "./utils";
 import { DayJSDateTime, USCountyMap } from "components";
-import AlbersTopoJSONMap from "components/Maps/_constants/albers-topojson-map.json";
+import AlbersTopoJSONMap from "components/_constants/albers-map.topo.json";
 
 // -- BASE SUB-COMPONENT STYLES
 const AlertCardSubComponent = ({ children, className, ...props }) => {
@@ -64,7 +64,7 @@ export const AlertMessageModal = ({ messageType, message }) => {
       <Button onClick={toggleModalOpen} className="w-full">
         {messageType}
       </Button>
-      <Modal open={isOpen}>
+      <Modal open={isOpen} className="m-10">
         <Modal.Body>
           <pre className="whitespace-break-spaces">{message}</pre>
         </Modal.Body>
@@ -198,9 +198,6 @@ export const ImpactedAreas = ({ areaDesc }) => {
     <AlertCardSubComponent className="mb-2">
       {impactedAreasMapEntries
         ? impactedAreasMapEntries.map(([state, areas]) => {
-            console.log("STATE: ", state, "-->");
-            console.log(areas);
-
             const joinedAreaDescStr = areas.join(", ");
 
             return (
@@ -270,11 +267,13 @@ export const CardTitle = ({ children }) => {
 };
 
 export const TornadoDetection = ({ tornadoDetection }) => {
+  const isValidProp = tornadoDetection && tornadoDetection.length > 0;
+
   return (
     <AlertCardSubComponent className="flex items-center">
       <FaTornado size={30} />
       <span className="text-sm font-bold ml-4">
-        {tornadoDetection.length > 0 ? tornadoDetection[0] : "N/A"}
+        {isValidProp ? tornadoDetection[0] : "N/A"}
       </span>
     </AlertCardSubComponent>
   );
