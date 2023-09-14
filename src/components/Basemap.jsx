@@ -1,4 +1,5 @@
 import { pathGenerator } from "components/_constants/path-generators";
+import { pathGenerator } from "components/_constants/path-generators";
 import {
   albersNation as nation,
   albersStatesMeshed as states,
