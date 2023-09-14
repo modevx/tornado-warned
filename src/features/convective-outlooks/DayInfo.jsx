@@ -35,7 +35,7 @@ export const DayInfo = ({ day }) => {
 };
 
 const DayHeading = ({ day }) => (
-	<h1 className='text-center font-bold uppercase mb-3'>{`Day ${day}`}</h1>
+	<h3 className='text-center font-bold uppercase mb-3'>{`Day ${day}`}</h3>
 );
 
 const OutlookDate = ({ date }) => (
