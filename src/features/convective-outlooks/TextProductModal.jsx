@@ -6,9 +6,20 @@ export const TextProductModal = ({ isOpen, closeHandler, outlookDay }) => {
 	const { data: outlookText } = useOutlookTextProductByDayQuery(outlookDay);
 
 	return (
-		<Modal open={isOpen} onClick={closeHandler}>
-			<CloseIcon onClick={closeHandler} />
-			{outlookText ? <pre>{outlookText}</pre> : null}
+		<Modal open={isOpen} onClick={closeHandler} responsive>
+			<div className='flex items-center mb-4'>
+				<CloseIcon
+					onClick={closeHandler}
+					size={30}
+					className='mr-2 hover:fill-red-600'
+				/>
+				<span>CLOSE</span>
+			</div>
+			<Modal.Body>
+				{outlookText ? (
+					<pre className='whitespace-break-spaces'>{outlookText}</pre>
+				) : null}
+			</Modal.Body>
 		</Modal>
 	);
 };
