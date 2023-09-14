@@ -23,6 +23,17 @@ const ConvectiveOutlookScreen = () => {
 
 	return (
 		<PageLayout>
+			<h1 className='text-3xl uppercase font-bold mb-3 text-center bg-clip-text text-transparent bg-gradient-to-br from-primary to-base-content'>
+				Convective Outlooks
+			</h1>
+			<p className='text-center text-sm mb-10'>
+				Convective Outlooks are organized severe storm forecasts created by the
+				Storm Prediction Center in Norman, OK. Hover, click, or tap on any of
+				the maps to see what the shaded areas mean. Click the
+				&quot;Details&quot; button below any of the maps to read the day&apos;s
+				full convective outlook.
+			</p>
+
 			<OutlooksGrid>
 				<OutlookGridItem dayNumber={1} showOutlookText={showModalHandler} />
 
@@ -46,7 +57,7 @@ const OutlooksGrid = ({ children }) => (
 );
 
 const OutlookGridItem = ({ dayNumber, showOutlookText }) => (
-	<div className='flex flex-col items-center md:flex-1'>
+	<div className='flex flex-col items-center md:flex-1 mb-5'>
 		<DayInfo day={dayNumber} />
 		<CategoricalMap outlookDay={dayNumber} />
 		<OutlookTextModalBtn openHandler={showOutlookText} outlookDay={dayNumber} />
@@ -61,6 +72,6 @@ const OutlookTextModalBtn = ({ openHandler, outlookDay }) => (
 		size='xs'
 		onClick={() => openHandler(outlookDay)}
 	>
-		Read Details
+		{`Day ${outlookDay} Details`}
 	</Button>
 );
