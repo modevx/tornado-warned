@@ -15,7 +15,7 @@ export const CATEGORICAL = Object.freeze({
 		icon: IoUmbrellaOutline,
 		label: "Thunderstorms",
 		stroke: "#003b00",
-		summary: "non-severe storms with rain",
+		description: "non-severe storms with rain",
 	},
 	3: {
 		bgColor: "#00ff00",
@@ -23,7 +23,7 @@ export const CATEGORICAL = Object.freeze({
 		icon: IoThunderstorm,
 		label: "Marginal",
 		stroke: "#00b100",
-		summary: "potentially organized severe storms with marginal intensity",
+		description: "potentially organized severe storms with marginal intensity",
 	},
 	4: {
 		bgColor: "#ffff00",
@@ -31,7 +31,7 @@ export const CATEGORICAL = Object.freeze({
 		icon: IoWarningOutline,
 		label: "Slight",
 		stroke: "#c4c400",
-		summary: "isolated, organized severe storms with variable intensity",
+		description: "isolated, organized severe storms with variable intensity",
 	},
 	5: {
 		bgColor: "#ffa500",
@@ -39,7 +39,7 @@ export const CATEGORICAL = Object.freeze({
 		icon: GiDamagedHouse,
 		label: "Enhanced",
 		stroke: "#c47f00",
-		summary: "widespread severe storms with variable instensity",
+		description: "widespread severe storms with variable instensity",
 	},
 	6: {
 		bgColor: "#9d0000",
@@ -47,7 +47,8 @@ export const CATEGORICAL = Object.freeze({
 		icon: GiTornado,
 		label: "Moderate",
 		stroke: "#620000",
-		summary: "widespread severe weather with several tornadoes and large hail",
+		description:
+			"widespread severe weather with several tornadoes and large hail",
 	},
 	8: {
 		bgColor: "#ff00ff",
@@ -55,7 +56,7 @@ export const CATEGORICAL = Object.freeze({
 		icon: IoSkull,
 		label: "High",
 		stroke: "#b300b3",
-		summary:
+		description:
 			"severe weather outbreak anticipated with tornadoes and/or derechoes.  expect widespread damage and hurricane force winds.",
 	},
 });

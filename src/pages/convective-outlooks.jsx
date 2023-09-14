@@ -28,10 +28,10 @@ const ConvectiveOutlookScreen = () => {
 			</h1>
 			<p className='text-center text-sm mb-10'>
 				Convective Outlooks are organized severe storm forecasts created by the
-				Storm Prediction Center in Norman, OK. Hover, click, or tap on any of
-				the maps to see what the shaded areas mean. Click the
-				&quot;Details&quot; button below any of the maps to read the day&apos;s
-				full convective outlook.
+				Storm Prediction Center in Norman, OK. Click or tap on any of the
+				colored map areas to see what they mean. Click the &quot;Details&quot;
+				button below any of the maps to read the day&apos;s full convective
+				outlook.
 			</p>
 
 			<OutlooksGrid>

@@ -139,7 +139,7 @@ const PoweredBySection = ({ logos }) => {
 
 const Copyright = () => (
 	<p className='text-center text-xs mb-3'>
-		&copy; {new Date().getFullYear()} MODEVX, LLC. &nbsp; All Rights Reserved.
+		&copy; {new Date().getFullYear()} Ephraim Smith. &nbsp; All Rights Reserved.
 	</p>
 );
 
