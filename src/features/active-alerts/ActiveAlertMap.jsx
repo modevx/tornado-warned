@@ -40,24 +40,14 @@ export const ActiveAlertMap = () => {
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [alertInfo, setAlertInfo] = useState(null);
-	const [features, setFeatures] = useState({
-		states: true,
-		counties: false,
-		cwas: false,
-		pfzs: false,
-	});
 
 	const handleShowAlertModal = (alert) => {
-		console.log("feature clicked");
 		setAlertInfo(alert);
 		setIsOpen((isOpen) => !isOpen);
 	};
+
 	const handleCloseModal = () => {
 		setIsOpen(false);
-	};
-	const handleFeatureSelectorOnChange = (e) => {
-		const { name } = e.target;
-		setFeatures((prev) => Object.assign({ ...prev }, { [name]: !prev[name] }));
 	};
 
 	return (
@@ -184,6 +174,7 @@ const WatchPolygons = ({ alerts, color, callback }) => {
 		<>
 			{isValidFeatures
 				? alerts.map((alert) => {
+						// TODO: move watch poly creation logic to util func
 						const affectedCountyIds = alert.properties.geocode.SAME;
 						const { description } = alert.properties;
 						const isPDS = checkStringForPhrase(description, SITUATIONS.pds);
@@ -233,7 +224,7 @@ const AlertModal = ({ isOpen, closeModalHandler, alertInfo }) => {
 		"Severe Thunderstorm Watch": SevereStormWatchAlert,
 	};
 
-	const AlertModal = ALERT_TYPE[alertInfo?.properties?.event];
+	const CurrentAlertModal = ALERT_TYPE[alertInfo?.properties?.event];
 
 	return (
 		<>
@@ -248,11 +239,7 @@ const AlertModal = ({ isOpen, closeModalHandler, alertInfo }) => {
 					>
 						x
 					</Button>
-					<AlertModal alert={alertInfo} />
-					{/* <Modal.Header className='font-bold'>Hello!</Modal.Header>
-			<Modal.Body className='uppercase font-bold text-red-500'>
-				{properties.event}
-			</Modal.Body> */}
+					<CurrentAlertModal alert={alertInfo} />
 				</Modal>
 			) : null}
 		</>
