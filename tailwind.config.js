@@ -13,7 +13,7 @@ module.exports = {
 			display: ["Archivo", "sans-serif"],
 		},
 	},
-	plugins: [require("daisyui")],
+	plugins: [require("@tailwindcss/typography"), require("daisyui")],
 	daisyui: {
 		styled: true,
 		themes: ["forest"],
