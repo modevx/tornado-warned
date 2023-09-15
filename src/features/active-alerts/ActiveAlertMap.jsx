@@ -5,15 +5,14 @@ import { Button, Modal } from "react-daisyui";
 import { geoAlbers, geoPath, geoTransform } from "d3";
 
 import AlbersTopo from "components/_constants/albers-map.topo.json";
-import { Basemap, BasemapFeatureSelector, USStateMap } from "components";
-import { albersCounties } from "components/_constants/map-features";
+import { USStateMap } from "components";
 import {
 	TornadoWarningAlert,
 	SevereStormWarningAlert,
 	TornadoWatchAlert,
 	SevereStormWatchAlert,
 } from "./AlertModal";
-import { AlertMapLegend } from "./AlertMapLegend";
+
 import {
 	useNwsAlertsByEvent,
 	EVENTS,
@@ -21,11 +20,10 @@ import {
 	SITUATIONS,
 } from "services/nws-api-web-service";
 
-import { FaTornado } from "react-icons/fa6";
-import { IoThunderstorm } from "react-icons/io5";
-
-const projection = geoAlbers();
-const d3GeoPath = geoPath(projection);
+import {
+	pathGenerator,
+	rewindPathGenerator,
+} from "components/_constants/path-generators";
 
 export const ActiveAlertMap = () => {
 	const { data: tor_warn } = useNwsAlertsByEvent(EVENTS.tor_warn);
@@ -52,16 +50,15 @@ export const ActiveAlertMap = () => {
 
 	return (
 		<>
-			{/* <AlertMapLegend /> */}
 			<USStateMap>
-				<WarningPoints
+				<WarningPolygons
 					// alerts={tor_warn}
 					alerts={fake_tor_warn}
 					color='red'
 					icon={FaTornado}
 					callback={handleShowAlertModal}
 				/>
-				<WarningPoints
+				<WarningPolygons
 					// alerts={st_warn}
 					alerts={fake_st_warn}
 					color='#f90'
@@ -94,14 +91,14 @@ export const ActiveAlertMap = () => {
 // ------------
 // --- WARNINGS
 // ------------
-const WarningPoints = ({ alerts, color, icon, callback }) => {
+const WarningPolygons = ({ alerts, color, icon, callback }) => {
 	return (
 		<>
 			{alerts && alerts.length > 0 ? (
 				<g>
 					{alerts.map((alert) => {
 						const { description } = alert.properties;
-						const [centX, centY] = d3GeoPath.centroid(alert.geometry);
+						const [centX, centY] = pathGenerator.centroid(alert.geometry);
 						const isTornadoEmergency = checkStringForPhrase(
 							description,
 							SITUATIONS.te
@@ -115,20 +112,10 @@ const WarningPoints = ({ alerts, color, icon, callback }) => {
 
 						const Icon = icon;
 
-						// return (
-						// 	<circle
-						// 		cx={centX}
-						// 		cy={centY}
-						// 		key={alert.id}
-						// 		fill={polygonColor}
-						// 		r='5'
-						// 	/>
-						// );
-
 						return (
 							<WarningPolygon
 								key={alert.id}
-								feature={alert}
+								feature={alert.geometry}
 								color={polygonColor}
 								onClick={callback}
 							/>
@@ -143,7 +130,7 @@ const WarningPoints = ({ alerts, color, icon, callback }) => {
 const WarningPolygon = ({ color, feature, onClick }) => {
 	return (
 		<path
-			d={d3GeoPath(rewind(feature.geometry, { reverse: true }))}
+			d={rewindPathGenerator(feature)}
 			fill='none'
 			stroke={color}
 			strokeWidth={1}
@@ -195,12 +182,12 @@ const WatchPolygons = ({ alerts, color, callback }) => {
 const WatchPolygon = ({ alert, color, feature, onClick }) => {
 	return (
 		<path
-			d={d3GeoPath(rewind(feature, { reverse: true }))}
+			d={rewindPathGenerator(feature)}
 			fill={color}
-			onClick={() => onClick(alert)}
 			fillOpacity={0.5}
 			stroke='black'
 			strokeWidth={1.5}
+			onClick={() => onClick(alert)}
 		/>
 	);
 };
