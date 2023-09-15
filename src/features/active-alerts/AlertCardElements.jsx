@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { useState } from "react";
 import NextImage from "next/image";
 import TurfRewind from "@turf/rewind";
+import { Button, Card, Modal } from "react-daisyui";
 import * as topojson from "topojson-client";
 
 import {
@@ -16,7 +17,6 @@ import { BiCreditCard } from "react-icons/bi";
 import { TbToiletPaper } from "react-icons/tb";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { IoBaseballOutline } from "react-icons/io5";
-import { Button, Card, Modal } from "react-daisyui";
 
 import { STATES_MAP } from "constants";
 import { changeWfoToCityState, createImpactedAreasMap } from "./utils";
