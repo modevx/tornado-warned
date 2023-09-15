@@ -1,27 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { createHTTPClient } from "services/create-http-client";
 import { FAKE_ALERTS } from "./fake-alerts";
+import { createHTTPClient } from "services/create-http-client";
 
-const nwsWebServiceClient = createHTTPClient({
+const nwsApiClient = createHTTPClient({
 	baseURL: "https://api.weather.gov",
 });
 
-const NWS_ALERTS_EVENTS = {
-	tornado_warning: "Tornado Warning",
-	tornado_watch: "Tornado Watch",
-	severe_storm_warning: "Severe Thunderstorm Warning",
-	severe_storm_watch: "Severe Thunderstorm Watch",
-};
-
 const ERROR_TITLE = "/// ERROR: National Weather Service API Web Service ///";
-const getNwsAlertsGeoJsonByEvent = async (event) => {
-	const uriEncodedEvent = encodeURIComponent(event);
-	const queryParams = `/alerts/active?status=actual&message_type=alert&event=${uriEncodedEvent}`;
+
+const getNwsAlertsByEvent = async (event) => {
+	const encodedEvent = encodeURIComponent(event);
+	const endpoint = `/alerts/active?status=actual&message_type=alert&event=${encodedEvent}`;
 
 	try {
-		const response = await nwsWebServiceClient.get(queryParams);
+		const response = await nwsApiClient.get(endpoint);
 		const { features } = response?.data;
+
 		return features;
 	} catch (error) {
 		console.log(`${ERROR_TITLE}\n`, error);
@@ -29,57 +24,50 @@ const getNwsAlertsGeoJsonByEvent = async (event) => {
 	}
 };
 
-export const useActiveAlertsGeoJsonByEventQuery = (event) => {
-	return useQuery(["NWS", "Alerts", event], () =>
-		getNwsAlertsGeoJsonByEvent(event)
+export const useNwsAlertsByEvent = (event) => {
+	return useQuery(["NWS", "Alerts", event], () => getNwsAlertsByEvent(event));
+};
+
+// ------------------------ SIMPLIFY SERVICE -------------------------
+
+const getWatchAlertsByEvent = async (watchEvent) => {
+	const uriEncodedEvent = encodeURIComponent(watchEvent);
+	const queryParams = `/alerts/active?status=actual&message_type=alert&event=${uriEncodedEvent}`;
+
+	let watchFeatures = [];
+
+	try {
+		const response = await nwsApiClient.get(queryParams);
+		const { features } = response?.data;
+
+		if (features.length > 0) {
+			watchFeatures = features.map((feature) => {
+				const affectedZones = parseAffectedFIPSCodes(feature);
+
+				return Object.assign({ ...feature }, { zoneIds: affectedZones });
+			});
+		}
+
+		return watchFeatures;
+	} catch (error) {
+		console.log(`${ERROR_TITLE}\n`, error);
+		throw new Error(`${ERROR_TITLE}\n`, error);
+	}
+};
+
+export const useWatchAlertsByEvent = (watchEvent) => {
+	return useQuery(["NWS", "Alerts", "Watches", watchEvent], () =>
+		getWatchAlertsByEvent(watchEvent)
 	);
 };
 
-export const useFakeAlerts = (event) => {
-	const eventType = event.toLowerCase().split(" ").join("_");
-	return FAKE_ALERTS[eventType];
-};
+export const useFakeWatchAlertsByEvent = (watchEvent) => {
+	const features = FAKE_ALERTS[watchEvent];
+	let affectedZones = [];
 
-// TODO: confirm these aren't used anywhere and delete
+	features.forEach((feature) => {
+		affectedZones = [...affectedZones, ...feature.properties.geocode.SAME];
+	});
 
-export const useTornadoWarningQuery = () => {
-	return useQuery(["alerts", "active", NWS_ALERTS_EVENTS.tornado_warning], () =>
-		getNwsAlertsGeoJsonByEvent(NWS_ALERTS_EVENTS.tornado_warning)
-	);
-};
-
-export const useTornadoWatchQuery = () => {
-	return useQuery(["alerts", "active", NWS_ALERTS_EVENTS.tornado_watch], () =>
-		getNwsAlertsGeoJsonByEvent(NWS_ALERTS_EVENTS.tornado_watch)
-	);
-};
-
-export const useSevereStormWarningQuery = () => {
-	return useQuery(
-		["alerts", "active", NWS_ALERTS_EVENTS.severe_storm_warning],
-		() => getNwsAlertsGeoJsonByEvent(NWS_ALERTS_EVENTS.severe_storm_warning)
-	);
-};
-
-export const useSevereStormWatchQuery = () => {
-	return useQuery(
-		["alerts", "active", NWS_ALERTS_EVENTS.severe_storm_watch],
-		() => getNwsAlertsGeoJsonByEvent(NWS_ALERTS_EVENTS.severe_storm_watch)
-	);
-};
-
-export const useFakeTornadoWarnings = () => {
-	return FAKE_ALERTS.tornado_warnings;
-};
-
-export const useFakeTornadoWatches = () => {
-	return FAKE_ALERTS.tornado_watches;
-};
-
-export const useFakeSevereStormWarnings = () => {
-	return FAKE_ALERTS.severe_storm_warnings;
-};
-
-export const useFakeSevereStormWatches = () => {
-	return FAKE_ALERTS.severe_storm_watches;
+	return { features, affectedZones };
 };
