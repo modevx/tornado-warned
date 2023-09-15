@@ -22,6 +22,9 @@ import {
 	pathGenerator,
 	rewindPathGenerator,
 } from "components/_constants/path-generators";
+import rewind from "@turf/rewind";
+
+import { geoTransform } from "d3-geo";
 
 export const ActiveAlertMap = () => {
 	const { data: tor_warn } = useNwsAlertsByEvent(EVENTS.tor_warn);
@@ -45,6 +48,8 @@ export const ActiveAlertMap = () => {
 	const handleCloseModal = () => {
 		setIsOpen(false);
 	};
+
+	console.log(geoTransform());
 
 	return (
 		<>
@@ -193,9 +198,23 @@ const WarningPolygon = ({ alert, onClick }) => {
 	const isEmergency = checkIsEmergency(alert, checkStringForPhrase);
 	const pathStyles = polygonStyles(alert, isPDS, isEmergency);
 
+	// const [x, y] = rewindPathGenerator.centroid(alert.geometry);
+	// console.log("centroid\n", centroid);
+
 	return (
 		<path
 			d={rewindPathGenerator(alert.geometry)}
+			// d={rewindPathGenerator({
+			// 	type: "Polygon",
+			// 	coordinates: [
+			// 		[
+			// 			alert.geometry.coordinates.map(([a, b]) => [
+			// 				a * Math.PI * x,
+			// 				b * Math.PI * y,
+			// 			]),
+			// 		],
+			// 	],
+			// })}
 			{...pathStyles}
 			onClick={() => onClick(alert)}
 		/>
