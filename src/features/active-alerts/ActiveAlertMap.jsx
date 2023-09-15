@@ -105,7 +105,7 @@ const polygonStyles = (alert, isPDS, isTE) => {
 		"Tornado Warning": {
 			fill: "transparent",
 			fillOpacity: 0,
-			stroke: "#9d0000",
+			stroke: "#f00",
 			strokeOpacity: 0.5,
 			strokeWidth: 2,
 		},
@@ -119,7 +119,7 @@ const polygonStyles = (alert, isPDS, isTE) => {
 		"Severe Thunderstorm Warning": {
 			fill: "transparent",
 			fillOpacity: 0,
-			stroke: "#ffa500",
+			stroke: "#ff5800",
 			strokeOpacity: 0.5,
 			strokeWidth: 2,
 		},
@@ -197,7 +197,7 @@ const WarningPolygon = ({ alert, onClick }) => {
 		<path
 			d={rewindPathGenerator(alert.geometry)}
 			{...pathStyles}
-			onClick={() => onClick(feature)}
+			onClick={() => onClick(alert)}
 		/>
 	);
 };

@@ -13,7 +13,7 @@ export const USStateMap = ({ children }) => {
 
 	return (
 		<svg viewBox='0 -60 975 610' xmlns='http://www.w3.org/2000/svg'>
-			<path d={albersGeoPath(states)} stroke='white' fill='grey' />
+			<path d={albersGeoPath(states)} stroke='white' fill='#444' />
 
 			{children}
 		</svg>
