@@ -1,19 +1,16 @@
 import { useState } from "react";
-import rewind from "@turf/rewind";
 import * as topojson from "topojson-client";
 import { Button, Modal } from "react-daisyui";
-import { geoAlbers, geoPath, geoTransform } from "d3";
 
 import AlbersTopo from "components/_constants/albers-map.topo.json";
-import { Basemap, BasemapFeatureSelector, USStateMap } from "components";
-import { albersCounties } from "components/_constants/map-features";
+import { USStateMap } from "components";
 import {
 	TornadoWarningAlert,
 	SevereStormWarningAlert,
 	TornadoWatchAlert,
 	SevereStormWatchAlert,
 } from "./AlertModal";
-import { AlertMapLegend } from "./AlertMapLegend";
+
 import {
 	useNwsAlertsByEvent,
 	EVENTS,
@@ -21,11 +18,13 @@ import {
 	SITUATIONS,
 } from "services/nws-api-web-service";
 
-import { FaTornado } from "react-icons/fa6";
-import { IoThunderstorm } from "react-icons/io5";
+import {
+	pathGenerator,
+	rewindPathGenerator,
+} from "components/_constants/path-generators";
+import rewind from "@turf/rewind";
 
-const projection = geoAlbers();
-const d3GeoPath = geoPath(projection);
+import { geoTransform } from "d3-geo";
 
 export const ActiveAlertMap = () => {
 	const { data: tor_warn } = useNwsAlertsByEvent(EVENTS.tor_warn);
@@ -50,35 +49,34 @@ export const ActiveAlertMap = () => {
 		setIsOpen(false);
 	};
 
+	console.log(geoTransform());
+
 	return (
 		<>
-			{/* <AlertMapLegend /> */}
 			<USStateMap>
-				<WarningPoints
+				<WarningPolygons
 					// alerts={tor_warn}
 					alerts={fake_tor_warn}
 					color='red'
-					icon={FaTornado}
 					callback={handleShowAlertModal}
 				/>
-				<WarningPoints
+				<WarningPolygons
 					// alerts={st_warn}
 					alerts={fake_st_warn}
 					color='#f90'
-					icon={IoThunderstorm}
 					callback={handleShowAlertModal}
 				/>
 				<WatchPolygons
 					// alerts={tor_watch}
 					alerts={fake_tor_watch}
-					color='yellow'
 					callback={handleShowAlertModal}
+					topojsonClient={topojson}
 				/>
 				<WatchPolygons
 					// alerts={st_watch}
 					alerts={fake_st_watch}
-					color='limegreen'
 					callback={handleShowAlertModal}
+					topojsonClient={topojson}
 				/>
 			</USStateMap>
 
@@ -92,44 +90,99 @@ export const ActiveAlertMap = () => {
 };
 
 // ------------
+// --- UTILS
+// ------------
+
+const checkIsPDS = (alert, callback) => {
+	const { description } = alert.properties;
+	return callback(description, "particularly dangerous situation");
+};
+
+const checkIsEmergency = (alert, callback) => {
+	const { description } = alert.properties;
+	return callback(description, "tornado emergency");
+};
+
+const polygonStyles = (alert, isPDS, isTE) => {
+	const { event } = alert.properties;
+
+	const EVENT_STYLES = {
+		"Tornado Warning": {
+			fill: "transparent",
+			fillOpacity: 0,
+			stroke: "#f00",
+			strokeOpacity: 0.5,
+			strokeWidth: 2,
+		},
+		"Tornado Watch": {
+			fill: "#ffff00",
+			fillOpacity: 0.15,
+			stroke: "#c4c400",
+			strokeOpacity: 1,
+			strokeWidth: 1,
+		},
+		"Severe Thunderstorm Warning": {
+			fill: "transparent",
+			fillOpacity: 0,
+			stroke: "#ff5800",
+			strokeOpacity: 0.5,
+			strokeWidth: 2,
+		},
+		"Severe Thunderstorm Watch": {
+			fill: "#00ff00",
+			fillOpacity: 0.15,
+			stroke: "#00b100",
+			strokeOpacity: 1,
+			strokeWidth: 1,
+		},
+	};
+	const pdsStyles = {
+		fill: "#ff00ff",
+		fillOpacity: 0.5,
+		stroke: "#b300b3",
+		strokeOpacity: 0.5,
+		strokeWidth: 2,
+	};
+	const emergencyStyles = {
+		fill: "#3333cc",
+		fillOpacity: 0.5,
+		stroke: "#330099",
+		strokeOpacity: 0.5,
+		strokeWidth: 2,
+	};
+
+	return isTE ? emergencyStyles : isPDS ? pdsStyles : EVENT_STYLES[event];
+};
+
+const createWatchPolygon = (alert, topoJsonClient) => {
+	const alertSameCodes = alert.properties.geocode.SAME;
+	const watchGeoJSON = topoJsonClient.merge(
+		AlbersTopo,
+		AlbersTopo.objects.counties.geometries.filter((geometry) => {
+			const id = `0${geometry.id}`;
+			return alertSameCodes.includes(id);
+		})
+	);
+
+	return watchGeoJSON;
+};
+
+// ------------
 // --- WARNINGS
 // ------------
-const WarningPoints = ({ alerts, color, icon, callback }) => {
+const WarningPolygons = ({ alerts, callback, topojsonClient }) => {
+	const isValidFeatures = alerts && alerts.length > 0;
+
 	return (
 		<>
-			{alerts && alerts.length > 0 ? (
+			{isValidFeatures ? (
 				<g>
 					{alerts.map((alert) => {
-						const { description } = alert.properties;
-						const [centX, centY] = d3GeoPath.centroid(alert.geometry);
-						const isTornadoEmergency = checkStringForPhrase(
-							description,
-							SITUATIONS.te
-						);
-						const isPDS = checkStringForPhrase(description, SITUATIONS.pds);
-						const polygonColor = isTornadoEmergency
-							? "#f0f"
-							: isPDS
-							? "#09f"
-							: color;
-
-						const Icon = icon;
-
-						// return (
-						// 	<circle
-						// 		cx={centX}
-						// 		cy={centY}
-						// 		key={alert.id}
-						// 		fill={polygonColor}
-						// 		r='5'
-						// 	/>
-						// );
-
 						return (
 							<WarningPolygon
 								key={alert.id}
-								feature={alert}
-								color={polygonColor}
+								alert={alert}
+								topojsonClient={topojsonClient}
 								onClick={callback}
 							/>
 						);
@@ -140,14 +193,30 @@ const WarningPoints = ({ alerts, color, icon, callback }) => {
 	);
 };
 
-const WarningPolygon = ({ color, feature, onClick }) => {
+const WarningPolygon = ({ alert, onClick }) => {
+	const isPDS = checkIsPDS(alert, checkStringForPhrase);
+	const isEmergency = checkIsEmergency(alert, checkStringForPhrase);
+	const pathStyles = polygonStyles(alert, isPDS, isEmergency);
+
+	// const [x, y] = rewindPathGenerator.centroid(alert.geometry);
+	// console.log("centroid\n", centroid);
+
 	return (
 		<path
-			d={d3GeoPath(rewind(feature.geometry, { reverse: true }))}
-			fill='none'
-			stroke={color}
-			strokeWidth={1}
-			onClick={() => onClick(feature)}
+			d={rewindPathGenerator(alert.geometry)}
+			// d={rewindPathGenerator({
+			// 	type: "Polygon",
+			// 	coordinates: [
+			// 		[
+			// 			alert.geometry.coordinates.map(([a, b]) => [
+			// 				a * Math.PI * x,
+			// 				b * Math.PI * y,
+			// 			]),
+			// 		],
+			// 	],
+			// })}
+			{...pathStyles}
+			onClick={() => onClick(alert)}
 		/>
 	);
 };
@@ -156,33 +225,18 @@ const WarningPolygon = ({ color, feature, onClick }) => {
 // --- WATCHES
 // ------------
 
-const WatchPolygons = ({ alerts, color, callback }) => {
+const WatchPolygons = ({ alerts, callback, topojsonClient }) => {
 	const isValidFeatures = alerts && alerts.length > 0;
 
 	return (
 		<>
 			{isValidFeatures
 				? alerts.map((alert) => {
-						// TODO: move watch poly creation logic to util func
-						const affectedCountyIds = alert.properties.geocode.SAME;
-						const { description } = alert.properties;
-						const isPDS = checkStringForPhrase(description, SITUATIONS.pds);
-						const fillColor = isPDS ? "#09f" : color;
-
-						const watchFeature = topojson.merge(
-							AlbersTopo,
-							AlbersTopo.objects.counties.geometries.filter((geometry) => {
-								const id = `0${geometry.id}`;
-								return affectedCountyIds.includes(id);
-							})
-						);
-
 						return (
 							<WatchPolygon
 								key={alert.id}
 								alert={alert}
-								color={fillColor}
-								feature={watchFeature}
+								topojsonClient={topojsonClient}
 								onClick={callback}
 							/>
 						);
@@ -192,15 +246,17 @@ const WatchPolygons = ({ alerts, color, callback }) => {
 	);
 };
 
-const WatchPolygon = ({ alert, color, feature, onClick }) => {
+const WatchPolygon = ({ alert, onClick, topojsonClient }) => {
+	const isPDS = checkIsPDS(alert, checkStringForPhrase);
+	const isEmergency = checkIsEmergency(alert, checkStringForPhrase);
+	const pathStyles = polygonStyles(alert, isPDS, isEmergency);
+	const watchGeoJSON = createWatchPolygon(alert, topojsonClient);
+
 	return (
 		<path
-			d={d3GeoPath(rewind(feature, { reverse: true }))}
-			fill={color}
+			d={rewindPathGenerator(watchGeoJSON)}
+			{...pathStyles}
 			onClick={() => onClick(alert)}
-			fillOpacity={0.5}
-			stroke='black'
-			strokeWidth={1.5}
 		/>
 	);
 };
