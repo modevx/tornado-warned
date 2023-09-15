@@ -5,220 +5,212 @@ import { Button, Modal } from "react-daisyui";
 import AlbersTopo from "components/_constants/albers-map.topo.json";
 import { USStateMap } from "components";
 import {
-	TornadoWarningAlert,
-	SevereStormWarningAlert,
-	TornadoWatchAlert,
-	SevereStormWatchAlert,
-} from "./AlertModal";
+  TornadoWarningAlert,
+  SevereStormWarningAlert,
+  TornadoWatchAlert,
+  SevereStormWatchAlert,
+} from "./AlertModals";
 
 import {
-	useNwsAlertsByEvent,
-	EVENTS,
-	FAKE_ALERTS,
-	SITUATIONS,
+  useNwsAlertsByEvent,
+  EVENTS,
+  FAKE_ALERTS,
+  SITUATIONS,
 } from "services/nws-api-web-service";
 
 import {
-	pathGenerator,
-	rewindPathGenerator,
+  pathGenerator,
+  rewindPathGenerator,
 } from "components/_constants/path-generators";
-import rewind from "@turf/rewind";
-
-import { geoTransform } from "d3-geo";
 
 export const ActiveAlertMap = () => {
-	const { data: tor_warn } = useNwsAlertsByEvent(EVENTS.tor_warn);
-	const { data: tor_watch } = useNwsAlertsByEvent(EVENTS.tor_watch);
-	const { data: st_warn } = useNwsAlertsByEvent(EVENTS.st_warn);
-	const { data: st_watch } = useNwsAlertsByEvent(EVENTS.st_watch);
+  const { data: tor_warn } = useNwsAlertsByEvent(EVENTS.tor_warn);
+  const { data: tor_watch } = useNwsAlertsByEvent(EVENTS.tor_watch);
+  const { data: st_warn } = useNwsAlertsByEvent(EVENTS.st_warn);
+  const { data: st_watch } = useNwsAlertsByEvent(EVENTS.st_watch);
 
-	const fake_tor_warn = FAKE_ALERTS.tor_warn;
-	const fake_tor_watch = FAKE_ALERTS.tor_watch;
-	const fake_st_warn = FAKE_ALERTS.st_warn;
-	const fake_st_watch = FAKE_ALERTS.st_watch;
+  const fake_tor_warn = FAKE_ALERTS.tor_warn;
+  const fake_tor_watch = FAKE_ALERTS.tor_watch;
+  const fake_st_warn = FAKE_ALERTS.st_warn;
+  const fake_st_watch = FAKE_ALERTS.st_watch;
 
-	const [isOpen, setIsOpen] = useState(false);
-	const [alertInfo, setAlertInfo] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [alertInfo, setAlertInfo] = useState(null);
 
-	const handleShowAlertModal = (alert) => {
-		setAlertInfo(alert);
-		setIsOpen((isOpen) => !isOpen);
-	};
+  const handleShowAlertModal = (selectedAlert) => {
+    setAlertInfo(selectedAlert);
+    setIsOpen((isOpen) => !isOpen);
+  };
 
-	const handleCloseModal = () => {
-		setIsOpen(false);
-	};
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
 
-	console.log(geoTransform());
+  return (
+    <>
+      <USStateMap>
+        <WarningPolygons
+          // alerts={tor_warn}
+          alerts={fake_tor_warn}
+          callback={handleShowAlertModal}
+        />
+        <WarningPolygons
+          // alerts={st_warn}
+          alerts={fake_st_warn}
+          callback={handleShowAlertModal}
+        />
+        <WatchPolygons
+          // alerts={tor_watch}
+          alerts={fake_tor_watch}
+          callback={handleShowAlertModal}
+          topojsonClient={topojson}
+        />
+        <WatchPolygons
+          // alerts={st_watch}
+          alerts={fake_st_watch}
+          callback={handleShowAlertModal}
+          topojsonClient={topojson}
+        />
+      </USStateMap>
 
-	return (
-		<>
-			<USStateMap>
-				<WarningPolygons
-					// alerts={tor_warn}
-					alerts={fake_tor_warn}
-					color='red'
-					callback={handleShowAlertModal}
-				/>
-				<WarningPolygons
-					// alerts={st_warn}
-					alerts={fake_st_warn}
-					color='#f90'
-					callback={handleShowAlertModal}
-				/>
-				<WatchPolygons
-					// alerts={tor_watch}
-					alerts={fake_tor_watch}
-					callback={handleShowAlertModal}
-					topojsonClient={topojson}
-				/>
-				<WatchPolygons
-					// alerts={st_watch}
-					alerts={fake_st_watch}
-					callback={handleShowAlertModal}
-					topojsonClient={topojson}
-				/>
-			</USStateMap>
-
-			<AlertModal
-				isOpen={isOpen}
-				alertInfo={alertInfo}
-				closeModalHandler={handleCloseModal}
-			/>
-		</>
-	);
+      <AlertModal
+        isOpen={isOpen}
+        alert={alertInfo}
+        closeHandler={handleCloseModal}
+      />
+    </>
+  );
 };
 
 // ------------
 // --- UTILS
 // ------------
 
-const checkIsPDS = (alert, callback) => {
-	const { description } = alert.properties;
-	return callback(description, "particularly dangerous situation");
+function checkStringForPhrase(string, phrase) {
+  return string.toLowerCase().includes(phrase);
+}
+
+const checkIsPDS = (alert) => {
+  const { description } = alert.properties;
+  return checkStringForPhrase(description, "particularly dangerous situation");
 };
 
 const checkIsEmergency = (alert, callback) => {
-	const { description } = alert.properties;
-	return callback(description, "tornado emergency");
+  const { description } = alert.properties;
+  return callback(description, "tornado emergency");
 };
 
 const polygonStyles = (alert, isPDS, isTE) => {
-	const { event } = alert.properties;
+  const { event } = alert.properties;
 
-	const EVENT_STYLES = {
-		"Tornado Warning": {
-			fill: "transparent",
-			fillOpacity: 0,
-			stroke: "#f00",
-			strokeOpacity: 0.5,
-			strokeWidth: 2,
-		},
-		"Tornado Watch": {
-			fill: "#ffff00",
-			fillOpacity: 0.15,
-			stroke: "#c4c400",
-			strokeOpacity: 1,
-			strokeWidth: 1,
-		},
-		"Severe Thunderstorm Warning": {
-			fill: "transparent",
-			fillOpacity: 0,
-			stroke: "#ff5800",
-			strokeOpacity: 0.5,
-			strokeWidth: 2,
-		},
-		"Severe Thunderstorm Watch": {
-			fill: "#00ff00",
-			fillOpacity: 0.15,
-			stroke: "#00b100",
-			strokeOpacity: 1,
-			strokeWidth: 1,
-		},
-	};
-	const pdsStyles = {
-		fill: "#ff00ff",
-		fillOpacity: 0.5,
-		stroke: "#b300b3",
-		strokeOpacity: 0.5,
-		strokeWidth: 2,
-	};
-	const emergencyStyles = {
-		fill: "#3333cc",
-		fillOpacity: 0.5,
-		stroke: "#330099",
-		strokeOpacity: 0.5,
-		strokeWidth: 2,
-	};
+  const EVENT_STYLES = {
+    "Tornado Warning": {
+      fill: "transparent",
+      fillOpacity: 0,
+      stroke: "#f00",
+      strokeOpacity: 0.5,
+      strokeWidth: 2,
+    },
+    "Tornado Watch": {
+      fill: "#ffff00",
+      fillOpacity: 0.15,
+      stroke: "#c4c400",
+      strokeOpacity: 1,
+      strokeWidth: 1,
+    },
+    "Severe Thunderstorm Warning": {
+      fill: "transparent",
+      fillOpacity: 0,
+      stroke: "#ff5800",
+      strokeOpacity: 0.5,
+      strokeWidth: 2,
+    },
+    "Severe Thunderstorm Watch": {
+      fill: "#00ff00",
+      fillOpacity: 0.15,
+      stroke: "#00b100",
+      strokeOpacity: 1,
+      strokeWidth: 1,
+    },
+  };
+  const pdsStyles = {
+    fill: "#ff00ff",
+    fillOpacity: 0.5,
+    stroke: "#b300b3",
+    strokeOpacity: 0.5,
+    strokeWidth: 2,
+  };
+  const emergencyStyles = {
+    fill: "#3333cc",
+    fillOpacity: 0.5,
+    stroke: "#330099",
+    strokeOpacity: 0.5,
+    strokeWidth: 2,
+  };
 
-	return isTE ? emergencyStyles : isPDS ? pdsStyles : EVENT_STYLES[event];
+  return isTE ? emergencyStyles : isPDS ? pdsStyles : EVENT_STYLES[event];
 };
 
 const createWatchPolygon = (alert, topoJsonClient) => {
-	const alertSameCodes = alert.properties.geocode.SAME;
-	const watchGeoJSON = topoJsonClient.merge(
-		AlbersTopo,
-		AlbersTopo.objects.counties.geometries.filter((geometry) => {
-			const id = `0${geometry.id}`;
-			return alertSameCodes.includes(id);
-		})
-	);
+  const alertSameCodes = alert.properties.geocode.SAME;
+  const watchGeoJSON = topoJsonClient.merge(
+    AlbersTopo,
+    AlbersTopo.objects.counties.geometries.filter((geometry) => {
+      const id = `0${geometry.id}`;
+      return alertSameCodes.includes(id);
+    })
+  );
 
-	return watchGeoJSON;
+  return watchGeoJSON;
 };
 
 // ------------
 // --- WARNINGS
 // ------------
 const WarningPolygons = ({ alerts, callback, topojsonClient }) => {
-	const isValidFeatures = alerts && alerts.length > 0;
+  const isValidFeatures = alerts && alerts.length > 0;
 
-	return (
-		<>
-			{isValidFeatures ? (
-				<g>
-					{alerts.map((alert) => {
-						return (
-							<WarningPolygon
-								key={alert.id}
-								alert={alert}
-								topojsonClient={topojsonClient}
-								onClick={callback}
-							/>
-						);
-					})}
-				</g>
-			) : null}
-		</>
-	);
+  return (
+    <>
+      {isValidFeatures ? (
+        <g>
+          {alerts.map((alert) => {
+            return (
+              <WarningPolygon
+                key={alert.id}
+                alert={alert}
+                topojsonClient={topojsonClient}
+                onClick={callback}
+              />
+            );
+          })}
+        </g>
+      ) : null}
+    </>
+  );
 };
 
 const WarningPolygon = ({ alert, onClick }) => {
-	const isPDS = checkIsPDS(alert, checkStringForPhrase);
-	const isEmergency = checkIsEmergency(alert, checkStringForPhrase);
-	const pathStyles = polygonStyles(alert, isPDS, isEmergency);
+  const isPDS = checkIsPDS(alert, checkStringForPhrase);
+  const isEmergency = checkIsEmergency(alert, checkStringForPhrase);
+  const pathStyles = polygonStyles(alert, isPDS, isEmergency);
 
-	// const [x, y] = rewindPathGenerator.centroid(alert.geometry);
-	// console.log("centroid\n", centroid);
+  // const [x, y] = rewindPathGenerator.centroid(alert.geometry);
+  // console.log("centroid\n", centroid);
 
-	return (
-		<path
-			d={rewindPathGenerator(alert.geometry)}
-			// d={rewindPathGenerator({
-			// 	type: "Polygon",
-			// 	coordinates: [
-			// 		[
-			// 			alert.geometry.coordinates.map(([a, b]) => [
-			// 				a * Math.PI * x,
-			// 				b * Math.PI * y,
-			// 			]),
-			// 		],
-			// 	],
-			// })}
-			{...pathStyles}
-			onClick={() => onClick(alert)}
-		/>
-	);
+  return (
+    <path
+      d={rewindPathGenerator(alert.geometry)}
+      // d={rewindPathGenerator({
+      //   type: "Polygon",
+      //   coordinates: [
+      //     [alert.geometry.coordinates[0].map(([a, b]) => [a * 2, b * 2])],
+      //   ],
+      // })}
+      {...pathStyles}
+      onClick={() => onClick(alert)}
+    />
+  );
 };
 
 // ------------
@@ -226,72 +218,86 @@ const WarningPolygon = ({ alert, onClick }) => {
 // ------------
 
 const WatchPolygons = ({ alerts, callback, topojsonClient }) => {
-	const isValidFeatures = alerts && alerts.length > 0;
+  const isValidFeatures = alerts && alerts.length > 0;
 
-	return (
-		<>
-			{isValidFeatures
-				? alerts.map((alert) => {
-						return (
-							<WatchPolygon
-								key={alert.id}
-								alert={alert}
-								topojsonClient={topojsonClient}
-								onClick={callback}
-							/>
-						);
-				  })
-				: null}
-		</>
-	);
+  return (
+    <>
+      {isValidFeatures
+        ? alerts.map((alert) => {
+            return (
+              <WatchPolygon
+                key={alert.id}
+                alert={alert}
+                topojsonClient={topojsonClient}
+                onClick={callback}
+              />
+            );
+          })
+        : null}
+    </>
+  );
 };
 
 const WatchPolygon = ({ alert, onClick, topojsonClient }) => {
-	const isPDS = checkIsPDS(alert, checkStringForPhrase);
-	const isEmergency = checkIsEmergency(alert, checkStringForPhrase);
-	const pathStyles = polygonStyles(alert, isPDS, isEmergency);
-	const watchGeoJSON = createWatchPolygon(alert, topojsonClient);
+  const isPDS = checkIsPDS(alert, checkStringForPhrase);
+  const isEmergency = checkIsEmergency(alert, checkStringForPhrase);
+  const pathStyles = polygonStyles(alert, isPDS, isEmergency);
+  const watchGeoJSON = createWatchPolygon(alert, topojsonClient);
 
-	return (
-		<path
-			d={rewindPathGenerator(watchGeoJSON)}
-			{...pathStyles}
-			onClick={() => onClick(alert)}
-		/>
-	);
+  return (
+    <path
+      d={rewindPathGenerator(watchGeoJSON)}
+      {...pathStyles}
+      onClick={() => onClick(alert)}
+    />
+  );
 };
 
-const AlertModal = ({ isOpen, closeModalHandler, alertInfo }) => {
-	const ALERT_TYPE = {
-		"Tornado Warning": TornadoWarningAlert,
-		"Severe Thunderstorm Warning": SevereStormWarningAlert,
-		"Tornado Watch": TornadoWatchAlert,
-		"Severe Thunderstorm Watch": SevereStormWatchAlert,
-	};
+const AlertModal = ({ isOpen, closeHandler, alert }) => {
+  let event, isTornadoWarning, isPDS, isEmergency, modalBgColor;
 
-	const CurrentAlertModal = ALERT_TYPE[alertInfo?.properties?.event];
+  const STANDARD_COLORS = {
+    "Tornado Warning": "#f00",
+    "Tornado Watch": "#ffff00",
+    "Severe Thunderstorm Warning": "#ff5800",
+    "Severe Thunderstorm Watch": "#00ff00",
+  };
+  const DANGEROUS_COLORS = {
+    pds: "#ff00ff",
+    tor_emer: "#3333cc",
+  };
 
-	return (
-		<>
-			{alertInfo !== null ? (
-				<Modal open={isOpen} className='overflow-auto'>
-					<Button
-						size='sm'
-						color='ghost'
-						shape='circle'
-						className='absolute right-2 top-2'
-						onClick={closeModalHandler}
-					>
-						x
-					</Button>
-					<CurrentAlertModal alert={alertInfo} />
-				</Modal>
-			) : null}
-		</>
-	);
+  if (alert) {
+    event = alert?.properties?.event;
+    isTornadoWarning = event === "Tornado Warning";
+    isPDS = checkIsPDS(alert, checkStringForPhrase);
+    isEmergency = checkIsEmergency(alert, checkStringForPhrase);
+    modalBgColor = isEmergency
+      ? DANGEROUS_COLORS.tor_emer
+      : isPDS
+      ? DANGEROUS_COLORS.pds
+      : STANDARD_COLORS[event];
+  }
+
+  return (
+    <>
+      {alert && (
+        <Modal
+          open={isOpen}
+          className="overflow-auto"
+          style={{ backgroundColor: modalBgColor }}
+        >
+          <Button
+            size="sm"
+            color="ghost"
+            shape="circle"
+            className="absolute right-2 top-2"
+            onClick={closeHandler}
+          >
+            x
+          </Button>
+        </Modal>
+      )}
+    </>
+  );
 };
-
-// TODO: relo to utils/
-function checkStringForPhrase(string, phrase) {
-	return string.toLowerCase().includes(phrase);
-}

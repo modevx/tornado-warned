@@ -86,9 +86,6 @@ export const AlertMessageModal = ({ messageType, message }) => {
   );
 };
 
-// TODO /////////////////////////////////////
-// TODO: optimize polygon rendering
-// TODO /////////////////////////////////////
 export const AlertPolygonMap = ({ alertFeature }) => {
   const {
     properties: { event },
