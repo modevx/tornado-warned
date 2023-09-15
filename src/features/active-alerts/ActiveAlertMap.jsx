@@ -5,7 +5,7 @@ import { Button, Modal } from "react-daisyui";
 import { geoAlbers, geoPath, geoTransform } from "d3";
 
 import AlbersTopo from "components/_constants/albers-map.topo.json";
-import { Basemap, BasemapFeatureSelector } from "components";
+import { Basemap, BasemapFeatureSelector, USStateMap } from "components";
 import { albersCounties } from "components/_constants/map-features";
 import {
 	TornadoWarningAlert,
@@ -19,7 +19,14 @@ import {
 	EVENTS,
 	FAKE_ALERTS,
 	SITUATIONS,
+	useNwsAlertsByEvent,
+	EVENTS,
+	FAKE_ALERTS,
+	SITUATIONS,
 } from "services/nws-api-web-service";
+
+import { FaTornado } from "react-icons/fa6";
+import { IoThunderstorm } from "react-icons/io5";
 
 import { FaTornado } from "react-icons/fa6";
 import { IoThunderstorm } from "react-icons/io5";
@@ -40,30 +47,20 @@ export const ActiveAlertMap = () => {
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [alertInfo, setAlertInfo] = useState(null);
-	const [features, setFeatures] = useState({
-		states: true,
-		counties: false,
-		cwas: false,
-		pfzs: false,
-	});
 
 	const handleShowAlertModal = (alert) => {
-		console.log("feature clicked");
 		setAlertInfo(alert);
 		setIsOpen((isOpen) => !isOpen);
 	};
+
 	const handleCloseModal = () => {
 		setIsOpen(false);
-	};
-	const handleFeatureSelectorOnChange = (e) => {
-		const { name } = e.target;
-		setFeatures((prev) => Object.assign({ ...prev }, { [name]: !prev[name] }));
 	};
 
 	return (
 		<>
 			{/* <AlertMapLegend /> */}
-			<Basemap showCounties={features.counties}>
+			<USStateMap>
 				<WarningPoints
 					// alerts={tor_warn}
 					alerts={fake_tor_warn}
@@ -90,7 +87,7 @@ export const ActiveAlertMap = () => {
 					color='limegreen'
 					callback={handleShowAlertModal}
 				/>
-			</Basemap>
+			</USStateMap>
 
 			<AlertModal
 				isOpen={isOpen}
@@ -101,6 +98,64 @@ export const ActiveAlertMap = () => {
 	);
 };
 
+// ------------
+// --- WARNINGS
+// ------------
+const WarningPoints = ({ alerts, color, icon, callback }) => {
+	return (
+		<>
+			{alerts && alerts.length > 0 ? (
+				<g>
+					{alerts.map((alert) => {
+						const { description } = alert.properties;
+						const [centX, centY] = d3GeoPath.centroid(alert.geometry);
+						const isTornadoEmergency = checkStringForPhrase(
+							description,
+							SITUATIONS.te
+						);
+						const isPDS = checkStringForPhrase(description, SITUATIONS.pds);
+						const polygonColor = isTornadoEmergency
+							? "#f0f"
+							: isPDS
+							? "#09f"
+							: color;
+
+						const Icon = icon;
+
+						return (
+							<Icon
+								key={alert.id}
+								x={centX}
+								y={centY}
+								size={15}
+								fill={polygonColor}
+								onClick={() => callback(alert)}
+							/>
+						);
+
+						// return (
+						// 	<circle
+						// 		cx={centX}
+						// 		cy={centY}
+						// 		key={alert.id}
+						// 		fill={polygonColor}
+						// 		r='5'
+						// 	/>
+						// );
+
+						// return (
+						// 	<WarningPolygon
+						// 		key={alert.id}
+						// 		feature={alert}
+						// 		color={polygonColor}
+						// 		onClick={callback}
+						// 	/>
+						// );
+					})}
+				</g>
+			) : null}
+		</>
+	);
 // ------------
 // --- WARNINGS
 // ------------
@@ -184,6 +239,7 @@ const WatchPolygons = ({ alerts, color, callback }) => {
 		<>
 			{isValidFeatures
 				? alerts.map((alert) => {
+						// TODO: move watch poly creation logic to util func
 						const affectedCountyIds = alert.properties.geocode.SAME;
 						const { description } = alert.properties;
 						const isPDS = checkStringForPhrase(description, SITUATIONS.pds);
@@ -233,7 +289,7 @@ const AlertModal = ({ isOpen, closeModalHandler, alertInfo }) => {
 		"Severe Thunderstorm Watch": SevereStormWatchAlert,
 	};
 
-	const AlertModal = ALERT_TYPE[alertInfo?.properties?.event];
+	const CurrentAlertModal = ALERT_TYPE[alertInfo?.properties?.event];
 
 	return (
 		<>
@@ -248,11 +304,7 @@ const AlertModal = ({ isOpen, closeModalHandler, alertInfo }) => {
 					>
 						x
 					</Button>
-					<AlertModal alert={alertInfo} />
-					{/* <Modal.Header className='font-bold'>Hello!</Modal.Header>
-			<Modal.Body className='uppercase font-bold text-red-500'>
-				{properties.event}
-			</Modal.Body> */}
+					<CurrentAlertModal alert={alertInfo} />
 				</Modal>
 			) : null}
 		</>
