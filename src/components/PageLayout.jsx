@@ -4,12 +4,6 @@ import { useCallback, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Drawer, Menu, Navbar } from "react-daisyui";
 
-import NextHead from "next/head";
-import NextLink from "next/link";
-import { useCallback, useState } from "react";
-import { AiOutlineMenu } from "react-icons/ai";
-import { Drawer, Menu, Navbar } from "react-daisyui";
-
 import { Footer, Header } from "components";
 
 export const PageLayout = ({ children }) => {
@@ -17,12 +11,7 @@ export const PageLayout = ({ children }) => {
 
 	const toggleIsOpen = useCallback(() => setIsOpen((isOpen) => !isOpen), []);
 
-	const [isOpen, setIsOpen] = useState(false);
-
-	const toggleIsOpen = useCallback(() => setIsOpen((isOpen) => !isOpen), []);
-
 	return (
-		<>
 		<>
 			<Meta />
 
@@ -39,7 +28,6 @@ export const PageLayout = ({ children }) => {
 
 const Meta = () => {
 	return (
-		<NextHead>
 		<NextHead>
 			<title>Tornado Warned</title>
 			<link rel='icon' href='/favicon.ico' />
@@ -68,8 +56,6 @@ const Meta = () => {
 			<meta name='twitter:card' content='summary_large_image' />
 			<meta name='twitter:creator' content='@ephraimsmithdev' />
 			<meta name='twitter:site' content='@ephraimsmithdev' />
-			<meta name='twitter:creator' content='@ephraimsmithdev' />
-			<meta name='twitter:site' content='@ephraimsmithdev' />
 			<meta name='twitter:title' content='tornadowarned.com' />
 			<meta
 				name='twitter:image:src'
@@ -86,20 +72,8 @@ const Meta = () => {
 				rel='stylesheet'
 			/>
 		</NextHead>
-		</NextHead>
 	);
 };
-
-const MobileNav = () => (
-	<Menu className='p-4 w-60 md:w-80 h-full bg-base-200'>
-		<Menu.Item className='text-sm'>
-			<NextLink href='/'>alerts</NextLink>
-		</Menu.Item>
-		<Menu.Item className='text-sm'>
-			<NextLink href='/convective-outlooks'>outlooks</NextLink>
-		</Menu.Item>
-	</Menu>
-);
 
 const MobileNav = () => (
 	<Menu className='p-4 w-60 md:w-80 h-full bg-base-200'>

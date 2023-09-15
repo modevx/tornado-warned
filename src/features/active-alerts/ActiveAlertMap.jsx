@@ -19,14 +19,7 @@ import {
 	EVENTS,
 	FAKE_ALERTS,
 	SITUATIONS,
-	useNwsAlertsByEvent,
-	EVENTS,
-	FAKE_ALERTS,
-	SITUATIONS,
 } from "services/nws-api-web-service";
-
-import { FaTornado } from "react-icons/fa6";
-import { IoThunderstorm } from "react-icons/io5";
 
 import { FaTornado } from "react-icons/fa6";
 import { IoThunderstorm } from "react-icons/io5";
@@ -122,17 +115,6 @@ const WarningPoints = ({ alerts, color, icon, callback }) => {
 
 						const Icon = icon;
 
-						return (
-							<Icon
-								key={alert.id}
-								x={centX}
-								y={centY}
-								size={15}
-								fill={polygonColor}
-								onClick={() => callback(alert)}
-							/>
-						);
-
 						// return (
 						// 	<circle
 						// 		cx={centX}
@@ -143,72 +125,14 @@ const WarningPoints = ({ alerts, color, icon, callback }) => {
 						// 	/>
 						// );
 
-						// return (
-						// 	<WarningPolygon
-						// 		key={alert.id}
-						// 		feature={alert}
-						// 		color={polygonColor}
-						// 		onClick={callback}
-						// 	/>
-						// );
-					})}
-				</g>
-			) : null}
-		</>
-	);
-// ------------
-// --- WARNINGS
-// ------------
-const WarningPoints = ({ alerts, color, icon, callback }) => {
-	return (
-		<>
-			{alerts && alerts.length > 0 ? (
-				<g>
-					{alerts.map((alert) => {
-						const { description } = alert.properties;
-						const [centX, centY] = d3GeoPath.centroid(alert.geometry);
-						const isTornadoEmergency = checkStringForPhrase(
-							description,
-							SITUATIONS.te
-						);
-						const isPDS = checkStringForPhrase(description, SITUATIONS.pds);
-						const polygonColor = isTornadoEmergency
-							? "#f0f"
-							: isPDS
-							? "#09f"
-							: color;
-
-						const Icon = icon;
-
 						return (
-							<Icon
+							<WarningPolygon
 								key={alert.id}
-								x={centX}
-								y={centY}
-								size={15}
-								fill={polygonColor}
-								onClick={() => callback(alert)}
+								feature={alert}
+								color={polygonColor}
+								onClick={callback}
 							/>
 						);
-
-						// return (
-						// 	<circle
-						// 		cx={centX}
-						// 		cy={centY}
-						// 		key={alert.id}
-						// 		fill={polygonColor}
-						// 		r='5'
-						// 	/>
-						// );
-
-						// return (
-						// 	<WarningPolygon
-						// 		key={alert.id}
-						// 		feature={alert}
-						// 		color={polygonColor}
-						// 		onClick={callback}
-						// 	/>
-						// );
 					})}
 				</g>
 			) : null}
