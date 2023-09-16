@@ -24,8 +24,8 @@ import { DayJSDateTime, USCountyMap } from "components";
 import AlbersTopoJSONMap from "components/_constants/albers-map.topo.json";
 
 // -- BASE SUB-COMPONENT STYLES
-const AlertCardSubComponent = ({ children, className, ...props }) => {
-  const classes = twMerge("bg-black rounded-lg p-2 text-sm", className);
+const AlertModalEl = ({ children, className, ...props }) => {
+  const classes = twMerge("bg-base-100 rounded-lg p-4 text-sm mb-4", className);
 
   return (
     <div className={classes} {...props}>
@@ -111,7 +111,7 @@ export const AlertPolygonMap = ({ alertFeature }) => {
   const alberPathGen = d3.geoPath(albersFitExtent);
 
   return (
-    <AlertCardSubComponent>
+    <AlertModalEl>
       <USCountyMap pathGen={alberPathGen}>
         <AlertPolygon
           color={polygonColor}
@@ -120,7 +120,7 @@ export const AlertPolygonMap = ({ alertFeature }) => {
           winding={TurfRewind}
         />
       </USCountyMap>
-    </AlertCardSubComponent>
+    </AlertModalEl>
   );
 };
 
@@ -170,16 +170,24 @@ export const Body = ({ children }) => {
   return <Body className="p-0">{children}</Body>;
 };
 
+export const Event = ({ event }) => {
+  return (
+    <AlertModalEl className="max-w-max text-xl">
+      <span>{event}</span>
+    </AlertModalEl>
+  );
+};
+
 export const ExpirationTime = ({ expiresTime }) => {
   return (
-    <AlertCardSubComponent className="flex flex-wrap items-center justify-between">
+    <AlertModalEl className="flex flex-wrap items-center justify-between">
       <span className="mr-3">Expires:</span>
       {expiresTime ? (
         <DayJSDateTime utcDate={expiresTime} format="LT" />
       ) : (
         "Unknown"
       )}
-    </AlertCardSubComponent>
+    </AlertModalEl>
   );
 };
 
@@ -192,7 +200,7 @@ export const ImpactedAreas = ({ areaDesc }) => {
   }
 
   return (
-    <AlertCardSubComponent className="mb-2">
+    <AlertModalEl className="mb-2">
       {impactedAreasMapEntries
         ? impactedAreasMapEntries.map(([state, areas]) => {
             const joinedAreaDescStr = areas.join(", ");
@@ -210,7 +218,7 @@ export const ImpactedAreas = ({ areaDesc }) => {
             );
           })
         : "NWS Error: Impacted areas not available at this time..."}
-    </AlertCardSubComponent>
+    </AlertModalEl>
   );
 };
 
@@ -218,9 +226,9 @@ export const Instruction = ({ instruction }) => {
   return (
     <>
       {instruction ? (
-        <AlertCardSubComponent>
+        <AlertModalEl>
           <pre className="whitespace-break-spaces">{instruction}</pre>
-        </AlertCardSubComponent>
+        </AlertModalEl>
       ) : null}
     </>
   );
@@ -231,10 +239,10 @@ export const MaxHailSize = ({ maxHailSize }) => {
   const maxSizeFloat = maxHailSize[0].split(" ")[2];
 
   return (
-    <AlertCardSubComponent className="flex justify-between items-center">
+    <AlertModalEl className="flex justify-between items-center">
       <span className="text-sm ">Max Hail Size:</span>
       <span className="ml-3">{`${maxSizeFloat}"`}</span>
-    </AlertCardSubComponent>
+    </AlertModalEl>
   );
 };
 
@@ -246,10 +254,10 @@ export const SenderName = ({ senderName }) => {
     : "National Weather Service";
 
   return (
-    <AlertCardSubComponent className="flex items-center text-lg">
+    <AlertModalEl className="flex items-center text-lg">
       <NextImage src="/images/logo-nws.png" height={40} width={40} />
       <span className="ml-3">{wfo}</span>
-    </AlertCardSubComponent>
+    </AlertModalEl>
   );
 };
 
@@ -257,9 +265,9 @@ export const CardTitle = ({ children }) => {
   const { Title } = Card;
 
   return (
-    <AlertCardSubComponent className="mb-2 flex justify-between">
+    <AlertModalEl className="mb-2 flex justify-between">
       <Title>{children}</Title>
-    </AlertCardSubComponent>
+    </AlertModalEl>
   );
 };
 
@@ -267,11 +275,11 @@ export const TornadoDetection = ({ tornadoDetection }) => {
   const isValidProp = tornadoDetection && tornadoDetection.length > 0;
 
   return (
-    <AlertCardSubComponent className="flex items-center">
+    <AlertModalEl className="flex items-center">
       <FaTornado size={30} />
       <span className="text-sm font-bold ml-4">
         {isValidProp ? tornadoDetection[0] : "N/A"}
       </span>
-    </AlertCardSubComponent>
+    </AlertModalEl>
   );
 };

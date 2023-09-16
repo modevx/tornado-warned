@@ -6,6 +6,7 @@ import {
   AlertPolygonMap,
   Body,
   Description,
+  Event,
   Instruction,
   ExpirationTime,
   ImpactedAreas,
@@ -14,10 +15,11 @@ import {
   CardTitle,
   TornadoDetection,
 } from "./AlertCardElements";
+import { createWatchPolygon } from "features/active-alerts/utils/alert-polygons";
 import { checkIsEmergency, checkIsPDS } from "./utils";
 
 export const AlertModal = ({ alert, isOpen, closeHandler }) => {
-  let event, isTornadoWarning, isPDS, isEmergency, modalBgColor;
+  let areaDesc, event, isWarning, isPDS, isEmergency, modalColor, geoJSON;
 
   const STANDARD_COLORS = {
     "Tornado Warning": "#f00",
@@ -31,39 +33,52 @@ export const AlertModal = ({ alert, isOpen, closeHandler }) => {
   };
 
   if (alert) {
+    areaDesc = alert.properties.areaDesc;
     event = alert.properties.event;
-    isTornadoWarning = event === "Tornado Warning";
+    isWarning = event === "Tornado Warning" || "Severe Thunderstorm Warning";
     isPDS = checkIsPDS(alert);
     isEmergency = checkIsEmergency(alert);
-    modalBgColor = isEmergency
+    modalColor = isEmergency
       ? DANGEROUS_COLORS.tor_emer
       : isPDS
       ? DANGEROUS_COLORS.pds
       : STANDARD_COLORS[event];
+    // geoJSON =
   }
-
-  console.log("Alert Modal >>\n", { isTornadoWarning, isPDS, isEmergency });
 
   return (
     <>
       {alert && (
         <Modal
           open={isOpen}
-          className="overflow-auto"
-          style={{ backgroundColor: modalBgColor }}
+          className="overflow-auto text-base-content"
+          style={{ backgroundColor: modalColor }}
         >
           <Button
             size="sm"
-            color="ghost"
             shape="circle"
-            className="absolute right-2 top-2"
+            className="absolute right-2 top-2 hover:bg-red-500"
             onClick={closeHandler}
           >
             x
           </Button>
-
-          <Modal.Header>{alert.properties.event}</Modal.Header>
-          <Modal.Body></Modal.Body>
+          <Modal.Body>
+            <Event
+              event={
+                isEmergency
+                  ? "Tornado Emergency"
+                  : isPDS
+                  ? "Particularly Dangerous Situation"
+                  : alert.properties.event
+              }
+            />
+            <SenderName senderName={alert.properties.senderName} />
+            {/* <AlertPolygonMap
+              alertFeature={
+                isWarning ? alert.geometry : createWatchPolygon(alert.geometry)
+              }
+            /> */}
+          </Modal.Body>
           <Modal.Actions></Modal.Actions>
         </Modal>
       )}
@@ -71,7 +86,9 @@ export const AlertModal = ({ alert, isOpen, closeHandler }) => {
   );
 };
 
-// TODO: add special messaging for TORNADO EMERGENCY & PARTICULARLY DANGEROUS SITUATION alerts
+// -----------------------------
+// --- OLD EVENT-SPECIFIC ALERTS
+// -----------------------------
 
 export const TornadoWarningAlert = ({ alert }) => {
   const { id, type, geometry, properties } = alert;
