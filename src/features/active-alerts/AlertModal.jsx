@@ -16,7 +16,7 @@ import {
   TornadoDetection,
 } from "./AlertCardElements";
 import { createWatchPolygon } from "features/active-alerts/utils/alert-polygons";
-import { checkIsEmergency, checkIsPDS } from "./utils";
+import { checkAlertIsTornadoEmergency, checkAlertIsPDS } from "utils";
 
 export const AlertModal = ({ alert, isOpen, closeHandler }) => {
   let areaDesc, event, isWarning, isPDS, isEmergency, modalColor, geoJSON;
@@ -36,8 +36,8 @@ export const AlertModal = ({ alert, isOpen, closeHandler }) => {
     areaDesc = alert.properties.areaDesc;
     event = alert.properties.event;
     isWarning = event === "Tornado Warning" || "Severe Thunderstorm Warning";
-    isPDS = checkIsPDS(alert);
-    isEmergency = checkIsEmergency(alert);
+    isPDS = checkAlertIsPDS(alert);
+    isEmergency = checkAlertIsTornadoEmergency(alert);
     modalColor = isEmergency
       ? DANGEROUS_COLORS.tor_emer
       : isPDS
