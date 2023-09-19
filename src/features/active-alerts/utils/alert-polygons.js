@@ -5,9 +5,10 @@ export const createWatchPolygon = (alert) => {
   const alertSameCodes = alert.properties.geocode.SAME;
   const watchGeoJSON = topojson.merge(
     AlbersTopo,
-    AlbersTopo.objects.counties.geometries.filter((geometry) => {
-      const id = `0${geometry.id}`;
-      return alertSameCodes.includes(id);
+    AlbersTopo.objects.counties.geometries.filter(({ id: countyFips }) => {
+      // SAME = 0<fips code>
+      const countySAME = `0${countyFips}`;
+      return alertSameCodes.includes(countySAME);
     })
   );
 
