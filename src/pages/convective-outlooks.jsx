@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Modal } from "react-daisyui";
 
-import { PageLayout } from "components";
+import { H1, PageLayout } from "components";
 import {
 	CategoricalMap,
 	DayInfo,
@@ -23,9 +23,7 @@ const ConvectiveOutlookScreen = () => {
 
 	return (
 		<PageLayout>
-			<h1 className='text-3xl uppercase font-bold mb-3 text-center bg-clip-text text-transparent bg-gradient-to-br from-primary to-base-content'>
-				Convective Outlooks
-			</h1>
+			<H1>Convective Outlooks</H1>
 			<p className='text-center text-sm mb-10'>
 				Convective Outlooks are organized severe storm forecasts created by the
 				Storm Prediction Center in Norman, OK. Click or tap on any of the

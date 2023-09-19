@@ -2,15 +2,11 @@
 
 <div align='center'>
   <h2 id='tornado-warned-tagline'>
-    <em><strong>Don't wait for the alert.  Stay ahead of mother nature's worst.</strong></em>
+    <em><strong>Past. Present.  If a storm's been tornado warned, you'll find it here.</strong></em>
   </h2>
 </div>
 
-Meteorologists and severe weather experts have access to some awesome tools for knowing far in advance when dangerous weather will strike and tracking it in real-time. Unfortunately, these resources are not curated in a way that's easily accessible to the general public.
-
-Most people depend on alerts from either their phones or tvs (if they even have cable or watch local stations) to know if dangerous weather is in the area. The reality is, by the time the alerts are received, it's often too late.
-
-Think of [TornadoWarned.com](https://tornadowarned.com) as your own personal command center for following and staying ahead of severe weather...specifically the tornado-producing kind.
+[TornadoWarned.com](https://tornadowarned.com) consolidates numerous severe weather resources into one user-friendly platform for accessing past and present tornado-specific event info.
 
 ![Tornado Warned README Features Image](public/images/readme-features.png)
 
@@ -62,6 +58,6 @@ Currently, [TornadoWarned.com](https://tornadowarned.com) is just a way for me t
 
 GitHub: [ephcoding](https://github.com/ephcoding)
 
-LinkedIn: [/in/ephraimjsmith](https://linkedin.com/in/ephraimjsmith)
+LinkedIn: [/in/ephraimsmithdev](https://linkedin.com/in/ephraimsmithdev)
 
-Twitter: [@\_ephraimsmith](https://twitter.com/_ephraimsmith)
+Twitter: [@\ephraimsmithdev](https://twitter.com/ephraimsmithdev)
