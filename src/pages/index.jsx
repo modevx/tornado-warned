@@ -1,3 +1,5 @@
+import { Button } from "react-daisyui";
+
 import {
   usePDSAlerts,
   useTornadoEmergencyAlerts,
@@ -12,7 +14,16 @@ const HomeScreen = () => {
 
   return (
     <PageLayout>
-      {/* Extreme Alert CTAs */}
+      {FAKE_ALERTS.torn_emerg.length
+        ? FAKE_ALERTS.torn_emerg.map((alert) => (
+            <TornadoEmergencyBanner key={alert.id} alert={alert} />
+          ))
+        : null}
+      {FAKE_ALERTS.pds.length
+        ? FAKE_ALERTS.pds.map((alert) => (
+            <PdsBanner key={alert.id} alert={alert} />
+          ))
+        : null}
       <H1>Active Alerts</H1>
       <ActiveAlertMap />
       {/* Alert Description Modal Btns */}
@@ -22,6 +33,24 @@ const HomeScreen = () => {
 
 export default HomeScreen;
 
-const PdsCtas = () => null;
+const PdsBanner = ({ alert }) => {
+  return (
+    <div className="flex items-center px-4 py-5 justify-between text-xs bg-gradient-to-br from-purple-400 to-purple-800">
+      <p>Particularly Dangerous Situation</p>
+      <Button variant="outline" size="xs" className="ml-3">
+        Details
+      </Button>
+    </div>
+  );
+};
 
-const TornadoEmergencyCtas = () => null;
+const TornadoEmergencyBanner = ({ alert }) => {
+  return (
+    <div className="flex items-center px-4 py-5 justify-between text-xs bg-gradient-to-br from-pink-400 to-pink-700">
+      <p>Tornado Emergency</p>
+      <Button variant="outline" size="xs" className="ml-3">
+        Details
+      </Button>
+    </div>
+  );
+};
