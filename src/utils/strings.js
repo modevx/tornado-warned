@@ -5,14 +5,12 @@ export const checkStringForPhrase = (string, phrase) => {
   return stringToCheck.includes(phraseToFind);
 };
 
-export const checkIsPDS = (alert) => {
+export const checkAlertIsPDS = (alert) => {
   const { description } = alert.properties;
-  console.log("checkIsPDS description>>\n", description);
   return checkStringForPhrase(description, "Particularly Dangerous Situation");
 };
 
-export const checkIsEmergency = (alert) => {
+export const checkAlertIsTornadoEmergency = (alert) => {
   const { description } = alert.properties;
-  console.log("checkIsEmergency description>>\n", description);
   return checkStringForPhrase(description, "Tornado Emergency");
 };

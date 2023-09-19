@@ -1,5 +1,6 @@
+import { checkAlertIsTornadoEmergency, checkAlertIsPDS } from "utils";
 import { createWatchPolygon } from "./utils/alert-polygons";
-import { checkIsEmergency, checkIsPDS, createPolygonStyles } from "./utils";
+import { createPolygonStyles } from "./utils";
 import { rewindPathGenerator } from "components/_constants/path-generators";
 
 export const WatchPolygons = ({ alerts, showAlertModal }) => {
@@ -23,8 +24,8 @@ export const WatchPolygons = ({ alerts, showAlertModal }) => {
 };
 
 const WatchPolygon = ({ alert, showAlertModal }) => {
-  const isPDS = checkIsPDS(alert);
-  const isEmergency = checkIsEmergency(alert);
+  const isPDS = checkAlertIsPDS(alert);
+  const isEmergency = checkAlertIsTornadoEmergency(alert);
   const watchGeoJSON = createWatchPolygon(alert);
   const pathStyles = createPolygonStyles(alert, isPDS, isEmergency);
 
