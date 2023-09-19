@@ -24,6 +24,8 @@ const getNwsAlertsByEvent = async (event) => {
 	}
 };
 
+const getPDSAlerts = async () => null;
+
 export const useNwsAlertsByEvent = (event) => {
 	return useQuery(["NWS", "Alerts", event], () => getNwsAlertsByEvent(event));
 };
