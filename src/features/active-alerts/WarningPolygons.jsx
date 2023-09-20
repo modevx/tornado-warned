@@ -32,21 +32,28 @@ const WarningPolygon = ({ alert, showAlertModal }) => {
   const isPDS = checkAlertIsPDS(alert);
   const isEmergency = checkAlertIsTornadoEmergency(alert);
   const circleStyles = createWarningPointStyles(alert, isPDS, isEmergency);
+  const polygonStyles = createPolygonStyles(alert, isPDS, isEmergency);
 
   const [x, y] = pathGenerator.centroid(alert.geometry);
 
+  // console.log("CENTROID\n", centroid);
+
   return (
-    // <path
-    //   d={rewindPathGenerator(alert.geometry)}
-    //   {...pathStyles}
-    //   onClick={() => showAlertModal(alert)}
-    // />
-    <circle
+    <path
+      d={rewindPathGenerator(alert.geometry)}
+      {...polygonStyles}
+      onClick={() => showAlertModal(alert)}
+      transform={`translate(${x} ${y}) scale(10 10) translate(-${x} -${y})`}
+    />
+  );
+};
+
+{
+  /* <circle
       {...circleStyles}
       onClick={() => showAlertModal(alert)}
       r={10}
       cx={x}
       cy={y}
-    />
-  );
-};
+    /> */
+}
