@@ -1,5 +1,5 @@
 import * as topojson from "topojson-client";
-import AlbersTopo from "components/_constants/albers-map.topo.json";
+import AlbersTopo from "components/topoJSON/albers-map.topo.json";
 
 // creates single watch area polygon by merging filled county features based on affected areas SAME codes
 // SAME codes are just fips codes with prepended '0'

@@ -21,7 +21,6 @@ import { IoBaseballOutline } from "react-icons/io5";
 import { STATES_MAP } from "constants";
 import { changeWfoToCityState, createImpactedAreasMap } from "./utils";
 import { DayJSDateTime, USCountyMap } from "components";
-import AlbersTopoJSONMap from "components/_constants/albers-map.topo.json";
 
 // -- BASE SUB-COMPONENT STYLES
 const AlertModalEl = ({ children, className, ...props }) => {

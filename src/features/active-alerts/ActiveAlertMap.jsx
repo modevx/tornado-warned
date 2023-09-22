@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { USStateMap } from "components";
+import { Basemap } from "components";
 import { AlertModal } from "./AlertModal";
 import {
   useNwsAlertsByEvent,
@@ -34,7 +34,7 @@ export const ActiveAlertMap = () => {
 
   return (
     <>
-      <USStateMap>
+      <Basemap>
         <WatchPolygons
           alerts={tor_watch}
           // alerts={fake_tor_watch}
@@ -55,7 +55,7 @@ export const ActiveAlertMap = () => {
           // alerts={fake_st_warn}
           showAlertModal={handleShowAlertModal}
         />
-      </USStateMap>
+      </Basemap>
 
       <AlertModal
         isOpen={isOpen}
