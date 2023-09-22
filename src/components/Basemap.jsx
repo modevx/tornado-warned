@@ -5,7 +5,7 @@ import {
   meshedCountyWarningAreas,
   meshedPublicForecastZones,
 } from "./geoJSON/albers-features";
-import { pathGenerator } from "components/_constants/path-generators";
+import { pathGenerator } from "components/utils/path-generators";
 
 export const Basemap = ({
   showStates = true,

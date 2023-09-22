@@ -6,5 +6,3 @@ export * from "./Header";
 export * from "./H1";
 export * from "./NoMapDataText";
 export * from "./PageLayout";
-export * from "./USCountyMap";
-export * from "./USStateMap";

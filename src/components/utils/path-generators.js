@@ -3,6 +3,6 @@ import { geoAlbers, geoPath } from "d3-geo";
 
 export const pathGenerator = geoPath(geoAlbers());
 
-// needed for alert and outlook geometry as it's winding is the opposite of that used in D3
+// needed for alert and outlook geometries because they use reverse windings
 export const rewindPathGenerator = (feature, options) =>
   pathGenerator(rewind(feature, { reverse: true }), options);

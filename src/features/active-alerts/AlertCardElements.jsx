@@ -4,7 +4,6 @@ import { useState } from "react";
 import NextImage from "next/image";
 import TurfRewind from "@turf/rewind";
 import { Button, Card, Modal } from "react-daisyui";
-import * as topojson from "topojson-client";
 
 import {
   GiBinoculars,
@@ -20,7 +19,7 @@ import { IoBaseballOutline } from "react-icons/io5";
 
 import { STATES_MAP } from "constants";
 import { changeWfoToCityState, createImpactedAreasMap } from "./utils";
-import { DayJSDateTime, USCountyMap } from "components";
+import { Basemap, DayJSDateTime } from "components";
 
 // -- BASE SUB-COMPONENT STYLES
 const AlertModalEl = ({ children, className, ...props }) => {
@@ -111,14 +110,14 @@ export const AlertPolygonMap = ({ alertFeature }) => {
 
   return (
     <AlertModalEl>
-      <USCountyMap pathGen={alberPathGen}>
+      <Basemap showCounties>
         <AlertPolygon
           color={polygonColor}
           feature={alertFeature}
           pathGen={alberPathGen}
           winding={TurfRewind}
         />
-      </USCountyMap>
+      </Basemap>
     </AlertModalEl>
   );
 };

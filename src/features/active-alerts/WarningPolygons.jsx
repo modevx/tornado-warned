@@ -4,7 +4,7 @@ import { createPolygonStyles, createWarningPointStyles } from "./utils";
 import {
   pathGenerator,
   rewindPathGenerator,
-} from "components/_constants/path-generators";
+} from "components/utils/path-generators";
 
 export const WarningPolygons = ({ alerts, showAlertModal }) => {
   const isValidFeatures = alerts && alerts.length > 0;
