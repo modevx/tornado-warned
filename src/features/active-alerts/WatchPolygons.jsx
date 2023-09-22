@@ -1,6 +1,9 @@
-import { checkAlertIsTornadoEmergency, checkAlertIsPDS } from "utils";
-import { createWatchPolygon } from "./utils/create-watch-polygon";
-import { createPolygonStyles } from "./utils";
+import {
+  checkAlertIsPDS,
+  checkAlertIsTornadoEmergency,
+  createPolygonStyles,
+  createWatchPolygon,
+} from "./utils";
 import { rewindPathGenerator } from "components/utils/path-generators";
 
 export const WatchPolygons = ({ alerts, showAlertModal }) => {

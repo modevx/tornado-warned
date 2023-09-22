@@ -1,6 +1,9 @@
-import { checkAlertIsTornadoEmergency, checkAlertIsPDS } from "utils";
-
-import { createPolygonStyles, createWarningPointStyles } from "./utils";
+import {
+  checkAlertIsPDS,
+  checkAlertIsTornadoEmergency,
+  createPolygonStyles,
+  createWarningPointStyles,
+} from "./utils";
 import {
   pathGenerator,
   rewindPathGenerator,
@@ -31,12 +34,10 @@ export const WarningPolygons = ({ alerts, showAlertModal }) => {
 const WarningPolygon = ({ alert, showAlertModal }) => {
   const isPDS = checkAlertIsPDS(alert);
   const isEmergency = checkAlertIsTornadoEmergency(alert);
-  const circleStyles = createWarningPointStyles(alert, isPDS, isEmergency);
+
   const polygonStyles = createPolygonStyles(alert, isPDS, isEmergency);
 
   const [x, y] = pathGenerator.centroid(alert.geometry);
-
-  // console.log("CENTROID\n", centroid);
 
   return (
     <path
@@ -47,13 +48,3 @@ const WarningPolygon = ({ alert, showAlertModal }) => {
     />
   );
 };
-
-{
-  /* <circle
-      {...circleStyles}
-      onClick={() => showAlertModal(alert)}
-      r={10}
-      cx={x}
-      cy={y}
-    /> */
-}
