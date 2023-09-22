@@ -4,10 +4,10 @@ import "@testing-library/jest-dom";
 import { Footer } from "../Footer";
 
 describe("Footer Component", () => {
-	test("renders component to screen", () => {
-		const renderedComponent = render(<Footer />);
+  test("renders Footer to screen", () => {
+    const renderedComponent = render(<Footer />);
+    const footerElement = renderedComponent.getByTestId("Footer");
 
-		const footerElement = renderedComponent.getByTestId("Footer");
-		expect(footerElement).toBeVisible();
-	});
+    expect(footerElement).toBeVisible();
+  });
 });

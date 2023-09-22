@@ -1,3 +1,5 @@
+// makes affected areas more legible my organizing areas by state
+
 export const createImpactedAreasMap = (areaDesc) => {
   const impactedAreasArr = createImpactedAreasArray(areaDesc);
   const impactedAreasMap = new Map();
