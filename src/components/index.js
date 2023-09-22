@@ -1,6 +1,6 @@
 export * from "./Basemap";
 export * from "./BasemapFeatureSelector";
-export * from "./DayJSDateTime";
+export * from "./CustomDate";
 export * from "./Footer";
 export * from "./Header";
 export * from "./H1";

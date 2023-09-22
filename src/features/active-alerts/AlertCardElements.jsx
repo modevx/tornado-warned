@@ -19,7 +19,7 @@ import { IoBaseballOutline } from "react-icons/io5";
 
 import { STATES_MAP } from "constants";
 import { changeWfoToCityState, createImpactedAreasMap } from "./utils";
-import { Basemap, DayJSDateTime } from "components";
+import { Basemap, CustomDate } from "components";
 
 // -- BASE SUB-COMPONENT STYLES
 const AlertModalEl = ({ children, className, ...props }) => {
@@ -181,7 +181,7 @@ export const ExpirationTime = ({ expiresTime }) => {
     <AlertModalEl className="flex flex-wrap items-center justify-between">
       <span className="mr-3">Expires:</span>
       {expiresTime ? (
-        <DayJSDateTime utcDate={expiresTime} format="LT" />
+        <CustomDate utcDate={expiresTime} format="LT" />
       ) : (
         "Unknown"
       )}
