@@ -44,7 +44,7 @@ const WarningPolygon = ({ alert, showAlertModal }) => {
       d={rewindPathGenerator(alert.geometry)}
       {...polygonStyles}
       onClick={() => showAlertModal(alert)}
-      transform={`translate(${x} ${y}) scale(4 4) translate(-${x} -${y})`}
+      transform={`translate(${x} ${y}) scale(2 2) translate(-${x} -${y})`}
     />
   );
 };

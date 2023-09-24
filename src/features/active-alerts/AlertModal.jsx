@@ -1,3 +1,5 @@
+import * as d3 from "d3";
+import rewind from "@turf/rewind";
 import { Button, Card, Modal } from "react-daisyui";
 
 import {
@@ -15,6 +17,7 @@ import {
   CardTitle,
   TornadoDetection,
 } from "./AlertCardElements";
+import { Basemap } from "components";
 import { createWatchPolygon } from "features/active-alerts/utils/create-watch-polygon";
 import { checkAlertIsTornadoEmergency, checkAlertIsPDS } from "./utils";
 
@@ -38,12 +41,12 @@ export const AlertModal = ({ alert, isOpen, closeHandler }) => {
     isWarning = event === "Tornado Warning" || "Severe Thunderstorm Warning";
     isPDS = checkAlertIsPDS(alert);
     isEmergency = checkAlertIsTornadoEmergency(alert);
+    geoJSON = isWarning ? alert.geometry : createWatchPolygon(alert);
     modalColor = isEmergency
       ? DANGEROUS_COLORS.tor_emer
       : isPDS
       ? DANGEROUS_COLORS.pds
       : STANDARD_COLORS[event];
-    // geoJSON =
   }
 
   return (
@@ -73,16 +76,36 @@ export const AlertModal = ({ alert, isOpen, closeHandler }) => {
               }
             />
             <SenderName senderName={alert.properties.senderName} />
-            {/* <AlertPolygonMap
-              alertFeature={
-                isWarning ? alert.geometry : createWatchPolygon(alert.geometry)
-              }
-            /> */}
+            <AlertPolygon geometry={geoJSON} color={modalColor} />
           </Modal.Body>
           <Modal.Actions></Modal.Actions>
         </Modal>
       )}
     </>
+  );
+};
+
+const AlertPolygon = ({ geometry, color }) => {
+  const mapExtent = d3.geoAlbers().fitExtent(
+    [
+      [150, 100],
+      [825, 510],
+    ],
+    geometry
+  );
+
+  const pathGen = d3.geoPath(mapExtent);
+
+  return (
+    <div className="bg-base-100 rounded-lg p-4 text-sm mb-4">
+      <Basemap showCounties>
+        <path
+          d={pathGen(rewind(geometry, { reverse: true }))}
+          fill="none"
+          stroke={color}
+        />
+      </Basemap>
+    </div>
   );
 };
 
