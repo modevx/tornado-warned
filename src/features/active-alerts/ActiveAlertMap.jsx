@@ -36,23 +36,23 @@ export const ActiveAlertMap = () => {
     <>
       <Basemap>
         <WatchPolygons
-          alerts={tor_watch}
-          // alerts={fake_tor_watch}
+          // alerts={tor_watch}
+          alerts={fake_tor_watch}
           showAlertModal={handleShowAlertModal}
         />
         <WatchPolygons
-          alerts={st_watch}
-          // alerts={fake_st_watch}
+          // alerts={st_watch}
+          alerts={fake_st_watch}
           showAlertModal={handleShowAlertModal}
         />
         <WarningPolygons
-          alerts={tor_warn}
-          // alerts={fake_tor_warn}
+          // alerts={tor_warn}
+          alerts={fake_tor_warn}
           showAlertModal={handleShowAlertModal}
         />
         <WarningPolygons
-          alerts={st_warn}
-          // alerts={fake_st_warn}
+          // alerts={st_warn}
+          alerts={fake_st_warn}
           showAlertModal={handleShowAlertModal}
         />
       </Basemap>

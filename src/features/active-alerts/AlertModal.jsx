@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import * as topojson from "topojson-client";
 import rewind from "@turf/rewind";
 import { Button, Card, Modal } from "react-daisyui";
 
@@ -17,6 +18,8 @@ import {
   CardTitle,
   TornadoDetection,
 } from "./AlertCardElements";
+import AlbersMap from "components/topoJSON/albers-map.topo.json";
+import Cities from "components/geoJSON/us-city-points.geo.json";
 import { Basemap } from "components";
 import { createWatchPolygon } from "features/active-alerts/utils/create-watch-polygon";
 import { checkAlertIsTornadoEmergency, checkAlertIsPDS } from "./utils";
@@ -76,7 +79,7 @@ export const AlertModal = ({ alert, isOpen, closeHandler }) => {
               }
             />
             <SenderName senderName={alert.properties.senderName} />
-            <AlertPolygon geometry={geoJSON} color={modalColor} />
+            <AlertPolygon alert={alert} geometry={geoJSON} color={modalColor} />
           </Modal.Body>
           <Modal.Actions></Modal.Actions>
         </Modal>
@@ -85,25 +88,52 @@ export const AlertModal = ({ alert, isOpen, closeHandler }) => {
   );
 };
 
-const AlertPolygon = ({ geometry, color }) => {
-  const mapExtent = d3.geoAlbers().fitExtent(
+const AlertPolygon = ({ alert, geometry, color }) => {
+  const projection = d3.geoAlbers().fitExtent(
     [
-      [150, 100],
-      [825, 510],
+      // [100, 200],
+      // [875, 410],
+      [100, 100],
+      [875, 510],
     ],
-    geometry
+    alert
   );
 
-  const pathGen = d3.geoPath(mapExtent);
+  const { features: counties } = topojson.feature(AlbersMap, "counties");
+
+  const pathGen = d3.geoPath(projection);
 
   return (
-    <div className="bg-base-100 rounded-lg p-4 text-sm mb-4">
-      <Basemap showCounties>
+    <div className="bg-base-100 rounded-lg">
+      <Basemap pathGen={pathGen} showCounties>
         <path
           d={pathGen(rewind(geometry, { reverse: true }))}
-          fill="none"
+          fill={color}
+          fillOpacity={0.3}
           stroke={color}
+          strokeWidth={6}
         />
+        <g>
+          {counties.map((county) => {
+            const [x, y] = pathGen.centroid(county);
+
+            return (
+              <g key={county.properties.name}>
+                {/* <path d={pathGen(city)} fill="white" /> */}
+                <text
+                  x={x}
+                  y={y}
+                  fill="white"
+                  fontSize="18"
+                  textAnchor="middle"
+                  className="m-4"
+                >
+                  {county.properties.name}
+                </text>
+              </g>
+            );
+          })}
+        </g>
       </Basemap>
     </div>
   );
