@@ -19,12 +19,12 @@ const HomeScreen = () => {
             <TornadoEmergencyBanner key={alert.id} alert={alert} />
           ))
         : null} */}
-      {FAKE_ALERTS.pds.length
+      {/* {FAKE_ALERTS.pds.length
         ? FAKE_ALERTS.pds.map((alert) => (
             <PdsBanner key={alert.id} alert={alert} />
           ))
-        : null}
-      <H1>Active Alerts</H1>
+        : null} */}
+      {/* <H1>Active Alerts</H1> */}
       <ActiveAlertMap />
       {/* Alert Description Modal Btns */}
     </PageLayout>
