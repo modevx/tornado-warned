@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Modal } from "react-daisyui";
 import { AiOutlineCloseCircle as CloseIcon } from "react-icons/ai";
 
-import { Basemap } from "components";
+import { Basemap, EmptyMapText } from "components";
 import { useCategoricalOutlookByLayerId } from "services/outlook-mapserver";
 import { rewindPathGenerator } from "components/utils/path-generators";
 import { CATEGORICAL } from "features/convective-outlooks/_constants/outlook-feature-details";
@@ -28,33 +28,43 @@ export const CategoricalMap = ({ outlookDay }) => {
 
   const closeModalHandler = () => setIsOpen(false);
 
+  if (features) {
+    console.log(
+      `Outlook day ${outlookDay} dn value >>\n`,
+      features[0].properties.dn
+    );
+  }
+
   return (
     <>
       <div className="w-full h-full">
         <Basemap>
           <g>
-            {features
-              ? features?.map((feature) => {
-                  const {
-                    id,
-                    properties: { dn, idp_source },
-                  } = feature;
+            {features && features[0].properties.dn === 0 ? (
+              <EmptyMapText loadingMessage="No Thunderstorms" />
+            ) : features && features[0].properties.dn > 0 ? (
+              features?.map((feature) => {
+                const {
+                  id,
+                  properties: { dn, idp_source },
+                } = feature;
 
-                  const category = CATEGORICAL[dn];
+                console.log("Outlook dn value >>\n", dn);
+                const category = CATEGORICAL[dn];
 
-                  return (
-                    <path
-                      key={`${idp_source}-${id}`}
-                      d={rewindPathGenerator(feature)}
-                      fill={category.bgColor}
-                      opacity={0.7}
-                      stroke={category.stroke}
-                      strokeWidth={4}
-                      onClick={() => openModalHandler(category)}
-                    />
-                  );
-                })
-              : null}
+                return (
+                  <path
+                    key={`${idp_source}-${id}`}
+                    d={rewindPathGenerator(feature)}
+                    fill={category.bgColor}
+                    opacity={0.7}
+                    stroke={category.stroke}
+                    strokeWidth={4}
+                    onClick={() => openModalHandler(category)}
+                  />
+                );
+              })
+            ) : null}
           </g>
         </Basemap>
         <FeatureDescriptionModal

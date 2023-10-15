@@ -1,4 +1,4 @@
-import { Button } from "react-daisyui";
+import { Alert, Button } from "react-daisyui";
 
 import {
   usePDSAlerts,
@@ -14,11 +14,11 @@ const HomeScreen = () => {
 
   return (
     <PageLayout>
-      {FAKE_ALERTS.torn_emerg.length
+      {/* {FAKE_ALERTS.torn_emerg.length
         ? FAKE_ALERTS.torn_emerg.map((alert) => (
             <TornadoEmergencyBanner key={alert.id} alert={alert} />
           ))
-        : null}
+        : null} */}
       {FAKE_ALERTS.pds.length
         ? FAKE_ALERTS.pds.map((alert) => (
             <PdsBanner key={alert.id} alert={alert} />
@@ -35,12 +35,14 @@ export default HomeScreen;
 
 const PdsBanner = ({ alert }) => {
   return (
-    <div className="flex items-center px-4 py-5 justify-between text-xs bg-gradient-to-br from-purple-400 to-purple-800">
+    // <div className="flex items-center px-4 py-5 justify-between text-xs bg-gradient-to-br from-purple-400 to-purple-800">
+    <Alert status="warning">
       <p>Particularly Dangerous Situation</p>
       <Button variant="outline" size="xs" className="ml-3">
         Details
       </Button>
-    </div>
+    </Alert>
+    // </div>
   );
 };
 
