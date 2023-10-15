@@ -16,7 +16,13 @@ export const PageLayout = ({ children }) => {
       <Meta />
 
       <Drawer open={isOpen} onClickOverlay={toggleIsOpen} side={<MobileNav />}>
-        <div className="flex flex-col min-h-screen">
+        <div
+          style={{
+            backgroundAttachment: "fixed",
+            backgroundImage: "url(/images/stovepipe-tornado.jpg)",
+          }}
+          className="flex flex-col min-h-screen bg-neutral-800 bg-blend-soft-light bg-cover bg-no-repeat bg-center"
+        >
           <Header callback={toggleIsOpen} />
           <main className="flex-1 flex flex-col">{children}</main>
           <Footer />
