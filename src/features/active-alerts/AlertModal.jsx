@@ -103,23 +103,25 @@ const AlertPolygon = ({ alert, geometry, color }) => {
 
   const pathGen = d3.geoPath(projection);
 
+  console.log("geometry >>\n", geometry);
+
   return (
     <div className="bg-base-100 rounded-lg">
       <Basemap pathGen={pathGen} showCounties>
-        <path
+        {/* <path
           d={pathGen(rewind(geometry, { reverse: true }))}
           fill={color}
           fillOpacity={0.3}
           stroke={color}
           strokeWidth={6}
-        />
-        <g>
+        /> */}
+        {/* <g>
           {counties.map((county) => {
             const [x, y] = pathGen.centroid(county);
 
             return (
               <g key={county.properties.name}>
-                {/* <path d={pathGen(city)} fill="white" /> */}
+                <path d={pathGen(city)} fill="white" />
                 <text
                   x={x}
                   y={y}
@@ -133,7 +135,7 @@ const AlertPolygon = ({ alert, geometry, color }) => {
               </g>
             );
           })}
-        </g>
+        </g> */}
       </Basemap>
     </div>
   );
