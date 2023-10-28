@@ -24,26 +24,26 @@ export const Basemap = ({
       <path d={pathGen(nation)} stroke="white" fill="#333" />
       <MapFeatures
         isVisible={showStates}
-        pathGen={pathGen}
         features={meshedStates}
+        pathGen={pathGen}
         strokeWidth={0.25}
       />
       <MapFeatures
         isVisible={showCounties}
-        pathGen={pathGen}
         features={meshedCounties}
+        pathGen={pathGen}
         strokeWidth={0.25}
       />
       <MapFeatures
         isVisible={showCWAs}
-        pathGen={pathGen}
         features={meshedCountyWarningAreas}
+        pathGen={pathGen}
         strokeWidth={0.5}
       />
       <MapFeatures
         isVisible={showPFZs}
-        pathGen={pathGen}
         features={meshedPublicForecastZones}
+        pathGen={pathGen}
         strokeWidth={0.5}
       />
       {children}
@@ -57,11 +57,11 @@ const MapFeatures = ({ pathGen, features, isVisible, ...pathArgs }) => {
       {isVisible && (
         <path
           d={pathGen(features)}
-          {...pathArgs}
           stroke="white"
           strokeLinejoin="round"
           strokeLinecap="round"
           fill="none"
+          {...pathArgs}
         />
       )}
     </>
