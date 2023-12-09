@@ -8,88 +8,97 @@ import { rewindPathGenerator } from "components/_constants/path-generators";
 import { CATEGORICAL } from "features/convective-outlooks/_constants/outlook-feature-details";
 
 export const CategoricalMap = ({ outlookDay }) => {
-	const DAY_TO_LAYERS = {
-		1: 1,
-		2: 9,
-		3: 17,
-	};
+  const DAY_TO_LAYERS = {
+    1: 1,
+    2: 9,
+    3: 17,
+  };
 
-	const { data: features } = useCategoricalOutlookByLayerId(
-		DAY_TO_LAYERS[outlookDay]
-	);
+  const { data: features } = useCategoricalOutlookByLayerId(
+    DAY_TO_LAYERS[outlookDay]
+  );
 
-	const [isOpen, setIsOpen] = useState(false);
-	const [category, setCategory] = useState("");
+  console.log(`DAY ${outlookDay} Features: \n`, features);
 
-	const openModalHandler = (category) => {
-		setCategory(category);
-		setIsOpen(true);
-	};
+  const [isOpen, setIsOpen] = useState(false);
+  const [category, setCategory] = useState("");
 
-	const closeModalHandler = () => setIsOpen(false);
+  const openModalHandler = (category) => {
+    setCategory(category);
+    setIsOpen(true);
+  };
 
-	return (
-		<>
-			<div className='w-full h-full'>
-				<USStateMap>
-					<g>
-						{features
-							? features?.map((feature) => {
-									const {
-										id,
-										properties: { dn, idp_source },
-									} = feature;
+  const closeModalHandler = () => setIsOpen(false);
 
-									const category = CATEGORICAL[dn];
+  return (
+    <>
+      <div className="w-full h-full">
+        <USStateMap>
+          <g>
+            {/* TODO: refactor to just map over features (no convective features = feature.dn = 0) */}
+            {features
+              ? features.map((feature) => (
+                  <ConvectiveFeature key={feature.id} feature={feature} />
+                ))
+              : null}
+          </g>
+        </USStateMap>
+        <FeatureDescriptionModal
+          isOpen={isOpen}
+          category={category}
+          closeHandler={closeModalHandler}
+        />
+      </div>
+    </>
+  );
+};
 
-									return (
-										<path
-											key={`${idp_source}-${id}`}
-											d={rewindPathGenerator(feature)}
-											fill={category.bgColor}
-											opacity={0.7}
-											stroke={category.stroke}
-											strokeWidth={4}
-											onClick={() => openModalHandler(category)}
-										/>
-									);
-							  })
-							: null}
-					</g>
-				</USStateMap>
-				<FeatureDescriptionModal
-					isOpen={isOpen}
-					category={category}
-					closeHandler={closeModalHandler}
-				/>
-			</div>
-		</>
-	);
+const ConvectiveFeature = ({ feature }) => {
+  const {
+    id,
+    properties: { dn, idp_source },
+  } = feature;
+
+  let category;
+
+  if (dn != 0) category = CATEGORICAL[dn];
+
+  return dn === 0 ? null : (
+    <path
+      key={`${idp_source}-${id}`}
+      d={rewindPathGenerator(feature)}
+      fill={category.bgColor}
+      opacity={0.7}
+      stroke={category.stroke}
+      strokeWidth={4}
+      onClick={() => openModalHandler(category)}
+    />
+  );
 };
 
 const FeatureDescriptionModal = ({ isOpen, category, closeHandler }) => {
-	const { bgColor, description, label } = category;
+  const { bgColor, description, label } = category;
 
-	return (
-		<Modal
-			style={{ backgroundColor: bgColor }}
-			open={isOpen}
-			onClickBackdrop={closeHandler}
-		>
-			<div className='bg-base-100 rounded-md p-4'>
-				<div className='flex items-center mb-4'>
-					<CloseIcon
-						onClick={closeHandler}
-						size={30}
-						className='mr-2 hover:fill-red-600'
-					/>
-					<span>CLOSE</span>
-				</div>
-				<Modal.Header>{label}</Modal.Header>
-				<Modal.Body>
-					<pre className='whitespace-break-spaces'>{description}</pre>
-				</Modal.Body>
-			</div>
-		</Modal>
-	);
+  return (
+    <Modal
+      style={{ backgroundColor: bgColor }}
+      open={isOpen}
+      onClickBackdrop={closeHandler}
+    >
+      <div className="bg-base-100 rounded-md p-4">
+        <div className="flex items-center mb-4">
+          <CloseIcon
+            onClick={closeHandler}
+            size={30}
+            className="mr-2 hover:fill-red-600"
+          />
+          <span>CLOSE</span>
+        </div>
+        <Modal.Header>{label}</Modal.Header>
+        <Modal.Body>
+          <pre className="whitespace-break-spaces">{description}</pre>
+        </Modal.Body>
+      </div>
+    </Modal>
+  );
 };
