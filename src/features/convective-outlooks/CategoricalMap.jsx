@@ -38,7 +38,11 @@ export const CategoricalMap = ({ outlookDay }) => {
             {/* TODO: refactor to just map over features (no convective features = feature.dn = 0) */}
             {features
               ? features.map((feature) => (
-                  <ConvectiveFeature key={feature.id} feature={feature} />
+                  <ConvectiveFeature
+                    key={feature.id}
+                    feature={feature}
+                    openModalHandler={openModalHandler}
+                  />
                 ))
               : null}
           </g>
@@ -53,7 +57,7 @@ export const CategoricalMap = ({ outlookDay }) => {
   );
 };
 
-const ConvectiveFeature = ({ feature }) => {
+const ConvectiveFeature = ({ feature, openModalHandler }) => {
   const {
     id,
     properties: { dn, idp_source },
