@@ -54,20 +54,6 @@ export const ActiveAlertMap = () => {
     <>
       {/* <AlertMapLegend /> */}
       <USStateMap>
-        <WarningPoints
-          alerts={tor_warn}
-          // alerts={fake_tor_warn}
-          color="red"
-          icon={FaTornado}
-          callback={handleShowAlertModal}
-        />
-        <WarningPoints
-          alerts={st_warn}
-          // alerts={fake_st_warn}
-          color="#f90"
-          icon={IoThunderstorm}
-          callback={handleShowAlertModal}
-        />
         <WatchPolygons
           alerts={tor_watch}
           // alerts={fake_tor_watch}
@@ -78,6 +64,20 @@ export const ActiveAlertMap = () => {
           alerts={st_watch}
           // alerts={fake_st_watch}
           color="limegreen"
+          callback={handleShowAlertModal}
+        />
+        <WarningPoints
+          alerts={st_warn}
+          // alerts={fake_st_warn}
+          color="#f90"
+          icon={IoThunderstorm}
+          callback={handleShowAlertModal}
+        />
+        <WarningPoints
+          alerts={tor_warn}
+          // alerts={fake_tor_warn}
+          color="red"
+          icon={FaTornado}
           callback={handleShowAlertModal}
         />
       </USStateMap>
