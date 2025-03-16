@@ -5,26 +5,39 @@ import AlbersMapTopoJSON from "json/topojson-albers-map.json";
 
 const albersProjection = geoAlbers();
 export const albersGeoPath = geoPath(albersProjection);
+
 export const createWatchAlertGeometry = (alert) => {
-  const affectedCountyIds = alert.properties.geocode.SAME;
+  const affectedCountyIds = parseAffectedCountyIds(alert);
   const watchGeometry = topojsonClient.merge(
     AlbersMapTopoJSON,
-    // prepend '0' to D3 topoJSON county ids to match NWS county IDs
     AlbersMapTopoJSON.objects.counties.geometries.filter((geometry) => {
-      const countyID = `0${geometry.id}`;
+      const countyID = convertTopoJsonCountyIdToNwsID(geometry.id);
       return affectedCountyIds.includes(countyID);
     })
   );
-  // const watchGeometry = topojsonClient.feature(
-  //   AlbersMapTopoJSON,
-  //   // prepend '0' to D3 topoJSON county ids to match NWS county IDs
-  //   AlbersMapTopoJSON.objects.counties.geometries.filter((geometry) => {
-  //     const countyID = `0${geometry.id}`;
-  //     return affectedCountyIds.includes(countyID);
-  //   })
-  // );
+
   return watchGeometry;
 };
+
 export const reverseAlbersGeoPath = (geometry) => {
   return albersGeoPath(turfRewind(geometry, { reverse: true }));
+};
+
+const parseAffectedCountyIds = (alert) => {
+  return alert.properties.geocode.SAME;
+};
+
+const convertTopoJsonCountyIdToNwsID = (topoJsonID) => `0${topoJsonID}`;
+
+const createAffectedCountiesTopoJsonMap = ({ alert, mapTopoJson }) => {
+  const affectedCountyIds = parseAffectedCountyIds(alert);
+  const watchGeometry = topojsonClient.merge(
+    mapTopoJson,
+    mapTopoJson.objects.counties.geometries.filter((geometry) => {
+      const countyID = convertTopoJsonCountyIdToNwsID(geometry.id);
+      return affectedCountyIds.includes(countyID);
+    })
+  );
+
+  return watchGeometry;
 };

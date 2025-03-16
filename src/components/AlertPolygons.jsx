@@ -27,9 +27,6 @@ export const WarningPolygon = ({
     ? NWS_ALERT_COLORS.destructive_storm
     : color;
 
-  console.log("alert.geomertry >> : ", alert.geometry);
-  console.log("warning polygonColor >> : ", color);
-
   return (
     alert?.geometry && (
       <path
@@ -59,9 +56,6 @@ export const WatchPolygon = ({
     ? NWS_ALERT_COLORS.destructive_storm
     : color;
   const watchGeometry = createWatchAlertGeometry(alert);
-
-  console.log("watchGeometry >> : ", watchGeometry);
-  console.log("watch polygonColor >> : ", polygonColor);
 
   const albersFitExtent = geoAlbers().fitExtent(
     // 975 x 610

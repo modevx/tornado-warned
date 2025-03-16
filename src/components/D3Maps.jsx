@@ -14,7 +14,7 @@ const meshedCountyFeatures = TopoJSONClient.mesh(
   AlbersTopoJSONMap.objects.counties
   // (a, b) => a !== b
 );
-// console.log(">> MESHED COUNTY FEATURES >>\n", meshedCountyFeatures);
+
 export const Basemap = ({
   pathGen = pathGenerator,
   showStates = true,

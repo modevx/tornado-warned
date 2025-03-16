@@ -78,6 +78,18 @@ const HomeScreen = () => {
     alerts = filterTornadoAndStormAlerts(data);
   }
 
+  console.log(alerts.tornadoWatches[0]);
+
+  console.log(
+    "Watches: ",
+    alerts.tornadoWatches.map((alert) => {
+      return {
+        wfo: alert.properties.senderName,
+        affectedAreas: alert.properties.geocode.SAME,
+      };
+    })
+  );
+
   return (
     <PageLayout>
       <ActiveAlertModal
