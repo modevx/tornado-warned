@@ -1692,17 +1692,15 @@ const NWS_STORM_SITUATIONS = Object.freeze({
 
 // API URL: https://www.weather.gov/documentation/services-web-api#/
 
-const AXIOS_CLIENT = createHTTPClient({
+const NwsApi = createHTTPClient({
   baseURL: "https://api.weather.gov",
 });
 const fetchActiveNwsAlertsByType = async (event) => {
   const encodedEvent = encodeURIComponent(event);
   const endpoint = `/alerts/active?status=actual&message_type=alert,update&event=${encodedEvent}`;
 
-  // console.log(">> NWS API Web Service Called <<");
-
   try {
-    const response = await AXIOS_CLIENT.get(endpoint);
+    const response = await NwsApi.get(endpoint);
     const { features } = response?.data;
 
     return features;
@@ -1712,21 +1710,13 @@ const fetchActiveNwsAlertsByType = async (event) => {
 };
 
 // ! --- SERVICE FUNCTIONS
-export const useActiveNwsAlertsByType = (eventTypeString) => {
+export const useActiveNwsAlertsByType = (alertType) => {
   return useQuery({
-    queryKey: ["NWS API Web Service", "Alerts", "Active", eventTypeString],
-    queryFn: () => fetchActiveNwsAlertsByType(eventTypeString),
+    queryKey: ["NWS API Web Service", "Alerts", "Active", alertType],
+    queryFn: () => fetchActiveNwsAlertsByType(alertType),
     refetchInterval: 15000,
   });
 };
-export const useFakeNwsAlertsByType = (watchEvent) => {
-  return FAKE_ALERTS[watchEvent];
-  // const features = FAKE_ALERTS[watchEvent];
-  // let affectedZones = [];
-
-  // features.forEach((feature) => {
-  //   affectedZones = [...affectedZones, ...feature.properties.geocode.SAME];
-  // });
-
-  // return { features, affectedZones };
+export const useFakeNwsAlertsByType = (alertType) => {
+  return FAKE_ALERTS[alertType];
 };
