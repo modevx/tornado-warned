@@ -25,6 +25,8 @@ yarn.lock
 
 # local env files
 .env
+.env.dev
+.env.prod
 .env.local
 .env.development.local
 .env.test.local
