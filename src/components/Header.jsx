@@ -59,13 +59,13 @@ const MainNav = () => {
         <NextLink href="/convective-outlooks">outlooks</NextLink>
       </Menu.Item>
       <Menu.Item className="text-sm">
+        <NextLink href="/stats">tornado stats</NextLink>
+      </Menu.Item>
+      {/* <Menu.Item className="text-sm">
         <NextLink href="/signatures">signatures</NextLink>
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item className="text-sm">
-        <NextLink href="/convective-outlooks">storm reports</NextLink>
-      </Menu.Item>
-      <Menu.Item className="text-sm">
-        <NextLink href="/convective-outlooks">tornado stats</NextLink>
+        <NextLink href="/spc-rss-feeds">SPC RSS Feed</NextLink>
       </Menu.Item>
     </Menu>
   );

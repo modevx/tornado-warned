@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { knexDB } from "@/db/knexDB";
+import { knexDB } from "db/knex_db";
 
 export default async function handler(req, res) {
   try {

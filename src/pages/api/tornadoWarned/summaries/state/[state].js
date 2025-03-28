@@ -1,4 +1,4 @@
-import { knexDB } from "@/db/knexDB";
+import { knexDB } from "db/knex_db";
 
 export default async function handler(req, res) {
   const { state } = req.query;
