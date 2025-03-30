@@ -14,6 +14,9 @@ import { USCountyMap, USStateMap } from "components/D3Maps";
 import { geoAlbers, geoPath } from "d3";
 import { createWatchAlertGeometry } from "utils/geometry";
 
+import { ConusMapCanvas } from "components/D3Maps";
+import { albersCounties, albersStates } from "constants/map-features";
+
 // TODO: add "Tornado Possible" and "Considerable" tags to Severe Thunderstorm Warning alerts based on [tornadoDetecion, thunderstormDamageThreat] alert props
 
 export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
@@ -65,15 +68,19 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
     ? alert.geometry
     : createWatchAlertGeometry(alert);
 
-  const albersFitExtent = geoAlbers().fitExtent(
+  const fitExtentProjection = geoAlbers().fitExtent(
     // 975 x 610
+    // [
+    //   [350, 160],
+    //   [625, 350],
+    // ],
     [
-      [350, 160],
-      [625, 450],
+      [100, 100],
+      [875, 510],
     ],
     alertGeometry
   );
-  const extentPathGen = geoPath(albersFitExtent);
+  const extentPathGen = geoPath(fitExtentProjection);
   const geometryColor = situationColor ?? alertColor;
 
   return (
@@ -100,7 +107,7 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
       <ThunderstormDamageThreat
         thunderstormDamageThreat={thunderstormDamageThreat}
       />
-      <div className="h-full w-full">
+      {/* <div className="h-full w-full">
         {isWarningEvent(event) ? (
           <WarningViewbox
             color={geometryColor}
@@ -114,11 +121,31 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
             pathGen={extentPathGen}
           />
         )}
-      </div>
-      <div>
-        {/* {thunderstormDamageThreat ? <p>{thunderstormDamageThreat}</p> : null}
-        {tornadoDetection ? <p>{tornadoDetection}</p> : null} */}
-      </div>
+      </div> */}
+      {/* <div className="h-full w-full"> */}
+      {/* <div> */}
+      {isWarningEvent(event) ? (
+        <ConusMapCanvas mapFeatures={albersCounties} pathGen={extentPathGen}>
+          <AlertPolygon
+            color={geometryColor}
+            geometry={alertGeometry}
+            pathGen={extentPathGen}
+          />
+        </ConusMapCanvas>
+      ) : (
+        <ConusMapCanvas mapFeatures={albersStates} pathGen={extentPathGen}>
+          <AlertPolygon
+            color={geometryColor}
+            geometry={alertGeometry}
+            pathGen={extentPathGen}
+          />
+        </ConusMapCanvas>
+      )}
+      {/* </div> */}
+      {/* <div>
+        {thunderstormDamageThreat ? <p>{thunderstormDamageThreat}</p> : null}
+        {tornadoDetection ? <p>{tornadoDetection}</p> : null}
+      </div> */}
     </Component>
   );
 };

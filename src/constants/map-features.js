@@ -13,6 +13,7 @@ export const albersCounties = TopoJSONClient.feature(
   AlbersTopoJSONMap,
   "counties"
 );
+export const albersStates = TopoJSONClient.feature(AlbersTopoJSONMap, "states");
 export const albersCountiesMeshed = TopoJSONClient.mesh(
   AlbersTopoJSONMap,
   AlbersTopoJSONMap.objects.counties
