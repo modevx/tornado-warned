@@ -164,7 +164,7 @@ export const ConusMapCanvas = ({ children, mapFeatures, pathGen }) => {
       context.fill();
       context.stroke();
     });
-  }, []);
+  });
 
   return (
     <div className="relative">
@@ -172,12 +172,12 @@ export const ConusMapCanvas = ({ children, mapFeatures, pathGen }) => {
         ref={canvasRef}
         width={width}
         height={height}
-        style={{ width: "100%", height: "100%" }}
+        style={{ width: "100%", height: "100%", zIndex: 1 }}
       />
       <svg
         viewBox="0 0 975 610"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute top-0 left-0 w-full h-full"
+        className="absolute top-0 left-0 w-full h-full z-10"
       >
         {children}
       </svg>

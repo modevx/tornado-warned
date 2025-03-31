@@ -10,6 +10,8 @@ import { geoAlbers, geoPath } from "d3";
 
 // TODO: refactor to single AlertPolygon that only takes ({color, geometry, pathGen, onClickCallback}) args
 
+const standardGeoPath = geoPath(geoAlbers());
+
 export const WarningPolygon = ({
   alert,
   color,
@@ -30,7 +32,8 @@ export const WarningPolygon = ({
   return (
     alert?.geometry && (
       <path
-        d={pathGen(alert.geometry)}
+        // d={pathGen(alert.geometry)}
+        d={standardGeoPath(alert.geometry)}
         fill={polygonColor}
         stroke={polygonColor}
         fillOpacity={0.65}
@@ -69,8 +72,8 @@ export const WatchPolygon = ({
 
   return (
     <path
-      // d={extentPathGen(watchGeometry)}
-      d={pathGen(watchGeometry)}
+      // d={pathGen(watchGeometry)}
+      d={standardGeoPath(watchGeometry)}
       fill={polygonColor}
       stroke={polygonColor}
       fillOpacity={0.5}

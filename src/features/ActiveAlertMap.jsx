@@ -4,10 +4,13 @@ import {
   alertIsTornadoEmergency,
 } from "utils/nws-alerts";
 import { Card } from "react-daisyui";
-import { USStateMap } from "components/D3Maps";
+import { ConusMapCanvas, USStateMap } from "components/D3Maps";
 import { NWS_ALERT_COLORS } from "constants/nws-alerts";
 import { WarningPolygon, WatchPolygon } from "components/AlertPolygons";
 import { createWatchAlertGeometry, reverseAlbersGeoPath } from "utils/geometry";
+
+import { albersStates } from "constants/map-features";
+import { albersGeoPath } from "utils/geometry";
 
 const EVENTS = [
   {
@@ -57,7 +60,8 @@ export const ActiveAlertMap = ({
 }) => {
   return (
     <div>
-      <USStateMap>
+      {/* <USStateMap> */}
+      <ConusMapCanvas mapFeatures={albersStates} pathGen={albersGeoPath}>
         <WatchPolygons
           alerts={tornadoWatches}
           color={NWS_ALERT_COLORS.tornado_watch}
@@ -78,7 +82,8 @@ export const ActiveAlertMap = ({
           color={NWS_ALERT_COLORS.tornado_warning}
           onClickCallback={showAlertModalFunc}
         />
-      </USStateMap>
+      </ConusMapCanvas>
+      {/* </USStateMap> */}
 
       {/* <AlertModal
         isOpen={isOpen}
@@ -111,9 +116,8 @@ export const ActiveAlertMapLegend = () => {
 const WarningPolygons = ({ alerts, color, onClickCallback }) => {
   return (
     <>
-      {alerts && alerts.length > 0 ? (
-        <g>
-          {alerts.map((alert) => {
+      {alerts && alerts.length > 0
+        ? alerts.map((alert) => {
             return (
               <WarningPolygon
                 key={alert.id}
@@ -122,9 +126,8 @@ const WarningPolygons = ({ alerts, color, onClickCallback }) => {
                 onClickCallback={onClickCallback}
               />
             );
-          })}
-        </g>
-      ) : null}
+          })
+        : null}
     </>
   );
 };
