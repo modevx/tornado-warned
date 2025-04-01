@@ -5,7 +5,7 @@ import {
   PROB_DAYS_4_8_STYLES,
 } from "constants/convective-outlooks";
 import { USStateMap } from "components/D3Maps";
-import { reverseAlbersGeoPath } from "utils/geometry";
+import { rewindAlbersGeoPath } from "utils/geometry";
 import { useOutlookLayerById } from "services/convective-outlook-mapserver";
 
 export const CategoricalMap = ({ catLayer }) => {
@@ -197,7 +197,7 @@ const HatchedSignificantFeature = ({ feature }) => {
         </pattern>
       </defs>
       <path
-        d={reverseAlbersGeoPath(feature)}
+        d={rewindAlbersGeoPath(feature)}
         fill="url(#hatchPattern)"
         stroke="#000"
         // fillOpacity={0.7}
@@ -210,7 +210,7 @@ const HatchedSignificantFeature = ({ feature }) => {
 // SINGLE CONVECTIVE FEATURE SVG PATH
 const ConvectiveFeaturePath = ({ feature, color }) => (
   <path
-    d={reverseAlbersGeoPath(feature)}
+    d={rewindAlbersGeoPath(feature)}
     fill={color}
     stroke={color}
     fillOpacity={0.6}

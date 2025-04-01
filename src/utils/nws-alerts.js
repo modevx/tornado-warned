@@ -1,5 +1,5 @@
 import { checkStringForPhrase } from "utils";
-import { NWS_STORM_SITUATIONS } from "constants/nws-alerts";
+import { NWS_ALERT_TAGS } from "constants/nws-alerts";
 
 // ex: 'NWS Charlotte NC' --> 'Charlotte, NC'
 export const changeWfoToCityState = (senderName) => {
@@ -32,24 +32,18 @@ const assignToMapStateKey = ({ map, area, state }) => {
 // ALERT SITUATIONS
 export const alertIsDestructiveStorm = (alert) => {
   const description = parseAlertDescription(alert);
-  return checkStringForPhrase(
-    description,
-    NWS_STORM_SITUATIONS.destructive_storm
-  );
+  return checkStringForPhrase(description, NWS_ALERT_TAGS.destructive_storm);
 };
 export const alertIsPDS = (alert) => {
   const description = parseAlertDescription(alert);
   return checkStringForPhrase(
     description,
-    NWS_STORM_SITUATIONS.particularly_dangerous_situation
+    NWS_ALERT_TAGS.particularly_dangerous_situation
   );
 };
 export const alertIsTornadoEmergency = (alert) => {
   const description = parseAlertDescription(alert);
-  return checkStringForPhrase(
-    description,
-    NWS_STORM_SITUATIONS.tornado_emergency
-  );
+  return checkStringForPhrase(description, NWS_ALERT_TAGS.tornado_emergency);
 };
 export const parseAlertDescription = (alert) => {
   return alert.properties.description.toLowerCase();

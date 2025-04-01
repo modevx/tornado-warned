@@ -13,7 +13,15 @@ import { ActiveAlertMap } from "features/ActiveAlertMap";
 import { ActiveAlertCard } from "features/ActiveAlertCard";
 import { ActiveAlertModal } from "features/ActiveAlertModal";
 import { ActiveAlertCounts } from "features/ActiveAlertCounts";
-// import { CategoricalMap } from "features/ConvectiveOutlookMaps";
+
+import { geoPath } from "d3";
+import { CanvasMap } from "components/D3Maps";
+import {
+  albersGeoPath,
+  albersUsaGeoPath,
+  albersCountiesGeoJson,
+  albersStatesGeoJson,
+} from "utils/geometry";
 
 const HomeScreen = () => {
   const [alertModalIsOpen, setAlertModalIsOpen] = useState(false);
@@ -34,6 +42,14 @@ const HomeScreen = () => {
   const fake_severe_storm_watches = useFakeNwsAlertsByType(
     "Severe Thunderstorm Watch"
   );
+  // TODO: fetch alerts individually to eliminate need for filtering & alert object assignment
+  // TODO: find way to specifically fetch destructive, PDS, & Tornado Emergency alerts
+
+  // const {data: tornadoWarnings} = useActiveNwsAlertsByType("Tornado Warning");
+  // const {data: tornadoWatches} = useActiveNwsAlertsByType("Tornado Watch");
+  // const {data: stormWarnings} = useActiveNwsAlertsByType("Severe Thunderstorm Warning");
+  // const {data: stormWatches} = useActiveNwsAlertsByType("Severe Thunderstorm Watch");
+
   const { data } = useActiveNwsAlertsByType(
     "Tornado Warning,Tornado Watch,Severe Thunderstorm Warning,Severe Thunderstorm Watch"
   );
@@ -77,18 +93,6 @@ const HomeScreen = () => {
     );
     alerts = filterTornadoAndStormAlerts(data);
   }
-
-  console.log(alerts.tornadoWatches[0]);
-
-  console.log(
-    "Watches: ",
-    alerts.tornadoWatches.map((alert) => {
-      return {
-        wfo: alert.properties.senderName,
-        affectedAreas: alert.properties.geocode.SAME,
-      };
-    })
-  );
 
   return (
     <PageLayout>
@@ -184,6 +188,21 @@ const HomeScreen = () => {
         alertType="Severe Thunderstorm Watch"
         alerts={fake_severe_storm_watches}
       /> */}
+      <div className="my-2 grid gap-4 xl:grid-cols-4">
+        <CanvasMap
+          mapFeatures={albersCountiesGeoJson}
+          pathGen={albersGeoPath}
+        />
+        <CanvasMap mapFeatures={albersStatesGeoJson} pathGen={albersGeoPath} />
+        <CanvasMap
+          mapFeatures={albersCountiesGeoJson}
+          pathGen={albersUsaGeoPath}
+        />
+        <CanvasMap
+          mapFeatures={albersStatesGeoJson}
+          pathGen={albersUsaGeoPath}
+        />
+      </div>
     </PageLayout>
   );
 };

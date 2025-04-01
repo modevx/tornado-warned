@@ -3,7 +3,7 @@ import {
   alertIsPDS,
   alertIsTornadoEmergency,
 } from "utils/nws-alerts";
-import { reverseAlbersGeoPath } from "utils/geometry";
+import { rewindAlbersGeoPath } from "utils/geometry";
 import { NWS_ALERT_COLORS } from "constants/nws-alerts";
 import { createWatchAlertGeometry } from "utils/geometry";
 import { geoAlbers, geoPath } from "d3";
@@ -15,7 +15,7 @@ const standardGeoPath = geoPath(geoAlbers());
 export const WarningPolygon = ({
   alert,
   color,
-  pathGen = reverseAlbersGeoPath,
+  pathGen = rewindAlbersGeoPath,
   onClickCallback = undefined,
 }) => {
   const isDestructiveStorm = alertIsDestructiveStorm(alert);
@@ -48,7 +48,7 @@ export const WarningPolygon = ({
 export const WatchPolygon = ({
   alert,
   color,
-  pathGen = reverseAlbersGeoPath,
+  pathGen = rewindAlbersGeoPath,
   onClickCallback = undefined,
 }) => {
   const isPDS = alertIsPDS(alert);

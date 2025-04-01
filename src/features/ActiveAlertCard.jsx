@@ -4,7 +4,7 @@ import {
   alertIsPDS,
   alertIsTornadoEmergency,
 } from "utils/nws-alerts";
-import { NWS_ALERT_COLORS, NWS_STORM_SITUATIONS } from "constants/nws-alerts";
+import { NWS_ALERT_COLORS, NWS_ALERT_TAGS } from "constants/nws-alerts";
 import {
   AlertPolygon,
   WarningPolygon,
@@ -14,8 +14,8 @@ import { USCountyMap, USStateMap } from "components/D3Maps";
 import { geoAlbers, geoPath } from "d3";
 import { createWatchAlertGeometry } from "utils/geometry";
 
-import { ConusMapCanvas } from "components/D3Maps";
-import { albersCounties, albersStates } from "constants/map-features";
+import { CanvasMap } from "components/D3Maps";
+import { albersCountiesGeoJson, albersStatesGeoJson } from "utils/geometry";
 
 // TODO: add "Tornado Possible" and "Considerable" tags to Severe Thunderstorm Warning alerts based on [tornadoDetecion, thunderstormDamageThreat] alert props
 
@@ -44,15 +44,15 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
   const isDestructiveStorm = alertIsDestructiveStorm(alert);
 
   if (isTornadoEmergency) {
-    situation = NWS_STORM_SITUATIONS.tornado_emergency;
+    situation = NWS_ALERT_TAGS.tornado_emergency;
     situationColor = NWS_ALERT_COLORS.tornado_emergency;
   }
   if (isPDS) {
-    situation = NWS_STORM_SITUATIONS.particularly_dangerous_situation;
+    situation = NWS_ALERT_TAGS.particularly_dangerous_situation;
     situationColor = NWS_ALERT_COLORS.particularly_dangerous_situation;
   }
   if (isDestructiveStorm) {
-    situation = NWS_STORM_SITUATIONS.destructive_storm;
+    situation = NWS_ALERT_TAGS.destructive_storm;
     situationColor = NWS_ALERT_COLORS.destructive_storm;
   }
 
@@ -125,21 +125,21 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
       {/* <div className="h-full w-full"> */}
       {/* <div> */}
       {isWarningEvent(event) ? (
-        <ConusMapCanvas mapFeatures={albersCounties} pathGen={extentPathGen}>
+        <CanvasMap mapFeatures={albersCountiesGeoJson} pathGen={extentPathGen}>
           <AlertPolygon
             color={geometryColor}
             geometry={alertGeometry}
             pathGen={extentPathGen}
           />
-        </ConusMapCanvas>
+        </CanvasMap>
       ) : (
-        <ConusMapCanvas mapFeatures={albersStates} pathGen={extentPathGen}>
+        <CanvasMap mapFeatures={albersStatesGeoJson} pathGen={extentPathGen}>
           <AlertPolygon
             color={geometryColor}
             geometry={alertGeometry}
             pathGen={extentPathGen}
           />
-        </ConusMapCanvas>
+        </CanvasMap>
       )}
       {/* </div> */}
       {/* <div>

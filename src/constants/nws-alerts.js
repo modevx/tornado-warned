@@ -13,7 +13,7 @@ export const NWS_ALERT_TYPES = Object.freeze({
   severe_storm_warning: "Severe Thunderstorm Warning",
   severe_storm_watch: "Severe Thunderstorm Watch",
 });
-export const NWS_STORM_SITUATIONS = Object.freeze({
+export const NWS_ALERT_TAGS = Object.freeze({
   destructive_storm: "destructive storm",
   particularly_dangerous_situation: "particularly dangerous situation",
   tornado_emergency: "tornado emergency",

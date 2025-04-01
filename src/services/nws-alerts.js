@@ -1676,19 +1676,6 @@ const FAKE_ALERTS = {
     },
   ],
 };
-const NWS_ALERT_TYPES = Object.freeze({
-  tornado_warning: "Tornado Warning",
-  tornado_watch: "Tornado Watch",
-  storm_warning: "Severe Thunderstorm Warning",
-  storm_watch: "Severe Thunderstorm Watch",
-});
-const NWS_STORM_SITUATIONS = Object.freeze({
-  destructive_storm: "destructive storm",
-  particularly_dangerous_situation: "particularly dangerous situation",
-  tornado_emergency: "tornado emergency",
-});
-
-// ! --- NWS API WEB SERVICE CLIENT
 
 // API URL: https://www.weather.gov/documentation/services-web-api#/
 

@@ -4,13 +4,12 @@ import {
   alertIsTornadoEmergency,
 } from "utils/nws-alerts";
 import { Card } from "react-daisyui";
-import { ConusMapCanvas, USStateMap } from "components/D3Maps";
+import { CanvasMap, USStateMap } from "components/D3Maps";
 import { NWS_ALERT_COLORS } from "constants/nws-alerts";
 import { WarningPolygon, WatchPolygon } from "components/AlertPolygons";
-import { createWatchAlertGeometry, reverseAlbersGeoPath } from "utils/geometry";
+import { createWatchAlertGeometry, rewindAlbersGeoPath } from "utils/geometry";
 
-import { albersStates } from "constants/map-features";
-import { albersGeoPath } from "utils/geometry";
+import { albersGeoPath, albersStatesGeoJson } from "utils/geometry";
 
 const EVENTS = [
   {
@@ -61,7 +60,7 @@ export const ActiveAlertMap = ({
   return (
     <div>
       {/* <USStateMap> */}
-      <ConusMapCanvas mapFeatures={albersStates} pathGen={albersGeoPath}>
+      <CanvasMap mapFeatures={albersStatesGeoJson} pathGen={albersGeoPath}>
         <WatchPolygons
           alerts={tornadoWatches}
           color={NWS_ALERT_COLORS.tornado_watch}
@@ -82,7 +81,7 @@ export const ActiveAlertMap = ({
           color={NWS_ALERT_COLORS.tornado_warning}
           onClickCallback={showAlertModalFunc}
         />
-      </ConusMapCanvas>
+      </CanvasMap>
       {/* </USStateMap> */}
 
       {/* <AlertModal
