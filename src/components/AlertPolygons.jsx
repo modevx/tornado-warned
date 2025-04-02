@@ -3,19 +3,18 @@ import {
   alertIsPDS,
   alertIsTornadoEmergency,
 } from "utils/nws-alerts";
-import { rewindAlbersGeoPath } from "utils/geometry";
 import { NWS_ALERT_COLORS } from "constants/nws-alerts";
-import { createWatchAlertGeometry } from "utils/geometry";
-import { geoAlbers, geoPath } from "d3";
+import {
+  albersGeoPath,
+  rewindAlbersGeoPath,
+  createWatchAlertGeometry,
+} from "utils/geometry";
 
 // TODO: refactor to single AlertPolygon that only takes ({color, geometry, pathGen, onClickCallback}) args
-
-const standardGeoPath = geoPath(geoAlbers());
 
 export const WarningPolygon = ({
   alert,
   color,
-  pathGen = rewindAlbersGeoPath,
   onClickCallback = undefined,
 }) => {
   const isDestructiveStorm = alertIsDestructiveStorm(alert);
@@ -30,27 +29,19 @@ export const WarningPolygon = ({
     : color;
 
   return (
-    alert?.geometry && (
-      <path
-        // d={pathGen(alert.geometry)}
-        d={standardGeoPath(alert.geometry)}
-        fill={polygonColor}
-        stroke={polygonColor}
-        fillOpacity={0.65}
-        strokeOpacity={0.85}
-        strokeWidth={1}
-        onClick={() => onClickCallback({ alert, color: polygonColor })}
-      />
-    )
+    <path
+      d={albersGeoPath(alert.geometry)}
+      fill={polygonColor}
+      stroke={polygonColor}
+      fillOpacity={0.65}
+      strokeOpacity={0.85}
+      strokeWidth={1}
+      onClick={() => onClickCallback({ alert, color: polygonColor })}
+    />
   );
 };
 
-export const WatchPolygon = ({
-  alert,
-  color,
-  pathGen = rewindAlbersGeoPath,
-  onClickCallback = undefined,
-}) => {
+export const WatchPolygon = ({ alert, color, onClickCallback = undefined }) => {
   const isPDS = alertIsPDS(alert);
   const isDestructiveStorm = alertIsDestructiveStorm(alert);
   const polygonColor = isPDS
@@ -60,20 +51,19 @@ export const WatchPolygon = ({
     : color;
   const watchGeometry = createWatchAlertGeometry(alert);
 
-  const albersFitExtent = geoAlbers().fitExtent(
-    // 975 x 610
-    [
-      [350, 160],
-      [625, 450],
-    ],
-    watchGeometry
-  );
-  const extentPathGen = geoPath(albersFitExtent);
+  // const albersFitExtent = geoAlbers().fitExtent(
+  //   // 975 x 610
+  //   [
+  //     [350, 160],
+  //     [625, 450],
+  //   ],
+  //   watchGeometry
+  // );
+  // const extentPathGen = geoPath(albersFitExtent);
 
   return (
     <path
-      // d={pathGen(watchGeometry)}
-      d={standardGeoPath(watchGeometry)}
+      d={albersGeoPath(watchGeometry)}
       fill={polygonColor}
       stroke={polygonColor}
       fillOpacity={0.5}
@@ -87,7 +77,7 @@ export const WatchPolygon = ({
 export const AlertPolygon = ({ color, geometry, pathGen }) => {
   return (
     <path
-      d={pathGen(geometry)}
+      d={albersGeoPath(geometry)}
       fill={color}
       stroke={color}
       fillOpacity={0.5}

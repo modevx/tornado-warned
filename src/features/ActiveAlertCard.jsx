@@ -10,12 +10,14 @@ import {
   WarningPolygon,
   WatchPolygon,
 } from "components/AlertPolygons";
-import { USCountyMap, USStateMap } from "components/D3Maps";
-import { geoAlbers, geoPath } from "d3";
-import { createWatchAlertGeometry } from "utils/geometry";
-
-import { CanvasMap } from "components/D3Maps";
-import { albersCountiesGeoJson, albersStatesGeoJson } from "utils/geometry";
+import { CanvasMap, USCountyMap, USStateMap } from "components/D3Maps";
+import {
+  albersCountiesGeoJson,
+  albersStatesGeoJson,
+  albersProjection,
+  albersGeoPath,
+  createWatchAlertGeometry,
+} from "utils/geometry";
 
 // TODO: add "Tornado Possible" and "Considerable" tags to Severe Thunderstorm Warning alerts based on [tornadoDetecion, thunderstormDamageThreat] alert props
 
@@ -68,7 +70,7 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
     ? alert.geometry
     : createWatchAlertGeometry(alert);
 
-  const fitExtentProjection = geoAlbers().fitExtent(
+  const fitExtentProjection = albersProjection.fitExtent(
     // 975 x 610
     // [
     //   [350, 160],
@@ -80,7 +82,7 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
     ],
     alertGeometry
   );
-  const extentPathGen = geoPath(fitExtentProjection);
+  const extentPathGen = albersGeoPath(fitExtentProjection);
   const geometryColor = situationColor ?? alertColor;
 
   return (

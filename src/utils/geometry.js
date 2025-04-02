@@ -5,8 +5,8 @@ import { geoAlbers, geoAlbersUsa, geoPath } from "d3";
 import AlbersMapTopoJSON from "json/topojson-albers-map.json";
 
 // D3 projections
-const albersProjection = geoAlbers();
-const albersUsaProjection = geoAlbersUsa();
+export const albersProjection = geoAlbers();
+export const albersUsaProjection = geoAlbersUsa();
 
 // D3 geoPaths
 export const albersGeoPath = geoPath(albersProjection);

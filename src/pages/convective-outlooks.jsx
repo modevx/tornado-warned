@@ -12,13 +12,13 @@ import {
 const ConvectiveOutlookScreen = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [outlookDay, setOutlookDay] = useState(1);
-  const showModalHandler = (outlookDay) => {
-    setOutlookDay(outlookDay);
-    setIsOpen(true);
-  };
-  const closeModalHandler = () => {
-    setIsOpen(false);
-  };
+  // const showModalHandler = (outlookDay) => {
+  //   setOutlookDay(outlookDay);
+  //   setIsOpen(true);
+  // };
+  // const closeModalHandler = () => {
+  //   setIsOpen(false);
+  // };
 
   return (
     <PageLayout>
@@ -77,27 +77,11 @@ const ConvectiveOutlookScreen = () => {
 export default ConvectiveOutlookScreen;
 
 // SUB-COMPONENTS
-const OutlooksGrid = ({ children }) => (
-  <div className="md:grid md:grid-cols-2 lg:grid-cols-3">{children}</div>
-);
-const OutlookTextModalBtn = ({ openHandler, outlookDay }) => (
-  <Button
-    variant="outline"
-    color="accent"
-    className="w-25"
-    size="xs"
-    onClick={() => openHandler(outlookDay)}
-  >
-    {`Day ${outlookDay} Details`}
-  </Button>
-);
-// const OutlookGridItem = ({ dayNumber, showOutlookText }) => (
-//   <div className="flex flex-col items-center md:flex-1 mb-5">
-//     <DayInfo day={dayNumber} />
-//     {/* <CategoricalMap outlookDay={dayNumber} /> */}
-//     <OutlookTextModalBtn openHandler={showOutlookText} outlookDay={dayNumber} />
-//   </div>
-// );
+const OutlooksGrid = ({ children }) => {
+  return (
+    <div className="md:grid md:grid-cols-2 lg:grid-cols-3">{children}</div>
+  );
+};
 // const OutlookTextModalBtn = ({ openHandler, outlookDay }) => (
 //   <Button
 //     variant="outline"
@@ -108,4 +92,11 @@ const OutlookTextModalBtn = ({ openHandler, outlookDay }) => (
 //   >
 //     {`Day ${outlookDay} Details`}
 //   </Button>
+// );
+// const OutlookGridItem = ({ dayNumber, showOutlookText }) => (
+//   <div className="flex flex-col items-center md:flex-1 mb-5">
+//     <DayInfo day={dayNumber} />
+//     {/* <CategoricalMap outlookDay={dayNumber} /> */}
+//     <OutlookTextModalBtn openHandler={showOutlookText} outlookDay={dayNumber} />
+//   </div>
 // );

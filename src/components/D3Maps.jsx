@@ -1,7 +1,56 @@
 import { useEffect, useRef } from "react";
-import { albersGeoPath } from "utils/geometry";
 import * as TopoJSONClient from "topojson-client";
-import AlbersTopoJSONMap from "json/topojson-albers-map.json";
+import {
+  albersGeoPath,
+  albersUsaGeoPath,
+  albersCountiesGeoJson,
+  albersStatesGeoJson,
+} from "utils/geometry";
+import albersTopoJson from "json/topojson-albers-map.json";
+
+export const ConusCountiesMap = ({ children }) => {
+  return (
+    <Basemap features={albersCountiesGeoJson} pathGen={albersGeoPath}>
+      {children}
+    </Basemap>
+  );
+};
+
+export const ConusStateMap = ({ children }) => {
+  return (
+    <Basemap features={albersStatesGeoJson} pathGen={albersGeoPath}>
+      {children}
+    </Basemap>
+  );
+};
+
+export const UsaCountiesMap = ({ children }) => {
+  return (
+    <Basemap features={albersCountiesGeoJson} pathGen={albersUsaGeoPath}>
+      {children}
+    </Basemap>
+  );
+};
+
+export const UsaStatesMap = ({ children }) => {
+  return (
+    <Basemap features={albersStatesGeoJson} pathGen={albersUsaGeoPath}>
+      {children}
+    </Basemap>
+  );
+};
+
+const Basemap = ({ children, features, pathGen }) => {
+  return (
+    <svg viewBox="0 -60 975 610" xmlns="http://www.w3.org/2000/svg">
+      <path d={pathGen(features)} stroke="white" fill="grey" />
+
+      {children}
+    </svg>
+  );
+};
+
+// OG map components
 
 export const USCountyMap = ({ children, pathGen }) => {
   return (
@@ -13,14 +62,14 @@ export const USCountyMap = ({ children, pathGen }) => {
   );
 };
 
-export const USStateMap = ({ children, pathGen = albersGeoPath }) => {
-  const states = TopoJSONClient.feature(AlbersTopoJSONMap, "states");
+export const USStateMap = ({ children, pathGen }) => {
+  const states = TopoJSONClient.feature(albersTopoJson, "states");
 
   // if (states) console.log("states >>\n", states);
 
   return (
     <svg viewBox="0 -60 975 610" xmlns="http://www.w3.org/2000/svg">
-      <path d={pathGen(states)} stroke="white" fill="grey" />
+      <path d={albersGeoPath(states)} stroke="white" fill="grey" />
 
       {children}
     </svg>
@@ -29,18 +78,33 @@ export const USStateMap = ({ children, pathGen = albersGeoPath }) => {
 
 export const CanvasMap = ({ children, mapFeatures, pathGen }) => {
   const canvasRef = useRef(null);
+  // const canvas = canvasRef.current;
+  // const context = canvas.getContext("2d");
   const width = 975;
   const height = 610;
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
+  // useEffect(() => {
+  //   const canvas = canvasRef.current;
+  //   const context = canvas.getContext("2d");
 
-    // const projection = d3.geoAlbersUsa();
-    // .scale(1300)
-    // .translate([width / 2, height / 2]);
+  //   // const projection = d3.geoAlbersUsa();
+  //   // .scale(1300)
+  //   // .translate([width / 2, height / 2]);
+  //   const canvasPathGen = pathGen.context(context);
+  //   context.clearRect(0, 0, width, height);
+  //   context.fillStyle = "grey";
+  //   context.strokeStyle = "white";
+  //   context.lineWidth = 1;
+
+  //   context.beginPath();
+  //   canvasPathGen(mapFeatures);
+  //   context.fill();
+  //   context.stroke();
+  // }, []);
+  if (canvasRef.current) {
+    const context = canvasRef.current.getContext("2d");
     const canvasPathGen = pathGen.context(context);
-    // context.clearRect(0, 0, width, height);
+    context.clearRect(0, 0, width, height);
     context.fillStyle = "grey";
     context.strokeStyle = "white";
     context.lineWidth = 1;
@@ -49,7 +113,7 @@ export const CanvasMap = ({ children, mapFeatures, pathGen }) => {
     canvasPathGen(mapFeatures);
     context.fill();
     context.stroke();
-  });
+  }
 
   return (
     <div className="relative">
@@ -73,7 +137,7 @@ export const CanvasMap = ({ children, mapFeatures, pathGen }) => {
 // SUB-COMPONENTS
 const CountyFeatures = ({ pathGen }) => {
   const { features: countyFeatures } = TopoJSONClient.feature(
-    AlbersTopoJSONMap,
+    albersTopoJson,
     "counties"
   );
 
@@ -83,12 +147,5 @@ const CountyFeatures = ({ pathGen }) => {
       stroke="white"
       fill="grey"
     />
-  );
-};
-const SvgText = ({ message }) => {
-  return (
-    <text x={350} y={250} fill="red" className="text-3xl font-bold">
-      {message}
-    </text>
   );
 };

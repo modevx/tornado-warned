@@ -4,9 +4,13 @@ import {
   PROB_WIND_HAIL_STYLES,
   PROB_DAYS_4_8_STYLES,
 } from "constants/convective-outlooks";
-import { USStateMap } from "components/D3Maps";
+import { CanvasMap, USStateMap } from "components/D3Maps";
 import { rewindAlbersGeoPath } from "utils/geometry";
 import { useOutlookLayerById } from "services/convective-outlook-mapserver";
+
+import { albersGeoPath, albersStatesGeoJson } from "utils/geometry";
+
+import { ConusStatesMap } from "components/_shared/Maps";
 
 export const CategoricalMap = ({ catLayer }) => {
   const { id, name } = catLayer;
@@ -17,11 +21,9 @@ export const CategoricalMap = ({ catLayer }) => {
   return showConvFeatures ? (
     <FullHeightWidthContainer>
       <MapServerLayerName name={name} />
-      <USStateMap>
-        <g>
-          <MappedCatFeatures features={features} />
-        </g>
-      </USStateMap>
+      <ConusStatesMap>
+        <CategoricalFeatures features={features} />
+      </ConusStatesMap>
     </FullHeightWidthContainer>
   ) : null;
 };
@@ -94,32 +96,32 @@ export const Days4_8_ProbabilisticMap = ({ probLayer }) => {
 };
 
 // ! ---> SUB-COMPONENTS
-const CategoricalLegend = ({ styles }) => {
-  const stylesArr = Object.values(styles);
+// const CategoricalLegend = ({ styles }) => {
+//   const stylesArr = Object.values(styles);
 
-  return (
-    <div className="text-xs flex justify-center mt-10 mb-4 ">
-      <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:flex lg:justify-center">
-        {stylesArr.map(({ bgColor, textColor, label }) => {
-          return (
-            <div
-              key={label}
-              style={{ backgroundColor: `${bgColor}` }}
-              className="p-2 rounded"
-            >
-              <span
-                style={{ color: `${textColor}` }}
-                className="block text-black text-xs lg:text-base text-center font-bold uppercase"
-              >
-                {label}
-              </span>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-};
+//   return (
+//     <div className="text-xs flex justify-center mt-10 mb-4 ">
+//       <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:flex lg:justify-center">
+//         {stylesArr.map(({ bgColor, textColor, label }) => {
+//           return (
+//             <div
+//               key={label}
+//               style={{ backgroundColor: `${bgColor}` }}
+//               className="p-2 rounded"
+//             >
+//               <span
+//                 style={{ color: `${textColor}` }}
+//                 className="block text-black text-xs lg:text-base text-center font-bold uppercase"
+//               >
+//                 {label}
+//               </span>
+//             </div>
+//           );
+//         })}
+//       </div>
+//     </div>
+//   );
+// };
 const FullHeightWidthContainer = ({ children }) => {
   return <div className="w-full h-full">{children}</div>;
 };
@@ -131,15 +133,18 @@ const MapServerLayerName = ({ name }) => {
   );
 };
 // CATEGORICAL
-const MappedCatFeatures = ({ features }) => {
-  return features.map((feature) => {
-    const key = createConvectiveFeatureKey(feature);
-    return <CategoricalFeature key={key} feature={feature} />;
-  });
-};
-const CategoricalFeature = ({ feature }) => {
-  const color = CAT_OUTLOOK_STYLES[feature.properties.dn].color;
-  return <ConvectiveFeaturePath feature={feature} color={color} />;
+const CategoricalFeatures = ({ features }) => {
+  return (
+    <g>
+      {features.map((feature) => {
+        const key = createConvectiveFeatureKey(feature);
+        const color = CAT_OUTLOOK_STYLES[feature.properties.dn].color;
+        return (
+          <ConvectiveFeaturePath key={key} color={color} feature={feature} />
+        );
+      })}
+    </g>
+  );
 };
 // PROBABILISTIC
 const MappedProbTornadoFeatures = ({ features }) => {
