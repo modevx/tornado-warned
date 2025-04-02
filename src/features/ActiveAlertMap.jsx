@@ -108,7 +108,7 @@ export const ActiveAlertMapLegend = () => {
 
 // D3 CENTROID --> const [centX, centY] = d3GeoPath.centroid(alert.geometry);
 
-const WarningPolygons = ({ alerts, color, onClickCallback }) => {
+export const WarningPolygons = ({ alerts, color, onClickCallback }) => {
   const hasFeatures = alerts?.length > 0;
   return (
     <>
@@ -128,7 +128,7 @@ const WarningPolygons = ({ alerts, color, onClickCallback }) => {
   );
 };
 
-const WatchPolygons = ({ alerts, color, onClickCallback }) => {
+export const WatchPolygons = ({ alerts, color, onClickCallback }) => {
   const hasFeatures = alerts?.length > 0;
 
   return (

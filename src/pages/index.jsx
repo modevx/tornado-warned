@@ -17,8 +17,13 @@ import { ActiveAlertCounts } from "features/ActiveAlertCounts";
 import { CategoricalMap } from "features/ConvectiveOutlookMaps";
 import { MAPSERVER_LAYERS } from "constants/convective-outlooks";
 
-import { CanvasMap } from "components/D3Maps";
+import { CanvasMap, ConusStateMap } from "components/D3Maps";
 import { albersStatesGeoJson, albersGeoPath } from "utils/geometry";
+
+import { useOutlookLayerById } from "services/convective-outlook-mapserver";
+import { CategoricalFeatureOutlines } from "features/ConvectiveOutlookMaps";
+import { WarningPolygons, WatchPolygons } from "features/ActiveAlertMap";
+import { NWS_ALERT_COLORS } from "constants/nws-alerts";
 
 const HomeScreen = () => {
   const [alertModalIsOpen, setAlertModalIsOpen] = useState(false);
@@ -91,6 +96,8 @@ const HomeScreen = () => {
     alerts = filterTornadoAndStormAlerts(data);
   }
 
+  const { data: day1features } = useOutlookLayerById("1");
+
   return (
     <PageLayout>
       <ActiveAlertModal
@@ -112,7 +119,7 @@ const HomeScreen = () => {
         // stormWarnings={fake_severe_storm_warnings.length}
         // stormWatches={fake_severe_storm_watches.length}
       />
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-3">
         <ActiveAlertMap
           tornadoWarnings={alerts?.tornadoWarnings}
           tornadoWatches={alerts?.tornadoWatches}
@@ -125,6 +132,30 @@ const HomeScreen = () => {
           // stormWatches={fake_severe_storm_watches}
         />
         <CategoricalMap catLayer={MAPSERVER_LAYERS.day_1_categorical} />
+
+        <ConusStateMap>
+          <CategoricalFeatureOutlines features={day1features} />
+          <WatchPolygons
+            alerts={alerts?.tornadoWatches}
+            color={NWS_ALERT_COLORS.tornado_watch}
+            onClickCallback={showAlertModal}
+          />
+          <WatchPolygons
+            alerts={alerts?.stormWatches}
+            color={NWS_ALERT_COLORS.severe_storm_watch}
+            onClickCallback={showAlertModal}
+          />
+          <WarningPolygons
+            alerts={alerts?.stormWarnings}
+            color={NWS_ALERT_COLORS.severe_storm_warning}
+            onClickCallback={showAlertModal}
+          />
+          <WarningPolygons
+            alerts={alerts?.tornadoWarnings}
+            color={NWS_ALERT_COLORS.tornado_warning}
+            onClickCallback={showAlertModal}
+          />
+        </ConusStateMap>
       </div>
       {/* <div className="my-2 grid gap-4 xl:grid-cols-4">
         {alerts?.tornadoWarnings.map((alert) => (
