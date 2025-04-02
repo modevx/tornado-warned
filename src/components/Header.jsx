@@ -20,10 +20,8 @@ export const Header = ({ callback }) => {
   const toggleIsOpen = useCallback(() => setIsOpen((isOpen) => !isOpen), []);
 
   return (
-    <header
-      data-testid="header"
-      className="bg-primary text-primary-content px-3"
-    >
+    // <header className="text-primary-content px-3">
+    <header className="px-3">
       <Navbar className="w-full">
         <Navbar.Start>
           <Branding />
@@ -60,12 +58,6 @@ const MainNav = () => {
       </Menu.Item>
       <Menu.Item className="text-sm">
         <NextLink href="/stats">tornado stats</NextLink>
-      </Menu.Item>
-      {/* <Menu.Item className="text-sm">
-        <NextLink href="/signatures">signatures</NextLink>
-      </Menu.Item> */}
-      <Menu.Item className="text-sm">
-        <NextLink href="/spc-rss-feeds">SPC RSS Feed</NextLink>
       </Menu.Item>
     </Menu>
   );

@@ -193,27 +193,6 @@ const HomeScreen = () => {
           />
         ))}
       </div> */}
-
-      {/* <AlertSection
-        alerts={alerts?.tornadoWarnings}
-        alertType="Tornado Warning"
-        alerts={fake_tornado_warnings}
-      />
-      <AlertSection
-        alerts={alerts?.tornadoWatches}
-        alertType="Tornado Watch"
-        alerts={fake_tornado_watches}
-      />
-      <AlertSection
-        alerts={alerts?.stormWarnings}
-        alertType="Severe Thunderstorm Warning"
-        alerts={fake_severe_storm_warnings}
-      />
-      <AlertSection
-        alerts={alerts?.stormWatches}
-        alertType="Severe Thunderstorm Watch"
-        alerts={fake_severe_storm_watches}
-      /> */}
     </PageLayout>
   );
 };
