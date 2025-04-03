@@ -18,6 +18,7 @@ import {
   albersGeoPath,
   createWatchAlertGeometry,
 } from "utils/geometry";
+import { ConusStatesMap } from "components/_shared/Maps";
 
 // TODO: add "Tornado Possible" and "Considerable" tags to Severe Thunderstorm Warning alerts based on [tornadoDetecion, thunderstormDamageThreat] alert props
 
@@ -127,21 +128,21 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
       {/* <div className="h-full w-full"> */}
       {/* <div> */}
       {isWarningEvent(event) ? (
-        <CanvasMap mapFeatures={albersCountiesGeoJson} pathGen={extentPathGen}>
+        <USStateMap pathGen={extentPathGen}>
           <AlertPolygon
             color={geometryColor}
             geometry={alertGeometry}
             pathGen={extentPathGen}
           />
-        </CanvasMap>
+        </USStateMap>
       ) : (
-        <CanvasMap mapFeatures={albersStatesGeoJson} pathGen={extentPathGen}>
+        <USStateMap pathGen={extentPathGen}>
           <AlertPolygon
             color={geometryColor}
             geometry={alertGeometry}
             pathGen={extentPathGen}
           />
-        </CanvasMap>
+        </USStateMap>
       )}
       {/* </div> */}
       {/* <div>

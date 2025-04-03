@@ -19,13 +19,13 @@ export const CategoricalMap = ({ catLayer }) => {
   if (features) showConvFeatures = hasConvectiveFeatures(features);
 
   return showConvFeatures ? (
-    <FullHeightWidthContainer>
-      <MapServerLayerName name={name} />
-      <ConusStatesMap>
-        <CategoricalFeatures features={features} />
-      </ConusStatesMap>
-    </FullHeightWidthContainer>
-  ) : null;
+    // <FullHeightWidthContainer>
+    // <MapServerLayerName name={name} />
+    <ConusStatesMap>
+      <CategoricalFeatures features={features} />
+    </ConusStatesMap>
+  ) : // </FullHeightWidthContainer>
+  null;
 };
 export const ProbabilisticTornadoMap = ({ probLayer, sigLayer }) => {
   const { id: probLayerId, name: probLayerName } = probLayer;
@@ -247,5 +247,11 @@ const createConvectiveFeatureKey = (feature) => {
 };
 const hasConvectiveFeatures = (features) => {
   // SPC MapServer returns single feature obj with [dn:0] if no convective features
-  return features[0].properties.dn > 0;
+  let isValidFeatures = false;
+
+  if (features) {
+    if (features[0].properties.dn > 0) isValidFeatures = true;
+  }
+
+  return isValidFeatures;
 };

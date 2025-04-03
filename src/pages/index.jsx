@@ -17,8 +17,7 @@ import { ActiveAlertCounts } from "features/ActiveAlertCounts";
 import { CategoricalMap } from "features/ConvectiveOutlookMaps";
 import { MAPSERVER_LAYERS } from "constants/convective-outlooks";
 
-import { CanvasMap, ConusStateMap } from "components/D3Maps";
-import { albersStatesGeoJson, albersGeoPath } from "utils/geometry";
+import { ConusStatesMap } from "components/_shared/Maps";
 
 import { useOutlookLayerById } from "services/convective-outlook-mapserver";
 import { CategoricalFeatureOutlines } from "features/ConvectiveOutlookMaps";
@@ -36,22 +35,14 @@ const HomeScreen = () => {
     setAlertModalIsOpen(false);
   };
 
-  const fake_tornado_warnings = useFakeNwsAlertsByType("Tornado Warning");
-  const fake_tornado_watches = useFakeNwsAlertsByType("Tornado Watch");
-  const fake_severe_storm_warnings = useFakeNwsAlertsByType(
+  const { data: tornadoWarnings } = useActiveNwsAlertsByType("Tornado Warning");
+  const { data: tornadoWatches } = useActiveNwsAlertsByType("Tornado Watch");
+  const { data: stormWarnings } = useActiveNwsAlertsByType(
     "Severe Thunderstorm Warning"
   );
-  const fake_severe_storm_watches = useFakeNwsAlertsByType(
+  const { data: stormWatches } = useActiveNwsAlertsByType(
     "Severe Thunderstorm Watch"
   );
-  // TODO: fetch alerts individually to eliminate need for filtering & alert object assignment
-  // TODO: find way to specifically fetch destructive, PDS, & Tornado Emergency alerts
-
-  // const {data: tornadoWarnings} = useActiveNwsAlertsByType("Tornado Warning");
-  // const {data: tornadoWatches} = useActiveNwsAlertsByType("Tornado Watch");
-  // const {data: stormWarnings} = useActiveNwsAlertsByType("Severe Thunderstorm Warning");
-  // const {data: stormWatches} = useActiveNwsAlertsByType("Severe Thunderstorm Watch");
-
   const { data } = useActiveNwsAlertsByType(
     "Tornado Warning,Tornado Watch,Severe Thunderstorm Warning,Severe Thunderstorm Watch"
   );
@@ -65,26 +56,6 @@ const HomeScreen = () => {
   let tornadoEmergencyAlerts;
   let destructiveStormAlerts;
 
-  const filterTornadoAndStormAlerts = (activeAlerts) => {
-    activeAlerts.forEach((alert) => {
-      switch (alert.properties.event) {
-        case "Tornado Warning":
-          alerts.tornadoWarnings = [...alerts.tornadoWarnings, alert];
-          break;
-        case "Tornado Watch":
-          alerts.tornadoWatches = [...alerts.tornadoWatches, alert];
-          break;
-        case "Severe Thunderstorm Warning":
-          alerts.stormWarnings = [...alerts.stormWarnings, alert];
-          break;
-        case "Severe Thunderstorm Watch":
-          alerts.stormWatches = [...alerts.stormWatches, alert];
-          break;
-      }
-    });
-
-    return alerts;
-  };
   if (data) {
     destructiveStormAlerts = data.filter((alert) =>
       alertIsDestructiveStorm(alert)
@@ -93,7 +64,7 @@ const HomeScreen = () => {
     tornadoEmergencyAlerts = data.filter((alert) =>
       alertIsTornadoEmergency(alert)
     );
-    alerts = filterTornadoAndStormAlerts(data);
+    // alerts = filterTornadoAndStormAlerts(data);
   }
 
   const { data: day1features } = useOutlookLayerById("1");
@@ -109,56 +80,47 @@ const HomeScreen = () => {
       <ActiveAlertCounts
         tornadoEmergencies={tornadoEmergencyAlerts?.length}
         pds={pdsAlerts?.length}
-        tornadoWarnings={alerts?.tornadoWarnings.length}
-        tornadoWatches={alerts?.tornadoWatches.length}
+        tornadoWarnings={tornadoWarnings?.length}
+        tornadoWatches={tornadoWatches?.length}
         destructiveStorms={destructiveStormAlerts?.length}
-        stormWarnings={alerts?.stormWarnings.length}
-        stormWatches={alerts?.stormWatches.length}
-        // tornadoWarnings={fake_tornado_warnings.length}
-        // tornadoWatches={fake_tornado_watches.length}
-        // stormWarnings={fake_severe_storm_warnings.length}
-        // stormWatches={fake_severe_storm_watches.length}
+        stormWarnings={stormWarnings?.length}
+        stormWatches={stormWatches?.length}
       />
       <div className="grid grid-cols-3">
         <ActiveAlertMap
-          tornadoWarnings={alerts?.tornadoWarnings}
-          tornadoWatches={alerts?.tornadoWatches}
-          stormWarnings={alerts?.stormWarnings}
-          stormWatches={alerts?.stormWatches}
-          // showAlertModalFunc={showAlertModal}
-          // tornadoWarnings={fake_tornado_warnings}
-          // tornadoWatches={fake_tornado_watches}
-          // stormWarnings={fake_severe_storm_warnings}
-          // stormWatches={fake_severe_storm_watches}
+          tornadoWarnings={tornadoWarnings}
+          tornadoWatches={tornadoWatches}
+          stormWarnings={stormWarnings}
+          stormWatches={stormWatches}
         />
         <CategoricalMap catLayer={MAPSERVER_LAYERS.day_1_categorical} />
 
-        <ConusStateMap>
+        <ConusStatesMap>
           <CategoricalFeatureOutlines features={day1features} />
           <WatchPolygons
-            alerts={alerts?.tornadoWatches}
+            alerts={tornadoWatches}
             color={NWS_ALERT_COLORS.tornado_watch}
             onClickCallback={showAlertModal}
           />
           <WatchPolygons
-            alerts={alerts?.stormWatches}
+            alerts={stormWatches}
             color={NWS_ALERT_COLORS.severe_storm_watch}
             onClickCallback={showAlertModal}
           />
           <WarningPolygons
-            alerts={alerts?.stormWarnings}
+            alerts={stormWarnings}
             color={NWS_ALERT_COLORS.severe_storm_warning}
             onClickCallback={showAlertModal}
           />
           <WarningPolygons
-            alerts={alerts?.tornadoWarnings}
+            alerts={tornadoWarnings}
             color={NWS_ALERT_COLORS.tornado_warning}
             onClickCallback={showAlertModal}
           />
-        </ConusStateMap>
+        </ConusStatesMap>
       </div>
       {/* <div className="my-2 grid gap-4 xl:grid-cols-4">
-        {alerts?.tornadoWarnings.map((alert) => (
+        {tornadoWarnings?.map((alert) => (
           <ActiveAlertCard
             key={alert.id}
             alert={alert}
@@ -167,7 +129,7 @@ const HomeScreen = () => {
         ))}
       </div>
       <div className="my-2 grid gap-4 xl:grid-cols-4">
-        {alerts?.tornadoWatches.map((alert) => (
+        {tornadoWatches?.map((alert) => (
           <ActiveAlertCard
             key={alert.id}
             alert={alert}
@@ -176,7 +138,7 @@ const HomeScreen = () => {
         ))}
       </div>
       <div className="my-2 grid gap-4 xl:grid-cols-4">
-        {alerts?.stormWarnings.map((alert) => (
+        {stormWarnings?.map((alert) => (
           <ActiveAlertCard
             key={alert.id}
             alert={alert}
@@ -185,7 +147,7 @@ const HomeScreen = () => {
         ))}
       </div>
       <div className="my-2 grid gap-4 xl:grid-cols-4">
-        {alerts?.stormWatches.map((alert) => (
+        {stormWatches?.map((alert) => (
           <ActiveAlertCard
             key={alert.id}
             alert={alert}

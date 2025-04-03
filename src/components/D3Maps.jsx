@@ -8,38 +8,6 @@ import {
 } from "utils/geometry";
 import albersTopoJson from "json/topojson-albers-map.json";
 
-export const ConusCountiesMap = ({ children }) => {
-  return (
-    <Basemap features={albersCountiesGeoJson} pathGen={albersGeoPath}>
-      {children}
-    </Basemap>
-  );
-};
-
-export const ConusStateMap = ({ children }) => {
-  return (
-    <Basemap features={albersStatesGeoJson} pathGen={albersGeoPath}>
-      {children}
-    </Basemap>
-  );
-};
-
-export const UsaCountiesMap = ({ children }) => {
-  return (
-    <Basemap features={albersCountiesGeoJson} pathGen={albersUsaGeoPath}>
-      {children}
-    </Basemap>
-  );
-};
-
-export const UsaStatesMap = ({ children }) => {
-  return (
-    <Basemap features={albersStatesGeoJson} pathGen={albersUsaGeoPath}>
-      {children}
-    </Basemap>
-  );
-};
-
 const Basemap = ({ children, features, pathGen }) => {
   return (
     <svg viewBox="0 -60 975 610" xmlns="http://www.w3.org/2000/svg">
@@ -144,6 +112,7 @@ const CountyFeatures = ({ pathGen }) => {
   return (
     <path
       d={pathGen({ type: "FeatureCollection", features: countyFeatures })}
+      // d={pathGen(countyFeatures)}
       stroke="white"
       fill="grey"
     />
