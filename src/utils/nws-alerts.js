@@ -1,5 +1,5 @@
 import { checkStringForPhrase } from "utils";
-import { NWS_ALERT_TAGS } from "constants/nws-alerts";
+import { ALERT_TAGS } from "constants/nws-alerts";
 
 // ex: 'NWS Charlotte NC' --> 'Charlotte, NC'
 export const changeWfoToCityState = (senderName) => {
@@ -32,19 +32,39 @@ const assignToMapStateKey = ({ map, area, state }) => {
 // ALERT SITUATIONS
 export const alertIsDestructiveStorm = (alert) => {
   const description = parseAlertDescription(alert);
-  return checkStringForPhrase(description, NWS_ALERT_TAGS.destructive_storm);
+  return checkStringForPhrase(description, ALERT_TAGS.destructive_storm);
 };
 export const alertIsPDS = (alert) => {
   const description = parseAlertDescription(alert);
   return checkStringForPhrase(
     description,
-    NWS_ALERT_TAGS.particularly_dangerous_situation
+    ALERT_TAGS.particularly_dangerous_situation
   );
 };
 export const alertIsTornadoEmergency = (alert) => {
   const description = parseAlertDescription(alert);
-  return checkStringForPhrase(description, NWS_ALERT_TAGS.tornado_emergency);
+  return checkStringForPhrase(description, ALERT_TAGS.tornado_emergency);
 };
 export const parseAlertDescription = (alert) => {
   return alert.properties.description.toLowerCase();
+};
+export const getAlertCount = ({ alerts, tag }) => {
+  let count = 0;
+
+  switch (tag) {
+    case ALERT_TAGS.DESTRUCTIVE:
+      count = alerts.filter((alert) => alertIsDestructiveStorm(alert)).length;
+      break;
+    case ALERT_TAGS.PDS:
+      count = alerts.filter((alert) => alertIsPDS(alert)).length;
+      break;
+    case ALERT_TAGS.TOREM:
+      count = alerts.filter((alert) => alertIsTornadoEmergency(alert)).length;
+      break;
+    default:
+      count = 0;
+      break;
+  }
+
+  return count;
 };

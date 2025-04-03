@@ -1,25 +1,24 @@
 import { Stats } from "react-daisyui";
-import { twMerge } from "tailwind-merge";
 
-export const ActiveAlertCounts = ({
-  tornadoEmergencies,
-  pds,
-  tornadoWarnings,
-  tornadoWatches,
-  destructiveStorms,
-  stormWarnings,
-  stormWatches,
-}) => {
+export const ActiveAlertCounts = ({ alerts }) => {
+  let destructiveStorms = alerts.filter((alert) =>
+    alertIsDestructiveStorm(alert)
+  );
+  let pdsAlerts = alerts.filter((alert) => alertIsPDS(alert));
+  let tornadoEmergencies = alerts.filter((alert) =>
+    alertIsTornadoEmergency(alert)
+  );
+
   return (
     <Stats className="flex">
       <AlertStatItem
-        count={tornadoEmergencies}
+        count={tornadoEmergencies.length}
         color="#651fff"
         title="TOR EMERGENCY"
       />
-      <AlertStatItem count={pds} color="#f0f" title="PDS" />
+      <AlertStatItem count={pdsAlerts.length} color="#f0f" title="PDS" />
       <AlertStatItem
-        count={destructiveStorms}
+        count={destructiveStorms.length}
         color="#00f"
         title="DESTRUCTIVE"
       />

@@ -1,4 +1,4 @@
-export const NWS_ALERT_COLORS = Object.freeze({
+export const ALERT_COLORS = Object.freeze({
   tornado_emergency: "#651fff",
   particularly_dangerous_situation: "#f0f",
   destructive_storm: "#00f",
@@ -7,14 +7,14 @@ export const NWS_ALERT_COLORS = Object.freeze({
   severe_storm_warning: "#f90",
   severe_storm_watch: "#0f0",
 });
-export const NWS_ALERT_TYPES = Object.freeze({
-  tornado_warning: "Tornado Warning",
-  tornado_watch: "Tornado Watch",
-  severe_storm_warning: "Severe Thunderstorm Warning",
-  severe_storm_watch: "Severe Thunderstorm Watch",
+export const ALERT_TYPES = Object.freeze({
+  TWR: "Tornado Warning",
+  TWT: "Tornado Watch",
+  SWR: "Severe Thunderstorm Warning",
+  SWT: "Severe Thunderstorm Watch",
 });
-export const NWS_ALERT_TAGS = Object.freeze({
-  destructive_storm: "destructive storm",
-  particularly_dangerous_situation: "particularly dangerous situation",
-  tornado_emergency: "tornado emergency",
+export const ALERT_TAGS = Object.freeze({
+  DESTRUCTIVE: "destructive storm",
+  PDS: "particularly dangerous situation",
+  TOREM: "tornado emergency",
 });

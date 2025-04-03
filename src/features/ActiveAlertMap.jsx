@@ -4,7 +4,7 @@ import {
   alertIsTornadoEmergency,
 } from "utils/nws-alerts";
 import { Card } from "react-daisyui";
-import { NWS_ALERT_COLORS } from "constants/nws-alerts";
+import { ALERT_COLORS } from "constants/nws-alerts";
 import { WarningPolygon, WatchPolygon } from "components/AlertPolygons";
 
 import { ConusStatesMap } from "components/_shared/Maps";
@@ -20,22 +20,22 @@ export const ActiveAlertMap = ({
     <ConusStatesMap>
       <WatchPolygons
         alerts={tornadoWatches}
-        color={NWS_ALERT_COLORS.tornado_watch}
+        color={ALERT_COLORS.tornado_watch}
         onClickCallback={showAlertModalFunc}
       />
       <WatchPolygons
         alerts={stormWatches}
-        color={NWS_ALERT_COLORS.severe_storm_watch}
+        color={ALERT_COLORS.severe_storm_watch}
         onClickCallback={showAlertModalFunc}
       />
       <WarningPolygons
         alerts={stormWarnings}
-        color={NWS_ALERT_COLORS.severe_storm_warning}
+        color={ALERT_COLORS.severe_storm_warning}
         onClickCallback={showAlertModalFunc}
       />
       <WarningPolygons
         alerts={tornadoWarnings}
-        color={NWS_ALERT_COLORS.tornado_warning}
+        color={ALERT_COLORS.tornado_warning}
         onClickCallback={showAlertModalFunc}
       />
     </ConusStatesMap>

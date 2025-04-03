@@ -1,39 +1,37 @@
 import {
-  albersProjection,
-  albersUsaProjection,
   albersGeoPath,
   albersUsaGeoPath,
   albersCountiesGeoJson,
   albersStatesGeoJson,
 } from "utils/geometry";
 
-export const ConusCountiesMap = ({ children }) => {
+export const ConusCountiesMap = ({ children, pathGen = albersGeoPath }) => {
   return (
-    <Basemap features={albersCountiesGeoJson} pathGen={albersGeoPath}>
+    <Basemap features={albersCountiesGeoJson} pathGen={pathGen}>
       {children}
     </Basemap>
   );
 };
 
-export const ConusStatesMap = ({ children }) => {
+export const ConusStatesMap = ({ children, pathGen = albersGeoPath }) => {
   return (
-    <Basemap features={albersStatesGeoJson} pathGen={albersGeoPath}>
+    <Basemap features={albersStatesGeoJson} pathGen={pathGen}>
       {children}
     </Basemap>
   );
 };
 
-export const UsaCountiesMap = ({ children }) => {
+export const UsaCountiesMap = ({ children, pathGen = albersUsaGeoPath }) => {
   return (
-    <Basemap features={albersCountiesGeoJson} pathGen={albersUsaGeoPath}>
+    <Basemap features={albersCountiesGeoJson} pathGen={pathGen}>
       {children}
     </Basemap>
   );
 };
 
-export const UsaStatesMap = ({ children }) => {
+export const UsaStatesMap = ({ children, pathGen = albersUsaGeoPath }) => {
   return (
-    <Basemap features={albersStatesGeoJson} pathGen={albersUsaGeoPath}>
+    <Basemap features={albersStatesGeoJson} pathGen={pathGen}>
       {children}
     </Basemap>
   );

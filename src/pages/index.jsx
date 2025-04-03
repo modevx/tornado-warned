@@ -22,7 +22,10 @@ import { ConusStatesMap } from "components/_shared/Maps";
 import { useOutlookLayerById } from "services/convective-outlook-mapserver";
 import { CategoricalFeatureOutlines } from "features/ConvectiveOutlookMaps";
 import { WarningPolygons, WatchPolygons } from "features/ActiveAlertMap";
-import { NWS_ALERT_COLORS } from "constants/nws-alerts";
+import { ALERT_COLORS } from "constants/nws-alerts";
+
+import { albersUsaGeoPath } from "utils/geometry";
+import { ALERT_TYPES } from "constants/strings";
 
 const HomeScreen = () => {
   const [alertModalIsOpen, setAlertModalIsOpen] = useState(false);
@@ -35,37 +38,13 @@ const HomeScreen = () => {
     setAlertModalIsOpen(false);
   };
 
-  const { data: tornadoWarnings } = useActiveNwsAlertsByType("Tornado Warning");
-  const { data: tornadoWatches } = useActiveNwsAlertsByType("Tornado Watch");
-  const { data: stormWarnings } = useActiveNwsAlertsByType(
-    "Severe Thunderstorm Warning"
+  const { data: tornadoWarnings } = useActiveNwsAlertsByType(ALERT_TYPES.TWR);
+  const { data: tornadoWatches } = useActiveNwsAlertsByType(ALERT_TYPES.TWT);
+  const { data: stormWarnings } = useActiveNwsAlertsByType(ALERT_TYPES.SWR);
+  const { data: stormWatches } = useActiveNwsAlertsByType(ALERT_TYPES.SWT);
+  const { data: allAlerts } = useActiveNwsAlertsByType(
+    "Tornado Warning, Tornado Watch, Severe Thunderstorm Warning, Severe Thunderstorm Watch"
   );
-  const { data: stormWatches } = useActiveNwsAlertsByType(
-    "Severe Thunderstorm Watch"
-  );
-  const { data } = useActiveNwsAlertsByType(
-    "Tornado Warning,Tornado Watch,Severe Thunderstorm Warning,Severe Thunderstorm Watch"
-  );
-  let alerts = {
-    tornadoWarnings: [],
-    tornadoWatches: [],
-    stormWarnings: [],
-    stormWatches: [],
-  };
-  let pdsAlerts;
-  let tornadoEmergencyAlerts;
-  let destructiveStormAlerts;
-
-  if (data) {
-    destructiveStormAlerts = data.filter((alert) =>
-      alertIsDestructiveStorm(alert)
-    );
-    pdsAlerts = data.filter((alert) => alertIsPDS(alert));
-    tornadoEmergencyAlerts = data.filter((alert) =>
-      alertIsTornadoEmergency(alert)
-    );
-    // alerts = filterTornadoAndStormAlerts(data);
-  }
 
   const { data: day1features } = useOutlookLayerById("1");
 
@@ -77,15 +56,7 @@ const HomeScreen = () => {
         isOpen={alertModalIsOpen}
         closeFunc={closeAlertModal}
       />
-      <ActiveAlertCounts
-        tornadoEmergencies={tornadoEmergencyAlerts?.length}
-        pds={pdsAlerts?.length}
-        tornadoWarnings={tornadoWarnings?.length}
-        tornadoWatches={tornadoWatches?.length}
-        destructiveStorms={destructiveStormAlerts?.length}
-        stormWarnings={stormWarnings?.length}
-        stormWatches={stormWatches?.length}
-      />
+      <ActiveAlertCounts alerts={allAlerts} />
       <div className="grid grid-cols-3">
         <ActiveAlertMap
           tornadoWarnings={tornadoWarnings}
@@ -99,22 +70,22 @@ const HomeScreen = () => {
           <CategoricalFeatureOutlines features={day1features} />
           <WatchPolygons
             alerts={tornadoWatches}
-            color={NWS_ALERT_COLORS.tornado_watch}
+            color={ALERT_COLORS.tornado_watch}
             onClickCallback={showAlertModal}
           />
           <WatchPolygons
             alerts={stormWatches}
-            color={NWS_ALERT_COLORS.severe_storm_watch}
+            color={ALERT_COLORS.severe_storm_watch}
             onClickCallback={showAlertModal}
           />
           <WarningPolygons
             alerts={stormWarnings}
-            color={NWS_ALERT_COLORS.severe_storm_warning}
+            color={ALERT_COLORS.severe_storm_warning}
             onClickCallback={showAlertModal}
           />
           <WarningPolygons
             alerts={tornadoWarnings}
-            color={NWS_ALERT_COLORS.tornado_warning}
+            color={ALERT_COLORS.tornado_warning}
             onClickCallback={showAlertModal}
           />
         </ConusStatesMap>

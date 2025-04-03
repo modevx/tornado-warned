@@ -3,7 +3,7 @@ import {
   alertIsPDS,
   alertIsTornadoEmergency,
 } from "utils/nws-alerts";
-import { NWS_ALERT_COLORS } from "constants/nws-alerts";
+import { ALERT_COLORS } from "constants/nws-alerts";
 import {
   albersGeoPath,
   rewindAlbersGeoPath,
@@ -21,11 +21,11 @@ export const WarningPolygon = ({
   const isPDS = alertIsPDS(alert);
   const isTornadoEmergency = alertIsTornadoEmergency(alert);
   const polygonColor = isTornadoEmergency
-    ? NWS_ALERT_COLORS.tornado_emergency
+    ? ALERT_COLORS.tornado_emergency
     : isPDS
-    ? NWS_ALERT_COLORS.particularly_dangerous_situation
+    ? ALERT_COLORS.particularly_dangerous_situation
     : isDestructiveStorm
-    ? NWS_ALERT_COLORS.destructive_storm
+    ? ALERT_COLORS.destructive_storm
     : color;
 
   return (
@@ -45,9 +45,9 @@ export const WatchPolygon = ({ alert, color, onClickCallback = undefined }) => {
   const isPDS = alertIsPDS(alert);
   const isDestructiveStorm = alertIsDestructiveStorm(alert);
   const polygonColor = isPDS
-    ? NWS_ALERT_COLORS.particularly_dangerous_situation
+    ? ALERT_COLORS.particularly_dangerous_situation
     : isDestructiveStorm
-    ? NWS_ALERT_COLORS.destructive_storm
+    ? ALERT_COLORS.destructive_storm
     : color;
   const watchGeometry = createWatchAlertGeometry(alert);
 

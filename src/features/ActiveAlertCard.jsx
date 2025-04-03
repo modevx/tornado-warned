@@ -4,7 +4,7 @@ import {
   alertIsPDS,
   alertIsTornadoEmergency,
 } from "utils/nws-alerts";
-import { NWS_ALERT_COLORS, NWS_ALERT_TAGS } from "constants/nws-alerts";
+import { ALERT_COLORS, ALERT_TAGS } from "constants/nws-alerts";
 import {
   AlertPolygon,
   WarningPolygon,
@@ -47,23 +47,23 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
   const isDestructiveStorm = alertIsDestructiveStorm(alert);
 
   if (isTornadoEmergency) {
-    situation = NWS_ALERT_TAGS.tornado_emergency;
-    situationColor = NWS_ALERT_COLORS.tornado_emergency;
+    situation = ALERT_TAGS.tornado_emergency;
+    situationColor = ALERT_COLORS.tornado_emergency;
   }
   if (isPDS) {
-    situation = NWS_ALERT_TAGS.particularly_dangerous_situation;
-    situationColor = NWS_ALERT_COLORS.particularly_dangerous_situation;
+    situation = ALERT_TAGS.particularly_dangerous_situation;
+    situationColor = ALERT_COLORS.particularly_dangerous_situation;
   }
   if (isDestructiveStorm) {
-    situation = NWS_ALERT_TAGS.destructive_storm;
-    situationColor = NWS_ALERT_COLORS.destructive_storm;
+    situation = ALERT_TAGS.destructive_storm;
+    situationColor = ALERT_COLORS.destructive_storm;
   }
 
   const alertColorMap = {
-    "Tornado Warning": NWS_ALERT_COLORS.tornado_warning,
-    "Tornado Watch": NWS_ALERT_COLORS.tornado_watch,
-    "Severe Thunderstorm Warning": NWS_ALERT_COLORS.severe_storm_warning,
-    "Severe Thunderstorm Watch": NWS_ALERT_COLORS.severe_storm_watch,
+    "Tornado Warning": ALERT_COLORS.tornado_warning,
+    "Tornado Watch": ALERT_COLORS.tornado_watch,
+    "Severe Thunderstorm Warning": ALERT_COLORS.severe_storm_warning,
+    "Severe Thunderstorm Watch": ALERT_COLORS.severe_storm_watch,
   };
   const alertColor = alertColorMap[event];
 
