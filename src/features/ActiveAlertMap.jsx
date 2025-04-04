@@ -1,11 +1,8 @@
-import {
-  isDestructiveStorm,
-  isPdsStorm,
-  isTornadoEmergency,
-} from "utils/nws-alerts";
-import { Card } from "react-daisyui";
 import { ALERT_COLORS } from "constants/nws-alerts";
-import { WarningPolygon, WatchPolygon } from "components/AlertPolygons";
+import {
+  WatchPolygon,
+  WarningPolygon,
+} from "components/nws_alerts/AlertPolygons";
 
 import { ConusStatesMap } from "components/_shared/Maps";
 

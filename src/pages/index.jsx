@@ -2,6 +2,7 @@ import {
   countAlerts,
   countTaggedAlerts,
   filterAlertsByType,
+  filterTaggedAlerts,
 } from "utils/nws-alerts";
 import { useAllActiveAlerts } from "services/nws-alerts";
 import { useState } from "react";
@@ -37,9 +38,10 @@ const HomeScreen = () => {
   const { data: day1features } = useOutlookLayerById("1");
 
   let alertCounts;
-  let filteredAlerts;
   let situationCounts;
   let countTotals;
+  let filteredAlerts;
+  let filteredTaggedAlerts;
   let tornadoWarnings = [];
   let tornadoWatches = [];
   let stormWarnings = [];
@@ -47,9 +49,10 @@ const HomeScreen = () => {
 
   if (alerts) {
     alertCounts = countAlerts(alerts);
-    filteredAlerts = filterAlertsByType(alerts);
     situationCounts = countTaggedAlerts(alerts);
     countTotals = { ...alertCounts, ...situationCounts };
+    filteredAlerts = filterAlertsByType(alerts);
+    filteredTaggedAlerts = filterTaggedAlerts(alerts);
   }
   if (filteredAlerts) {
     tornadoWarnings = filteredAlerts?.[ALERT_TYPES.TWR];
@@ -58,7 +61,8 @@ const HomeScreen = () => {
     stormWatches = filteredAlerts?.[ALERT_TYPES.SWT];
   }
 
-  if (filteredAlerts) console.log("filteredAlerts: ", filteredAlerts);
+  if (filteredTaggedAlerts)
+    console.log("filteredTaggedAlerts: ", filteredTaggedAlerts);
 
   return (
     <PageLayout>
@@ -75,12 +79,13 @@ const HomeScreen = () => {
           tornadoWatches={tornadoWatches}
           stormWarnings={stormWarnings}
           stormWatches={stormWatches}
+          showAlertModalFunc={showAlertModal}
         />
         <CategoricalMap catLayer={MAPSERVER_LAYERS.day_1_categorical} />
 
         <ConusStatesMap>
           <CategoricalFeatureOutlines features={day1features} />
-          <WatchPolygons
+          {/* <WatchPolygons
             alerts={filteredAlerts?.[ALERT_TYPES.SWT]}
             color={ALERT_COLORS.SWT}
             onClickCallback={showAlertModal}
@@ -99,44 +104,44 @@ const HomeScreen = () => {
             alerts={filteredAlerts?.[ALERT_TYPES.TWR]}
             color={ALERT_COLORS.TWR}
             onClickCallback={showAlertModal}
-          />
+          /> */}
         </ConusStatesMap>
       </div>
       <div className="my-2 grid gap-4 xl:grid-cols-4">
-        {tornadoWarnings?.map((alert) => (
+        {/* {tornadoWarnings?.map((alert) => (
           <ActiveAlertCard
             key={alert.id}
             alert={alert}
             showAlertModalFunc={showAlertModal}
           />
-        ))}
+        ))} */}
       </div>
       <div className="my-2 grid gap-4 xl:grid-cols-4">
-        {tornadoWatches?.map((alert) => (
+        {/* {tornadoWatches?.map((alert) => (
           <ActiveAlertCard
             key={alert.id}
             alert={alert}
             showAlertModalFunc={showAlertModal}
           />
-        ))}
+        ))} */}
       </div>
       <div className="my-2 grid gap-4 xl:grid-cols-4">
-        {stormWarnings?.map((alert) => (
+        {/* {stormWarnings?.map((alert) => (
           <ActiveAlertCard
             key={alert.id}
             alert={alert}
             showAlertModalFunc={showAlertModal}
           />
-        ))}
+        ))} */}
       </div>
       <div className="my-2 grid gap-4 xl:grid-cols-4">
-        {stormWatches?.map((alert) => (
+        {/* {stormWatches?.map((alert) => (
           <ActiveAlertCard
             key={alert.id}
             alert={alert}
             showAlertModalFunc={showAlertModal}
           />
-        ))}
+        ))} */}
       </div>
     </PageLayout>
   );

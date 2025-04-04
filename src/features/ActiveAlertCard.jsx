@@ -10,7 +10,7 @@ import {
   AlertPolygon,
   WarningPolygon,
   WatchPolygon,
-} from "components/AlertPolygons";
+} from "components/nws_alerts/AlertPolygons";
 import {
   albersCountiesGeoJson,
   albersStatesGeoJson,

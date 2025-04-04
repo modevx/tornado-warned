@@ -1,4 +1,4 @@
-import { stringIncludesPhrase } from "utils";
+import { stringIncludesPhrase } from "utils/stringIncludesPhrase";
 import { ALERT_TAGS } from "constants/nws-alerts";
 
 // ex: 'NWS Charlotte NC' --> 'Charlotte, NC'
@@ -60,7 +60,7 @@ export const countTaggedAlerts = (alerts) => {
 
   return situationTags.reduce((acc, tag) => {
     acc[tag] = alerts.filter((alert) =>
-      alert.properties.description.includes(tag)
+      alert.properties.description.toLowerCase().includes(tag)
     ).length;
     return acc;
   }, {});
@@ -69,6 +69,16 @@ export const filterAlertsByType = (alerts) => {
   return alerts.reduce((acc, alert) => {
     const eventType = alert.properties.event;
     acc[eventType] = [...(acc[eventType] || []), alert];
+    return acc;
+  }, {});
+};
+export const filterTaggedAlerts = (alerts) => {
+  const situationTags = Object.values(ALERT_TAGS);
+
+  return situationTags.reduce((acc, tag) => {
+    acc[tag] = alerts.filter((alert) =>
+      alert.properties.description.toLowerCase().includes(tag)
+    );
     return acc;
   }, {});
 };

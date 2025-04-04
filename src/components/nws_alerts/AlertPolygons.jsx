@@ -10,21 +10,29 @@ import {
   createWatchAlertGeometry,
 } from "utils/geometry";
 
-// TODO: refactor to single AlertPolygon that only takes ({color, geometry, pathGen, onClickCallback}) args
+export const AlertPolygon = ({ color, geometry, pathGen, callback }) => {
+  return (
+    <path
+      d={pathGen(geometry)}
+      fill={color}
+      stroke={color}
+      fillOpacity={0.5}
+      strokeOpacity={0.75}
+      strokeWidth={0.5}
+    />
+  );
+};
 
 export const WarningPolygon = ({
   alert,
   color,
   onClickCallback = undefined,
 }) => {
-  const isDestructive = isDestructiveStorm(alert);
-  const isPDS = isPdsStorm(alert);
-  const isEmergency = isTornadoEmergency(alert);
-  const polygonColor = isEmergency
+  const polygonColor = isTornadoEmergency(alert)
     ? ALERT_COLORS.TOREM
-    : isPDS
+    : isPdsStorm(alert)
     ? ALERT_COLORS.PDS
-    : isDestructive
+    : isDestructiveStorm(alert)
     ? ALERT_COLORS.DESTRUCTIVE
     : color;
 
@@ -42,24 +50,12 @@ export const WarningPolygon = ({
 };
 
 export const WatchPolygon = ({ alert, color, onClickCallback = undefined }) => {
-  const isPDS = isPdsStorm(alert);
-  const isDestructive = isDestructiveStorm(alert);
-  const polygonColor = isPDS
+  const polygonColor = isPdsStorm(alert)
     ? ALERT_COLORS.PDS
-    : isDestructive
+    : isDestructiveStorm(alert)
     ? ALERT_COLORS.DESTRUCTIVE
     : color;
   const watchGeometry = createWatchAlertGeometry(alert);
-
-  // const albersFitExtent = geoAlbers().fitExtent(
-  //   // 975 x 610
-  //   [
-  //     [350, 160],
-  //     [625, 450],
-  //   ],
-  //   watchGeometry
-  // );
-  // const extentPathGen = geoPath(albersFitExtent);
 
   return (
     <path
@@ -70,19 +66,6 @@ export const WatchPolygon = ({ alert, color, onClickCallback = undefined }) => {
       strokeOpacity={0.75}
       strokeWidth={0.5}
       onClick={() => onClickCallback({ alert, color: polygonColor })}
-    />
-  );
-};
-
-export const AlertPolygon = ({ color, geometry, pathGen }) => {
-  return (
-    <path
-      d={albersGeoPath(geometry)}
-      fill={color}
-      stroke={color}
-      fillOpacity={0.5}
-      strokeOpacity={0.75}
-      strokeWidth={0.5}
     />
   );
 };

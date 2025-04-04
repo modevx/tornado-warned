@@ -2,7 +2,7 @@ import * as d3 from "d3";
 import { useState } from "react";
 import NextImage from "next/image";
 import TurfRewind from "@turf/rewind";
-import { STATES_MAP } from "constants";
+import { STATES_ABBR_NAME_MAP } from "constants/states-map";
 import { twMerge } from "tailwind-merge";
 import { DayJSDateTime } from "components";
 import { FaTornado } from "react-icons/fa6";
@@ -261,7 +261,7 @@ export const ImpactedAreas = ({ areaDesc }) => {
               <div key={state}>
                 {state ? (
                   <h4 className="text-md font-bold mb-2 uppercase">
-                    {STATES_MAP[state]}
+                    {STATES_ABBR_NAME_MAP[state]}
                   </h4>
                 ) : null}
 

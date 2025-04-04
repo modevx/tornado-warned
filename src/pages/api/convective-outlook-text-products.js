@@ -1,5 +1,5 @@
 import axios from "axios";
-import { corsMiddleware, runMiddleware } from "utils";
+import { corsMiddleware, runMiddleware } from "utils/apiCorsMiddleware";
 
 export default async function handler(req, res) {
   await runMiddleware(req, res, corsMiddleware);
