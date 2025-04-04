@@ -1,8 +1,8 @@
 import { Button, Toggle } from "react-daisyui";
 import {
-  alertIsDestructiveStorm,
-  alertIsPDS,
-  alertIsTornadoEmergency,
+  isDestructiveStorm,
+  isPDS,
+  isTornadoEmergency,
 } from "utils/nws-alerts";
 import { ALERT_COLORS, ALERT_TAGS } from "constants/nws-alerts";
 import {
@@ -42,9 +42,9 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
   let situation = null;
   let situationColor = null;
 
-  const isTornadoEmergency = alertIsTornadoEmergency(alert);
-  const isPDS = alertIsPDS(alert);
-  const isDestructiveStorm = alertIsDestructiveStorm(alert);
+  const isTornadoEmergency = isTornadoEmergency(alert);
+  const isPDS = isPDS(alert);
+  const isDestructiveStorm = isDestructiveStorm(alert);
 
   if (isTornadoEmergency) {
     situation = ALERT_TAGS.tornado_emergency;

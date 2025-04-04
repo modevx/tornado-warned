@@ -1,4 +1,4 @@
-import { checkStringForPhrase } from "utils";
+import { stringIncludesPhrase } from "utils";
 import { useQuery } from "@tanstack/react-query";
 import { createHTTPClient } from "./create-http-client";
 
@@ -1696,7 +1696,19 @@ const fetchActiveNwsAlertsByType = async (event) => {
   }
 };
 
+const fetchProductsByTypeId = () => {};
+
 // ! --- SERVICE FUNCTIONS
+export const useAllActiveAlerts = () => {
+  return useQuery({
+    queryKey: ["NWS API Web Service", "Alerts", "Active"],
+    queryFn: () =>
+      fetchActiveNwsAlertsByType(
+        "Tornado Warning,Tornado Watch,Severe Thunderstorm Warning,Severe Thunderstorm Watch"
+      ),
+    refetchInterval: 15000,
+  });
+};
 export const useActiveNwsAlertsByType = (alertType) => {
   return useQuery({
     queryKey: ["NWS API Web Service", "Alerts", "Active", alertType],

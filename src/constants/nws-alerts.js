@@ -7,6 +7,16 @@ export const ALERT_COLORS = Object.freeze({
   severe_storm_warning: "#f90",
   severe_storm_watch: "#0f0",
 });
+export const NWS_PRODUCT_CODES = Object.freeze({
+  PWO: "Public Severe Weather Outlook",
+  SPS: "Special Weather Statement",
+  SVR: "Severe Thunderstorm Warning",
+  SVS: "Severe Weather Statement",
+  SWO: "Severe Storm Outlook Narrative (AC)",
+  TOR: "Tornado Warning",
+  WOU: "Tornado/Severe Thunderstorm Watch",
+  WWP: "Severe Thunderstorm / Tornado Watch Probabilities",
+});
 export const ALERT_TYPES = Object.freeze({
   TWR: "Tornado Warning",
   TWT: "Tornado Watch",

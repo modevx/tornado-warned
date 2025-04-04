@@ -1,7 +1,7 @@
 import {
-  alertIsDestructiveStorm,
-  alertIsPDS,
-  alertIsTornadoEmergency,
+  isDestructiveStorm,
+  isPDS,
+  isTornadoEmergency,
 } from "utils/nws-alerts";
 import { Card } from "react-daisyui";
 import { ALERT_COLORS } from "constants/nws-alerts";

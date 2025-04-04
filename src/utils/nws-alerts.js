@@ -1,4 +1,4 @@
-import { checkStringForPhrase } from "utils";
+import { stringIncludesPhrase } from "utils";
 import { ALERT_TAGS } from "constants/nws-alerts";
 
 // ex: 'NWS Charlotte NC' --> 'Charlotte, NC'
@@ -30,41 +30,42 @@ const assignToMapStateKey = ({ map, area, state }) => {
   }
 };
 // ALERT SITUATIONS
-export const alertIsDestructiveStorm = (alert) => {
+export const isDestructiveStorm = (alert) => {
   const description = parseAlertDescription(alert);
-  return checkStringForPhrase(description, ALERT_TAGS.destructive_storm);
+  return stringIncludesPhrase(description, ALERT_TAGS.DESTRUCTIVE);
 };
-export const alertIsPDS = (alert) => {
+export const isPDS = (alert) => {
   const description = parseAlertDescription(alert);
-  return checkStringForPhrase(
-    description,
-    ALERT_TAGS.particularly_dangerous_situation
-  );
+  return stringIncludesPhrase(description, ALERT_TAGS.PDS);
 };
-export const alertIsTornadoEmergency = (alert) => {
+export const isTornadoEmergency = (alert) => {
   const description = parseAlertDescription(alert);
-  return checkStringForPhrase(description, ALERT_TAGS.tornado_emergency);
+  return stringIncludesPhrase(description, ALERT_TAGS.TOREM);
 };
 export const parseAlertDescription = (alert) => {
   return alert.properties.description.toLowerCase();
 };
-export const getAlertCount = ({ alerts, tag }) => {
-  let count = 0;
+export const countAlerts = (alerts) => {
+  return alerts.reduce((acc, alert) => {
+    const eventType = alert.properties.event.toLowerCase();
+    acc[eventType] = (acc[eventType] || 0) + 1;
+    return acc;
+  }, {});
+};
+export const countTaggedAlerts = (alerts) => {
+  const situationTags = Object.values(ALERT_TAGS);
 
-  switch (tag) {
-    case ALERT_TAGS.DESTRUCTIVE:
-      count = alerts.filter((alert) => alertIsDestructiveStorm(alert)).length;
-      break;
-    case ALERT_TAGS.PDS:
-      count = alerts.filter((alert) => alertIsPDS(alert)).length;
-      break;
-    case ALERT_TAGS.TOREM:
-      count = alerts.filter((alert) => alertIsTornadoEmergency(alert)).length;
-      break;
-    default:
-      count = 0;
-      break;
-  }
-
-  return count;
+  return situationTags.reduce((acc, tag) => {
+    acc[tag] = alerts.filter((alert) =>
+      alert.properties.description.includes(tag)
+    ).length;
+    return acc;
+  }, {});
+};
+export const filterAlertsByType = (alerts) => {
+  return alerts.reduce((acc, alert) => {
+    const eventType = alert.properties.event;
+    acc[eventType] = [...(acc[eventType] || []), alert];
+    return acc;
+  }, {});
 };

@@ -1,11 +1,15 @@
 import {
-  alertIsDestructiveStorm,
-  alertIsPDS,
-  alertIsTornadoEmergency,
+  isDestructiveStorm,
+  isPDS,
+  isTornadoEmergency,
+  countAlerts,
+  countTaggedAlerts,
+  filterAlertsByType,
 } from "utils/nws-alerts";
 import {
   useActiveNwsAlertsByType,
   useFakeNwsAlertsByType,
+  useAllActiveAlerts,
 } from "services/nws-alerts";
 import { useState } from "react";
 import { PageLayout } from "components";
@@ -38,19 +42,27 @@ const HomeScreen = () => {
     setAlertModalIsOpen(false);
   };
 
-  const { data: tornadoWarnings } = useActiveNwsAlertsByType(ALERT_TYPES.TWR);
-  const { data: tornadoWatches } = useActiveNwsAlertsByType(ALERT_TYPES.TWT);
-  const { data: stormWarnings } = useActiveNwsAlertsByType(ALERT_TYPES.SWR);
-  const { data: stormWatches } = useActiveNwsAlertsByType(ALERT_TYPES.SWT);
-  const { data: allAlerts } = useActiveNwsAlertsByType(
-    "Tornado Warning, Tornado Watch, Severe Thunderstorm Warning, Severe Thunderstorm Watch"
-  );
+  const { data: alerts } = useAllActiveAlerts();
 
   const { data: day1features } = useOutlookLayerById("1");
 
+  let alertCounts;
+  let filteredAlerts;
+  let situationCounts;
+
+  if (alerts) {
+    alertCounts = countAlerts(alerts);
+    filteredAlerts = filterAlertsByType(alerts);
+    situationCounts = countTaggedAlerts(alerts);
+  }
+
+  console.log("alertCounts: ", alertCounts);
+  console.log("filteredAlerts: ", filteredAlerts);
+  console.log("situationCounts: ", situationCounts);
+
   return (
     <PageLayout>
-      <ActiveAlertModal
+      {/* <ActiveAlertModal
         alert={alertModalData?.alert}
         color={alertModalData?.color}
         isOpen={alertModalIsOpen}
@@ -89,7 +101,7 @@ const HomeScreen = () => {
             onClickCallback={showAlertModal}
           />
         </ConusStatesMap>
-      </div>
+      </div> */}
       {/* <div className="my-2 grid gap-4 xl:grid-cols-4">
         {tornadoWarnings?.map((alert) => (
           <ActiveAlertCard
