@@ -1,8 +1,9 @@
 import { Button, Toggle } from "react-daisyui";
 import {
   isDestructiveStorm,
-  isPDS,
+  isPdsStorm,
   isTornadoEmergency,
+  isWarningEvent,
 } from "utils/nws-alerts";
 import { ALERT_COLORS, ALERT_TAGS } from "constants/nws-alerts";
 import {
@@ -10,7 +11,6 @@ import {
   WarningPolygon,
   WatchPolygon,
 } from "components/AlertPolygons";
-import { CanvasMap, USCountyMap, USStateMap } from "components/D3Maps";
 import {
   albersCountiesGeoJson,
   albersStatesGeoJson,
@@ -18,7 +18,7 @@ import {
   albersGeoPath,
   createWatchAlertGeometry,
 } from "utils/geometry";
-import { ConusStatesMap } from "components/_shared/Maps";
+import { ConusCountiesMap, ConusStatesMap } from "components/_shared/Maps";
 
 // TODO: add "Tornado Possible" and "Considerable" tags to Severe Thunderstorm Warning alerts based on [tornadoDetecion, thunderstormDamageThreat] alert props
 
@@ -42,28 +42,28 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
   let situation = null;
   let situationColor = null;
 
-  const isTornadoEmergency = isTornadoEmergency(alert);
-  const isPDS = isPDS(alert);
-  const isDestructiveStorm = isDestructiveStorm(alert);
+  const isEmergency = isTornadoEmergency(alert);
+  const isPDS = isPdsStorm(alert);
+  const isDestructive = isDestructiveStorm(alert);
 
-  if (isTornadoEmergency) {
+  if (isEmergency) {
     situation = ALERT_TAGS.tornado_emergency;
-    situationColor = ALERT_COLORS.tornado_emergency;
+    situationColor = ALERT_COLORS.TOREM;
   }
   if (isPDS) {
     situation = ALERT_TAGS.particularly_dangerous_situation;
-    situationColor = ALERT_COLORS.particularly_dangerous_situation;
+    situationColor = ALERT_COLORS.PDS;
   }
-  if (isDestructiveStorm) {
+  if (isDestructive) {
     situation = ALERT_TAGS.destructive_storm;
-    situationColor = ALERT_COLORS.destructive_storm;
+    situationColor = ALERT_COLORS.DESTRUCTIVE;
   }
 
   const alertColorMap = {
-    "Tornado Warning": ALERT_COLORS.tornado_warning,
-    "Tornado Watch": ALERT_COLORS.tornado_watch,
-    "Severe Thunderstorm Warning": ALERT_COLORS.severe_storm_warning,
-    "Severe Thunderstorm Watch": ALERT_COLORS.severe_storm_watch,
+    "Tornado Warning": ALERT_COLORS.TWR,
+    "Tornado Watch": ALERT_COLORS.TWT,
+    "Severe Thunderstorm Warning": ALERT_COLORS.SWR,
+    "Severe Thunderstorm Watch": ALERT_COLORS.SWT,
   };
   const alertColor = alertColorMap[event];
 
@@ -73,10 +73,6 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
 
   const fitExtentProjection = albersProjection.fitExtent(
     // 975 x 610
-    // [
-    //   [350, 160],
-    //   [625, 350],
-    // ],
     [
       [100, 100],
       [875, 510],
@@ -128,21 +124,21 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
       {/* <div className="h-full w-full"> */}
       {/* <div> */}
       {isWarningEvent(event) ? (
-        <USStateMap pathGen={extentPathGen}>
+        <ConusStatesMap pathGen={extentPathGen}>
           <AlertPolygon
             color={geometryColor}
             geometry={alertGeometry}
             pathGen={extentPathGen}
           />
-        </USStateMap>
+        </ConusStatesMap>
       ) : (
-        <USStateMap pathGen={extentPathGen}>
+        <ConusStatesMap pathGen={extentPathGen}>
           <AlertPolygon
             color={geometryColor}
             geometry={alertGeometry}
             pathGen={extentPathGen}
           />
-        </USStateMap>
+        </ConusStatesMap>
       )}
       {/* </div> */}
       {/* <div>
@@ -198,22 +194,16 @@ const TornadoDetection = ({ tornadoDetection }) => {
 };
 const WarningViewbox = ({ color, geometry, pathGen }) => {
   return (
-    <USCountyMap pathGen={pathGen}>
+    <ConusCountiesMap pathGen={pathGen}>
       <AlertPolygon color={color} geometry={geometry} pathGen={pathGen} />
-    </USCountyMap>
+    </ConusCountiesMap>
   );
 };
 const WarningZoomedViewbox = () => {};
 const WatchViewbox = ({ color, geometry, pathGen }) => {
   return (
-    <USStateMap pathGen={pathGen}>
+    <ConusStatesMap pathGen={pathGen}>
       <AlertPolygon color={color} geometry={geometry} pathGen={pathGen} />
-    </USStateMap>
+    </ConusStatesMap>
   );
-};
-const WatchZoomedViewbox = () => {};
-
-// UTILS
-const isWarningEvent = (event) => {
-  return event.toLowerCase().includes("warning");
 };

@@ -34,7 +34,7 @@ export const isDestructiveStorm = (alert) => {
   const description = parseAlertDescription(alert);
   return stringIncludesPhrase(description, ALERT_TAGS.DESTRUCTIVE);
 };
-export const isPDS = (alert) => {
+export const isPdsStorm = (alert) => {
   const description = parseAlertDescription(alert);
   return stringIncludesPhrase(description, ALERT_TAGS.PDS);
 };
@@ -42,8 +42,11 @@ export const isTornadoEmergency = (alert) => {
   const description = parseAlertDescription(alert);
   return stringIncludesPhrase(description, ALERT_TAGS.TOREM);
 };
+export const isWarningEvent = (event) => {
+  return event.toLowerCase().includes("warning");
+};
 export const parseAlertDescription = (alert) => {
-  return alert.properties.description.toLowerCase();
+  return alert?.properties?.description.toLowerCase();
 };
 export const countAlerts = (alerts) => {
   return alerts.reduce((acc, alert) => {

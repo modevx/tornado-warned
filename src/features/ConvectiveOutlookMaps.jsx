@@ -4,7 +4,6 @@ import {
   PROB_WIND_HAIL_STYLES,
   PROB_DAYS_4_8_STYLES,
 } from "constants/convective-outlooks";
-import { CanvasMap, USStateMap } from "components/D3Maps";
 import { rewindAlbersGeoPath } from "utils/geometry";
 import { useOutlookLayerById } from "services/convective-outlook-mapserver";
 
@@ -40,7 +39,7 @@ export const ProbabilisticTornadoMap = ({ probLayer, sigLayer }) => {
   return showProbFeatures ? (
     <FullHeightWidthContainer>
       <MapServerLayerName name={probLayerName} />
-      <USStateMap>
+      <ConusStatesMap>
         <g>
           <MappedProbTornadoFeatures features={probFeatures} />
 
@@ -48,7 +47,7 @@ export const ProbabilisticTornadoMap = ({ probLayer, sigLayer }) => {
             <MappedHatchedSigFeatures features={sigFeatures} />
           ) : null}
         </g>
-      </USStateMap>
+      </ConusStatesMap>
     </FullHeightWidthContainer>
   ) : null;
 };
@@ -65,7 +64,7 @@ export const ProbabilisticWindHailMap = ({ probLayer, sigLayer }) => {
   return showProbFeatures ? (
     <FullHeightWidthContainer>
       <MapServerLayerName name={probLayerName} />
-      <USStateMap>
+      <ConusStatesMap>
         <g>
           <MappedProbWindHailFeatures features={probFeatures} />
 
@@ -73,7 +72,7 @@ export const ProbabilisticWindHailMap = ({ probLayer, sigLayer }) => {
             <MappedHatchedSigFeatures features={sigFeatures} />
           ) : null}
         </g>
-      </USStateMap>
+      </ConusStatesMap>
     </FullHeightWidthContainer>
   ) : null;
 };
@@ -86,11 +85,11 @@ export const Days4_8_ProbabilisticMap = ({ probLayer }) => {
   return showProbFeatures ? (
     <FullHeightWidthContainer>
       <MapServerLayerName name={probLayerName} />
-      <USStateMap>
+      <ConusStatesMap>
         <g>
           <MappedProbDays4_8Features features={probFeatures} />
         </g>
-      </USStateMap>
+      </ConusStatesMap>
     </FullHeightWidthContainer>
   ) : null;
 };

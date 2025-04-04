@@ -1,11 +1,11 @@
 export const ALERT_COLORS = Object.freeze({
-  tornado_emergency: "#651fff",
-  particularly_dangerous_situation: "#f0f",
-  destructive_storm: "#00f",
-  tornado_warning: "#f00",
-  tornado_watch: "#ff0",
-  severe_storm_warning: "#f90",
-  severe_storm_watch: "#0f0",
+  TOREM: "#651fff",
+  PDS: "#f0f",
+  DESTRUCTIVE: "#00f",
+  TWR: "#f00",
+  TWT: "#ff0",
+  SWR: "#f90",
+  SWT: "#0f0",
 });
 export const NWS_PRODUCT_CODES = Object.freeze({
   PWO: "Public Severe Weather Outlook",

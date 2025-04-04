@@ -1,8 +1,6 @@
 import { Stats } from "react-daisyui";
 
 export const ActiveAlertCounts = ({ counts }) => {
-  console.log("ActiveAlertCounts: ", counts);
-
   // tag fields ALWAYS exist
   const tornadoEmergencies = counts?.["tornado emergency"];
   const pdsAlerts = counts?.["particularly dangerous situation"];

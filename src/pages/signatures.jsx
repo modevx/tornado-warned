@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import { PageLayout } from "components";
 import { useState } from "react";
-import { USStateMap } from "components/D3Maps";
+import { ConusStatesMap } from "components/_shared/Maps";
 import { albersGeoPath } from "utils/geometry";
 import {
   useTornadoSignaturesByDateRange,
@@ -61,7 +61,7 @@ const SignaturesScreen = () => {
         <div>
           {/* <Tooltip open={tooltipIsOpen} message="Tooltip works!" />; */}
           <h2 className="text-center">Tornado Vortex Signatures</h2>
-          <USStateMap>
+          <ConusStatesMap>
             {tornadoSigs && (
               <g>
                 {tvsByMxdv._0_50.map((signature) => {
@@ -116,11 +116,11 @@ const SignaturesScreen = () => {
                 })}
               </g>
             )}
-          </USStateMap>
+          </ConusStatesMap>
         </div>
         <div>
           <h2 className="text-center">Hail Signatures</h2>
-          <USStateMap>
+          <ConusStatesMap>
             {hailSigs && (
               <g>
                 {hailByMaxSize._0_1.map((signature) => {
@@ -185,7 +185,7 @@ const SignaturesScreen = () => {
                 })}
               </g>
             )}
-          </USStateMap>
+          </ConusStatesMap>
         </div>
       </div>
     </PageLayout>

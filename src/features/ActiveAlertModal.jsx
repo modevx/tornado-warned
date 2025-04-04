@@ -11,7 +11,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { Button, Card, Modal } from "react-daisyui";
 import AlbersTopoJSONMap from "json/topojson-albers-map.json";
 import { changeWfoToCityState, createImpactedAreasMap } from "utils/nws-alerts";
-import { USCountyMap } from "components/D3Maps";
+import { ConusCountiesMap } from "components/_shared/Maps";
 
 const { features: countyFeatures } = topojson.feature(
   AlbersTopoJSONMap,
@@ -170,7 +170,7 @@ export const AlertPolygonMap = ({ alert, color }) => {
 
   return (
     <AlertCardSubComponent>
-      <USCountyMap pathGen={extentPathGen}>
+      <ConusCountiesMap pathGen={extentPathGen}>
         <WarningPolygon
           color={color}
           feature={alert}
@@ -178,7 +178,7 @@ export const AlertPolygonMap = ({ alert, color }) => {
           winding={TurfRewind}
         />
         <AlertCountyLabels features={countyFeatures} pathGen={extentPathGen} />
-      </USCountyMap>
+      </ConusCountiesMap>
     </AlertCardSubComponent>
   );
 };

@@ -1,6 +1,6 @@
 import {
   isDestructiveStorm,
-  isPDS,
+  isPdsStorm,
   isTornadoEmergency,
 } from "utils/nws-alerts";
 import { ALERT_COLORS } from "constants/nws-alerts";
@@ -17,15 +17,15 @@ export const WarningPolygon = ({
   color,
   onClickCallback = undefined,
 }) => {
-  const isDestructiveStorm = isDestructiveStorm(alert);
-  const isPDS = isPDS(alert);
-  const isTornadoEmergency = isTornadoEmergency(alert);
-  const polygonColor = isTornadoEmergency
-    ? ALERT_COLORS.tornado_emergency
+  const isDestructive = isDestructiveStorm(alert);
+  const isPDS = isPdsStorm(alert);
+  const isEmergency = isTornadoEmergency(alert);
+  const polygonColor = isEmergency
+    ? ALERT_COLORS.TOREM
     : isPDS
-    ? ALERT_COLORS.particularly_dangerous_situation
-    : isDestructiveStorm
-    ? ALERT_COLORS.destructive_storm
+    ? ALERT_COLORS.PDS
+    : isDestructive
+    ? ALERT_COLORS.DESTRUCTIVE
     : color;
 
   return (
@@ -42,12 +42,12 @@ export const WarningPolygon = ({
 };
 
 export const WatchPolygon = ({ alert, color, onClickCallback = undefined }) => {
-  const isPDS = isPDS(alert);
-  const isDestructiveStorm = isDestructiveStorm(alert);
+  const isPDS = isPdsStorm(alert);
+  const isDestructive = isDestructiveStorm(alert);
   const polygonColor = isPDS
-    ? ALERT_COLORS.particularly_dangerous_situation
-    : isDestructiveStorm
-    ? ALERT_COLORS.destructive_storm
+    ? ALERT_COLORS.PDS
+    : isDestructive
+    ? ALERT_COLORS.DESTRUCTIVE
     : color;
   const watchGeometry = createWatchAlertGeometry(alert);
 

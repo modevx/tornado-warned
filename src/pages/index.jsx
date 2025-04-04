@@ -1,16 +1,9 @@
 import {
-  isDestructiveStorm,
-  isPDS,
-  isTornadoEmergency,
   countAlerts,
   countTaggedAlerts,
   filterAlertsByType,
 } from "utils/nws-alerts";
-import {
-  useActiveNwsAlertsByType,
-  useFakeNwsAlertsByType,
-  useAllActiveAlerts,
-} from "services/nws-alerts";
+import { useAllActiveAlerts } from "services/nws-alerts";
 import { useState } from "react";
 import { PageLayout } from "components";
 import { ActiveAlertMap } from "features/ActiveAlertMap";
@@ -28,7 +21,6 @@ import { CategoricalFeatureOutlines } from "features/ConvectiveOutlookMaps";
 import { WarningPolygons, WatchPolygons } from "features/ActiveAlertMap";
 import { ALERT_COLORS } from "constants/nws-alerts";
 
-import { albersUsaGeoPath } from "utils/geometry";
 import { ALERT_TYPES } from "constants/strings";
 
 const HomeScreen = () => {
@@ -48,6 +40,10 @@ const HomeScreen = () => {
   let filteredAlerts;
   let situationCounts;
   let countTotals;
+  let tornadoWarnings = [];
+  let tornadoWatches = [];
+  let stormWarnings = [];
+  let stormWatches = [];
 
   if (alerts) {
     alertCounts = countAlerts(alerts);
@@ -55,6 +51,14 @@ const HomeScreen = () => {
     situationCounts = countTaggedAlerts(alerts);
     countTotals = { ...alertCounts, ...situationCounts };
   }
+  if (filteredAlerts) {
+    tornadoWarnings = filteredAlerts?.[ALERT_TYPES.TWR];
+    tornadoWatches = filteredAlerts?.[ALERT_TYPES.TWT];
+    stormWarnings = filteredAlerts?.[ALERT_TYPES.SWR];
+    stormWatches = filteredAlerts?.[ALERT_TYPES.SWT];
+  }
+
+  if (filteredAlerts) console.log("filteredAlerts: ", filteredAlerts);
 
   return (
     <PageLayout>
@@ -66,7 +70,7 @@ const HomeScreen = () => {
       />
       <ActiveAlertCounts counts={countTotals && countTotals} />
       <div className="grid grid-cols-3">
-        {/* <ActiveAlertMap
+        <ActiveAlertMap
           tornadoWarnings={tornadoWarnings}
           tornadoWatches={tornadoWatches}
           stormWarnings={stormWarnings}
@@ -77,28 +81,28 @@ const HomeScreen = () => {
         <ConusStatesMap>
           <CategoricalFeatureOutlines features={day1features} />
           <WatchPolygons
-            alerts={tornadoWatches}
-            color={ALERT_COLORS.tornado_watch}
+            alerts={filteredAlerts?.[ALERT_TYPES.SWT]}
+            color={ALERT_COLORS.SWT}
             onClickCallback={showAlertModal}
           />
           <WatchPolygons
-            alerts={stormWatches}
-            color={ALERT_COLORS.severe_storm_watch}
+            alerts={filteredAlerts?.[ALERT_TYPES.TWT]}
+            color={ALERT_COLORS.TWT}
             onClickCallback={showAlertModal}
           />
           <WarningPolygons
-            alerts={stormWarnings}
-            color={ALERT_COLORS.severe_storm_warning}
+            alerts={filteredAlerts?.[ALERT_TYPES.SWR]}
+            color={ALERT_COLORS.SWR}
             onClickCallback={showAlertModal}
           />
           <WarningPolygons
-            alerts={tornadoWarnings}
-            color={ALERT_COLORS.tornado_warning}
+            alerts={filteredAlerts?.[ALERT_TYPES.TWR]}
+            color={ALERT_COLORS.TWR}
             onClickCallback={showAlertModal}
           />
-        </ConusStatesMap> */}
+        </ConusStatesMap>
       </div>
-      {/* <div className="my-2 grid gap-4 xl:grid-cols-4">
+      <div className="my-2 grid gap-4 xl:grid-cols-4">
         {tornadoWarnings?.map((alert) => (
           <ActiveAlertCard
             key={alert.id}
@@ -133,7 +137,7 @@ const HomeScreen = () => {
             showAlertModalFunc={showAlertModal}
           />
         ))}
-      </div> */}
+      </div>
     </PageLayout>
   );
 };
