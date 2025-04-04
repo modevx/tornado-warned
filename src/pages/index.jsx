@@ -19,7 +19,10 @@ import { ConusStatesMap } from "components/_shared/Maps";
 
 import { useOutlookLayerById } from "services/convective-outlook-mapserver";
 import { CategoricalFeatureOutlines } from "features/ConvectiveOutlookMaps";
-import { WarningPolygons, WatchPolygons } from "features/ActiveAlertMap";
+import {
+  WarningPolygons,
+  WatchPolygons,
+} from "components/nws_alerts/AlertPolygons";
 import { ALERT_COLORS } from "constants/nws-alerts";
 
 import { ALERT_TYPES } from "constants/strings";
@@ -85,63 +88,57 @@ const HomeScreen = () => {
 
         <ConusStatesMap>
           <CategoricalFeatureOutlines features={day1features} />
-          {/* <WatchPolygons
-            alerts={filteredAlerts?.[ALERT_TYPES.SWT]}
+          <WatchPolygons
+            alerts={stormWatches}
             color={ALERT_COLORS.SWT}
             onClickCallback={showAlertModal}
           />
           <WatchPolygons
-            alerts={filteredAlerts?.[ALERT_TYPES.TWT]}
+            alerts={tornadoWatches}
             color={ALERT_COLORS.TWT}
             onClickCallback={showAlertModal}
           />
           <WarningPolygons
-            alerts={filteredAlerts?.[ALERT_TYPES.SWR]}
+            alerts={stormWarnings}
             color={ALERT_COLORS.SWR}
             onClickCallback={showAlertModal}
           />
           <WarningPolygons
-            alerts={filteredAlerts?.[ALERT_TYPES.TWR]}
+            alerts={tornadoWarnings}
             color={ALERT_COLORS.TWR}
             onClickCallback={showAlertModal}
-          /> */}
+          />
         </ConusStatesMap>
       </div>
-      <div className="my-2 grid gap-4 xl:grid-cols-4">
-        {/* {tornadoWarnings?.map((alert) => (
+      <div className="my-2 grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+        {tornadoWarnings?.map((alert) => (
           <ActiveAlertCard
             key={alert.id}
             alert={alert}
             showAlertModalFunc={showAlertModal}
           />
-        ))} */}
-      </div>
-      <div className="my-2 grid gap-4 xl:grid-cols-4">
-        {/* {tornadoWatches?.map((alert) => (
+        ))}
+        {tornadoWatches?.map((alert) => (
           <ActiveAlertCard
             key={alert.id}
             alert={alert}
             showAlertModalFunc={showAlertModal}
           />
-        ))} */}
-      </div>
-      <div className="my-2 grid gap-4 xl:grid-cols-4">
-        {/* {stormWarnings?.map((alert) => (
+        ))}
+        {stormWarnings?.map((alert) => (
           <ActiveAlertCard
             key={alert.id}
             alert={alert}
             showAlertModalFunc={showAlertModal}
           />
-        ))} */}
-      </div>
-      <div className="my-2 grid gap-4 xl:grid-cols-4">
-        {/* {stormWatches?.map((alert) => (
+        ))}
+        {stormWatches?.map((alert) => (
           <ActiveAlertCard
             key={alert.id}
             alert={alert}
             showAlertModalFunc={showAlertModal}
           />
-        ))} */}
+        ))}
       </div>
     </PageLayout>
   );

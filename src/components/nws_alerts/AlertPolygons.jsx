@@ -69,3 +69,44 @@ export const WatchPolygon = ({ alert, color, onClickCallback = undefined }) => {
     />
   );
 };
+
+export const WarningPolygons = ({ alerts, color, onClickCallback }) => {
+  const hasFeatures = alerts?.length > 0;
+  return (
+    <>
+      {hasFeatures
+        ? alerts.map((alert) => {
+            return (
+              <WarningPolygon
+                key={alert.id}
+                alert={alert}
+                color={color}
+                onClickCallback={onClickCallback}
+              />
+            );
+          })
+        : null}
+    </>
+  );
+};
+
+export const WatchPolygons = ({ alerts, color, onClickCallback }) => {
+  const hasFeatures = alerts?.length > 0;
+
+  return (
+    <>
+      {hasFeatures
+        ? alerts.map((alert) => {
+            return (
+              <WatchPolygon
+                key={alert.id}
+                alert={alert}
+                color={color}
+                onClickCallback={onClickCallback}
+              />
+            );
+          })
+        : null}
+    </>
+  );
+};

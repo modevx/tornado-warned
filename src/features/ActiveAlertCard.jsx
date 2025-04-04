@@ -47,15 +47,15 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
   const isDestructive = isDestructiveStorm(alert);
 
   if (isEmergency) {
-    situation = ALERT_TAGS.tornado_emergency;
+    situation = ALERT_TAGS.TOREM;
     situationColor = ALERT_COLORS.TOREM;
   }
   if (isPDS) {
-    situation = ALERT_TAGS.particularly_dangerous_situation;
+    situation = ALERT_TAGS.PDS;
     situationColor = ALERT_COLORS.PDS;
   }
   if (isDestructive) {
-    situation = ALERT_TAGS.destructive_storm;
+    situation = ALERT_TAGS.DESTRUCTIVE;
     situationColor = ALERT_COLORS.DESTRUCTIVE;
   }
 
@@ -67,23 +67,8 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
   };
   const alertColor = alertColorMap[event];
 
-  const alertGeometry = isWarningEvent(event)
-    ? alert.geometry
-    : createWatchAlertGeometry(alert);
-
-  const fitExtentProjection = albersProjection.fitExtent(
-    // 975 x 610
-    [
-      [100, 100],
-      [875, 510],
-    ],
-    alertGeometry
-  );
-  const extentPathGen = albersGeoPath(fitExtentProjection);
-  const geometryColor = situationColor ?? alertColor;
-
   return (
-    <Component color={alertColor}>
+    <Component color={situationColor || alertColor}>
       <SituationTag situation={situation} color={situationColor} />
       <div className="flex justify-between">
         <SenderName senderName={senderName} />
@@ -106,45 +91,6 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
       <ThunderstormDamageThreat
         thunderstormDamageThreat={thunderstormDamageThreat}
       />
-      {/* <div className="h-full w-full">
-        {isWarningEvent(event) ? (
-          <WarningViewbox
-            color={geometryColor}
-            geometry={alertGeometry}
-            pathGen={extentPathGen}
-          />
-        ) : (
-          <WatchViewbox
-            color={geometryColor}
-            geometry={alertGeometry}
-            pathGen={extentPathGen}
-          />
-        )}
-      </div> */}
-      {/* <div className="h-full w-full"> */}
-      {/* <div> */}
-      {isWarningEvent(event) ? (
-        <ConusStatesMap pathGen={extentPathGen}>
-          <AlertPolygon
-            color={geometryColor}
-            geometry={alertGeometry}
-            pathGen={extentPathGen}
-          />
-        </ConusStatesMap>
-      ) : (
-        <ConusStatesMap pathGen={extentPathGen}>
-          <AlertPolygon
-            color={geometryColor}
-            geometry={alertGeometry}
-            pathGen={extentPathGen}
-          />
-        </ConusStatesMap>
-      )}
-      {/* </div> */}
-      {/* <div>
-        {thunderstormDamageThreat ? <p>{thunderstormDamageThreat}</p> : null}
-        {tornadoDetection ? <p>{tornadoDetection}</p> : null}
-      </div> */}
     </Component>
   );
 };
@@ -191,19 +137,4 @@ const ThunderstormDamageThreat = ({ thunderstormDamageThreat }) => {
 };
 const TornadoDetection = ({ tornadoDetection }) => {
   return tornadoDetection ? <p>{tornadoDetection}</p> : null;
-};
-const WarningViewbox = ({ color, geometry, pathGen }) => {
-  return (
-    <ConusCountiesMap pathGen={pathGen}>
-      <AlertPolygon color={color} geometry={geometry} pathGen={pathGen} />
-    </ConusCountiesMap>
-  );
-};
-const WarningZoomedViewbox = () => {};
-const WatchViewbox = ({ color, geometry, pathGen }) => {
-  return (
-    <ConusStatesMap pathGen={pathGen}>
-      <AlertPolygon color={color} geometry={geometry} pathGen={pathGen} />
-    </ConusStatesMap>
-  );
 };

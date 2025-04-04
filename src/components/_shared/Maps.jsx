@@ -39,7 +39,7 @@ export const UsaStatesMap = ({ children, pathGen = albersUsaGeoPath }) => {
 
 const Basemap = ({ children, features, pathGen }) => {
   return (
-    <div className="inline-block h-full w-full">
+    <div className=" overflow-clip" style={{ overflowClipMargin: 10 }}>
       <svg viewBox="0 0 975 610" xmlns="http://www.w3.org/2000/svg">
         <g>
           <path d={pathGen(features)} stroke="white" fill="grey" />

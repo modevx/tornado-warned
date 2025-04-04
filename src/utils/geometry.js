@@ -1,7 +1,6 @@
 import turfRewind from "@turf/rewind";
 import * as topojsonClient from "topojson-client";
 import { geoAlbers, geoAlbersUsa, geoPath } from "d3";
-
 import albersTopojson from "json/topojson-albers-map.json";
 
 export const albersCountiesGeoJson = topojsonClient.feature(

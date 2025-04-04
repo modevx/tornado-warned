@@ -1,7 +1,7 @@
 import { ALERT_COLORS } from "constants/nws-alerts";
 import {
-  WatchPolygon,
-  WarningPolygon,
+  WatchPolygons,
+  WarningPolygons,
 } from "components/nws_alerts/AlertPolygons";
 
 import { ConusStatesMap } from "components/_shared/Maps";
@@ -40,44 +40,3 @@ export const ActiveAlertMap = ({
 };
 
 // D3 CENTROID --> const [centX, centY] = d3GeoPath.centroid(alert.geometry);
-
-export const WarningPolygons = ({ alerts, color, onClickCallback }) => {
-  const hasFeatures = alerts?.length > 0;
-  return (
-    <>
-      {hasFeatures
-        ? alerts.map((alert) => {
-            return (
-              <WarningPolygon
-                key={alert.id}
-                alert={alert}
-                color={color}
-                onClickCallback={onClickCallback}
-              />
-            );
-          })
-        : null}
-    </>
-  );
-};
-
-export const WatchPolygons = ({ alerts, color, onClickCallback }) => {
-  const hasFeatures = alerts?.length > 0;
-
-  return (
-    <>
-      {hasFeatures
-        ? alerts.map((alert) => {
-            return (
-              <WatchPolygon
-                key={alert.id}
-                alert={alert}
-                color={color}
-                onClickCallback={onClickCallback}
-              />
-            );
-          })
-        : null}
-    </>
-  );
-};
