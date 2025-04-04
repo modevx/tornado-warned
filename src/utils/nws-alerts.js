@@ -47,7 +47,7 @@ export const parseAlertDescription = (alert) => {
 };
 export const countAlerts = (alerts) => {
   return alerts.reduce((acc, alert) => {
-    const eventType = alert.properties.event.toLowerCase();
+    const eventType = alert.properties.event;
     acc[eventType] = (acc[eventType] || 0) + 1;
     return acc;
   }, {});

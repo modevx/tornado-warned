@@ -41,36 +41,32 @@ const HomeScreen = () => {
   const closeAlertModal = () => {
     setAlertModalIsOpen(false);
   };
-
   const { data: alerts } = useAllActiveAlerts();
-
   const { data: day1features } = useOutlookLayerById("1");
 
   let alertCounts;
   let filteredAlerts;
   let situationCounts;
+  let countTotals;
 
   if (alerts) {
     alertCounts = countAlerts(alerts);
     filteredAlerts = filterAlertsByType(alerts);
     situationCounts = countTaggedAlerts(alerts);
+    countTotals = { ...alertCounts, ...situationCounts };
   }
-
-  console.log("alertCounts: ", alertCounts);
-  console.log("filteredAlerts: ", filteredAlerts);
-  console.log("situationCounts: ", situationCounts);
 
   return (
     <PageLayout>
-      {/* <ActiveAlertModal
+      <ActiveAlertModal
         alert={alertModalData?.alert}
         color={alertModalData?.color}
         isOpen={alertModalIsOpen}
         closeFunc={closeAlertModal}
       />
-      <ActiveAlertCounts alerts={allAlerts} />
+      <ActiveAlertCounts counts={countTotals && countTotals} />
       <div className="grid grid-cols-3">
-        <ActiveAlertMap
+        {/* <ActiveAlertMap
           tornadoWarnings={tornadoWarnings}
           tornadoWatches={tornadoWatches}
           stormWarnings={stormWarnings}
@@ -100,8 +96,8 @@ const HomeScreen = () => {
             color={ALERT_COLORS.tornado_warning}
             onClickCallback={showAlertModal}
           />
-        </ConusStatesMap>
-      </div> */}
+        </ConusStatesMap> */}
+      </div>
       {/* <div className="my-2 grid gap-4 xl:grid-cols-4">
         {tornadoWarnings?.map((alert) => (
           <ActiveAlertCard
