@@ -9,6 +9,7 @@ import {
   rewindAlbersGeoPath,
   createWatchAlertGeometry,
 } from "utils/geometry";
+import { rgb } from "d3";
 
 export const AlertPolygon = ({ color, geometry, pathGen, callback }) => {
   return (
@@ -40,9 +41,9 @@ export const WarningPolygon = ({
     <path
       d={albersGeoPath(alert.geometry)}
       fill={polygonColor}
-      stroke={polygonColor}
+      stroke={rgb(0, 0, 0, 0.5)}
       fillOpacity={0.65}
-      strokeOpacity={0.85}
+      // strokeOpacity={0.85}
       strokeWidth={1}
       onClick={() => onClickCallback({ alert, color: polygonColor })}
     />

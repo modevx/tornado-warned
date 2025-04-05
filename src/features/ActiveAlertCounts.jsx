@@ -12,7 +12,7 @@ export const ActiveAlertCounts = ({ counts }) => {
   const stormWatches = counts?.["Severe Thunderstorm Watch"];
 
   return (
-    <Stats className="flex">
+    <Stats vertical>
       {tornadoEmergencies > 0 && (
         <AlertStatItem
           count={tornadoEmergencies}

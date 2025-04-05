@@ -17,8 +17,8 @@ export const CategoricalFeatureBoundries = ({ features }) => {
             key={key}
             d={rewindAlbersGeoPath(feature)}
             stroke={color}
-            fillOpacity={0.2}
-            strokeWidth={2}
+            fillOpacity={0.15}
+            strokeWidth={3}
           />
         );
       })}

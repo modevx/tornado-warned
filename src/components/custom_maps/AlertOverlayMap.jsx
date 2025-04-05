@@ -21,9 +21,9 @@ export const AlertOverlayMap = ({ categoricalFeatures, alerts }) => {
 
   return (
     <ConusStatesMap>
+      <WatchPolygons alerts={stormWatches} color={ALERT_COLORS.SWT} />
+      <WatchPolygons alerts={tornadoWatches} color={ALERT_COLORS.TWT} />
       <CategoricalFeatureBoundries features={categoricalFeatures} />
-      {/* <WatchPolygons alerts={stormWatches} color={ALERT_COLORS.SWT} />
-      <WatchPolygons alerts={tornadoWatches} color={ALERT_COLORS.TWT} /> */}
       <WarningPolygons alerts={stormWarnings} color={ALERT_COLORS.SWR} />
       <WarningPolygons alerts={tornadoWarnings} color={ALERT_COLORS.TWR} />
     </ConusStatesMap>

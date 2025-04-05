@@ -76,23 +76,28 @@ const HomeScreen = () => {
         isOpen={alertModalIsOpen}
         closeFunc={closeAlertModal}
       />
-      <ActiveAlertCounts counts={countTotals} />
-      <div className="grid grid-cols-3">
-        <ActiveAlertMap
+
+      {/* <ActiveAlertMap
           tornadoWarnings={tornadoWarnings}
           tornadoWatches={tornadoWatches}
           stormWarnings={stormWarnings}
           stormWatches={stormWatches}
           showAlertModalFunc={showAlertModal}
-        />
+        /> */}
 
-        <CategoricalMap catLayer={MAPSERVER_LAYERS.day_1_categorical} />
-
-        <AlertOverlayMap
-          categoricalFeatures={day1features}
-          alerts={filteredAlerts}
-        />
+      {/* <CategoricalMap catLayer={MAPSERVER_LAYERS.day_1_categorical} /> */}
+      <div className="flex flex-row">
+        <div className="flex-1">
+          <AlertOverlayMap
+            categoricalFeatures={day1features}
+            alerts={filteredAlerts}
+          />
+        </div>
+        <div className="content-center mx-20">
+          <ActiveAlertCounts counts={countTotals} />
+        </div>
       </div>
+
       <div className="my-2 grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
         {tornadoWarnings?.map((alert) => (
           <ActiveAlertCard
