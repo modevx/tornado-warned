@@ -1,3 +1,7 @@
+import { useState } from "react";
+
+import { PageLayout } from "components";
+
 import {
   countAlerts,
   countTaggedAlerts,
@@ -5,27 +9,24 @@ import {
   filterTaggedAlerts,
 } from "utils/nws-alerts";
 import { useAllActiveAlerts } from "services/nws-alerts";
-import { useState } from "react";
-import { PageLayout } from "components";
+
 import { ActiveAlertMap } from "features/ActiveAlertMap";
 import { ActiveAlertCard } from "features/ActiveAlertCard";
 import { ActiveAlertModal } from "features/ActiveAlertModal";
 import { ActiveAlertCounts } from "features/ActiveAlertCounts";
-
-import { CategoricalMap } from "features/ConvectiveOutlookMaps";
-import { MAPSERVER_LAYERS } from "constants/convective-outlooks";
-
-import { ConusStatesMap } from "components/_shared/Maps";
-
-import { useOutlookLayerById } from "services/convective-outlook-mapserver";
-import { CategoricalFeatureOutlines } from "features/ConvectiveOutlookMaps";
 import {
   WarningPolygons,
   WatchPolygons,
 } from "components/nws_alerts/AlertPolygons";
-import { ALERT_COLORS } from "constants/nws-alerts";
+import { ALERT_COLORS, ALERT_TYPES } from "constants/nws-alerts";
 
-import { ALERT_TYPES } from "constants/strings";
+import { ConusStatesMap } from "components/_shared/Maps";
+import { CategoricalMap } from "features/ConvectiveOutlookMaps";
+import { AlertOverlayMap } from "components/custom_maps/AlertOverlayMap";
+
+import { MAPSERVER_LAYERS } from "constants/convective-outlooks";
+import { useOutlookLayerById } from "services/convective-outlook-mapserver";
+import { CategoricalFeatureBoundries } from "components/convective_outlooks/CategoricalFeatureBoundries";
 
 const HomeScreen = () => {
   const [alertModalIsOpen, setAlertModalIsOpen] = useState(false);
@@ -75,7 +76,7 @@ const HomeScreen = () => {
         isOpen={alertModalIsOpen}
         closeFunc={closeAlertModal}
       />
-      <ActiveAlertCounts counts={countTotals && countTotals} />
+      <ActiveAlertCounts counts={countTotals} />
       <div className="grid grid-cols-3">
         <ActiveAlertMap
           tornadoWarnings={tornadoWarnings}
@@ -84,31 +85,13 @@ const HomeScreen = () => {
           stormWatches={stormWatches}
           showAlertModalFunc={showAlertModal}
         />
+
         <CategoricalMap catLayer={MAPSERVER_LAYERS.day_1_categorical} />
 
-        <ConusStatesMap>
-          <CategoricalFeatureOutlines features={day1features} />
-          <WatchPolygons
-            alerts={stormWatches}
-            color={ALERT_COLORS.SWT}
-            onClickCallback={showAlertModal}
-          />
-          <WatchPolygons
-            alerts={tornadoWatches}
-            color={ALERT_COLORS.TWT}
-            onClickCallback={showAlertModal}
-          />
-          <WarningPolygons
-            alerts={stormWarnings}
-            color={ALERT_COLORS.SWR}
-            onClickCallback={showAlertModal}
-          />
-          <WarningPolygons
-            alerts={tornadoWarnings}
-            color={ALERT_COLORS.TWR}
-            onClickCallback={showAlertModal}
-          />
-        </ConusStatesMap>
+        <AlertOverlayMap
+          categoricalFeatures={day1features}
+          alerts={filteredAlerts}
+        />
       </div>
       <div className="my-2 grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
         {tornadoWarnings?.map((alert) => (

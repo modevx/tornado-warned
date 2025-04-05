@@ -5,6 +5,10 @@ import {
   PROB_DAYS_4_8_STYLES,
 } from "constants/convective-outlooks";
 import { rewindAlbersGeoPath } from "utils/geometry";
+import {
+  createConvectiveFeatureKey,
+  hasConvectiveFeatures,
+} from "utils/convective-outlooks";
 import { useOutlookLayerById } from "services/convective-outlook-mapserver";
 
 import { albersGeoPath, albersStatesGeoJson } from "utils/geometry";
@@ -143,19 +147,7 @@ const CategoricalFeatures = ({ features }) => {
     </g>
   ) : null;
 };
-export const CategoricalFeatureOutlines = ({ features }) => {
-  return hasConvectiveFeatures(features) ? (
-    <g>
-      {features.map((feature) => {
-        const key = createConvectiveFeatureKey(feature);
-        const color = CAT_OUTLOOK_STYLES[feature.properties.dn].color;
-        return (
-          <ConvectiveFeatureOutline key={key} color={color} feature={feature} />
-        );
-      })}
-    </g>
-  ) : null;
-};
+
 // PROBABILISTIC
 const MappedProbTornadoFeatures = ({ features }) => {
   return features.map((feature) => {
@@ -232,25 +224,5 @@ const ConvectiveFeature = ({ feature, color }) => (
     strokeWidth={3}
   />
 );
-const ConvectiveFeatureOutline = ({ feature, color }) => (
-  <path
-    d={rewindAlbersGeoPath(feature)}
-    stroke={color}
-    fillOpacity={0.2}
-    strokeWidth={2}
-  />
-);
+
 // ! ---> UTILS
-const createConvectiveFeatureKey = (feature) => {
-  return `${feature.properties.idp_source}-${feature.id}`;
-};
-const hasConvectiveFeatures = (features) => {
-  // SPC MapServer returns single feature obj with [dn:0] if no convective features
-  let isValidFeatures = false;
-
-  if (features) {
-    if (features[0].properties.dn > 0) isValidFeatures = true;
-  }
-
-  return isValidFeatures;
-};

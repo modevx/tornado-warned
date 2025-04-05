@@ -1,0 +1,27 @@
+import { rewindAlbersGeoPath } from "utils/geometry";
+import { CAT_OUTLOOK_STYLES } from "constants/convective-outlooks";
+import {
+  createConvectiveFeatureKey,
+  hasConvectiveFeatures,
+} from "utils/convective-outlooks";
+
+export const CategoricalFeatureBoundries = ({ features }) => {
+  return hasConvectiveFeatures(features) ? (
+    <g>
+      {features.map((feature) => {
+        const key = createConvectiveFeatureKey(feature);
+        const color = CAT_OUTLOOK_STYLES[feature.properties.dn].color;
+
+        return (
+          <path
+            key={key}
+            d={rewindAlbersGeoPath(feature)}
+            stroke={color}
+            fillOpacity={0.2}
+            strokeWidth={2}
+          />
+        );
+      })}
+    </g>
+  ) : null;
+};
