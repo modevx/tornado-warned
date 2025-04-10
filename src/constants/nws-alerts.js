@@ -11,7 +11,7 @@ export const NWS_PRODUCT_CODES = Object.freeze({
   TOW: "Tornado Warning",
   TOA: "Tornado Watch",
   SVW: "Severe Thunderstorm Warning",
-  SVW: "Severe Thunderstorm Watch",
+  SVA: "Severe Thunderstorm Watch",
   PWO: "Public Severe Weather Outlook",
   SPS: "Special Weather Statement",
   SVS: "Severe Weather Statement",
