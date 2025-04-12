@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { PageLayout } from "components";
+import { PageLayout } from "components/_shared/PageLayout";
 
 import {
   countAlerts,
@@ -18,7 +18,8 @@ import {
   WarningPolygons,
   WatchPolygons,
 } from "components/nws_alerts/AlertPolygons";
-import { ALERT_COLORS, ALERT_TYPES } from "constants/nws-alerts";
+import { ALERT_TYPES } from "constants/nws-alerts";
+import { ALERT_COLORS } from "styles/nws-alert-colors";
 
 import { ConusStatesMap } from "components/_shared/Maps";
 import { CategoricalMap } from "features/ConvectiveOutlookMaps";
@@ -59,10 +60,10 @@ const HomeScreen = () => {
     filteredTaggedAlerts = filterTaggedAlerts(alerts);
   }
   if (filteredAlerts) {
-    tornadoWarnings = filteredAlerts?.[ALERT_TYPES.TWR];
-    tornadoWatches = filteredAlerts?.[ALERT_TYPES.TWT];
-    stormWarnings = filteredAlerts?.[ALERT_TYPES.SWR];
-    stormWatches = filteredAlerts?.[ALERT_TYPES.SWT];
+    tornadoWarnings = filteredAlerts?.[ALERT_TYPES.TOW];
+    tornadoWatches = filteredAlerts?.[ALERT_TYPES.TOA];
+    stormWarnings = filteredAlerts?.[ALERT_TYPES.SVW];
+    stormWatches = filteredAlerts?.[ALERT_TYPES.SVA];
   }
 
   if (filteredTaggedAlerts)

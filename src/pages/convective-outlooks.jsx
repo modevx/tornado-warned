@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "react-daisyui";
-import { PageLayout } from "components";
+import { PageLayout } from "components/_shared/PageLayout";
 import { MAPSERVER_LAYERS } from "constants/convective-outlooks";
 import {
   CategoricalMap,

@@ -1,4 +1,4 @@
-import { PageLayout } from "components";
+import { PageLayout } from "components/_shared/PageLayout";
 import { useEffect, useState } from "react";
 import {
   getFirstTornadoEvent,
