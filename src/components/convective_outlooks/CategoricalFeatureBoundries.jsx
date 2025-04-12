@@ -1,5 +1,5 @@
 import { rewindAlbersGeoPath } from "utils/geometry";
-import { CAT_OUTLOOK_STYLES } from "constants/convective-outlooks";
+import { CAT_OUTLOOK_STYLES } from "styles/convective-outlook-styles";
 import {
   createConvectiveFeatureKey,
   hasConvectiveFeatures,

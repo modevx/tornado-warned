@@ -4,7 +4,7 @@ import NextImage from "next/image";
 import TurfRewind from "@turf/rewind";
 import { STATES_ABBR_NAME_MAP } from "constants/states-map";
 import { twMerge } from "tailwind-merge";
-import { DayJSDateTime } from "components";
+import { DayJSDateTime } from "components/_shared/DayJSDateTime";
 import { FaTornado } from "react-icons/fa6";
 import * as topojson from "topojson-client";
 import { AiFillCloseCircle } from "react-icons/ai";

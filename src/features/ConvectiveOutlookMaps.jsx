@@ -3,7 +3,7 @@ import {
   PROB_TORNADO_STYLES,
   PROB_WIND_HAIL_STYLES,
   PROB_DAYS_4_8_STYLES,
-} from "constants/convective-outlooks";
+} from "styles/convective-outlook-styles";
 import { rewindAlbersGeoPath } from "utils/geometry";
 import {
   createConvectiveFeatureKey,
@@ -22,13 +22,13 @@ export const CategoricalMap = ({ catLayer }) => {
   if (features) showConvFeatures = hasConvectiveFeatures(features);
 
   return showConvFeatures ? (
-    // <FullHeightWidthContainer>
-    // <MapServerLayerName name={name} />
-    <ConusStatesMap>
-      <CategoricalFeatures features={features} />
-    </ConusStatesMap>
-  ) : // </FullHeightWidthContainer>
-  null;
+    <FullHeightWidthContainer>
+      <MapServerLayerName name={name} />
+      <ConusStatesMap>
+        <CategoricalFeatures features={features} />
+      </ConusStatesMap>
+    </FullHeightWidthContainer>
+  ) : null;
 };
 export const ProbabilisticTornadoMap = ({ probLayer, sigLayer }) => {
   const { id: probLayerId, name: probLayerName } = probLayer;
