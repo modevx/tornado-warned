@@ -3,7 +3,7 @@ import {
   isPdsStorm,
   isTornadoEmergency,
 } from "utils/nws-alerts";
-import { ALERT_COLORS } from "constants/nws-alerts";
+import { ALERT_COLORS } from "styles/nws-alert-colors";
 import {
   albersGeoPath,
   rewindAlbersGeoPath,

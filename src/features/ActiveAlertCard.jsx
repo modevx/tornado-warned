@@ -5,7 +5,8 @@ import {
   isTornadoEmergency,
   isWarningEvent,
 } from "utils/nws-alerts";
-import { ALERT_COLORS, ALERT_TAGS } from "constants/nws-alerts";
+import { ALERT_TAGS } from "constants/nws-alerts";
+import { ALERT_COLORS } from "styles/nws-alert-colors";
 import {
   AlertPolygon,
   WarningPolygon,
@@ -60,10 +61,10 @@ export const ActiveAlertCard = ({ alert, showAlertModalFunc }) => {
   }
 
   const alertColorMap = {
-    "Tornado Warning": ALERT_COLORS.TWR,
-    "Tornado Watch": ALERT_COLORS.TWT,
-    "Severe Thunderstorm Warning": ALERT_COLORS.SWR,
-    "Severe Thunderstorm Watch": ALERT_COLORS.SWT,
+    "Tornado Warning": ALERT_COLORS.TOW,
+    "Tornado Watch": ALERT_COLORS.TOA,
+    "Severe Thunderstorm Warning": ALERT_COLORS.SVW,
+    "Severe Thunderstorm Watch": ALERT_COLORS.SVA,
   };
   const alertColor = alertColorMap[event];
 
