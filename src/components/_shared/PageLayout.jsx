@@ -4,7 +4,8 @@ import { useCallback, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Drawer, Menu, Navbar } from "react-daisyui";
 
-import { Footer, Header } from "components";
+import { Header } from "components/_shared/Header";
+import { Footer } from "components/_shared/Footer";
 
 export const PageLayout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
