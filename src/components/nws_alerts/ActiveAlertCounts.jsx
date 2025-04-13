@@ -1,59 +1,60 @@
 import { Stats } from "react-daisyui";
+import { ALERT_TAGS, ALERT_TYPES } from "constants/nws-alerts";
 
 export const ActiveAlertCounts = ({ counts }) => {
   // tag fields ALWAYS exist
-  const tornadoEmergencies = counts?.["tornado emergency"];
-  const pdsAlerts = counts?.["particularly dangerous situation"];
-  const destructiveStorms = counts?.["destructive storm"];
+  const toremAlertsCount = counts?.[ALERT_TAGS.TOREM];
+  const pdsAlertsCount = counts?.[ALERT_TAGS.PDS];
+  const destructiveAlertsCount = counts?.[ALERT_TAGS.DESTRUCTIVE];
   // alert fields ONLY exist when > 0
-  const tornadoWarnings = counts?.["Tornado Warning"];
-  const tornadoWatches = counts?.["Tornado Watch"];
-  const stormWarnings = counts?.["Severe Thunderstorm Warning"];
-  const stormWatches = counts?.["Severe Thunderstorm Watch"];
+  const towAlertsCount = counts?.[ALERT_TYPES.TOW];
+  const toaAlertscount = counts?.[ALERT_TYPES.TOA];
+  const svwAlertsCount = counts?.[ALERT_TYPES.SVW];
+  const svaAlertsCount = counts?.[ALERT_TYPES.SVA];
 
   return (
     <Stats vertical>
-      {tornadoEmergencies > 0 && (
+      {toremAlertsCount > 0 && (
         <AlertStatItem
-          count={tornadoEmergencies}
+          count={toremAlertsCount}
           color="#651fff"
           title="TOR EMERGENCY"
         />
       )}
-      {pdsAlerts > 0 && (
-        <AlertStatItem count={pdsAlerts} color="#f0f" title="PDS" />
+      {pdsAlertsCount > 0 && (
+        <AlertStatItem count={pdsAlertsCount} color="#f0f" title="PDS" />
       )}
-      {destructiveStorms > 0 && (
+      {destructiveAlertsCount > 0 && (
         <AlertStatItem
-          count={destructiveStorms}
+          count={destructiveAlertsCount}
           color="#00f"
           title="DESTRUCTIVE"
         />
       )}
-      {tornadoWarnings && (
+      {towAlertsCount && (
         <AlertStatItem
-          count={tornadoWarnings}
+          count={towAlertsCount}
           color="red"
           title="TOR WARNINGS"
         />
       )}
-      {tornadoWatches && (
+      {toaAlertscount && (
         <AlertStatItem
-          count={tornadoWatches}
+          count={toaAlertscount}
           color="yellow"
           title="TOR WATCHES"
         />
       )}
-      {stormWarnings && (
+      {svwAlertsCount && (
         <AlertStatItem
-          count={stormWarnings}
+          count={svwAlertsCount}
           color="orange"
           title="STM WARNINGS"
         />
       )}
-      {stormWatches && (
+      {svaAlertsCount && (
         <AlertStatItem
-          count={stormWatches}
+          count={svaAlertsCount}
           color="limegreen"
           title="STM WATCHES"
         />

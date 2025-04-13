@@ -7,7 +7,7 @@ import {
   ProbabilisticTornadoMap,
   ProbabilisticWindHailMap,
   Days4_8_ProbabilisticMap,
-} from "features/ConvectiveOutlookMaps";
+} from "components/convective_outlooks/ConvectiveOutlookMaps";
 
 const ConvectiveOutlookScreen = () => {
   const [isOpen, setIsOpen] = useState(false);

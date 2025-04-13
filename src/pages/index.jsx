@@ -10,10 +10,10 @@ import {
 } from "utils/nws-alerts";
 import { useAllActiveAlerts } from "services/nws-alerts";
 
-import { ActiveAlertMap } from "features/ActiveAlertMap";
-import { ActiveAlertCard } from "features/ActiveAlertCard";
-import { ActiveAlertModal } from "features/ActiveAlertModal";
-import { ActiveAlertCounts } from "features/ActiveAlertCounts";
+import { ActiveAlertMap } from "components/nws_alerts/ActiveAlertMap";
+import { ActiveAlertCard } from "components/nws_alerts/ActiveAlertCard";
+import { ActiveAlertCounts } from "components/nws_alerts/ActiveAlertCounts";
+import { ActiveAlertModal } from "components/nws_alerts/ActiveAlertModal";
 import {
   WarningPolygons,
   WatchPolygons,
@@ -22,7 +22,7 @@ import { ALERT_TYPES } from "constants/nws-alerts";
 import { ALERT_COLORS } from "styles/nws-alert-colors";
 
 import { ConusStatesMap } from "components/_shared/Maps";
-import { CategoricalMap } from "features/ConvectiveOutlookMaps";
+import { CategoricalMap } from "components/convective_outlooks/ConvectiveOutlookMaps";
 import { AlertOverlayMap } from "components/custom_maps/AlertOverlayMap";
 
 import { MAPSERVER_LAYERS } from "constants/convective-outlooks";
