@@ -78,15 +78,15 @@ const HomeScreen = () => {
         closeFunc={closeAlertModal}
       />
 
-      {/* <ActiveAlertMap
-          tornadoWarnings={tornadoWarnings}
-          tornadoWatches={tornadoWatches}
-          stormWarnings={stormWarnings}
-          stormWatches={stormWatches}
-          showAlertModalFunc={showAlertModal}
-        /> */}
+      <ActiveAlertMap
+        tornadoWarnings={tornadoWarnings}
+        tornadoWatches={tornadoWatches}
+        stormWarnings={stormWarnings}
+        stormWatches={stormWatches}
+        showAlertModalFunc={showAlertModal}
+      />
 
-      {/* <CategoricalMap catLayer={MAPSERVER_LAYERS.day_1_categorical} /> */}
+      <CategoricalMap catLayer={MAPSERVER_LAYERS.day_1_categorical} />
       <div className="flex flex-row">
         <div className="flex-1">
           <AlertOverlayMap
