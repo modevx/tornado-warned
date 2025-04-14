@@ -41,10 +41,7 @@ export const WarningPolygon = ({
     <path
       d={albersGeoPath(alert.geometry)}
       fill={polygonColor}
-      stroke={rgb(0, 0, 0, 0.5)}
-      fillOpacity={0.65}
-      // strokeOpacity={0.85}
-      strokeWidth={1}
+      stroke={"black"}
       onClick={() => onClickCallback({ alert, color: polygonColor })}
     />
   );
@@ -62,10 +59,7 @@ export const WatchPolygon = ({ alert, color, onClickCallback = undefined }) => {
     <path
       d={albersGeoPath(watchGeometry)}
       fill={polygonColor}
-      stroke={polygonColor}
       fillOpacity={0.5}
-      strokeOpacity={0.75}
-      strokeWidth={0.5}
       onClick={() => onClickCallback({ alert, color: polygonColor })}
     />
   );

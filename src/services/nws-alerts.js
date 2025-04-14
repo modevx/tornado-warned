@@ -4,7 +4,7 @@ import { createHTTPClient } from "./create-http-client";
 // ! --- CONSTANTS
 
 const ERROR_TITLE = "/// ERROR: National Weather Service API Web Service ///";
-const FAKE_ALERTS = {
+export const FAKE_ALERTS = {
   "Tornado Warning": [
     {
       id: "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.8dbde7755cdb40ba896e8ed6d7bb860c285b6775.001.1",

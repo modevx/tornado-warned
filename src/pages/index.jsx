@@ -8,7 +8,7 @@ import {
   filterAlertsByType,
   filterTaggedAlerts,
 } from "utils/nws-alerts";
-import { useAllActiveAlerts } from "services/nws-alerts";
+import { FAKE_ALERTS, useAllActiveAlerts } from "services/nws-alerts";
 
 import { ActiveAlertMap } from "components/nws_alerts/ActiveAlertMap";
 import { ActiveAlertCard } from "components/nws_alerts/ActiveAlertCard";
@@ -78,15 +78,15 @@ const HomeScreen = () => {
         closeFunc={closeAlertModal}
       />
 
-      <ActiveAlertMap
+      {/* <ActiveAlertMap
         tornadoWarnings={tornadoWarnings}
         tornadoWatches={tornadoWatches}
         stormWarnings={stormWarnings}
         stormWatches={stormWatches}
         showAlertModalFunc={showAlertModal}
-      />
+      /> */}
 
-      <CategoricalMap catLayer={MAPSERVER_LAYERS.day_1_categorical} />
+      {/* <CategoricalMap catLayer={MAPSERVER_LAYERS.day_1_categorical} /> */}
       <div className="flex flex-row">
         <div className="flex-1">
           <AlertOverlayMap
@@ -128,6 +128,34 @@ const HomeScreen = () => {
             showAlertModalFunc={showAlertModal}
           />
         ))}
+        {/* {FAKE_ALERTS[ALERT_TYPES.TOW].map((alert) => (
+          <ActiveAlertCard
+            key={alert.id}
+            alert={alert}
+            showAlertModalFunc={showAlertModal}
+          />
+        ))}
+        {FAKE_ALERTS[ALERT_TYPES.TOA].map((alert) => (
+          <ActiveAlertCard
+            key={alert.id}
+            alert={alert}
+            showAlertModalFunc={showAlertModal}
+          />
+        ))}
+        {FAKE_ALERTS[ALERT_TYPES.SVW].map((alert) => (
+          <ActiveAlertCard
+            key={alert.id}
+            alert={alert}
+            showAlertModalFunc={showAlertModal}
+          />
+        ))}
+        {FAKE_ALERTS[ALERT_TYPES.SVA].map((alert) => (
+          <ActiveAlertCard
+            key={alert.id}
+            alert={alert}
+            showAlertModalFunc={showAlertModal}
+          />
+        ))} */}
       </div>
     </PageLayout>
   );
