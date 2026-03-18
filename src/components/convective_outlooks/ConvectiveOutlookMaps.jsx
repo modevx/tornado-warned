@@ -1,14 +1,6 @@
-import {
-  CAT_OUTLOOK_STYLES,
-  PROB_TORNADO_STYLES,
-  PROB_WIND_HAIL_STYLES,
-  PROB_DAYS_4_8_STYLES,
-} from "styles/convective-outlook-styles";
+import { CAT_OUTLOOK_STYLES, PROB_TORNADO_STYLES, PROB_WIND_HAIL_STYLES, PROB_DAYS_4_8_STYLES } from "styles/convective-outlook-styles";
 import { rewindAlbersGeoPath } from "utils/geometry";
-import {
-  createConvectiveFeatureKey,
-  hasConvectiveFeatures,
-} from "utils/convective-outlooks";
+import { createConvectiveFeatureKey, hasConvectiveFeatures } from "utils/convective-outlooks";
 import { useOutlookLayerById } from "services/convective-outlook-mapserver";
 
 import { albersGeoPath, albersStatesGeoJson } from "utils/geometry";
@@ -47,9 +39,7 @@ export const ProbabilisticTornadoMap = ({ probLayer, sigLayer }) => {
         <g>
           <MappedProbTornadoFeatures features={probFeatures} />
 
-          {showSigFeatures ? (
-            <MappedHatchedSigFeatures features={sigFeatures} />
-          ) : null}
+          {showSigFeatures ? <MappedHatchedSigFeatures features={sigFeatures} /> : null}
         </g>
       </ConusStatesMap>
     </FullHeightWidthContainer>
@@ -72,9 +62,7 @@ export const ProbabilisticWindHailMap = ({ probLayer, sigLayer }) => {
         <g>
           <MappedProbWindHailFeatures features={probFeatures} />
 
-          {showSigFeatures ? (
-            <MappedHatchedSigFeatures features={sigFeatures} />
-          ) : null}
+          {showSigFeatures ? <MappedHatchedSigFeatures features={sigFeatures} /> : null}
         </g>
       </ConusStatesMap>
     </FullHeightWidthContainer>
@@ -166,7 +154,8 @@ const MappedProbWindHailFeatures = ({ features }) => {
   });
 };
 const ProbabilisticWindHailFeature = ({ feature }) => {
-  const color = PROB_WIND_HAIL_STYLES[feature.properties.dn].color;
+  console.log("ProbabilisticWindHailFeature >>>\n", feature);
+  const color = PROB_WIND_HAIL_STYLES[feature.properties.dn]?.color ?? "rgb(120,120,120)";
   return <ConvectiveFeature feature={feature} color={color} />;
 };
 const MappedProbDays4_8Features = ({ features }) => {
@@ -176,7 +165,8 @@ const MappedProbDays4_8Features = ({ features }) => {
   });
 };
 const ProbabilisticDays4_8Feature = ({ feature }) => {
-  const color = PROB_DAYS_4_8_STYLES[feature.properties.dn].color;
+  console.log("ProbabilisticDays4_8Feature >>>\n", feature);
+  const color = PROB_DAYS_4_8_STYLES[feature.properties.dn]?.color ?? "rgb(120,120,120)";
   return <ConvectiveFeature feature={feature} color={color} />;
 };
 // SIGNIFICANT (hatched)
@@ -190,17 +180,8 @@ const HatchedSignificantFeature = ({ feature }) => {
   return (
     <>
       <defs>
-        <pattern
-          id="hatchPattern"
-          width="8"
-          height="8"
-          patternUnits="userSpaceOnUse"
-        >
-          <path
-            d="M-1,1 l2,-2 M0,8 l8,-8 M7,9 l2,-2"
-            stroke="#000"
-            strokeWidth={1}
-          />
+        <pattern id="hatchPattern" width="8" height="8" patternUnits="userSpaceOnUse">
+          <path d="M-1,1 l2,-2 M0,8 l8,-8 M7,9 l2,-2" stroke="#000" strokeWidth={1} />
         </pattern>
       </defs>
       <path
@@ -215,14 +196,6 @@ const HatchedSignificantFeature = ({ feature }) => {
   );
 };
 // SINGLE CONVECTIVE FEATURE SVG PATH
-const ConvectiveFeature = ({ feature, color }) => (
-  <path
-    d={rewindAlbersGeoPath(feature)}
-    fill={color}
-    stroke={color}
-    fillOpacity={0.6}
-    strokeWidth={3}
-  />
-);
+const ConvectiveFeature = ({ feature, color }) => <path d={rewindAlbersGeoPath(feature)} fill={color} stroke={color} fillOpacity={0.6} strokeWidth={3} />;
 
 // ! ---> UTILS

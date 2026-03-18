@@ -3,7 +3,10 @@ export const hasConvectiveFeatures = (features) => {
   let isValidFeatures = false;
 
   if (features) {
-    console.log(features);
+    if (features.length > 0) {
+      console.log("hasConvectiveFeatures >>> \n", features);
+      isValidFeatures = true;
+    }
     // if (features[0].properties.dn > 0) isValidFeatures = true;
   }
 
