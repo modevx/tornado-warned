@@ -22,47 +22,31 @@ export const CategoricalMap = ({ catLayer }) => {
     </FullHeightWidthContainer>
   ) : null;
 };
-export const ProbabilisticTornadoMap = ({ probLayer, sigLayer }) => {
-  const { id: probLayerId, name: probLayerName } = probLayer;
-  const { id: sigLayerId } = sigLayer;
-  const { data: probFeatures } = useOutlookLayerById(probLayerId);
-  const { data: sigFeatures } = useOutlookLayerById(sigLayerId);
-  let showProbFeatures = false;
-  let showSigFeatures = false;
-  if (probFeatures) showProbFeatures = hasConvectiveFeatures(probFeatures);
-  if (sigFeatures) showSigFeatures = hasConvectiveFeatures(sigFeatures);
+export const ProbabilisticTornadoMap = ({ probLayer }) => {
+  const {id: layerID, name: layerName} = probLayer;
+  const { data: features } = useOutlookLayerById(layerID);
 
-  return showProbFeatures ? (
+  return hasConvectiveFeatures(features) ? (
     <FullHeightWidthContainer>
-      <MapServerLayerName name={probLayerName} />
-      <ConusStatesMap>
-        <g>
-          <MappedProbTornadoFeatures features={probFeatures} />
+      <MapServerLayerName name={layerName} />
 
-          {showSigFeatures ? <MappedHatchedSigFeatures features={sigFeatures} /> : null}
-        </g>
+      <ConusStatesMap>
+          <ProbabilisticTornadoFeatures features={features} />
       </ConusStatesMap>
     </FullHeightWidthContainer>
   ) : null;
 };
-export const ProbabilisticWindHailMap = ({ probLayer, sigLayer }) => {
+export const ProbabilisticWindHailMap = ({ probLayer }) => {
   const { id: probLayerId, name: probLayerName } = probLayer;
-  const { id: sigLayerId } = sigLayer;
   const { data: probFeatures } = useOutlookLayerById(probLayerId);
-  const { data: sigFeatures } = useOutlookLayerById(sigLayerId);
-  let showProbFeatures = false;
-  let showSigFeatures = false;
-  if (probFeatures) showProbFeatures = hasConvectiveFeatures(probFeatures);
-  if (sigFeatures) showSigFeatures = hasConvectiveFeatures(sigFeatures);
 
-  return showProbFeatures ? (
+  return hasConvectiveFeatures(probFeatures) ? (
     <FullHeightWidthContainer>
       <MapServerLayerName name={probLayerName} />
+
       <ConusStatesMap>
         <g>
-          <MappedProbWindHailFeatures features={probFeatures} />
-
-          {showSigFeatures ? <MappedHatchedSigFeatures features={sigFeatures} /> : null}
+          <ProbabilisticWindHailFeatures features={probFeatures} />
         </g>
       </ConusStatesMap>
     </FullHeightWidthContainer>
@@ -130,33 +114,44 @@ const CategoricalFeatures = ({ features }) => {
       {features.map((feature) => {
         const key = createConvectiveFeatureKey(feature);
         const color = CAT_OUTLOOK_STYLES[feature.properties.dn].color;
-        return <ConvectiveFeature key={key} color={color} feature={feature} />;
+        return <ConvectiveFeaturePath key={key} color={color} feature={feature} />;
       })}
     </g>
   ) : null;
 };
 
 // PROBABILISTIC
-const MappedProbTornadoFeatures = ({ features }) => {
+const ProbabilisticTornadoFeatures = ({ features }) => {
   return features.map((feature) => {
+    let isConditionalIntensityGroup = feature.properties.label.includes("CIG");
+    let color = null;
+    if(!isConditionalIntensityGroup) {
+      color = PROB_TORNADO_STYLES[feature.properties.dn].color;
+    }
     const key = createConvectiveFeatureKey(feature);
-    return <ProbabilisticTornadoFeature key={key} feature={feature} />;
+
+    return (
+      isConditionalIntensityGroup
+      ? <ConditionalIntensityGroup key={key} feature={feature}/>
+      : <ConvectiveFeaturePath key={key} feature={feature} color={color} />
+    )
   });
 };
-const ProbabilisticTornadoFeature = ({ feature }) => {
-  const color = PROB_TORNADO_STYLES[feature.properties.dn].color;
-  return <ConvectiveFeature feature={feature} color={color} />;
-};
-const MappedProbWindHailFeatures = ({ features }) => {
+const ProbabilisticWindHailFeatures = ({ features }) => {
   return features.map((feature) => {
+    let isConditionalIntensityGroup = feature.properties.label.includes("CIG");
+    let color = null;
+    if(!isConditionalIntensityGroup) {
+      color = PROB_WIND_HAIL_STYLES[feature.properties.dn].color;
+    }
     const key = createConvectiveFeatureKey(feature);
-    return <ProbabilisticWindHailFeature key={key} feature={feature} />;
+
+    return (
+      isConditionalIntensityGroup
+      ? <ConditionalIntensityGroup key={key} feature={feature}/>
+      : <ConvectiveFeaturePath key={key} feature={feature} color={color} />
+    )
   });
-};
-const ProbabilisticWindHailFeature = ({ feature }) => {
-  console.log("ProbabilisticWindHailFeature >>>\n", feature);
-  const color = PROB_WIND_HAIL_STYLES[feature.properties.dn]?.color ?? "rgb(120,120,120)";
-  return <ConvectiveFeature feature={feature} color={color} />;
 };
 const MappedProbDays4_8Features = ({ features }) => {
   return features.map((feature) => {
@@ -167,35 +162,49 @@ const MappedProbDays4_8Features = ({ features }) => {
 const ProbabilisticDays4_8Feature = ({ feature }) => {
   console.log("ProbabilisticDays4_8Feature >>>\n", feature);
   const color = PROB_DAYS_4_8_STYLES[feature.properties.dn]?.color ?? "rgb(120,120,120)";
-  return <ConvectiveFeature feature={feature} color={color} />;
+  return <ConvectiveFeaturePath feature={feature} color={color} />;
 };
-// SIGNIFICANT (hatched)
-const MappedHatchedSigFeatures = ({ features }) => {
-  return features.map((feature) => {
-    const key = createConvectiveFeatureKey(feature);
-    return <HatchedSignificantFeature key={key} feature={feature} />;
-  });
-};
-const HatchedSignificantFeature = ({ feature }) => {
+
+const ConditionalIntensityGroup = ({ feature }) => {
+const label = feature.properties.label;  
+
   return (
     <>
       <defs>
-        <pattern id="hatchPattern" width="8" height="8" patternUnits="userSpaceOnUse">
+        <pattern id="CIG1" width="8" height="8" patternUnits="userSpaceOnUse">
+          <path
+            d="M-1,1 l2,-2 M0,8 l8,-8 M7,9 l2,-2"
+            stroke="#000"
+            strokeWidth={1}
+            strokeDasharray="4,4"
+          />
+        </pattern>
+        <pattern id="CIG2" width="8" height="8" patternUnits="userSpaceOnUse">
           <path d="M-1,1 l2,-2 M0,8 l8,-8 M7,9 l2,-2" stroke="#000" strokeWidth={1} />
+        </pattern>
+        <pattern id="CIG3" width="10" height="10" patternUnits="userSpaceOnUse">
+          <path d="M0,10 L10,0" stroke="#000" strokeWidth={1}/>
+          <path d="M0,0 L10,10" stroke="#000" strokeWidth={1}/>
         </pattern>
       </defs>
       <path
         d={rewindAlbersGeoPath(feature)}
-        fill="url(#hatchPattern)"
+        fill={`url(#${label})`}
         stroke="#000"
-        // fillOpacity={0.7}
-        // strokeOpacity={0.9}
         strokeWidth={1}
       />
     </>
   );
 };
-// SINGLE CONVECTIVE FEATURE SVG PATH
-const ConvectiveFeature = ({ feature, color }) => <path d={rewindAlbersGeoPath(feature)} fill={color} stroke={color} fillOpacity={0.6} strokeWidth={3} />;
+
+const ConvectiveFeaturePath = ({ feature, color }) => {
+  return <path 
+            d={rewindAlbersGeoPath(feature)} 
+            fill={color} 
+            stroke={color} 
+            fillOpacity={0.6} 
+            strokeWidth={3}
+          />;
+};
 
 // ! ---> UTILS

@@ -25,18 +25,9 @@ const ConvectiveOutlookScreen = () => {
       <OutlooksGrid>
         {/* --- DAY 1 --- */}
         <CategoricalMap catLayer={MAPSERVER_LAYERS.day_1_categorical} />
-        <ProbabilisticTornadoMap
-          probLayer={MAPSERVER_LAYERS.day_1_prob_tornado}
-          sigLayer={MAPSERVER_LAYERS.day_1_sig_tornado}
-        />
-        <ProbabilisticWindHailMap
-          probLayer={MAPSERVER_LAYERS.day_1_prob_wind}
-          sigLayer={MAPSERVER_LAYERS.day_1_sig_wind}
-        />
-        <ProbabilisticWindHailMap
-          probLayer={MAPSERVER_LAYERS.day_1_prob_hail}
-          sigLayer={MAPSERVER_LAYERS.day_1_sig_hail}
-        />
+        <ProbabilisticTornadoMap probLayer={MAPSERVER_LAYERS.day_1_prob_tornado}/>
+        <ProbabilisticWindHailMap probLayer={MAPSERVER_LAYERS.day_1_prob_wind}/>
+        <ProbabilisticWindHailMap probLayer={MAPSERVER_LAYERS.day_1_prob_hail}/>
         {/* --- DAY 2 --- */}
         <CategoricalMap catLayer={MAPSERVER_LAYERS.day_2_categorical} />
         <ProbabilisticTornadoMap
