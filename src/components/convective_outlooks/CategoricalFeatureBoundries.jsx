@@ -1,7 +1,7 @@
 import { rewindAlbersGeoPath } from "utils/geometry";
 import { CAT_OUTLOOK_STYLES } from "styles/convective-outlook-styles";
 import {
-  createConvectiveFeatureKey,
+  convectiveFeatureKey,
   hasConvectiveFeatures,
 } from "utils/convective-outlooks";
 
@@ -9,7 +9,7 @@ export const CategoricalFeatureBoundries = ({ features }) => {
   return hasConvectiveFeatures(features) ? (
     <g>
       {features.map((feature) => {
-        const key = createConvectiveFeatureKey(feature);
+        const key = convectiveFeatureKey(feature);
         const color = CAT_OUTLOOK_STYLES[feature.properties.dn].color;
 
         return (

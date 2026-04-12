@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Button } from "react-daisyui";
+import { Button, Checkbox } from "react-daisyui";
 import { PageLayout } from "components/_shared/PageLayout";
 import { MAPSERVER_LAYERS } from "constants/convective-outlooks";
 import {
   CategoricalMap,
   ProbabilisticTornadoMap,
   ProbabilisticWindHailMap,
-  Days4_8_ProbabilisticMap,
+  ProbabilisticMap,
 } from "components/convective_outlooks/ConvectiveOutlookMaps";
 
 const ConvectiveOutlookScreen = () => {
@@ -22,6 +22,14 @@ const ConvectiveOutlookScreen = () => {
 
   return (
     <PageLayout>
+      <fieldset className="fieldset flex bg-gray-800 border-grey-300 rounded-box w-64 border p-4">
+        <legend className="fieldset-legend">Outlooks Filter</legend>
+        <label className="label"><Checkbox size="sm"/>Categorical</label>
+        <label className="label"><Checkbox size="sm"/>Probabilistic Tornado</label>
+        <label className="label"><Checkbox size="sm"/>Probabilistic Wind</label>
+        <label className="label"><Checkbox size="sm"/>Probabilistic Hail</label>
+      </fieldset>
+
       <OutlooksGrid>
         {/* --- DAY 1 --- */}
         <CategoricalMap catLayer={MAPSERVER_LAYERS.day_1_categorical} />
@@ -30,30 +38,18 @@ const ConvectiveOutlookScreen = () => {
         <ProbabilisticWindHailMap probLayer={MAPSERVER_LAYERS.day_1_prob_hail}/>
         {/* --- DAY 2 --- */}
         <CategoricalMap catLayer={MAPSERVER_LAYERS.day_2_categorical} />
-        <ProbabilisticTornadoMap
-          probLayer={MAPSERVER_LAYERS.day_2_prob_tornado}
-          sigLayer={MAPSERVER_LAYERS.day_2_sig_tornado}
-        />
-        <ProbabilisticWindHailMap
-          probLayer={MAPSERVER_LAYERS.day_2_prob_wind}
-          sigLayer={MAPSERVER_LAYERS.day_2_sig_wind}
-        />
-        <ProbabilisticWindHailMap
-          probLayer={MAPSERVER_LAYERS.day_2_prob_hail}
-          sigLayer={MAPSERVER_LAYERS.day_2_sig_hail}
-        />
+        <ProbabilisticTornadoMap probLayer={MAPSERVER_LAYERS.day_2_prob_tornado}/>
+        <ProbabilisticWindHailMap probLayer={MAPSERVER_LAYERS.day_2_prob_wind}/>
+        <ProbabilisticWindHailMap probLayer={MAPSERVER_LAYERS.day_2_prob_hail}/>
         {/* --- DAY 3 --- */}
         <CategoricalMap catLayer={MAPSERVER_LAYERS.day_3_categorical} />
-        <ProbabilisticWindHailMap
-          probLayer={MAPSERVER_LAYERS.day_3_prob}
-          sigLayer={MAPSERVER_LAYERS.day_3_sig_severe}
-        />
+        <ProbabilisticWindHailMap probLayer={MAPSERVER_LAYERS.day_3_prob}/>
         {/* --- DAYS 4-8 --- */}
-        <Days4_8_ProbabilisticMap probLayer={MAPSERVER_LAYERS.day_4_prob} />
-        <Days4_8_ProbabilisticMap probLayer={MAPSERVER_LAYERS.day_5_prob} />
-        <Days4_8_ProbabilisticMap probLayer={MAPSERVER_LAYERS.day_6_prob} />
-        <Days4_8_ProbabilisticMap probLayer={MAPSERVER_LAYERS.day_7_prob} />
-        <Days4_8_ProbabilisticMap probLayer={MAPSERVER_LAYERS.day_8_prob} />
+        <ProbabilisticMap probLayer={MAPSERVER_LAYERS.day_4_prob} />
+        <ProbabilisticMap probLayer={MAPSERVER_LAYERS.day_5_prob} />
+        <ProbabilisticMap probLayer={MAPSERVER_LAYERS.day_6_prob} />
+        <ProbabilisticMap probLayer={MAPSERVER_LAYERS.day_7_prob} />
+        <ProbabilisticMap probLayer={MAPSERVER_LAYERS.day_8_prob} />
       </OutlooksGrid>
       {/* 
       <TextProductModal
