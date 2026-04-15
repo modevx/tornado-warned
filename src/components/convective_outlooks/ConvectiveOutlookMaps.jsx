@@ -2,10 +2,9 @@ import { CAT_OUTLOOK_STYLES, PROB_TORNADO_STYLES, PROB_WIND_HAIL_STYLES, PROB_DA
 import { rewindAlbersGeoPath } from "utils/geometry";
 import { convectiveFeatureKey, hasConvectiveFeatures, isIntensityFeature } from "utils/convective-outlooks";
 import { useOutlookLayerById } from "services/convective-outlook-mapserver";
-
 import { albersGeoPath, albersStatesGeoJson } from "utils/geometry";
-
 import { ConusStatesMap } from "components/_shared/Maps";
+import { DayJSDateTime } from "components/_shared/DayJSDateTime";
 
 // ! [ MAPS ]
 
@@ -16,6 +15,17 @@ export const CategoricalMap = ({ catLayer }) => {
   return hasConvectiveFeatures(categoricalFeatures) ? (
     <FullHeightWidthContainer>
       <MapServerLayerName name={name} />
+      <div className="flex justify-center text-sm">
+        <DayJSDateTime 
+          utcDate={categoricalFeatures[0].properties.valid}
+          format="ddd h:mm A"
+        />
+        <span>&nbsp; - &nbsp;</span>
+        <DayJSDateTime 
+          utcDate={categoricalFeatures[0].properties.expire}
+          format="ddd h:mm A"
+        />
+      </div>
 
       <ConusStatesMap>
         <g>
@@ -38,7 +48,7 @@ export const ProbabilisticMap = ({ probLayer }) => {
 
   return hasConvectiveFeatures(probabilisticFeatures) ? (
     <FullHeightWidthContainer>
-      <MapServerLayerName name={probLayerName} />
+      <MapServerLayerName name={probLayerName} />      
 
       <ConusStatesMap>
         <g>
@@ -69,6 +79,17 @@ export const ProbabilisticTornadoMap = ({ probLayer }) => {
   return hasConvectiveFeatures(probabilisticTornadoFeatures) ? (
     <FullHeightWidthContainer>
       <MapServerLayerName name={layerName} />
+      <div className="flex justify-center text-sm">
+        <DayJSDateTime 
+          utcDate={probabilisticTornadoFeatures[0].properties.valid}
+          format="ddd h:mm A"
+        />
+        <span>&nbsp; - &nbsp;</span>
+        <DayJSDateTime 
+          utcDate={probabilisticTornadoFeatures[0].properties.expire}
+          format="ddd h:mm A"
+        />
+      </div>
 
       <ConusStatesMap>
         <g>
@@ -101,6 +122,17 @@ export const ProbabilisticWindHailMap = ({ probLayer }) => {
   return hasConvectiveFeatures(probabilisticWindHailFeatures) ? (
     <FullHeightWidthContainer>
       <MapServerLayerName name={probLayerName} />
+      <div className="flex justify-center text-sm">
+        <DayJSDateTime 
+          utcDate={probabilisticWindHailFeatures[0].properties.valid}
+          format="ddd h:mm A"
+        />
+        <span>&nbsp; - &nbsp;</span>
+        <DayJSDateTime 
+          utcDate={probabilisticWindHailFeatures[0].properties.expire}
+          format="ddd h:mm A"
+        />
+      </div>
 
       <ConusStatesMap>
           {
@@ -182,7 +214,7 @@ const FullHeightWidthContainer = ({ children }) => {
 };
 const MapServerLayerName = ({ name }) => {
   return (
-    <div className="text-center">
+    <div className="text-center text-lg">
       <span>{name}</span>
     </div>
   );
