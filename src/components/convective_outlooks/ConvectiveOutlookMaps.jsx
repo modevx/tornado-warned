@@ -169,20 +169,14 @@ const { label, label2 } = feature.properties;
   return (
     <>
       <defs>
-        <pattern id="CIG1" width="8" height="8" patternUnits="userSpaceOnUse">
-          <path
-            d="M-1,1 l2,-2 M0,8 l8,-8 M7,9 l2,-2"
-            stroke="#000"
-            strokeWidth={1}
-            strokeDasharray="4,4"
-          />
+        <pattern id="CIG1" width="10" height="10" patternUnits="userSpaceOnUse">
+          <path d="M0,10 L10,0" stroke="#000" strokeWidth={1} strokeDasharray="10"/>
         </pattern>
-        <pattern id="CIG2" width="8" height="8" patternUnits="userSpaceOnUse">
-          <path d="M7,-1 l-2,-2 M0,0 l8,8 M-1,7 l-2,-2" stroke="#000" strokeWidth={1}/>
+        <pattern id="CIG2" width="10" height="10" patternUnits="userSpaceOnUse">
+          <path d="M0,0 L10,10" stroke="#000" strokeWidth={1}/>
         </pattern>
         <pattern id="CIG3" width="10" height="10" patternUnits="userSpaceOnUse">
-          <path d="M0,10 L10,0" stroke="#000" strokeWidth={1}/>
-          <path d="M0,0 L10,10" stroke="#000" strokeWidth={1}/>
+          <path d="M0,10 L10,0 M0,0 L10,10" stroke="#000" strokeWidth={1}/>
         </pattern>
       </defs>
       <path

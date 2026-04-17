@@ -32,13 +32,13 @@ import { CategoricalFeatureBoundries } from "components/convective_outlooks/Cate
 const HomeScreen = () => {
   const [alertModalIsOpen, setAlertModalIsOpen] = useState(false);
   const [alertModalData, setAlertModalData] = useState(null);
+  
   const showAlertModal = ({ alert, color }) => {
     setAlertModalData({ alert, color });
     setAlertModalIsOpen(true);
   };
-  const closeAlertModal = () => {
-    setAlertModalIsOpen(false);
-  };
+  const closeAlertModal = () => setAlertModalIsOpen(false);
+  
   const { data: alerts } = useAllActiveAlerts();
   const { data: day1features } = useOutlookLayerById("1");
 

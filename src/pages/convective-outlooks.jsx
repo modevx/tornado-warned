@@ -22,13 +22,13 @@ const ConvectiveOutlookScreen = () => {
 
   return (
     <PageLayout>
-      <fieldset className="fieldset flex bg-gray-800 border-grey-300 rounded-box w-64 border p-4">
+      {/* <fieldset className="fieldset flex bg-gray-800 border-grey-300 rounded-box w-64 border p-4">
         <legend className="fieldset-legend">Outlooks Filter</legend>
         <label className="label"><Checkbox size="sm"/>Categorical</label>
         <label className="label"><Checkbox size="sm"/>Probabilistic Tornado</label>
         <label className="label"><Checkbox size="sm"/>Probabilistic Wind</label>
         <label className="label"><Checkbox size="sm"/>Probabilistic Hail</label>
-      </fieldset>
+      </fieldset> */}
 
       <OutlooksGrid>
         {/* --- DAY 1 --- */}
