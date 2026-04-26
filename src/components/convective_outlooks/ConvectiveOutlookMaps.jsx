@@ -1,207 +1,95 @@
-import { CAT_OUTLOOK_STYLES, PROB_TORNADO_STYLES, PROB_WIND_HAIL_STYLES, PROB_DAYS_4_8_STYLES } from "styles/convective-outlook-styles";
 import { rewindAlbersGeoPath } from "utils/geometry";
-import { convectiveFeatureKey, hasConvectiveFeatures, isIntensityFeature } from "utils/convective-outlooks";
+import { 
+  convectiveFeatureKey, 
+  returnsValidCIGFeatures, 
+  returnsValidConvectiveFeatures, 
+  includesCIGs 
+} from "utils/convective-outlooks";
 import { useOutlookLayerById } from "services/convective-outlook-mapserver";
-import { albersGeoPath, albersStatesGeoJson } from "utils/geometry";
 import { ConusStatesMap } from "components/_shared/Maps";
 import { DayJSDateTime } from "components/_shared/DayJSDateTime";
 
-// ! [ MAPS ]
+export const SevereWxOutlookMap = ({ layerData }) => {
+  const { MAP_TITLE, LAYER_ID } = layerData;
+  const { data: convectiveFeatures } = useOutlookLayerById(LAYER_ID);
 
-export const CategoricalMap = ({ catLayer }) => {
-  const { id, name } = catLayer;
-  const { data: categoricalFeatures } = useOutlookLayerById(id);
-
-  return hasConvectiveFeatures(categoricalFeatures) ? (
+  return returnsValidConvectiveFeatures(convectiveFeatures) ? (
     <FullHeightWidthContainer>
-      <MapServerLayerName name={name} />
-      <div className="flex justify-center text-sm">
-        <DayJSDateTime 
-          utcDate={categoricalFeatures[0].properties.valid}
-          format="ddd h:mm A"
-        />
-        <span>&nbsp; - &nbsp;</span>
-        <DayJSDateTime 
-          utcDate={categoricalFeatures[0].properties.expire}
-          format="ddd h:mm A"
-        />
-      </div>
+      <MapServerLayerName name={MAP_TITLE}/>
+      <ValidExpireDates validDate={convectiveFeatures[0].properties.valid} expireDate={convectiveFeatures[0].properties.expire}/>
 
       <ConusStatesMap>
-        <g>
-          {categoricalFeatures.map((feature) => {
-            const key = convectiveFeatureKey(feature);
-            const color = CAT_OUTLOOK_STYLES[feature.properties.dn].color;
-
-            return <ConvectiveFeaturePath key={key} color={color} feature={feature} />;
-          })}
-        </g>
+          <ConvectiveFeatures features={convectiveFeatures}/>
+          { includesCIGs(layerData) && <CIGFeatures layerData={layerData}/>}
       </ConusStatesMap>
-
     </FullHeightWidthContainer>
   ) : null;
-};
-// TODO: brainstorm logic for displaying CIG features missing response payload label/label2 fields
-export const ProbabilisticMap = ({ probLayer }) => {
-  const { id: probLayerId, name: probLayerName } = probLayer;
-  const { data: probabilisticFeatures } = useOutlookLayerById(probLayerId);
+}
 
-  return hasConvectiveFeatures(probabilisticFeatures) ? (
-    <FullHeightWidthContainer>
-      <MapServerLayerName name={probLayerName} />      
+// * --> SUB-COMPONENTS
 
-      <ConusStatesMap>
-        <g>
-          {probabilisticFeatures.map((feature) => {
-            const key = convectiveFeatureKey(feature);
-            let color = null;
+const CIGFeatures = ({ layerData }) => {
+  const { CIG_LAYER_ID } = layerData;
+  const { data: cigFeatures } = useOutlookLayerById(CIG_LAYER_ID);
 
-            if(!isIntensityFeature(feature)) {
-              color = PROB_DAYS_4_8_STYLES[feature.properties.dn]?.color ?? "rgb(120,120,120)";
-            }
+  return returnsValidCIGFeatures(cigFeatures) ? (
+    <g>
+      {
+        cigFeatures.map(cigFeature => {
+          const { label, label2 } = cigFeature.properties;  
 
-            return (
-                isIntensityFeature(feature)
-                ? <IntensityGroupPattern key={key} feature={feature}/>
-                : <ConvectiveFeaturePath key={key} feature={feature} color={color} />
-              )
-          })}
-        </g>
-      </ConusStatesMap>
-
-    </FullHeightWidthContainer>
+          return (
+            <>
+              <defs>
+                <pattern id="CIG1" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <path d="M0,10 L10,0" stroke="#000" strokeWidth={1} strokeDasharray="10"/>
+                </pattern>
+                <pattern id="CIG2" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <path d="M0,0 L10,10" stroke="#000" strokeWidth={1}/>
+                </pattern>
+                <pattern id="CIG3" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <path d="M0,10 L10,0 M0,0 L10,10" stroke="#000" strokeWidth={1}/>
+                </pattern>
+              </defs>
+              <path
+                d={rewindAlbersGeoPath(cigFeature)}
+                // ! pattern IDs match 1 of 3 available CIG labels returned from Outlook MapServer
+                fill={`url(#${label})`}
+                stroke="#000"
+                strokeWidth={1}
+              >
+                <title>{label2}</title>
+              </path>
+            </>
+          );
+        })
+      }
+    </g>
   ) : null;
 };
-export const ProbabilisticTornadoMap = ({ probLayer }) => {
-  const {id: layerID, name: layerName} = probLayer;
-  const { data: probabilisticTornadoFeatures } = useOutlookLayerById(layerID);
-
-  return hasConvectiveFeatures(probabilisticTornadoFeatures) ? (
-    <FullHeightWidthContainer>
-      <MapServerLayerName name={layerName} />
-      <div className="flex justify-center text-sm">
-        <DayJSDateTime 
-          utcDate={probabilisticTornadoFeatures[0].properties.valid}
-          format="ddd h:mm A"
-        />
-        <span>&nbsp; - &nbsp;</span>
-        <DayJSDateTime 
-          utcDate={probabilisticTornadoFeatures[0].properties.expire}
-          format="ddd h:mm A"
-        />
-      </div>
-
-      <ConusStatesMap>
-        <g>
-          {
-            probabilisticTornadoFeatures.map((feature) => {
-              const key = convectiveFeatureKey(feature);
-              let color = null;
-
-              if(!isIntensityFeature(feature)) {
-                color = PROB_TORNADO_STYLES[feature.properties.dn].color;
-              }
-
-              return (
-                isIntensityFeature(feature)
-                ? <IntensityGroupPattern key={key} feature={feature}/>
-                : <ConvectiveFeaturePath key={key} feature={feature} color={color} />
-              )
-            })
-          }
-        </g>
-      </ConusStatesMap>
-
-    </FullHeightWidthContainer>
-  ) : null;
-};
-export const ProbabilisticWindHailMap = ({ probLayer }) => {
-  const { id: probLayerId, name: probLayerName } = probLayer;
-  const { data: probabilisticWindHailFeatures } = useOutlookLayerById(probLayerId);
-
-  return hasConvectiveFeatures(probabilisticWindHailFeatures) ? (
-    <FullHeightWidthContainer>
-      <MapServerLayerName name={probLayerName} />
-      <div className="flex justify-center text-sm">
-        <DayJSDateTime 
-          utcDate={probabilisticWindHailFeatures[0].properties.valid}
-          format="ddd h:mm A"
-        />
-        <span>&nbsp; - &nbsp;</span>
-        <DayJSDateTime 
-          utcDate={probabilisticWindHailFeatures[0].properties.expire}
-          format="ddd h:mm A"
-        />
-      </div>
-
-      <ConusStatesMap>
-          {
-            <g>
-              {
-                probabilisticWindHailFeatures.map((feature) => {
-                  const key = convectiveFeatureKey(feature);
-                  let color = null;
-                  
-                  if(!isIntensityFeature(feature)) {
-                    color = PROB_WIND_HAIL_STYLES[feature.properties.dn].color;
-                  }
-                  
-                  return (
-                    isIntensityFeature(feature)
-                    ? <IntensityGroupPattern key={key} feature={feature}/>
-                    : <ConvectiveFeaturePath key={key} feature={feature} color={color} />
-                  )
-                })
-              }
-            </g>
-          }
-      </ConusStatesMap>
-
-    </FullHeightWidthContainer>
-  ) : null;
-};
-
-// ! [ SUB-COMPONENTS ]
-
-const IntensityGroupPattern = ({ feature }) => {
-const { label, label2 } = feature.properties;  
-
+const ConvectiveFeatures = ({ features }) => {
   return (
-    <>
-      <defs>
-        <pattern id="CIG1" width="10" height="10" patternUnits="userSpaceOnUse">
-          <path d="M0,10 L10,0" stroke="#000" strokeWidth={1} strokeDasharray="10"/>
-        </pattern>
-        <pattern id="CIG2" width="10" height="10" patternUnits="userSpaceOnUse">
-          <path d="M0,0 L10,10" stroke="#000" strokeWidth={1}/>
-        </pattern>
-        <pattern id="CIG3" width="10" height="10" patternUnits="userSpaceOnUse">
-          <path d="M0,10 L10,0 M0,0 L10,10" stroke="#000" strokeWidth={1}/>
-        </pattern>
-      </defs>
-      <path
-        d={rewindAlbersGeoPath(feature)}
-        // pattern IDs match 1 of 3 available CIG labels returned from Outlook MapServer
-        fill={`url(#${label})`}
-        stroke="#000"
-        strokeWidth={1}
-      >
-        <title>{label2}</title>
-      </path>
-    </>
-  );
-};
-const ConvectiveFeaturePath = ({ feature, color }) => {
-  // <title> = tooltip
-  return <path 
-            d={rewindAlbersGeoPath(feature)} 
-            fill={color} 
-            stroke={color} 
-            fillOpacity={0.6} 
-            strokeWidth={3}
-          >
-            <title>{feature?.properties?.label2}</title>
-          </path>;
+    <g>
+      {
+        features.map(feature => {
+          const { fill, stroke, label2 } = feature.properties;
+
+          return (
+            <path
+              key={convectiveFeatureKey(feature)}
+              d={rewindAlbersGeoPath(feature)}
+              fill={fill}
+              stroke={stroke}
+              fillOpacity={0.6} 
+              strokeWidth={3}
+            >
+              <title>{ label2 }</title>
+            </path>
+          )
+        })
+      }
+    </g>
+  )
 };
 const FullHeightWidthContainer = ({ children }) => {
   return <div className="w-full h-full">{children}</div>;
@@ -213,30 +101,12 @@ const MapServerLayerName = ({ name }) => {
     </div>
   );
 };
-
-// const CategoricalLegend = ({ styles }) => {
-//   const stylesArr = Object.values(styles);
-
-//   return (
-//     <div className="text-xs flex justify-center mt-10 mb-4 ">
-//       <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:flex lg:justify-center">
-//         {stylesArr.map(({ bgColor, textColor, label }) => {
-//           return (
-//             <div
-//               key={label}
-//               style={{ backgroundColor: `${bgColor}` }}
-//               className="p-2 rounded"
-//             >
-//               <span
-//                 style={{ color: `${textColor}` }}
-//                 className="block text-black text-xs lg:text-base text-center font-bold uppercase"
-//               >
-//                 {label}
-//               </span>
-//             </div>
-//           );
-//         })}
-//       </div>
-//     </div>
-//   );
-// };
+const ValidExpireDates = ({ validDate, expireDate }) => {
+  return (
+    <div className="flex justify-center text-sm">
+      <DayJSDateTime utcDate={validDate} format="ddd h:mm A"/>
+      <span>&nbsp; - &nbsp;</span>
+      <DayJSDateTime utcDate={expireDate} format="ddd h:mm A"/>
+    </div>
+  )
+};
