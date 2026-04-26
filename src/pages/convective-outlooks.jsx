@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Button, Checkbox } from "react-daisyui";
 import { PageLayout } from "components/_shared/PageLayout";
-import { MAPSERVER_LAYERS } from "constants/convective-outlooks";
+import { MAPSERVER_LAYERS, SPC_WX_OUTLKS_FEATURE_LAYERS } from "constants/convective-outlooks";
 import {
   CategoricalMap,
-  ProbabilisticTornadoMap,
-  ProbabilisticWindHailMap,
-  ProbabilisticMap,
+  TornadoProbabilisticMap,
+  HailWindProbabilisticMap,
+  Days4_8ProbabilisticMap,
+  SevereWxOutlookMap,
 } from "components/convective_outlooks/ConvectiveOutlookMaps";
 
 const ConvectiveOutlookScreen = () => {
@@ -31,25 +32,28 @@ const ConvectiveOutlookScreen = () => {
       </fieldset> */}
 
       <OutlooksGrid>
+        {/* {Object.entries(SPC_WX_OUTLKS_FEATURE_LAYERS).map(([key,obj]) => {
+          return <SevereWxOutlookMap key={key} layerData={obj}/>
+        })} */}
         {/* --- DAY 1 --- */}
-        <CategoricalMap catLayer={MAPSERVER_LAYERS.day_1_categorical} />
-        <ProbabilisticTornadoMap probLayer={MAPSERVER_LAYERS.day_1_prob_tornado}/>
-        <ProbabilisticWindHailMap probLayer={MAPSERVER_LAYERS.day_1_prob_wind}/>
-        <ProbabilisticWindHailMap probLayer={MAPSERVER_LAYERS.day_1_prob_hail}/>
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_1_CATEGORICAL}/>
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_1_TORNADO}/>
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_1_HAIL}/>
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_1_WIND}/>
         {/* --- DAY 2 --- */}
-        <CategoricalMap catLayer={MAPSERVER_LAYERS.day_2_categorical} />
-        <ProbabilisticTornadoMap probLayer={MAPSERVER_LAYERS.day_2_prob_tornado}/>
-        <ProbabilisticWindHailMap probLayer={MAPSERVER_LAYERS.day_2_prob_wind}/>
-        <ProbabilisticWindHailMap probLayer={MAPSERVER_LAYERS.day_2_prob_hail}/>
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_2_CATEGORICAL}/>
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_2_TORNADO}/>
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_2_HAIL}/>
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_2_WIND}/>
         {/* --- DAY 3 --- */}
-        <CategoricalMap catLayer={MAPSERVER_LAYERS.day_3_categorical} />
-        <ProbabilisticWindHailMap probLayer={MAPSERVER_LAYERS.day_3_prob}/>
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_3_CATEGORICAL}/>
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_3_PROBABILISTIC}/>
         {/* --- DAYS 4-8 --- */}
-        <ProbabilisticMap probLayer={MAPSERVER_LAYERS.day_4_prob} />
-        <ProbabilisticMap probLayer={MAPSERVER_LAYERS.day_5_prob} />
-        <ProbabilisticMap probLayer={MAPSERVER_LAYERS.day_6_prob} />
-        <ProbabilisticMap probLayer={MAPSERVER_LAYERS.day_7_prob} />
-        <ProbabilisticMap probLayer={MAPSERVER_LAYERS.day_8_prob} />
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_4_PROBABILISTIC}/>
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_5_PROBABILISTIC}/>
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_6_PROBABILISTIC}/>
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_7_PROBABILISTIC}/>
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_8_PROBABILISTIC}/>
       </OutlooksGrid>
       {/* 
       <TextProductModal
