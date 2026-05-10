@@ -45,48 +45,21 @@ const StatsScreen = () => {
           {DAMAGE_PATHS.EF3.map((damagePath) => {
             const { id } = damagePath;
 
-            return (
-              <path
-                key={id}
-                d={rewindAlbersGeoPath(damagePath)}
-                // fill={color}
-                // fillOpacity={1}
-                stroke="#00FF00"
-                strokeWidth={6}
-              />
-            );
+            return <path key={id} d={rewindAlbersGeoPath(damagePath)} fill="#00FF00" fillOpacity={0.5} stroke="#00FF00" strokeWidth={2} />;
           })}
         </g>
         <g>
           {DAMAGE_PATHS.EF4.map((damagePath) => {
             const { id } = damagePath;
 
-            return (
-              <path
-                key={id}
-                d={rewindAlbersGeoPath(damagePath)}
-                // fill={color}
-                // fillOpacity={1}
-                stroke="#0000FF"
-                strokeWidth={4}
-              />
-            );
+            return <path key={id} d={rewindAlbersGeoPath(damagePath)} fill="#0000FF" fillOpacity={0.5} stroke="#0000FF" strokeWidth={1} />;
           })}
         </g>
         <g>
           {DAMAGE_PATHS.EF5.map((damagePath) => {
             const { id } = damagePath;
 
-            return (
-              <path
-                key={id}
-                d={rewindAlbersGeoPath(damagePath)}
-                // fill={color}
-                // fillOpacity={1}
-                stroke="#FF0000"
-                strokeWidth={2}
-              />
-            );
+            return <path key={id} d={rewindAlbersGeoPath(damagePath)} fill="#FF0000" fillOpacity={0.5} stroke="#FF0000" strokeWidth={0.5} />;
           })}
         </g>
       </ConusStatesMap>
