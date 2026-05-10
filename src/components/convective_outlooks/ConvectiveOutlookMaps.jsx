@@ -20,7 +20,7 @@ export const SevereWxOutlookMap = ({ layerData }) => {
 
       <ConusStatesMap>
           <ConvectiveFeatures features={convectiveFeatures}/>
-          { includesCIGs(layerData) && <CIGFeatures layerData={layerData}/>}
+          {includesCIGs(layerData) && <CIGFeatures layerData={layerData}/>}
       </ConusStatesMap>
     </FullHeightWidthContainer>
   ) : null;

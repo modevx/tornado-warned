@@ -1,19 +1,14 @@
+import { ConusCountiesMap, Basemap, UsaStatesMap, ConusStatesMap } from "components/_shared/Maps";
 import { PageLayout } from "components/_shared/PageLayout";
 import { useEffect, useState } from "react";
-import {
-  getFirstTornadoEvent,
-  getAnnualSummaries,
-  getMagnitudeSummaries,
-  getStateSummaries,
-  getSummaryByYear,
-  getSummaryByMagnitude,
-  getSummaryByState,
-} from "services/tornadoWarnedApi";
+import { DAMAGE_ASSESSMENTS } from "constants/damage-assessment-polygons";
+import { getFirstTornadoEvent, getAnnualSummaries, getMagnitudeSummaries, getStateSummaries, getSummaryByYear, getSummaryByMagnitude, getSummaryByState } from "services/tornadoWarnedApi";
+import { rewindAlbersGeoPath } from "utils/geometry";
 
 const StatsScreen = () => {
   const [data, setData] = useState([]);
-  const stateSummary = getSummaryByState("MO");
-  stateSummary.then(setData).catch((err) => console.log("///Error: ", err));
+  // const stateSummary = getSummaryByState("MO");
+  // stateSummary.then(setData).catch((err) => console.log("///Error: ", err));
 
   useEffect(() => {
     // if (value) console.log("/// Response: ", value);
@@ -30,9 +25,71 @@ const StatsScreen = () => {
     //   fetchData();
   }, []);
 
+  const DAMAGE_PATHS = {
+    EF5: [],
+    EF4: [],
+    EF3: [],
+  };
+
+  DAMAGE_ASSESSMENTS.forEach((damagePath) => {
+    const magnitude = damagePath.properties.efscale;
+
+    DAMAGE_PATHS[magnitude] = [...DAMAGE_PATHS[magnitude], damagePath];
+  });
+
   return (
     <PageLayout>
-      <PrintedApiData data={data} />
+      {/* <PrintedApiData data={data} /> */}
+      <ConusStatesMap>
+        <g>
+          {DAMAGE_PATHS.EF3.map((damagePath) => {
+            const { id } = damagePath;
+
+            return (
+              <path
+                key={id}
+                d={rewindAlbersGeoPath(damagePath)}
+                // fill={color}
+                // fillOpacity={1}
+                stroke="#00FF00"
+                strokeWidth={6}
+              />
+            );
+          })}
+        </g>
+        <g>
+          {DAMAGE_PATHS.EF4.map((damagePath) => {
+            const { id } = damagePath;
+
+            return (
+              <path
+                key={id}
+                d={rewindAlbersGeoPath(damagePath)}
+                // fill={color}
+                // fillOpacity={1}
+                stroke="#0000FF"
+                strokeWidth={4}
+              />
+            );
+          })}
+        </g>
+        <g>
+          {DAMAGE_PATHS.EF5.map((damagePath) => {
+            const { id } = damagePath;
+
+            return (
+              <path
+                key={id}
+                d={rewindAlbersGeoPath(damagePath)}
+                // fill={color}
+                // fillOpacity={1}
+                stroke="#FF0000"
+                strokeWidth={2}
+              />
+            );
+          })}
+        </g>
+      </ConusStatesMap>
     </PageLayout>
   );
 };
