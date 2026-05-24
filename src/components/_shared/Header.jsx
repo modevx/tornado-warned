@@ -3,34 +3,19 @@ import NextLink from "next/link";
 import { Drawer, Menu, Navbar } from "react-daisyui";
 import { AiOutlineMenu } from "react-icons/ai";
 
-const NAV_ITEMS = [
-  {
-    label: "active alerts",
-    href: "/",
-  },
-  {
-    label: "convective outlooks",
-    href: "/convective-outlooks",
-  },
-];
-
 export const Header = ({ callback }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleIsOpen = useCallback(() => setIsOpen((isOpen) => !isOpen), []);
 
   return (
-    // <header className="text-primary-content px-3">
     <header className="px-3">
       <Navbar className="w-full">
         <Navbar.Start>
           <Branding />
         </Navbar.Start>
         <Navbar.End>
-          <AiOutlineMenu
-            onClick={callback}
-            className="sm:hidden cursor-pointer"
-          />
+          <AiOutlineMenu onClick={callback} className="sm:hidden cursor-pointer" />
           <MainNav />
         </Navbar.End>
       </Navbar>
@@ -51,13 +36,16 @@ const MainNav = () => {
   return (
     <Menu className="hidden sm:flex" horizontal>
       <Menu.Item className="text-sm">
-        <NextLink href="/">alerts</NextLink>
+        <NextLink href="/">active</NextLink>
       </Menu.Item>
       <Menu.Item className="text-sm">
         <NextLink href="/convective-outlooks">outlooks</NextLink>
       </Menu.Item>
       <Menu.Item className="text-sm">
-        <NextLink href="/stats">tornado stats</NextLink>
+        <NextLink href="/local-storm-reports">LSRs</NextLink>
+      </Menu.Item>
+      <Menu.Item className="text-sm">
+        <NextLink href="/damage-assessment-paths">damage paths</NextLink>
       </Menu.Item>
     </Menu>
   );
