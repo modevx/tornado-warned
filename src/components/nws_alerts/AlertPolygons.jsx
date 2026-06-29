@@ -20,7 +20,7 @@ export const WatchPolygon = ({ alert, color, onClickCallback = undefined }) => {
   return <path d={albersGeoPath(watchGeometry)} fill={polygonColor} fillOpacity={0.5} onClick={() => onClickCallback({ alert, color: polygonColor })} />;
 };
 
-export const WarningPolygons = ({ alerts, color, onClickCallback }) => {
+export const WarningPolygons = ({ alerts, color, onClickCallback = undefined }) => {
   const hasFeatures = alerts?.length > 0;
   return (
     <>
@@ -33,7 +33,7 @@ export const WarningPolygons = ({ alerts, color, onClickCallback }) => {
   );
 };
 
-export const WatchPolygons = ({ alerts, color, onClickCallback }) => {
+export const WatchPolygons = ({ alerts, color, onClickCallback = undefined }) => {
   const hasFeatures = alerts?.length > 0;
 
   return (

@@ -1,9 +1,23 @@
-import { ConusCountiesMap, Basemap, UsaStatesMap, ConusStatesMap } from "components/_shared/Maps";
+import { useEffect, useMemo, useState } from "react";
 import { PageLayout } from "components/_shared/PageLayout";
-import { useEffect, useState } from "react";
 import { DAMAGE_ASSESSMENTS } from "constants/damage-assessment-polygons";
-import { getFirstTornadoEvent, getAnnualSummaries, getMagnitudeSummaries, getStateSummaries, getSummaryByYear, getSummaryByMagnitude, getSummaryByState } from "services/tornadoWarnedApi";
-import { albersGeoPath, createGeoPath, createModeProjection, modeRewindGeoPath, rewindAlbersGeoPath } from "utils/geometry";
+import { ConusCountiesMap, Basemap, UsaStatesMap, ConusStatesMap } from "components/_shared/Maps";
+import {
+  getFirstTornadoEvent,
+  getAnnualSummaries,
+  getMagnitudeSummaries,
+  getStateSummaries,
+  getSummaryByYear,
+  getSummaryByMagnitude,
+  getSummaryByState,
+} from "services/tornadoWarnedApi";
+import {
+  albersGeoPath,
+  createGeoPath,
+  createModeProjection,
+  modeRewindGeoPath,
+  rewindAlbersGeoPath,
+} from "utils/geometry";
 
 import TURF from "@turf/rewind";
 import { geoAlbers, geoMercator, geoPath } from "d3";
@@ -41,22 +55,43 @@ const StatsScreen = () => {
 
   const TEST_DAMAGE_PATH = DAMAGE_PATHS.EF5[0];
 
-  const modeProjection = createModeProjection({
-    mode: "detail",
-    width: 975,
-    height: 610,
-    feature: TEST_DAMAGE_PATH,
-    padding: 10,
-  });
-  const modeGeoPath = geoPath(modeProjection);
-  const modeRewindGeoPath = (features) => modeGeoPath(TURF(features, { reverse: true }));
+  // const modeProjection = createModeProjection({
+  //   mode: "detail",
+  //   width: 975,
+  //   height: 610,
+  //   feature: TEST_DAMAGE_PATH,
+  //   padding: 10,
+  // });
+  // const modeGeoPath = geoPath(modeProjection);
+  // const modeRewindGeoPath = (features) => modeGeoPath(TURF(features, { reverse: true }));
+
+  const albersFitExtent = geoAlbers().fitExtent(
+    [
+      [150, 100],
+      [825, 510],
+    ],
+    TEST_DAMAGE_PATH,
+  );
+
+  const extentPathGen = geoPath(albersFitExtent);
+
+  console.log(">>> TEST_DAMAGE_PATH", TEST_DAMAGE_PATH);
+  console.log(">>> TurfRewind", TURF(TEST_DAMAGE_PATH, { reverse: true }));
+  console.log(">>> extengGeoPath Bounds", extentPathGen.bounds(TEST_DAMAGE_PATH));
 
   return (
     <PageLayout>
       {/* <PrintedApiData data={data} /> */}
-      <ConusCountiesMap pathGen={modeGeoPath}>
-        <path d={modeRewindGeoPath(TURF(TEST_DAMAGE_PATH, { reverse: true }))} fill="#f00" stroke="#f00" strokeWidth={1} />
-      </ConusCountiesMap>
+      <div className="h-96 w-96">
+        <ConusCountiesMap pathGen={extentPathGen}>
+          <path
+            d={extentPathGen(TURF(TEST_DAMAGE_PATH, { reverse: true }))}
+            fill="#f00"
+            stroke="#f00"
+            strokeWidth={1}
+          />
+        </ConusCountiesMap>
+      </div>
       {/* <div className="grid grid-cols-2">
         <ConusStatesMap pathGen={modeRewindGeoPath}>
           <g>

@@ -17,18 +17,18 @@ const ConvectiveOutlookScreen = () => {
 
   return (
     <PageLayout>
-      <div className="grid grid-cols-4">
+      {/* <div className="grid grid-cols-4">
         <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_1_CATEGORICAL} />
         <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_1_TORNADO} />
         <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_1_HAIL} />
         <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_1_WIND} />
-        {/* <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_2_CATEGORICAL} />
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_2_CATEGORICAL} />
         <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_2_TORNADO} />
         <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_2_HAIL} />
-        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_2_WIND} /> */}
-      </div>
+        <SevereWxOutlookMap layerData={SPC_WX_OUTLKS_FEATURE_LAYERS.DAY_2_WIND} />
+      </div> */}
       {/* <section id="convective-outlook-text-product" className="bg-neutral-200 text-black px-6 py-8 rounded-lg mb-6"> */}
-      <pre className="text-xs">{outlookText}</pre>
+      {/* <pre className="text-xs">{outlookText}</pre> */}
       {/* </section> */}
       <OutlooksGrid>
         {/* --- DAY 1 --- */}

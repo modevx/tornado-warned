@@ -13,52 +13,14 @@ export const ActiveAlertCounts = ({ counts }) => {
   const svaAlertsCount = counts?.[ALERT_TYPES.SVA];
 
   return (
-    <Stats vertical>
-      {toremAlertsCount > 0 && (
-        <AlertStatItem
-          count={toremAlertsCount}
-          color="#651fff"
-          title="TOR EMERGENCY"
-        />
-      )}
-      {pdsAlertsCount > 0 && (
-        <AlertStatItem count={pdsAlertsCount} color="#f0f" title="PDS" />
-      )}
-      {destructiveAlertsCount > 0 && (
-        <AlertStatItem
-          count={destructiveAlertsCount}
-          color="#00f"
-          title="DESTRUCTIVE"
-        />
-      )}
-      {towAlertsCount && (
-        <AlertStatItem
-          count={towAlertsCount}
-          color="red"
-          title="TOR WARNINGS"
-        />
-      )}
-      {toaAlertscount && (
-        <AlertStatItem
-          count={toaAlertscount}
-          color="yellow"
-          title="TOR WATCHES"
-        />
-      )}
-      {svwAlertsCount && (
-        <AlertStatItem
-          count={svwAlertsCount}
-          color="orange"
-          title="STM WARNINGS"
-        />
-      )}
-      {svaAlertsCount && (
-        <AlertStatItem
-          count={svaAlertsCount}
-          color="limegreen"
-          title="STM WATCHES"
-        />
-      )}
+    <Stats>
+      {toremAlertsCount > 0 && <AlertStatItem count={toremAlertsCount} color="#651fff" title="TOR EMERGENCY" />}
+      {pdsAlertsCount > 0 && <AlertStatItem count={pdsAlertsCount} color="#f0f" title="PDS" />}
+      {destructiveAlertsCount > 0 && <AlertStatItem count={destructiveAlertsCount} color="#00f" title="DESTRUCTIVE" />}
+      {towAlertsCount && <AlertStatItem count={towAlertsCount} color="red" title="TOR WARNINGS" />}
+      {toaAlertscount && <AlertStatItem count={toaAlertscount} color="yellow" title="TOR WATCHES" />}
+      {svwAlertsCount && <AlertStatItem count={svwAlertsCount} color="orange" title="STM WARNINGS" />}
+      {svaAlertsCount && <AlertStatItem count={svaAlertsCount} color="limegreen" title="STM WATCHES" />}
     </Stats>
   );
 };
@@ -68,10 +30,7 @@ const AlertStatItem = ({ color, count, title }) => {
   // const bgColor = count > 0 ? color : "grey";
 
   return (
-    <Stats.Stat
-      style={{ backgroundColor: color }}
-      className="text-black place-items-center"
-    >
+    <Stats.Stat style={{ backgroundColor: color }} className="text-black place-items-center">
       <Stat.Item variant="title" className="text-black">
         {title}
       </Stat.Item>

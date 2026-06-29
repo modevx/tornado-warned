@@ -14,10 +14,7 @@ import { ActiveAlertMap } from "components/nws_alerts/ActiveAlertMap";
 import { ActiveAlertCard } from "components/nws_alerts/ActiveAlertCard";
 import { ActiveAlertCounts } from "components/nws_alerts/ActiveAlertCounts";
 import { ActiveAlertModal } from "components/nws_alerts/ActiveAlertModal";
-import {
-  WarningPolygons,
-  WatchPolygons,
-} from "components/nws_alerts/AlertPolygons";
+import { WarningPolygons, WatchPolygons } from "components/nws_alerts/AlertPolygons";
 import { ALERT_TYPES } from "constants/nws-alerts";
 import { ALERT_COLORS } from "styles/nws-alert-colors";
 
@@ -32,13 +29,13 @@ import { CategoricalFeatureBoundries } from "components/convective_outlooks/Cate
 const HomeScreen = () => {
   const [alertModalIsOpen, setAlertModalIsOpen] = useState(false);
   const [alertModalData, setAlertModalData] = useState(null);
-  
+
   const showAlertModal = ({ alert, color }) => {
     setAlertModalData({ alert, color });
     setAlertModalIsOpen(true);
   };
   const closeAlertModal = () => setAlertModalIsOpen(false);
-  
+
   const { data: alerts } = useAllActiveAlerts();
   const { data: day1features } = useOutlookLayerById("1");
 
@@ -66,8 +63,7 @@ const HomeScreen = () => {
     stormWatches = filteredAlerts?.[ALERT_TYPES.SVA];
   }
 
-  if (filteredTaggedAlerts)
-    console.log("filteredTaggedAlerts: ", filteredTaggedAlerts);
+  if (filteredTaggedAlerts) console.log("filteredTaggedAlerts: ", filteredTaggedAlerts);
 
   return (
     <PageLayout>
@@ -87,15 +83,16 @@ const HomeScreen = () => {
       /> */}
 
       {/* <CategoricalMap catLayer={MAPSERVER_LAYERS.day_1_categorical} /> */}
+      <div className="content-center mx-20">
+        <ActiveAlertCounts counts={countTotals} />
+      </div>
       <div className="flex flex-row">
         <div className="flex-1">
           <AlertOverlayMap
             categoricalFeatures={day1features}
             alerts={filteredAlerts}
+            onClickCallback={showAlertModal}
           />
-        </div>
-        <div className="content-center mx-20">
-          <ActiveAlertCounts counts={countTotals} />
         </div>
       </div>
 

@@ -26,8 +26,7 @@ export const FAKE_ALERTS = {
         ],
       },
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.8dbde7755cdb40ba896e8ed6d7bb860c285b6775.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.8dbde7755cdb40ba896e8ed6d7bb860c285b6775.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.8dbde7755cdb40ba896e8ed6d7bb860c285b6775.001.1",
         areaDesc: "Watauga, NC",
@@ -51,8 +50,7 @@ export const FAKE_ALERTS = {
         event: "Tornado Warning",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Blacksburg VA",
-        headline:
-          "Tornado Warning issued August 15 at 1:32AM EDT until August 15 at 1:30AM EDT by NWS Blacksburg VA",
+        headline: "Tornado Warning issued August 15 at 1:32AM EDT until August 15 at 1:30AM EDT by NWS Blacksburg VA",
         description:
           "This is a TORNADO EMERGENCY. The storm which prompted the warning has moved out of the area.\nTherefore, the warning has been allowed to expire.\n\nA Severe Thunderstorm Watch remains in effect until 400 AM EDT for\nnorthwestern North Carolina...and southwestern Virginia.",
         instruction: null,
@@ -60,12 +58,8 @@ export const FAKE_ALERTS = {
         parameters: {
           AWIPSidentifier: ["SVSRNK"],
           WMOidentifier: ["WWUS51 KRNK 150532"],
-          NWSheadline: [
-            "THE TORNADO WARNING FOR WESTERN WATAUGA COUNTY HAS EXPIRED",
-          ],
-          eventMotionDescription: [
-            "2023-08-15T05:31:00-00:00...storm...256DEG...38KT...36.3,-81.53",
-          ],
+          NWSheadline: ["THE TORNADO WARNING FOR WESTERN WATAUGA COUNTY HAS EXPIRED"],
+          eventMotionDescription: ["2023-08-15T05:31:00-00:00...storm...256DEG...38KT...36.3,-81.53"],
           BLOCKCHANNEL: ["EAS", "NWEM", "CMAS"],
           "EAS-ORG": ["WXR"],
           VTEC: ["/O.EXP.KRNK.TO.W.0008.000000T0000Z-230815T0530Z/"],
@@ -92,8 +86,7 @@ export const FAKE_ALERTS = {
         ],
       },
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.9534b74288217b490d92a546c09814c38633d2b9.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.9534b74288217b490d92a546c09814c38633d2b9.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.9534b74288217b490d92a546c09814c38633d2b9.001.1",
         areaDesc: "Arlington, VA; Fairfax, VA; City of Alexandria, VA",
@@ -101,11 +94,7 @@ export const FAKE_ALERTS = {
           SAME: ["051013", "051059", "051510"],
           UGC: ["VAC013", "VAC059", "VAC510"],
         },
-        affectedZones: [
-          "https://api.weather.gov/zones/county/VAC013",
-          "https://api.weather.gov/zones/county/VAC059",
-          "https://api.weather.gov/zones/county/VAC510",
-        ],
+        affectedZones: ["https://api.weather.gov/zones/county/VAC013", "https://api.weather.gov/zones/county/VAC059", "https://api.weather.gov/zones/county/VAC510"],
         references: [],
         sent: "2023-08-14T16:19:00-04:00",
         effective: "2023-08-14T16:19:00-04:00",
@@ -121,8 +110,7 @@ export const FAKE_ALERTS = {
         event: "Tornado Warning",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Baltimore MD/Washington DC",
-        headline:
-          "Tornado Warning issued August 14 at 4:19PM EDT until August 14 at 4:45PM EDT by NWS Baltimore MD/Washington DC",
+        headline: "Tornado Warning issued August 14 at 4:19PM EDT until August 14 at 4:45PM EDT by NWS Baltimore MD/Washington DC",
         description:
           "The National Weather Service in Sterling Virginia has issued a\n\n* Tornado Warning for...\nSouth central Arlington County in northern Virginia...\nEast central Fairfax County in northern Virginia...\nThe City of Alexandria in northern Virginia...\n\n* Until 445 PM EDT.\n\n* At 418 PM EDT, a severe thunderstorm capable of producing a tornado\nwas located over Franconia, or over Springfield, moving northeast\nat 25 mph.\n\nHAZARD...Tornado.\n\nSOURCE...Radar indicated rotation.\n\nIMPACT...For those in the direct path of a tornado touchdown,\nflying debris will be dangerous to those caught without\nshelter. Damage to roofs, siding, and windows may occur.\nMobile homes may be damaged or destroyed. Tree damage is\nlikely.\n\n* This dangerous storm will be near...\nHuntington around 430 PM EDT.\nAlexandria around 435 PM EDT.\n\nOther locations impacted by this tornadic thunderstorm include\nHayfield and Jefferson Manor.",
         instruction:
@@ -131,9 +119,7 @@ export const FAKE_ALERTS = {
         parameters: {
           AWIPSidentifier: ["TORLWX"],
           WMOidentifier: ["WFUS51 KLWX 142019"],
-          eventMotionDescription: [
-            "2023-08-14T20:18:00-00:00...storm...240DEG...20KT...38.77,-77.15",
-          ],
+          eventMotionDescription: ["2023-08-14T20:18:00-00:00...storm...240DEG...20KT...38.77,-77.15"],
           maxHailSize: ["Up to .75"],
           tornadoDetection: ["RADAR INDICATED"],
           BLOCKCHANNEL: ["EAS", "NWEM"],
@@ -141,9 +127,7 @@ export const FAKE_ALERTS = {
           VTEC: ["/O.NEW.KLWX.TO.W.0015.230814T2019Z-230814T2045Z/"],
           eventEndingTime: ["2023-08-14T20:45:00+00:00"],
           WEAHandling: ["Imminent Threat"],
-          CMAMtext: [
-            "NWS: TORNADO WARNING in this area til 4:45 PM EDT. Take shelter now. Check media.",
-          ],
+          CMAMtext: ["NWS: TORNADO WARNING in this area til 4:45 PM EDT. Take shelter now. Check media."],
           CMAMlongtext: [
             "National Weather Service: TORNADO WARNING in this area until 4:45 PM EDT. Take shelter now in a basement or an interior room on the lowest floor of a sturdy building. If you are outdoors, in a mobile home, or in a vehicle, move to the closest substantial shelter and protect yourself from flying debris. Check media.",
           ],
@@ -166,8 +150,7 @@ export const FAKE_ALERTS = {
         ],
       },
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.786040248b65d273a79df7807412ab3e33815f61.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.786040248b65d273a79df7807412ab3e33815f61.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.786040248b65d273a79df7807412ab3e33815f61.001.1",
         areaDesc: "Ozark, MO; Taney, MO",
@@ -175,10 +158,7 @@ export const FAKE_ALERTS = {
           SAME: ["029153", "029213"],
           UGC: ["MOC153", "MOC213"],
         },
-        affectedZones: [
-          "https://api.weather.gov/zones/county/MOC153",
-          "https://api.weather.gov/zones/county/MOC213",
-        ],
+        affectedZones: ["https://api.weather.gov/zones/county/MOC153", "https://api.weather.gov/zones/county/MOC213"],
         references: [],
         sent: "2023-08-13T23:17:00-05:00",
         effective: "2023-08-13T23:17:00-05:00",
@@ -194,8 +174,7 @@ export const FAKE_ALERTS = {
         event: "Tornado Warning",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Springfield MO",
-        headline:
-          "Tornado Warning issued August 13 at 11:17PM CDT until August 13 at 11:45PM CDT by NWS Springfield MO",
+        headline: "Tornado Warning issued August 13 at 11:17PM CDT until August 13 at 11:45PM CDT by NWS Springfield MO",
         description:
           "The National Weather Service in Springfield has issued a\n\n* Tornado Warning for...\nNorthwestern Ozark County in southwestern Missouri...\nNortheastern Taney County in southwestern Missouri...\n\n* Until 1145 PM CDT.\n\n* At 1117 PM CDT, a severe thunderstorm capable of producing a\ntornado was located near Taneyville, or 10 miles east of Forsyth,\nmoving east at 30 mph.\n\nHAZARD...Tornado and ping pong ball size hail.\n\nSOURCE...Radar indicated rotation.\n\nIMPACT...Flying debris will be dangerous to those caught without\nshelter. Mobile homes will be damaged or destroyed.\nDamage to roofs, windows, and vehicles will occur.  Tree\ndamage is likely.\n\n* Locations impacted include...\nTheodosia, Thornfield and Long Run.",
         instruction:
@@ -204,9 +183,7 @@ export const FAKE_ALERTS = {
         parameters: {
           AWIPSidentifier: ["TORSGF"],
           WMOidentifier: ["WFUS53 KSGF 140417"],
-          eventMotionDescription: [
-            "2023-08-14T04:17:00-00:00...storm...282DEG...27KT...36.69,-92.93",
-          ],
+          eventMotionDescription: ["2023-08-14T04:17:00-00:00...storm...282DEG...27KT...36.69,-92.93"],
           maxHailSize: ["1.50"],
           tornadoDetection: ["RADAR INDICATED"],
           BLOCKCHANNEL: ["EAS", "NWEM"],
@@ -214,9 +191,7 @@ export const FAKE_ALERTS = {
           VTEC: ["/O.NEW.KSGF.TO.W.0019.230814T0417Z-230814T0445Z/"],
           eventEndingTime: ["2023-08-14T04:45:00+00:00"],
           WEAHandling: ["Imminent Threat"],
-          CMAMtext: [
-            "NWS: TORNADO WARNING in this area til 11:45 PM CDT. Take shelter now. Check media.",
-          ],
+          CMAMtext: ["NWS: TORNADO WARNING in this area til 11:45 PM CDT. Take shelter now. Check media."],
           CMAMlongtext: [
             "National Weather Service: TORNADO WARNING in this area until 11:45 PM CDT. Take shelter now in a basement or an interior room on the lowest floor of a sturdy building. If you are outdoors, in a mobile home, or in a vehicle, move to the closest substantial shelter and protect yourself from flying debris. Check media.",
           ],
@@ -239,8 +214,7 @@ export const FAKE_ALERTS = {
         ],
       },
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.a9900e6837bc5895072c95e3fc0875ccb2c2dffc.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.a9900e6837bc5895072c95e3fc0875ccb2c2dffc.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.a9900e6837bc5895072c95e3fc0875ccb2c2dffc.001.1",
         areaDesc: "Jackson, MN",
@@ -264,8 +238,7 @@ export const FAKE_ALERTS = {
         event: "Tornado Warning",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Sioux Falls SD",
-        headline:
-          "Tornado Warning issued August 13 at 8:00PM CDT until August 13 at 8:30PM CDT by NWS Sioux Falls SD",
+        headline: "Tornado Warning issued August 13 at 8:00PM CDT until August 13 at 8:30PM CDT by NWS Sioux Falls SD",
         description:
           "The National Weather Service in Sioux Falls has issued a\n\n* Tornado Warning for...\nNorth central Jackson County in southwestern Minnesota...\n\n* Until 830 PM CDT.\n\n* At 800 PM CDT, a severe thunderstorm capable of producing a tornado\nwas located near Lakefield, or 8 miles south of Windom, moving\nnortheast at 20 mph.\n\nHAZARD...Tornado.\n\nSOURCE...Radar indicated rotation.\n\nIMPACT...Flying debris will be dangerous to those caught without\nshelter. Mobile homes will be damaged or destroyed.\nDamage to roofs, windows, and vehicles will occur.  Tree\ndamage is likely.\n\n* This dangerous storm will be near...\nKilen Woods State Park around 805 PM CDT.",
         instruction:
@@ -274,9 +247,7 @@ export const FAKE_ALERTS = {
         parameters: {
           AWIPSidentifier: ["TORFSD"],
           WMOidentifier: ["WFUS53 KFSD 140100"],
-          eventMotionDescription: [
-            "2023-08-14T01:00:00-00:00...storm...230DEG...16KT...43.75,-95.17",
-          ],
+          eventMotionDescription: ["2023-08-14T01:00:00-00:00...storm...230DEG...16KT...43.75,-95.17"],
           maxHailSize: ["Up to .75"],
           tornadoDetection: ["RADAR INDICATED"],
           BLOCKCHANNEL: ["EAS", "NWEM"],
@@ -284,9 +255,7 @@ export const FAKE_ALERTS = {
           VTEC: ["/O.NEW.KFSD.TO.W.0020.230814T0100Z-230814T0130Z/"],
           eventEndingTime: ["2023-08-14T01:30:00+00:00"],
           WEAHandling: ["Imminent Threat"],
-          CMAMtext: [
-            "NWS: TORNADO WARNING in this area til 8:30 PM CDT. Take shelter now. Check media.",
-          ],
+          CMAMtext: ["NWS: TORNADO WARNING in this area til 8:30 PM CDT. Take shelter now. Check media."],
           CMAMlongtext: [
             "National Weather Service: TORNADO WARNING in this area until 8:30 PM CDT. Take shelter now in a basement or an interior room on the lowest floor of a sturdy building. If you are outdoors, in a mobile home, or in a vehicle, move to the closest substantial shelter and protect yourself from flying debris. Check media.",
           ],
@@ -300,8 +269,7 @@ export const FAKE_ALERTS = {
       type: "Feature",
       geometry: null,
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.2b500a5fc50a8f06bdfad947941fffc50770b067.002.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.2b500a5fc50a8f06bdfad947941fffc50770b067.002.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.2b500a5fc50a8f06bdfad947941fffc50770b067.002.1",
         areaDesc: "Fayette, PA",
@@ -325,8 +293,7 @@ export const FAKE_ALERTS = {
         event: "Tornado Watch",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Pittsburgh PA",
-        headline:
-          "Tornado Watch issued August 12 at 6:43PM EDT until August 12 at 9:00PM EDT by NWS Pittsburgh PA",
+        headline: "Tornado Watch issued August 12 at 6:43PM EDT until August 12 at 9:00PM EDT by NWS Pittsburgh PA",
         description:
           "This is a PARTICULARLY DANGEROUS SITUATION!!! THE NATIONAL WEATHER SERVICE HAS EXTENDED TORNADO WATCH 634 TO\nINCLUDE THE FOLLOWING AREAS UNTIL 9 PM EDT THIS EVENING\n\nIN PENNSYLVANIA THIS WATCH INCLUDES 1 COUNTY\n\nIN SOUTHWEST PENNSYLVANIA\n\nFAYETTE\n\nTHIS INCLUDES THE CITIES OF CONNELLSVILLE, MASONTOWN,\nAND UNIONTOWN.",
         instruction: null,
@@ -346,8 +313,7 @@ export const FAKE_ALERTS = {
       type: "Feature",
       geometry: null,
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.2da5ff279a641650a1196f754a06f37f709f8563.002.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.2da5ff279a641650a1196f754a06f37f709f8563.002.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.2da5ff279a641650a1196f754a06f37f709f8563.002.1",
         areaDesc: "Jefferson, NY; Lewis, NY",
@@ -355,10 +321,7 @@ export const FAKE_ALERTS = {
           SAME: ["036045", "036049"],
           UGC: ["NYC045", "NYC049"],
         },
-        affectedZones: [
-          "https://api.weather.gov/zones/county/NYC045",
-          "https://api.weather.gov/zones/county/NYC049",
-        ],
+        affectedZones: ["https://api.weather.gov/zones/county/NYC045", "https://api.weather.gov/zones/county/NYC049"],
         references: [],
         sent: "2023-08-12T18:22:00-04:00",
         effective: "2023-08-12T18:22:00-04:00",
@@ -374,8 +337,7 @@ export const FAKE_ALERTS = {
         event: "Tornado Watch",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Buffalo NY",
-        headline:
-          "Tornado Watch issued August 12 at 6:22PM EDT until August 12 at 9:00PM EDT by NWS Buffalo NY",
+        headline: "Tornado Watch issued August 12 at 6:22PM EDT until August 12 at 9:00PM EDT by NWS Buffalo NY",
         description:
           "THE NATIONAL WEATHER SERVICE HAS EXTENDED TORNADO WATCH 634 TO\nINCLUDE THE FOLLOWING AREAS UNTIL 9 PM EDT THIS EVENING\n\nIN NEW YORK THIS WATCH INCLUDES 2 COUNTIES\n\nIN CENTRAL NEW YORK\n\nJEFFERSON             LEWIS\n\nTHIS INCLUDES THE CITIES OF LOWVILLE AND WATERTOWN.",
         instruction: null,
@@ -395,8 +357,7 @@ export const FAKE_ALERTS = {
       type: "Feature",
       geometry: null,
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.2da5ff279a641650a1196f754a06f37f709f8563.003.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.2da5ff279a641650a1196f754a06f37f709f8563.003.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.2da5ff279a641650a1196f754a06f37f709f8563.003.1",
         areaDesc:
@@ -426,8 +387,7 @@ export const FAKE_ALERTS = {
         event: "Tornado Watch",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Buffalo NY",
-        headline:
-          "Tornado Watch issued August 12 at 6:22PM EDT until August 12 at 9:00PM EDT by NWS Buffalo NY",
+        headline: "Tornado Watch issued August 12 at 6:22PM EDT until August 12 at 9:00PM EDT by NWS Buffalo NY",
         description:
           "THE NATIONAL WEATHER SERVICE HAS EXTENDED TORNADO WATCH 634 TO\nINCLUDE THE FOLLOWING AREAS UNTIL 9 PM EDT THIS EVENING\n\nTHIS WATCH INCLUDES THE FOLLOWING ADJACENT COASTAL WATERS\n\nLAKE ONTARIO NEARSHORE WATERS FROM SODUS BAY TO MEXICO BAY\nLAKE ONTARIO NEARSHORE WATERS FROM MEXICO BAY TO THE SAINT\nLAWRENCE RIVER\nLAKE ONTARIO OPEN WATERS FROM SODUS BAY TO MEXICO BAY\nLAKE ONTARIO OPEN WATERS FROM MEXICO BAY TO THE SAINT LAWRENCE\nRIVER",
         instruction: null,
@@ -447,8 +407,7 @@ export const FAKE_ALERTS = {
       type: "Feature",
       geometry: null,
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bdd5c836b629c740356fa4a7233fa5e38faf17bb.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bdd5c836b629c740356fa4a7233fa5e38faf17bb.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.bdd5c836b629c740356fa4a7233fa5e38faf17bb.001.1",
         areaDesc:
@@ -539,8 +498,7 @@ export const FAKE_ALERTS = {
         event: "Tornado Watch",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS State College PA",
-        headline:
-          "Tornado Watch issued August 12 at 12:55PM EDT until August 12 at 9:00PM EDT by NWS State College PA",
+        headline: "Tornado Watch issued August 12 at 12:55PM EDT until August 12 at 9:00PM EDT by NWS State College PA",
         description:
           "THE NATIONAL WEATHER SERVICE HAS ISSUED TORNADO WATCH 634 IN\nEFFECT UNTIL 9 PM EDT THIS EVENING FOR THE FOLLOWING AREAS\n\nIN PENNSYLVANIA THIS WATCH INCLUDES 21 COUNTIES\n\nIN CENTRAL PENNSYLVANIA\n\nBLAIR                 CAMBRIA               CAMERON\nCENTRE                CLEARFIELD            CLINTON\nCOLUMBIA              ELK                   HUNTINGDON\nJUNIATA               LYCOMING              MCKEAN\nMIFFLIN               MONTOUR               NORTHUMBERLAND\nPOTTER                SNYDER                SULLIVAN\nTIOGA                 UNION                 WARREN\n\nTHIS INCLUDES THE CITIES OF ALTOONA, BERWICK, BLOOMSBURG,\nBRADFORD, CLEARFIELD, COUDERSPORT, DANVILLE, DUBOIS, EMPORIUM,\nHUNTINGDON, JOHNSTOWN, LAPORTE, LEWISBURG, LEWISTOWN, LOCK HAVEN,\nMANSFIELD, MIFFLINTOWN, MOUNT UNION, RENOVO, RIDGWAY,\nSELINSGROVE, SHAMOKIN, ST. MARYS, STATE COLLEGE, SUNBURY, WARREN,\nWELLSBORO, AND WILLIAMSPORT.",
         instruction: null,
@@ -560,8 +518,7 @@ export const FAKE_ALERTS = {
       type: "Feature",
       geometry: null,
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.3b4e961a5698cd260c071fec204b69ca631bda90.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.3b4e961a5698cd260c071fec204b69ca631bda90.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.3b4e961a5698cd260c071fec204b69ca631bda90.001.1",
         areaDesc:
@@ -658,8 +615,7 @@ export const FAKE_ALERTS = {
         event: "Tornado Watch",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Binghamton NY",
-        headline:
-          "Tornado Watch issued August 12 at 12:54PM EDT until August 12 at 9:00PM EDT by NWS Binghamton NY",
+        headline: "Tornado Watch issued August 12 at 12:54PM EDT until August 12 at 9:00PM EDT by NWS Binghamton NY",
         description:
           "THE NATIONAL WEATHER SERVICE HAS ISSUED TORNADO WATCH 634 IN\nEFFECT UNTIL 9 PM EDT THIS EVENING FOR THE FOLLOWING AREAS\n\nIN NEW YORK THIS WATCH INCLUDES 16 COUNTIES\n\nIN CENTRAL NEW YORK\n\nBROOME                CHEMUNG               CHENANGO\nCORTLAND              DELAWARE              MADISON\nONEIDA                ONONDAGA              OTSEGO\nSCHUYLER              SENECA                STEUBEN\nSULLIVAN              TIOGA                 TOMPKINS\nYATES\n\nIN PENNSYLVANIA THIS WATCH INCLUDES 7 COUNTIES\n\nIN NORTHEAST PENNSYLVANIA\n\nBRADFORD              LACKAWANNA            LUZERNE\nPIKE                  SUSQUEHANNA           WAYNE\nWYOMING\n\nTHIS INCLUDES THE CITIES OF BINGHAMTON, CORNING, CORTLAND, DELHI,\nELMIRA, HALLSTEAD, HAMILTON, HAWLEY, HAZLETON, HONESDALE,\nHORNELL, ITHACA, MILFORD, MONTICELLO, MONTROSE, NORWICH, ONEIDA,\nONEONTA, OWEGO, PENN YAN, ROME, SAYRE, SCRANTON, SENECA FALLS,\nSYRACUSE, TOWANDA, TUNKHANNOCK, UTICA, WALTON, WATKINS GLEN,\nWAVERLY, AND WILKES-BARRE.",
         instruction: null,
@@ -679,33 +635,13 @@ export const FAKE_ALERTS = {
       type: "Feature",
       geometry: null,
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.c7331b46b37f92ac992720f80603ff84a0cc2d65.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.c7331b46b37f92ac992720f80603ff84a0cc2d65.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.c7331b46b37f92ac992720f80603ff84a0cc2d65.001.1",
-        areaDesc:
-          "Allegany, NY; Cattaraugus, NY; Cayuga, NY; Chautauqua, NY; Livingston, NY; Ontario, NY; Oswego, NY; Wayne, NY",
+        areaDesc: "Allegany, NY; Cattaraugus, NY; Cayuga, NY; Chautauqua, NY; Livingston, NY; Ontario, NY; Oswego, NY; Wayne, NY",
         geocode: {
-          SAME: [
-            "036003",
-            "036009",
-            "036011",
-            "036013",
-            "036051",
-            "036069",
-            "036075",
-            "036117",
-          ],
-          UGC: [
-            "NYC003",
-            "NYC009",
-            "NYC011",
-            "NYC013",
-            "NYC051",
-            "NYC069",
-            "NYC075",
-            "NYC117",
-          ],
+          SAME: ["036003", "036009", "036011", "036013", "036051", "036069", "036075", "036117"],
+          UGC: ["NYC003", "NYC009", "NYC011", "NYC013", "NYC051", "NYC069", "NYC075", "NYC117"],
         },
         affectedZones: [
           "https://api.weather.gov/zones/county/NYC003",
@@ -732,8 +668,7 @@ export const FAKE_ALERTS = {
         event: "Tornado Watch",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Buffalo NY",
-        headline:
-          "Tornado Watch issued August 12 at 12:53PM EDT until August 12 at 9:00PM EDT by NWS Buffalo NY",
+        headline: "Tornado Watch issued August 12 at 12:53PM EDT until August 12 at 9:00PM EDT by NWS Buffalo NY",
         description:
           "THE NATIONAL WEATHER SERVICE HAS ISSUED TORNADO WATCH 634 IN\nEFFECT UNTIL 9 PM EDT THIS EVENING FOR THE FOLLOWING AREAS\n\nIN NEW YORK THIS WATCH INCLUDES 8 COUNTIES\n\nIN CENTRAL NEW YORK\n\nCAYUGA                OSWEGO\n\nIN WESTERN NEW YORK\n\nALLEGANY              CATTARAUGUS           CHAUTAUQUA\nLIVINGSTON            ONTARIO               WAYNE\n\nTHIS INCLUDES THE CITIES OF AUBURN, CANANDAIGUA, FAIR HAVEN,\nGENESEO, JAMESTOWN, NEWARK, OLEAN, OSWEGO, AND WELLSVILLE.",
         instruction: null,
@@ -753,33 +688,14 @@ export const FAKE_ALERTS = {
       type: "Feature",
       geometry: null,
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.feaf13113dc44ffe9765a8f005a03a722fb765a9.002.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.feaf13113dc44ffe9765a8f005a03a722fb765a9.002.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.feaf13113dc44ffe9765a8f005a03a722fb765a9.002.1",
         areaDesc:
           "Maumee Bay to Reno Beach OH; Reno Beach to The Islands OH; The Islands to Vermilion OH; Vermilion to Avon Point OH; Avon Point to Willowick OH; Willowick to Geneva-on-the Lake OH; Geneva-on-the-Lake to Conneaut OH; Conneaut OH to Ripley NY",
         geocode: {
-          SAME: [
-            "096142",
-            "096143",
-            "096144",
-            "096145",
-            "096146",
-            "096147",
-            "096148",
-            "096149",
-          ],
-          UGC: [
-            "LEZ142",
-            "LEZ143",
-            "LEZ144",
-            "LEZ145",
-            "LEZ146",
-            "LEZ147",
-            "LEZ148",
-            "LEZ149",
-          ],
+          SAME: ["096142", "096143", "096144", "096145", "096146", "096147", "096148", "096149"],
+          UGC: ["LEZ142", "LEZ143", "LEZ144", "LEZ145", "LEZ146", "LEZ147", "LEZ148", "LEZ149"],
         },
         affectedZones: [
           "https://api.weather.gov/zones/forecast/LEZ142",
@@ -806,8 +722,7 @@ export const FAKE_ALERTS = {
         event: "Tornado Watch",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Cleveland OH",
-        headline:
-          "Tornado Watch issued August 12 at 12:51PM EDT until August 12 at 9:00PM EDT by NWS Cleveland OH",
+        headline: "Tornado Watch issued August 12 at 12:51PM EDT until August 12 at 9:00PM EDT by NWS Cleveland OH",
         description:
           "THE NATIONAL WEATHER SERVICE HAS ISSUED TORNADO WATCH 634 IN\nEFFECT UNTIL 9 PM EDT THIS EVENING FOR THE FOLLOWING AREAS\n\nTHIS WATCH INCLUDES THE FOLLOWING ADJACENT COASTAL WATERS\n\nMAUMEE BAY TO RENO BEACH OH\nRENO BEACH TO THE ISLANDS OH\nTHE ISLANDS TO VERMILION OH\nVERMILION TO AVON POINT OH\nAVON POINT TO WILLOWICK OH\nWILLOWICK TO GENEVA-ON-THE LAKE OH\nGENEVA-ON-THE-LAKE TO CONNEAUT OH\nCONNEAUT OH TO RIPLEY NY",
         instruction: null,
@@ -827,8 +742,7 @@ export const FAKE_ALERTS = {
       type: "Feature",
       geometry: null,
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.feaf13113dc44ffe9765a8f005a03a722fb765a9.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.feaf13113dc44ffe9765a8f005a03a722fb765a9.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.feaf13113dc44ffe9765a8f005a03a722fb765a9.001.1",
         areaDesc:
@@ -946,8 +860,7 @@ export const FAKE_ALERTS = {
         event: "Tornado Watch",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Cleveland OH",
-        headline:
-          "Tornado Watch issued August 12 at 12:51PM EDT until August 12 at 9:00PM EDT by NWS Cleveland OH",
+        headline: "Tornado Watch issued August 12 at 12:51PM EDT until August 12 at 9:00PM EDT by NWS Cleveland OH",
         description:
           "THE NATIONAL WEATHER SERVICE HAS ISSUED TORNADO WATCH 634 IN\nEFFECT UNTIL 9 PM EDT THIS EVENING FOR THE FOLLOWING AREAS\n\nIN OHIO THIS WATCH INCLUDES 28 COUNTIES\n\nIN NORTH CENTRAL OHIO\n\nASHLAND               CRAWFORD              ERIE\nHURON                 KNOX                  LORAIN\nMARION                MORROW                RICHLAND\n\nIN NORTHEAST OHIO\n\nASHTABULA             CUYAHOGA              GEAUGA\nHOLMES                LAKE                  MAHONING\nMEDINA                PORTAGE               STARK\nSUMMIT                TRUMBULL              WAYNE\n\nIN NORTHWEST OHIO\n\nHANCOCK               LUCAS                 OTTAWA\nSANDUSKY              SENECA                WOOD\nWYANDOT\n\nIN PENNSYLVANIA THIS WATCH INCLUDES 2 COUNTIES\n\nIN NORTHWEST PENNSYLVANIA\n\nCRAWFORD              ERIE\n\nTHIS INCLUDES THE CITIES OF AKRON, ALLIANCE, ASHLAND, ASHTABULA,\nAURORA, AUSTINTOWN, AVON LAKE, BAINBRIDGE, BELLEVUE, BOARDMAN,\nBOWLING GREEN, BRUNSWICK, BUCYRUS, BURTON, CANTON, CARDINGTON,\nCAREY, CHARDON, CHESTERLAND, CLEVELAND, CLYDE, CONNEAUT,\nCRESTLINE, EASTLAKE, ELYRIA, ERIE, FINDLAY, FOSTORIA, FREMONT,\nGALION, GENEVA, GENOA, HURON, KENT, KILLBUCK, LORAIN, MANSFIELD,\nMARION, MASSILLON, MEADVILLE, MEDINA, MENTOR, MIDDLEFIELD,\nMILLERSBURG, MOUNT GILEAD, MOUNT VERNON, NILES, NORTH RIDGEVILLE,\nNORWALK, OAK HARBOR, ORRVILLE, PAINESVILLE, PERRYSBURG,\nPORT CLINTON, RAVENNA, RITTMAN, SANDUSKY, SOUTH RUSSELL,\nSTREETSBORO, TIFFIN, TITUSVILLE, TOLEDO, UPPER SANDUSKY,\nWADSWORTH, WARREN, WICKLIFFE, WILLARD, WILLOUGHBY, WILLOWICK,\nWOOSTER, AND YOUNGSTOWN.",
         instruction: null,
@@ -967,8 +880,7 @@ export const FAKE_ALERTS = {
       type: "Feature",
       geometry: null,
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.7e6fd08a19d59d180f8dce02b5a95f60c0d3ca1c.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.7e6fd08a19d59d180f8dce02b5a95f60c0d3ca1c.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.7e6fd08a19d59d180f8dce02b5a95f60c0d3ca1c.001.1",
         areaDesc:
@@ -1080,8 +992,7 @@ export const FAKE_ALERTS = {
         event: "Tornado Watch",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Pittsburgh PA",
-        headline:
-          "Tornado Watch issued August 12 at 12:51PM EDT until August 12 at 9:00PM EDT by NWS Pittsburgh PA",
+        headline: "Tornado Watch issued August 12 at 12:51PM EDT until August 12 at 9:00PM EDT by NWS Pittsburgh PA",
         description:
           "THE NATIONAL WEATHER SERVICE HAS ISSUED TORNADO WATCH 634 IN\nEFFECT UNTIL 9 PM EDT THIS EVENING FOR THE FOLLOWING AREAS\n\nIN OHIO THIS WATCH INCLUDES 11 COUNTIES\n\nIN EAST CENTRAL OHIO\n\nBELMONT               CARROLL               COLUMBIANA\nCOSHOCTON             GUERNSEY              HARRISON\nJEFFERSON OH          MONROE                MUSKINGUM\nNOBLE                 TUSCARAWAS\n\nIN PENNSYLVANIA THIS WATCH INCLUDES 13 COUNTIES\n\nIN NORTHWEST PENNSYLVANIA\n\nFOREST                MERCER                VENANGO\n\nIN SOUTHWEST PENNSYLVANIA\n\nALLEGHENY             WASHINGTON            WESTMORELAND\n\nIN WEST CENTRAL PENNSYLVANIA\n\nARMSTRONG             BUTLER                CLARION\nINDIANA               JEFFERSON PA\n\nIN WESTERN PENNSYLVANIA\n\nBEAVER                LAWRENCE\n\nIN WEST VIRGINIA THIS WATCH INCLUDES 4 COUNTIES\n\nIN THE NORTHERN PANHANDLE OF WEST VIRGINIA\n\nBROOKE                HANCOCK               MARSHALL\nOHIO\n\nTHIS INCLUDES THE CITIES OF ALIQUIPPA, AMBRIDGE, BEAVER FALLS,\nBROOKVILLE, BUTLER, CADIZ, CALDWELL, CAMBRIDGE, CANONSBURG,\nCARROLLTON, CLARION, COLUMBIANA, COSHOCTON, DOVER,\nEAST LIVERPOOL, ELLWOOD CITY, FOLLANSBEE, FORD CITY, FRANKLIN,\nGREENSBURG, GROVE CITY, HERMITAGE, INDIANA, KITTANNING, LATROBE,\nMARTINS FERRY, MONACA, MOUNDSVILLE, MURRYSVILLE, NEW CASTLE,\nNEW KENSINGTON, NEW PHILADELPHIA, OIL CITY,\nPITTSBURGH METRO AREA, PUNXSUTAWNEY, SALEM, SHARON,\nST. CLAIRSVILLE, STEUBENVILLE, TIONESTA, WASHINGTON, WEIRTON,\nWELLSBURG, WHEELING, WOODSFIELD, AND ZANESVILLE.",
         instruction: null,
@@ -1101,8 +1012,7 @@ export const FAKE_ALERTS = {
       type: "Feature",
       geometry: null,
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.1103f0c6c70647917e8a231a8f0895ef37f387d2.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.1103f0c6c70647917e8a231a8f0895ef37f387d2.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.1103f0c6c70647917e8a231a8f0895ef37f387d2.001.1",
         areaDesc: "Delaware, OH; Hardin, OH; Licking, OH; Logan, OH; Union, OH",
@@ -1132,8 +1042,7 @@ export const FAKE_ALERTS = {
         event: "Tornado Watch",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Wilmington OH",
-        headline:
-          "Tornado Watch issued August 12 at 12:50PM EDT until August 12 at 9:00PM EDT by NWS Wilmington OH",
+        headline: "Tornado Watch issued August 12 at 12:50PM EDT until August 12 at 9:00PM EDT by NWS Wilmington OH",
         description:
           "THE NATIONAL WEATHER SERVICE HAS ISSUED TORNADO WATCH 634 IN\nEFFECT UNTIL 9 PM EDT THIS EVENING FOR THE FOLLOWING AREAS\n\nIN OHIO THIS WATCH INCLUDES 5 COUNTIES\n\nIN CENTRAL OHIO\n\nDELAWARE              LICKING               UNION OH\n\nIN WEST CENTRAL OHIO\n\nHARDIN                LOGAN\n\nTHIS INCLUDES THE CITIES OF ADA, BELLEFONTAINE, DELAWARE, KENTON,\nMARYSVILLE, AND NEWARK.",
         instruction: null,
@@ -1167,8 +1076,7 @@ export const FAKE_ALERTS = {
         ],
       },
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.2c9ce6e197c870f1398a82748596489265f197a4.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.2c9ce6e197c870f1398a82748596489265f197a4.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.2c9ce6e197c870f1398a82748596489265f197a4.001.1",
         areaDesc: "Olmsted, MN; Wabasha, MN; Winona, MN; Buffalo, WI",
@@ -1197,19 +1105,15 @@ export const FAKE_ALERTS = {
         event: "Severe Thunderstorm Warning",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS La Crosse WI",
-        headline:
-          "Severe Thunderstorm Warning issued August 11 at 7:00PM CDT until August 11 at 7:45PM CDT by NWS La Crosse WI",
+        headline: "Severe Thunderstorm Warning issued August 11 at 7:00PM CDT until August 11 at 7:45PM CDT by NWS La Crosse WI",
         description:
           "The National Weather Service in La Crosse has issued a\n\n* Severe Thunderstorm Warning for...\nNorthwestern Winona County in southeastern Minnesota...\nNortheastern Olmsted County in southeastern Minnesota...\nSouthern Wabasha County in southeastern Minnesota...\nSouth central Buffalo County in west central Wisconsin...\n\n* Until 745 PM CDT.\n\n* At 659 PM CDT, a severe thunderstorm was located near Kellogg, or 7\nmiles southwest of Wabasha, moving southeast at 55 mph.\n\nHAZARD...60 mph wind gusts and half dollar size hail.\n\nSOURCE...Radar indicated.\n\nIMPACT...Hail damage to vehicles is expected. Expect wind damage\nto roofs, siding, and trees.\n\n* This severe thunderstorm will be near...\nBuffalo and Buffalo City around 710 PM CDT.\nAltura around 715 PM CDT.\nFountain City and Rollingstone around 720 PM CDT.\nWinona around 725 PM CDT.\n\nOther locations impacted by this severe thunderstorm include South\nTroy, Whitewater State Park, Merrick State Park, Czechville,\nRattelsnake Point, Potsdam and Whitman.",
-        instruction:
-          "For your protection move to an interior room on the lowest floor of a\nbuilding.",
+        instruction: "For your protection move to an interior room on the lowest floor of a\nbuilding.",
         response: "Shelter",
         parameters: {
           AWIPSidentifier: ["SVRARX"],
           WMOidentifier: ["WUUS53 KARX 120000"],
-          eventMotionDescription: [
-            "2023-08-11T23:59:00-00:00...storm...303DEG...48KT...44.28,-92.1",
-          ],
+          eventMotionDescription: ["2023-08-11T23:59:00-00:00...storm...303DEG...48KT...44.28,-92.1"],
           windThreat: ["RADAR INDICATED"],
           maxWindGust: ["60 MPH"],
           hailThreat: ["RADAR INDICATED"],
@@ -1237,8 +1141,7 @@ export const FAKE_ALERTS = {
         ],
       },
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.8f05727d9fddf03bb5dc8f3ea25562029a81313a.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.8f05727d9fddf03bb5dc8f3ea25562029a81313a.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.8f05727d9fddf03bb5dc8f3ea25562029a81313a.001.1",
         areaDesc: "Clark, NV; Nye, NV",
@@ -1246,10 +1149,7 @@ export const FAKE_ALERTS = {
           SAME: ["032003", "032023"],
           UGC: ["NVC003", "NVC023"],
         },
-        affectedZones: [
-          "https://api.weather.gov/zones/county/NVC003",
-          "https://api.weather.gov/zones/county/NVC023",
-        ],
+        affectedZones: ["https://api.weather.gov/zones/county/NVC003", "https://api.weather.gov/zones/county/NVC023"],
         references: [],
         sent: "2023-08-11T16:58:00-07:00",
         effective: "2023-08-11T16:58:00-07:00",
@@ -1265,8 +1165,7 @@ export const FAKE_ALERTS = {
         event: "Severe Thunderstorm Warning",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Las Vegas NV",
-        headline:
-          "Severe Thunderstorm Warning issued August 11 at 4:58PM PDT until August 11 at 5:00PM PDT by NWS Las Vegas NV",
+        headline: "Severe Thunderstorm Warning issued August 11 at 4:58PM PDT until August 11 at 5:00PM PDT by NWS Las Vegas NV",
         description:
           "The storm which prompted the warning has weakened below severe\nlimits, and no longer poses an immediate threat to life or property.\nTherefore, the warning will be allowed to expire.  However small hail\nis still possible with some of these thunderstorms.",
         instruction: null,
@@ -1274,12 +1173,8 @@ export const FAKE_ALERTS = {
         parameters: {
           AWIPSidentifier: ["SVSVEF"],
           WMOidentifier: ["WWUS55 KVEF 112358"],
-          NWSheadline: [
-            "THE SEVERE THUNDERSTORM WARNING FOR WEST CENTRAL CLARK AND SOUTHEASTERN NYE COUNTIES WILL EXPIRE AT 500 PM PDT",
-          ],
-          eventMotionDescription: [
-            "2023-08-11T23:58:00-00:00...storm...165DEG...16KT...36.24,-115.68",
-          ],
+          NWSheadline: ["THE SEVERE THUNDERSTORM WARNING FOR WEST CENTRAL CLARK AND SOUTHEASTERN NYE COUNTIES WILL EXPIRE AT 500 PM PDT"],
+          eventMotionDescription: ["2023-08-11T23:58:00-00:00...storm...165DEG...16KT...36.24,-115.68"],
           BLOCKCHANNEL: ["EAS", "NWEM", "CMAS"],
           "EAS-ORG": ["WXR"],
           VTEC: ["/O.EXP.KVEF.SV.W.0027.000000T0000Z-230812T0000Z/"],
@@ -1317,8 +1212,7 @@ export const FAKE_ALERTS = {
         ],
       },
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.b1a03d478da4165637cb97af768b548f93546c3b.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.b1a03d478da4165637cb97af768b548f93546c3b.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.b1a03d478da4165637cb97af768b548f93546c3b.001.1",
         areaDesc: "Menominee, MI",
@@ -1342,19 +1236,15 @@ export const FAKE_ALERTS = {
         event: "Severe Thunderstorm Warning",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Marquette MI",
-        headline:
-          "Severe Thunderstorm Warning issued August 11 at 6:56PM CDT until August 11 at 8:00PM CDT by NWS Marquette MI",
+        headline: "Severe Thunderstorm Warning issued August 11 at 6:56PM CDT until August 11 at 8:00PM CDT by NWS Marquette MI",
         description:
           "The National Weather Service in Marquette has issued a\n\n* Severe Thunderstorm Warning for...\nSouthern Menominee County in south central Upper Michigan...\n\n* Until 800 PM CDT.\n\n* At 656 PM CDT, a severe thunderstorm was located near Wausaukee, or\n21 miles northwest of Marinette, moving southeast at 15 mph.\n\nHAZARD...Quarter size hail.\n\nSOURCE...Radar indicated.\n\nIMPACT...Damage to vehicles is expected.\n\n* Locations impacted include...\nMarinette, Menominee, Stephenson, Wallace, Ingalls, Carbondale,\nBirch Creek, and Arthur Bay.",
-        instruction:
-          "For your protection move to an interior room on the lowest floor of a\nbuilding.",
+        instruction: "For your protection move to an interior room on the lowest floor of a\nbuilding.",
         response: "Shelter",
         parameters: {
           AWIPSidentifier: ["SVRMQT"],
           WMOidentifier: ["WUUS53 KMQT 112356"],
-          eventMotionDescription: [
-            "2023-08-11T23:56:00-00:00...storm...294DEG...15KT...45.36,-87.85",
-          ],
+          eventMotionDescription: ["2023-08-11T23:56:00-00:00...storm...294DEG...15KT...45.36,-87.85"],
           windThreat: ["RADAR INDICATED"],
           maxWindGust: ["Up to 50 MPH"],
           hailThreat: ["RADAR INDICATED"],
@@ -1382,8 +1272,7 @@ export const FAKE_ALERTS = {
         ],
       },
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.9b38dbb9d9b959221a3ea2ddee2ee1f9d70c5302.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.9b38dbb9d9b959221a3ea2ddee2ee1f9d70c5302.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.9b38dbb9d9b959221a3ea2ddee2ee1f9d70c5302.001.1",
         areaDesc: "Beckham, OK; Custer, OK; Roger Mills, OK; Washita, OK",
@@ -1412,19 +1301,15 @@ export const FAKE_ALERTS = {
         event: "Severe Thunderstorm Warning",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Norman OK",
-        headline:
-          "Severe Thunderstorm Warning issued August 11 at 6:35PM CDT until August 11 at 7:15PM CDT by NWS Norman OK",
+        headline: "Severe Thunderstorm Warning issued August 11 at 6:35PM CDT until August 11 at 7:15PM CDT by NWS Norman OK",
         description:
           "The National Weather Service in Norman has issued a\n\n* Severe Thunderstorm Warning for...\nNorthwestern Washita County in western Oklahoma...\nSoutheastern Roger Mills County in western Oklahoma...\nWestern Custer County in western Oklahoma...\nNortheastern Beckham County in western Oklahoma...\n\n* Until 715 PM CDT.\n\n* At 634 PM CDT, a severe thunderstorm was located near Elk City,\nmoving northeast at 25 mph.\n\nHAZARD...60 mph wind gusts.\n\nSOURCE...Radar indicated.\n\nIMPACT...Expect damage to roofs, siding, and trees.\n\n* Locations impacted include...\nElk City, Clinton, Cordell, Burns Flat, Hammon, Dill City, Canute,\nButler, Carter, Bessie, Foss, Foss Reservoir, Berlin, and Stafford.",
-        instruction:
-          "For your protection move to an interior room on the lowest floor of a\nbuilding.",
+        instruction: "For your protection move to an interior room on the lowest floor of a\nbuilding.",
         response: "Shelter",
         parameters: {
           AWIPSidentifier: ["SVROUN"],
           WMOidentifier: ["WUUS54 KOUN 112335"],
-          eventMotionDescription: [
-            "2023-08-11T23:34:00-00:00...storm...241DEG...20KT...35.4,-99.39",
-          ],
+          eventMotionDescription: ["2023-08-11T23:34:00-00:00...storm...241DEG...20KT...35.4,-99.39"],
           windThreat: ["RADAR INDICATED"],
           maxWindGust: ["60 MPH"],
           hailThreat: ["RADAR INDICATED"],
@@ -1443,12 +1328,10 @@ export const FAKE_ALERTS = {
       type: "Feature",
       geometry: null,
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.a848aef8b32ce950140dc1ac9623d5c5b677b806.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.a848aef8b32ce950140dc1ac9623d5c5b677b806.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.a848aef8b32ce950140dc1ac9623d5c5b677b806.001.1",
-        areaDesc:
-          "Crawford, MO; Iron, MO; Madison, MO; Reynolds, MO; St. Francois, MO; Washington, MO",
+        areaDesc: "Crawford, MO; Iron, MO; Madison, MO; Reynolds, MO; St. Francois, MO; Washington, MO",
         geocode: {
           SAME: ["029055", "029093", "029123", "029179", "029187", "029221"],
           UGC: ["MOC055", "MOC093", "MOC123", "MOC179", "MOC187", "MOC221"],
@@ -1476,8 +1359,7 @@ export const FAKE_ALERTS = {
         event: "Severe Thunderstorm Watch",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS St Louis MO",
-        headline:
-          "Severe Thunderstorm Watch issued August 14 at 12:01AM CDT until August 14 at 5:00AM CDT by NWS St Louis MO",
+        headline: "Severe Thunderstorm Watch issued August 14 at 12:01AM CDT until August 14 at 5:00AM CDT by NWS St Louis MO",
         description:
           "THE NATIONAL WEATHER SERVICE HAS ISSUED SEVERE THUNDERSTORM WATCH\n646 IN EFFECT UNTIL 5 AM CDT EARLY THIS MORNING FOR THE FOLLOWING\nAREAS\n\nIN MISSOURI THIS WATCH INCLUDES 6 COUNTIES\n\nIN EAST CENTRAL MISSOURI\n\nCRAWFORD              WASHINGTON\n\nIN SOUTHEAST MISSOURI\n\nIRON                  MADISON               REYNOLDS\nSAINT FRANCOIS\n\nTHIS INCLUDES THE CITIES OF FARMINGTON.",
         instruction: null,
@@ -1497,8 +1379,7 @@ export const FAKE_ALERTS = {
       type: "Feature",
       geometry: null,
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.9a15182ee850b19723296445ef46571293da7c67.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.9a15182ee850b19723296445ef46571293da7c67.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.9a15182ee850b19723296445ef46571293da7c67.001.1",
         areaDesc: "Butler, MO; Carter, MO; Ripley, MO; Wayne, MO",
@@ -1527,8 +1408,7 @@ export const FAKE_ALERTS = {
         event: "Severe Thunderstorm Watch",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Paducah KY",
-        headline:
-          "Severe Thunderstorm Watch issued August 13 at 11:59PM CDT until August 14 at 5:00AM CDT by NWS Paducah KY",
+        headline: "Severe Thunderstorm Watch issued August 13 at 11:59PM CDT until August 14 at 5:00AM CDT by NWS Paducah KY",
         description:
           "THE NATIONAL WEATHER SERVICE HAS ISSUED SEVERE THUNDERSTORM WATCH\n646 IN EFFECT UNTIL 5 AM CDT MONDAY FOR THE FOLLOWING AREAS\n\nIN MISSOURI THIS WATCH INCLUDES 4 COUNTIES\n\nIN SOUTHEAST MISSOURI\n\nBUTLER                CARTER                RIPLEY\nWAYNE\n\nTHIS INCLUDES THE CITIES OF DONIPHAN, PIEDMONT, POPLAR BLUFF,\nAND VAN BUREN.",
         instruction: null,
@@ -1548,8 +1428,7 @@ export const FAKE_ALERTS = {
       type: "Feature",
       geometry: null,
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.0a7f8cc1a0157c5b36ef27f4a3e8c2d3d7c2ef9f.002.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.0a7f8cc1a0157c5b36ef27f4a3e8c2d3d7c2ef9f.002.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.0a7f8cc1a0157c5b36ef27f4a3e8c2d3d7c2ef9f.002.1",
         areaDesc: "Cumberland, TN; Van Buren, TN; White, TN",
@@ -1557,11 +1436,7 @@ export const FAKE_ALERTS = {
           SAME: ["047035", "047175", "047185"],
           UGC: ["TNC035", "TNC175", "TNC185"],
         },
-        affectedZones: [
-          "https://api.weather.gov/zones/county/TNC035",
-          "https://api.weather.gov/zones/county/TNC175",
-          "https://api.weather.gov/zones/county/TNC185",
-        ],
+        affectedZones: ["https://api.weather.gov/zones/county/TNC035", "https://api.weather.gov/zones/county/TNC175", "https://api.weather.gov/zones/county/TNC185"],
         references: [],
         sent: "2023-08-13T16:53:00-05:00",
         effective: "2023-08-13T16:53:00-05:00",
@@ -1577,8 +1452,7 @@ export const FAKE_ALERTS = {
         event: "Severe Thunderstorm Watch",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Nashville TN",
-        headline:
-          "Severe Thunderstorm Watch issued August 13 at 4:53PM CDT until August 13 at 8:00PM CDT by NWS Nashville TN",
+        headline: "Severe Thunderstorm Watch issued August 13 at 4:53PM CDT until August 13 at 8:00PM CDT by NWS Nashville TN",
         description:
           "This is a PARTICULARLY DANGEROUS SITUATION!!! THE NATIONAL WEATHER SERVICE HAS EXTENDED SEVERE THUNDERSTORM\nWATCH 641 TO INCLUDE THE FOLLOWING AREAS UNTIL 8 PM CDT THIS\nEVENING\n\nIN TENNESSEE THIS WATCH INCLUDES 3 COUNTIES\n\nIN MIDDLE TENNESSEE\n\nCUMBERLAND            VAN BUREN             WHITE\n\nTHIS INCLUDES THE CITIES OF CROSSVILLE, SPARTA, AND SPENCER.",
         instruction: null,
@@ -1598,37 +1472,13 @@ export const FAKE_ALERTS = {
       type: "Feature",
       geometry: null,
       properties: {
-        "@id":
-          "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.cc5c8a7f7f982d43509602ad901b58e5ac1d9408.001.1",
+        "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.cc5c8a7f7f982d43509602ad901b58e5ac1d9408.001.1",
         "@type": "wx:Alert",
         id: "urn:oid:2.49.0.1.840.0.cc5c8a7f7f982d43509602ad901b58e5ac1d9408.001.1",
-        areaDesc:
-          "Beaver, OK; Collingsworth, TX; Donley, TX; Gray, TX; Hansford, TX; Hemphill, TX; Lipscomb, TX; Ochiltree, TX; Roberts, TX; Wheeler, TX",
+        areaDesc: "Beaver, OK; Collingsworth, TX; Donley, TX; Gray, TX; Hansford, TX; Hemphill, TX; Lipscomb, TX; Ochiltree, TX; Roberts, TX; Wheeler, TX",
         geocode: {
-          SAME: [
-            "040007",
-            "048087",
-            "048129",
-            "048179",
-            "048195",
-            "048211",
-            "048295",
-            "048357",
-            "048393",
-            "048483",
-          ],
-          UGC: [
-            "OKC007",
-            "TXC087",
-            "TXC129",
-            "TXC179",
-            "TXC195",
-            "TXC211",
-            "TXC295",
-            "TXC357",
-            "TXC393",
-            "TXC483",
-          ],
+          SAME: ["040007", "048087", "048129", "048179", "048195", "048211", "048295", "048357", "048393", "048483"],
+          UGC: ["OKC007", "TXC087", "TXC129", "TXC179", "TXC195", "TXC211", "TXC295", "TXC357", "TXC393", "TXC483"],
         },
         affectedZones: [
           "https://api.weather.gov/zones/county/OKC007",
@@ -1657,8 +1507,7 @@ export const FAKE_ALERTS = {
         event: "Severe Thunderstorm Watch",
         sender: "w-nws.webmaster@noaa.gov",
         senderName: "NWS Amarillo TX",
-        headline:
-          "Severe Thunderstorm Watch issued August 13 at 4:48PM CDT until August 13 at 11:00PM CDT by NWS Amarillo TX",
+        headline: "Severe Thunderstorm Watch issued August 13 at 4:48PM CDT until August 13 at 11:00PM CDT by NWS Amarillo TX",
         description:
           "THE NATIONAL WEATHER SERVICE HAS ISSUED SEVERE THUNDERSTORM WATCH\n642 IN EFFECT UNTIL 11 PM CDT THIS EVENING FOR THE FOLLOWING\nAREAS\n\nIN OKLAHOMA THIS WATCH INCLUDES 1 COUNTY\n\nIN THE OKLAHOMA PANHANDLE\n\nBEAVER\n\nIN TEXAS THIS WATCH INCLUDES 9 COUNTIES\n\nIN THE TEXAS PANHANDLE\n\nCOLLINGSWORTH         DONLEY                GRAY\nHANSFORD              HEMPHILL              LIPSCOMB\nOCHILTREE             ROBERTS               WHEELER\n\nTHIS INCLUDES THE CITIES OF BEAVER, BOOKER, BRISCOE, CANADIAN,\nCLARENDON, CODMAN, DOZIER, FARNSWORTH, FOLLETT, FORGAN, GLAZIER,\nGRUVER, HIGGINS, KINGSMILL, LAKE MARVIN, LELA, LORA, LUTIE,\nMIAMI, PAMPA, PERRYTON, SAMNORWOOD, SHAMROCK, SPEARMAN, TWITTY,\nWAKA, WELLINGTON, WHEELER, AND WOLF CREEK PARK.",
         instruction: null,
@@ -1701,10 +1550,7 @@ const fetchProductsByTypeId = () => {};
 export const useAllActiveAlerts = () => {
   return useQuery({
     queryKey: ["NWS API Web Service", "Alerts", "Active"],
-    queryFn: () =>
-      fetchActiveNwsAlertsByType(
-        "Tornado Warning,Tornado Watch,Severe Thunderstorm Warning,Severe Thunderstorm Watch"
-      ),
+    queryFn: () => fetchActiveNwsAlertsByType("Tornado Warning,Tornado Watch,Severe Thunderstorm Warning,Severe Thunderstorm Watch"),
     refetchInterval: 15000,
   });
 };
@@ -1718,3 +1564,4 @@ export const useActiveNwsAlertsByType = (alertType) => {
 export const useFakeNwsAlertsByType = (alertType) => {
   return FAKE_ALERTS[alertType];
 };
+549;

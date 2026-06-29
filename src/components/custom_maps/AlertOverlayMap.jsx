@@ -1,13 +1,10 @@
 import { ConusStatesMap } from "components/_shared/Maps";
 import { CategoricalFeatureBoundries } from "components/convective_outlooks/CategoricalFeatureBoundries";
-import {
-  WarningPolygons,
-  WatchPolygons,
-} from "components/nws_alerts/AlertPolygons";
+import { WarningPolygons, WatchPolygons } from "components/nws_alerts/AlertPolygons";
 import { ALERT_TYPES } from "constants/nws-alerts";
 import { ALERT_COLORS } from "styles/nws-alert-colors";
 
-export const AlertOverlayMap = ({ categoricalFeatures, alerts }) => {
+export const AlertOverlayMap = ({ categoricalFeatures, alerts, onClickCallback }) => {
   let tornadoWarnings = [];
   let tornadoWatches = [];
   let stormWarnings = [];
@@ -25,8 +22,8 @@ export const AlertOverlayMap = ({ categoricalFeatures, alerts }) => {
       <WatchPolygons alerts={stormWatches} color={ALERT_COLORS.SVA} />
       <WatchPolygons alerts={tornadoWatches} color={ALERT_COLORS.TOA} />
       <CategoricalFeatureBoundries features={categoricalFeatures} />
-      <WarningPolygons alerts={stormWarnings} color={ALERT_COLORS.SVW} />
-      <WarningPolygons alerts={tornadoWarnings} color={ALERT_COLORS.TOW} />
+      <WarningPolygons alerts={stormWarnings} color={ALERT_COLORS.SVW} onClickCallback={onClickCallback} />
+      <WarningPolygons alerts={tornadoWarnings} color={ALERT_COLORS.TOW} onClickCallback={onClickCallback} />
     </ConusStatesMap>
   );
 };

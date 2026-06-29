@@ -13,10 +13,7 @@ import AlbersTopoJSONMap from "json/topojson-albers-map.json";
 import { changeWfoToCityState, createImpactedAreasMap } from "utils/nws-alerts";
 import { ConusCountiesMap } from "components/_shared/Maps";
 
-const { features: countyFeatures } = topojson.feature(
-  AlbersTopoJSONMap,
-  "counties"
-);
+const { features: countyFeatures } = topojson.feature(AlbersTopoJSONMap, "counties");
 
 export const ActiveAlertModal = ({ isOpen, closeFunc, alert, color }) => {
   // const {
@@ -45,33 +42,15 @@ export const ActiveAlertModal = ({ isOpen, closeFunc, alert, color }) => {
   return (
     <>
       {alert ? (
-        <Modal
-          open={isOpen}
-          style={{ backgroundColor: color }}
-          className="max-w-6xl"
-        >
-          <Button
-            size="sm"
-            color="ghost"
-            shape="circle"
-            className="absolute right-2 top-2"
-            onClick={closeFunc}
-          >
+        <Modal open={isOpen} style={{ backgroundColor: color }} className="max-w-6xl">
+          <Button size="sm" color="ghost" shape="circle" className="absolute right-2 top-2" onClick={closeFunc}>
             x
           </Button>
           <div className="flex space-x-2 mb-2">
             <SenderName senderName={alert?.properties.senderName} />
             <ExpirationTime expires={alert?.properties.expires} />
-            {alert?.properties?.parameters?.tornadoDetection && (
-              <TornadoDetection
-                tornadoDetection={alert.properties.parameters.tornadoDetection}
-              />
-            )}
-            {alert?.properties?.parameters?.maxHailSize && (
-              <MaxHailSize
-                maxHailSize={alert.properties.parameters.maxHailSize}
-              />
-            )}
+            {alert?.properties?.parameters?.tornadoDetection && <TornadoDetection tornadoDetection={alert.properties.parameters.tornadoDetection} />}
+            {alert?.properties?.parameters?.maxHailSize && <MaxHailSize maxHailSize={alert.properties.parameters.maxHailSize} />}
           </div>
           <ImpactedAreas areaDesc={alert?.properties.areaDesc} />
           <div className="flex mb-2">
@@ -130,16 +109,9 @@ export const AlertMessageModal = ({ messageType, message }) => {
           <pre className="whitespace-break-spaces">{message}</pre>
         </Modal.Body>
         <Modal.Actions>
-          <Button
-            onClick={toggleModalOpen}
-            className="bg-transparent hover:bg-transparent border-none"
-          >
+          <Button onClick={toggleModalOpen} className="bg-transparent hover:bg-transparent border-none">
             <span className="mr-2">close</span>
-            <AiFillCloseCircle
-              size={25}
-              color="white"
-              className="hover:fill-red-500"
-            />
+            <AiFillCloseCircle size={25} color="white" className="hover:fill-red-500" />
           </Button>
         </Modal.Actions>
       </Modal>
@@ -150,21 +122,14 @@ export const AlertPolygonMap = ({ alert, color }) => {
   const {
     properties: { event },
   } = alert;
-  let polygonColor =
-    event === "Tornado Warning"
-      ? "red"
-      : event === "Tornado Watch"
-      ? "yellow"
-      : event === "Severe Thunderstorm Warning"
-      ? "orange"
-      : "green";
+  let polygonColor = event === "Tornado Warning" ? "red" : event === "Tornado Watch" ? "yellow" : event === "Severe Thunderstorm Warning" ? "orange" : "green";
 
   const albersFitExtent = d3.geoAlbers().fitExtent(
     [
       [150, 100],
       [825, 510],
     ],
-    alert
+    alert,
   );
   const extentPathGen = d3.geoPath(albersFitExtent);
 
@@ -175,7 +140,7 @@ export const AlertPolygonMap = ({ alert, color }) => {
           color={color}
           feature={alert}
           pathGen={extentPathGen}
-          winding={TurfRewind}
+          // winding={TurfRewind}
         />
         <AlertCountyLabels features={countyFeatures} pathGen={extentPathGen} />
       </ConusCountiesMap>
@@ -194,13 +159,7 @@ const AlertCountyLabels = ({ features, pathGen }) => {
 
         return (
           <g key={`${id}`}>
-            <text
-              x={centroid[0]}
-              y={centroid[1]}
-              fontSize="35"
-              fill="white"
-              textAnchor="middle"
-            >
+            <text x={centroid[0]} y={centroid[1]} fontSize="35" fill="white" textAnchor="middle">
               {name}
             </text>
           </g>
@@ -212,7 +171,8 @@ const AlertCountyLabels = ({ features, pathGen }) => {
 const WarningPolygon = ({ feature, color, pathGen, winding }) => {
   return (
     <path
-      d={pathGen(winding(feature, { reverse: true }))}
+      // d={pathGen(winding(feature, { reverse: true }))}
+      d={pathGen(TurfRewind(feature, { reverse: true }))}
       fill={color}
       stroke={`dark${color}`}
       strokeWidth={10}
@@ -259,11 +219,7 @@ export const ImpactedAreas = ({ areaDesc }) => {
 
             return (
               <div key={state}>
-                {state ? (
-                  <h4 className="text-md font-bold mb-2 uppercase">
-                    {STATES_ABBR_NAME_MAP[state]}
-                  </h4>
-                ) : null}
+                {state ? <h4 className="text-md font-bold mb-2 uppercase">{STATES_ABBR_NAME_MAP[state]}</h4> : null}
 
                 <p className="text-sm mb-2">{joinedAreaDescStr}</p>
               </div>
@@ -300,9 +256,7 @@ export const PreText = ({ text }) => {
 export const SenderName = ({ senderName }) => {
   // const wfo = senderName ?.replace("NWS ", "") ?? "National Weather Service";
 
-  const wfo = senderName
-    ? changeWfoToCityState(senderName)
-    : "National Weather Service";
+  const wfo = senderName ? changeWfoToCityState(senderName) : "National Weather Service";
 
   return (
     <AlertCardSubComponent className="flex items-center text-lg">
@@ -317,9 +271,7 @@ export const TornadoDetection = ({ tornadoDetection }) => {
   return (
     <AlertCardSubComponent className="flex items-center">
       <FaTornado size={30} />
-      <span className="text-sm font-bold ml-4">
-        {isValidProp ? tornadoDetection[0] : "N/A"}
-      </span>
+      <span className="text-sm font-bold ml-4">{isValidProp ? tornadoDetection[0] : "N/A"}</span>
     </AlertCardSubComponent>
   );
 };
@@ -360,18 +312,14 @@ export const TornadoWarningAlert = ({ alert }) => {
         {/* <MaxHailSize maxHailSize={maxHailSize} /> */}
         {/* <AlertPolygonMap alertFeature={alert} /> */}
         <ImpactedAreas areaDesc={areaDesc} />
-        <AlertMessageButtons
-          description={description}
-          instruction={instruction}
-        />
+        <AlertMessageButtons description={description} instruction={instruction} />
       </Body>
     </Card>
   );
 };
 export const TornadoWatchAlert = ({ alert }) => {
   const { properties } = alert;
-  const { areaDesc, effective, expires, senderName, description, instruction } =
-    properties;
+  const { areaDesc, effective, expires, senderName, description, instruction } = properties;
 
   return (
     <Card className="bg-gradient-to-br from-yellow-300 to-yellow-600 p-2">
@@ -382,10 +330,7 @@ export const TornadoWatchAlert = ({ alert }) => {
       <Body>
         <ExpirationTime expiresTime={expires} />
         <ImpactedAreas areaDesc={areaDesc} />
-        <AlertMessageButtons
-          description={description}
-          instruction={instruction}
-        />
+        <AlertMessageButtons description={description} instruction={instruction} />
       </Body>
     </Card>
   );
@@ -393,8 +338,7 @@ export const TornadoWatchAlert = ({ alert }) => {
 export const SevereStormWarningAlert = ({ alert }) => {
   const { id, type, geometry, properties } = alert;
 
-  const { areaDesc, effective, expires, senderName, description, instruction } =
-    alert?.properties;
+  const { areaDesc, effective, expires, senderName, description, instruction } = alert?.properties;
 
   return (
     <Card className="bg-gradient-to-br from-orange-400 to-orange-600 p-2">
@@ -406,18 +350,14 @@ export const SevereStormWarningAlert = ({ alert }) => {
         <ExpirationTime expiresTime={expires} />
         <ImpactedAreas areaDesc={areaDesc} />
         {/* <AlertPolygonMap alertFeature={alert} /> */}
-        <AlertMessageButtons
-          description={description}
-          instruction={instruction}
-        />
+        <AlertMessageButtons description={description} instruction={instruction} />
       </Body>
     </Card>
   );
 };
 export const SevereStormWatchAlert = ({ alert }) => {
   const { properties } = alert;
-  const { areaDesc, effective, expires, senderName, description, instruction } =
-    properties;
+  const { areaDesc, effective, expires, senderName, description, instruction } = properties;
 
   return (
     <Card className="bg-gradient-to-br from-green-400 to-green-700 p-2">
@@ -429,10 +369,7 @@ export const SevereStormWatchAlert = ({ alert }) => {
         <ExpirationTime expiresTime={expires} />
         <ImpactedAreas areaDesc={areaDesc} />
         {/* <p>{instruction}</p> */}
-        <AlertMessageButtons
-          description={description}
-          instruction={instruction}
-        />
+        <AlertMessageButtons description={description} instruction={instruction} />
       </Body>
     </Card>
   );
